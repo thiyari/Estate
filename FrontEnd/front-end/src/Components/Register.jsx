@@ -13,7 +13,7 @@ function Register() {
     async function save(event) {
         event.preventDefault();
         try {
-          await axios.post("http://estateserver-nrie.onrender.com/user/create", {
+          await axios.post("https://estateserver-vi8u.onrender.com/user/create", {
           firstname: fname,
           lastname: lname,
           email: email,
