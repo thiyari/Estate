@@ -19,7 +19,7 @@ function Register() {
           email: email,
           password: password,
           });
-          alert("User Registation Successfully");
+          alert("User Registation Successful");
 
         } catch (err) {
           alert(err);
@@ -75,7 +75,7 @@ function Register() {
 
         <div className="form-group">
             <label>password</label>
-            <input type="password"  className="form-control" id="password" placeholder="Enter Fee"
+            <input type="password"  className="form-control" id="password" placeholder="Enter password"
             
             value={password}
             onChange={(event) => {

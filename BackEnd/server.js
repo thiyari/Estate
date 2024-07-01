@@ -5,8 +5,15 @@ const dotenv = require("dotenv");
 const path = require("path");
 var routes = require('./route/routes');
 const cors = require('cors');
+const imageModel = require('./src/users/imageModel');
 
 app.use(cors());
+app.use(express.json({limit:"10mb"}))
+app.get("/",async(req,res)=>{
+    const data = await (await imageModel.find({})).reverse()
+    res.json({message: "All Image", data: data})
+})
+
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
 const PORT = process.env.PORT||8080

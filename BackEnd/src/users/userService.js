@@ -1,4 +1,5 @@
 var userModel = require('./userModel')
+var imageModel = require('./imageModel')
 var key = '123456789asdflkj';
 var encryptor = require('simple-encryptor')(key);
 
@@ -40,5 +41,24 @@ module.exports.loginuserDBService = (userDetails) => {
                 } else {
                         reject({status: false, msg: "Invalid data"})
                 }
+        })
+}
+
+module.exports.uploadImageDBService = (uploadDetails) => {
+        return new Promise(async function myFn(resolve,reject){
+                async function upload(){
+                        console.log(uploadDetails)
+                        const image = new imageModel({
+                                image: uploadDetails.img
+                        })
+                        await image.save() 
+                }
+                upload().then(function(err){
+                        if(err){
+                                reject({status: false, msg:"Image upload failed"})
+                        } else {
+                                resolve({status: true, msg:"Image Uploaded Successfully!"})
+                        }
+                })
         })
 }
