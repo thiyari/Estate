@@ -12,7 +12,7 @@ app.use(express.json({limit:"10mb"}))
 
 
 app.get("/",async(req,res)=>{
-    const data = await (await userModel.find({})).reverse()
+    const data = await (await userModel.find().sort({_id:-1})).reverse()
     res.json({message: "All Image", data: data})
 })
 

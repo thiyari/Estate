@@ -31,14 +31,14 @@ function Register() {
       for (let i = 0; i < e.target.files.length; i++) {
          images.push(await imagebased64(e.target.files[i]))
       }
-      console.log(images);
       setImg(images);
     }
   
     const fetchImage = async()=>{
       const res = await fetch("http://localhost:8000/")
-      const data = await res.json()
-      setAllImage(data.data)
+      const doc_res = await res.json()
+      const img_data = doc_res.data[doc_res.data.length-1].images
+      setAllImage(img_data)
     }
 
     async function save(event) {
@@ -152,8 +152,11 @@ function Register() {
         <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
         <div className='allimage'>
           {
-            allImage.map((e1,i) =>{
-              return <div className={"row"} key={i}><img src={e1.images} width={"250px"} height={"180px"} alt=''/></div>
+            allImage.map((image,index) =>{
+              return (
+                <div className={"row"} key={index}>
+                <img src={image} width={"250px"} height={"180px"} alt={"image-" + index}/>
+                </div> )
             })
           }
         </div>       
