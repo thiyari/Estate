@@ -1,10 +1,8 @@
 var userModel = require('./userModel')
-var imageModel = require('./imageModel')
 var key = '123456789asdflkj';
 var encryptor = require('simple-encryptor')(key);
 
 module.exports.createUserDBService = (userDetails) => {
-
         return new Promise(function myFn(resolve,reject){
                 var encrypted = encryptor.encrypt(userDetails.password);
                 async function insert(){
@@ -12,7 +10,8 @@ module.exports.createUserDBService = (userDetails) => {
                                 firstname: userDetails.firstname,
                                 lastname: userDetails.lastname,
                                 email: userDetails.email,
-                                password: encrypted 
+                                password: encrypted,
+                                images: userDetails.images 
                         });
                         
                 }
@@ -44,21 +43,3 @@ module.exports.loginuserDBService = (userDetails) => {
         })
 }
 
-module.exports.uploadImageDBService = (uploadDetails) => {
-        return new Promise(async function myFn(resolve,reject){
-                async function upload(){
-                        console.log(uploadDetails)
-                        const image = new imageModel({
-                                image: uploadDetails.img
-                        })
-                        await image.save() 
-                }
-                upload().then(function(err){
-                        if(err){
-                                reject({status: false, msg:"Image upload failed"})
-                        } else {
-                                resolve({status: true, msg:"Image Uploaded Successfully!"})
-                        }
-                })
-        })
-}

@@ -38,6 +38,7 @@ var loginUserControllerFn = async(req,res)=>
     }
 }
 
+/*
 var uploadImageControllerFn = async(req,res)=>{
     var result = null
     try{
@@ -53,5 +54,6 @@ var uploadImageControllerFn = async(req,res)=>{
     }
     
 }
-
-module.exports = { createUserControllerFn, loginUserControllerFn, uploadImageControllerFn }
+*/
+module.exports = { createUserControllerFn, loginUserControllerFn }
+//module.exports = { createUserControllerFn, loginUserControllerFn, uploadImageControllerFn }

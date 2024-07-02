@@ -6,11 +6,14 @@ const path = require("path");
 var routes = require('./route/routes');
 const cors = require('cors');
 const imageModel = require('./src/users/imageModel');
+const userModel = require('./src/users/userModel');
 
 app.use(cors());
 app.use(express.json({limit:"10mb"}))
+
+
 app.get("/",async(req,res)=>{
-    const data = await (await imageModel.find({})).reverse()
+    const data = await (await userModel.find({})).reverse()
     res.json({message: "All Image", data: data})
 })
 
