@@ -6,9 +6,10 @@ body{
   margin: 0;
   padding: 10px;
 }
-.imageContainer form{
-  width: 400px;
-  height: 300px;
+
+.imageContainer{
+  width: 700px;
+  height: 400px;
   /*border: 2px solid royalblue;*/
   margin: auto;
   border-radius: 5px;
@@ -19,8 +20,9 @@ body{
   justify-content: center;
   flex-direction: column;
   border-radius: 5px;
-  /*overflow: hidden;*/
+  overflow: hidden;
 }
+
 .uploadBox{
   width: 100%;
   height: 100%;
@@ -31,22 +33,16 @@ body{
   font-size: 60px;
 }
 
-.btn{
-  display: flex;
-  justify-content: center;
-  position: bottom;
-  top: 20px;
-}
-
 input[type='file']{
   display: none;
 }
 
-.btn{
+.btn {
   display: flex;
+  height: 40px;
   justify-content: center;
   position: relative;
-  top:20px;
+  top:50px;
 }
 
 form button{
@@ -61,17 +57,19 @@ form button{
 }
 
 .uploadBox img{
-  height: 100%;
-  width: 100%;
+  height: 400px;
+  width: 700px;
   border-radius: 5px;
 }
 
 .allimage {
+  padding-left: 15px;
   margin-top: 100px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
 }
+
 .allimage img {
   border-radius: 5px;
   box-shadow: 3px 3px 7px rgba(0,0,0,0.3);

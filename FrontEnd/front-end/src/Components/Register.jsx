@@ -115,8 +115,6 @@ function Register() {
           
           />
           
-          
-          
         </div>
 
         <div className="form-group">
@@ -131,20 +129,17 @@ function Register() {
             />
           </div>
           <div className="form-group">
+            <br></br>
             <div className='imageContainer'>
-            <label htmlFor='uploadImage'>
-              <div className='uploadBox'>
-                <input type='file' id='uploadImage' onChange={handleUploadImage}/>
-                { img ? <img src={img} alt=''/>:<PiUploadSimpleBold/>}
-              </div>
-            </label>
+              <label htmlFor='uploadImage'>
+                <div className='uploadBox'>
+                  <input type='file' id='uploadImage' onChange={handleUploadImage}/>
+                  { img ? <img src={img} alt=''/>:<PiUploadSimpleBold/>}
+                </div>
+              </label>
           </div>
-
-
-
       </div>
 
-    
         <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
         <div className='allimage'>
           {
@@ -154,7 +149,6 @@ function Register() {
           }
         </div>       
       </form>
-
     </div>
 
     </div>
