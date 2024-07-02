@@ -19,9 +19,9 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
-    images: {
+    images: [{
         type: String    
-    }
+    }]
 });
 
 module.exports = mongoose.model('users', userSchema);

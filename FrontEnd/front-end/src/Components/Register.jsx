@@ -13,9 +13,9 @@ function Register() {
     const [password, setPassword] = useState("");
 
     
-    const [img,setImg] = useState("")
+    const [img,setImg] = useState([])
     const [allImage,setAllImage] = useState([])
-    
+
     const imagebased64 = async (file)=>{
       const reader = new FileReader()
       await reader.readAsDataURL(file)
@@ -25,11 +25,14 @@ function Register() {
       })
       return data
     }
-  
+
     const handleUploadImage = async(e)=>{
-      const file = e.target.files[0]
-      const image = await imagebased64(file)
-      setImg(image)
+      let images = []
+      for (let i = 0; i < e.target.files.length; i++) {
+         images.push(await imagebased64(e.target.files[i]))
+      }
+      console.log(images);
+      setImg(images);
     }
   
     const fetchImage = async()=>{
@@ -133,8 +136,14 @@ function Register() {
             <div className='imageContainer'>
               <label htmlFor='uploadImage'>
                 <div className='uploadBox'>
-                  <input type='file' id='uploadImage' onChange={handleUploadImage}/>
-                  { img ? <img src={img} alt=''/>:<PiUploadSimpleBold/>}
+                  <input type='file' multiple accept="image/*" id='uploadImage' onChange={handleUploadImage}/>
+                  { img.length === 0 ? <PiUploadSimpleBold/> :
+                  img.map((image,index)=>{
+                    return (<img src={image} alt={"image-"+index} key={index}/>);
+                  })
+                  }
+                  
+
                 </div>
               </label>
           </div>
