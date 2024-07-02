@@ -5,7 +5,6 @@ const dotenv = require("dotenv");
 const path = require("path");
 var routes = require('./route/routes');
 const cors = require('cors');
-const imageModel = require('./src/users/imageModel');
 const userModel = require('./src/users/userModel');
 
 app.use(cors());
