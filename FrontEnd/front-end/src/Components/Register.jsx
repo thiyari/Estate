@@ -54,8 +54,12 @@ function Register() {
           }
       });
           console.log(img)
-          alert("User Registation Successful");          
+          alert("User Registation Successful");
+          setFName('')
+          setLName('')
+          setEmail('')
           setImg('')
+          setPassword('')
           fetchImage()
 
         } catch (err) {
