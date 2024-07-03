@@ -149,6 +149,8 @@ function Register() {
                           })}
                           showBullets={true}
                           showNavs={true}
+                          autoPlay={true}
+                          loop={true}
                           />
                   }
                 </div>
