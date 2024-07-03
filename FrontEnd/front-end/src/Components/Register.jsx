@@ -1,9 +1,8 @@
 import axios from "axios";
-
 import '../App.css';
 import { PiUploadSimpleBold } from "react-icons/pi";
 import {useState, useEffect} from 'react';
-
+import SimpleImageSlider from "react-simple-image-slider";
 
 function Register() {
 
@@ -78,6 +77,7 @@ function Register() {
 
 
     return (
+      
      <div>
         <div className="container mt-4" >
     <div className="card">
@@ -139,20 +139,21 @@ function Register() {
               <label htmlFor='uploadImage'>
                 <div className='uploadBox'>
                   <input type='file' multiple accept="image/*" id='uploadImage' onChange={handleUploadImage}/>
-                  <div className='slider'>
                   { img.length === 0 ? <PiUploadSimpleBold/> :
-                  img.map((image,index)=>{
-                    return (<img src={image} alt={"image-"+index} key={index}/>);
-                  })
+                          <SimpleImageSlider
+                          width={700}
+                          height={400}
+                          images={                  
+                            img.map((image)=>{
+                            return ({url: image});
+                          })}
+                          showBullets={true}
+                          showNavs={true}
+                          />
                   }
-                  </div>
                 </div>
               </label>
           </div>
-                <ul id="nav">
-			            <li id="prev"><a href="#prv">Previous</a></li>
-			            <li id="next"><a href="#nxt">Next</a></li>		
-		            </ul>
       </div>
 
         <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
