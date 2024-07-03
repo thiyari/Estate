@@ -74,3 +74,56 @@ form button{
   border-radius: 5px;
   box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
 }
+
+
+
+
+/*
+.slider{
+  height: 332px;
+}
+
+.slider img{
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+} 
+*/
+#nav {
+  list-style-type: none;
+  z-index: 150;
+}
+
+#nav li a {
+  display: block;
+  width: 58px;
+  height: 102px;
+  text-indent: -9999px;
+  outline: none;
+}
+
+#prev a {
+  background: url(../public/prev.png);
+  width: 58px;
+  height: 102px;
+  position: absolute;
+  top: 460px;
+  left: 90px;
+}
+
+#next a {
+ background: url(../public/next.png);
+ width: 58px;
+ height: 102px;
+ position: absolute;
+ top: 460px;
+ right: 90px;
+}
+
+#next a:hover {
+ background: url(../public/next_hover.png);
+}
+
+#prev a:hover {
+ background: url(../public/prev_hover.png);
+}
