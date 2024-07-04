@@ -21,7 +21,7 @@ function Register() {
 
   
     const fetchImage = async()=>{
-      const res = await fetch("http://estateserver-vi8u.onrender.com")
+      const res = await fetch("http://localhost:8000")
       const doc_res = await res.json()
       const img_data = doc_res.data[doc_res.data.length-1].images
       setAllImage(img_data)
@@ -30,7 +30,7 @@ function Register() {
     async function save(event) {
         event.preventDefault();
         try {
-          await axios.post("http://estateserver-vi8u.onrender.com/user/create", JSON.stringify({
+          await axios.post("http://localhost:8000/user/create", JSON.stringify({
           firstname: fname,
           lastname: lname,
           email: email,
