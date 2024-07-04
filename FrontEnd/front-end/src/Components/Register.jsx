@@ -1,11 +1,9 @@
 import axios from "axios";
 import '../App.css';
-import { PiUploadSimpleBold } from "react-icons/pi";
 import {useState, useEffect} from 'react';
-import SimpleImageSlider from "react-simple-image-slider";
+import ImageUpload from './ImageUpload/ImageUpload';
 
 function Register() {
-
     const [fname, setFName] = useState("");
     const [lname, setLName] = useState("");
 
@@ -16,23 +14,11 @@ function Register() {
     const [img,setImg] = useState([])
     const [allImage,setAllImage] = useState([])
 
-    const imagebased64 = async (file)=>{
-      const reader = new FileReader()
-      await reader.readAsDataURL(file)
-      const data = new Promise((resolve,reject)=>{
-        reader.onload = () => resolve(reader.result)
-        reader.onerror = (err) => reject(err)
-      })
-      return data
-    }
 
-    const handleUploadImage = async(e)=>{
-      let images = []
-      for (let i = 0; i < e.target.files.length; i++) {
-         images.push(await imagebased64(e.target.files[i]))
-      }
+    const setImages = (images)=>{
       setImg(images);
     }
+
   
     const fetchImage = async()=>{
       const res = await fetch("http://localhost:8000/")
@@ -135,28 +121,8 @@ function Register() {
           </div>
           <div className="form-group">
             <br></br>
-            <div className='imageContainer'>
-              <label htmlFor='uploadImage'>
-                <div className='uploadBox'>
-                  <input type='file' multiple accept="image/*" id='uploadImage' onChange={handleUploadImage}/>
-                  { img.length === 0 ? <PiUploadSimpleBold/> :
-                          <SimpleImageSlider
-                          width={700}
-                          height={400}
-                          images={                  
-                            img.map((image)=>{
-                            return ({url: image});
-                          })}
-                          showBullets={true}
-                          showNavs={true}
-                          autoPlay={true}
-                          loop={true}
-                          />
-                  }
-                </div>
-              </label>
+            <ImageUpload img={img} onSetImg={setImages}/>
           </div>
-      </div>
 
         <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
         <div className='allimage'>
