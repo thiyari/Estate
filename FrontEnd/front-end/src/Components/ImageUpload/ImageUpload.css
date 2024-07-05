@@ -27,25 +27,6 @@
     display: none;
   }
   
-  .btn {
-    display: flex;
-    height: 40px;
-    justify-content: center;
-    position: relative;
-    top:50px;
-  }
-  
-  form button{
-    width: 100px;
-    margin: auto;
-    height: 30px;
-    border: none;
-    background-color: #fdbf1c;
-    border-radius: 5px;
-    font-weight: 550;
-    cursor: pointer;
-  }
-  
   .uploadBox img{
     width: 700px;
     height: 400px;

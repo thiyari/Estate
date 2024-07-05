@@ -1,36 +1,24 @@
 import axios from "axios";
 import '../App.css';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 
 function Register() {
     const [fname, setFName] = useState("");
     const [lname, setLName] = useState("");
-
     const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-
-    
+    const [password, setPassword] = useState("");    
     const [img,setImg] = useState([])
-    const [allImage,setAllImage] = useState([])
 
 
     const setImages = (images)=>{
       setImg(images);
     }
 
-  
-    const fetchImage = async()=>{
-      const res = await fetch("http://localhost:8000")
-      const doc_res = await res.json()
-      const img_data = doc_res.data[doc_res.data.length-1].images
-      setAllImage(img_data)
-    }
-
     async function save(event) {
         event.preventDefault();
         try {
-          await axios.post("http://localhost:8000/user/create", JSON.stringify({
+          await axios.post("http://estateserver-vi8u.onrender.com/user/create", JSON.stringify({
           firstname: fname,
           lastname: lname,
           email: email,
@@ -41,7 +29,7 @@ function Register() {
           headers:{
           "Content-Type":"application/json"
           }
-      });
+        });
           console.log(img)
           alert("User Registation Successful");
           setFName('')
@@ -49,43 +37,39 @@ function Register() {
           setEmail('')
           setImg('')
           setPassword('')
-          fetchImage()
 
         } catch (err) {
           alert(err);
         }
       }
     
-      useEffect(()=>{
-        fetchImage()
-      },[])
-    
-
-
     return (
       
      <div>
         <div className="container mt-4" >
     <div className="card">
-            <h1>User Registation</h1>
-    
+            <h1><center>User Registation</center></h1>
+    <div className="row">
+		  <div className="col-sm-1"></div>
+			<div className="col-sm-10 form-container">
     <form>
+      <div className="row">
+      <div className="col-1"></div>
+      <div className="col-4">
         <div className="form-group">
           <label>First name</label>
-          <input type="text"  className="form-control" id="fname" placeholder="Enter Name"
+          <input type="text"  className="form-control" id="fname" placeholder="First Name"
           
           value={fname}
           onChange={(event) => {
             setFName(event.target.value);
           }}
           />
-
-          
         </div>
 
         <div className="form-group">
             <label>Last name</label>
-            <input type="text"  className="form-control" id="lname" placeholder="Enter Name"
+            <input type="text"  className="form-control" id="lname" placeholder="Last Name"
             
             value={lname}
             onChange={(event) => {
@@ -97,7 +81,7 @@ function Register() {
     
         <div className="form-group">
           <label>email</label>
-          <input type="email"  className="form-control" id="email" placeholder="Enter Name"
+          <input type="email"  className="form-control" id="email" placeholder="Email"
           
           value={email}
           onChange={(event) => {
@@ -110,7 +94,7 @@ function Register() {
 
         <div className="form-group">
             <label>password</label>
-            <input type="password"  className="form-control" id="password" placeholder="Enter password"
+            <input type="password"  className="form-control" id="password" placeholder="Remeber password"
             
             value={password}
             onChange={(event) => {
@@ -119,25 +103,54 @@ function Register() {
             
             />
           </div>
-          <div className="form-group">
+        </div>
+        <div className="col-2"></div>
+        <div className="col-4">
+        <div className="form-group">
+          <label>Phone</label>
+          <input type="text"  className="form-control" id="phone" placeholder="Phone"
+          
+          value=""
+          onChange=""
+          />
+        </div>
+        <div className="form-group">
+          <label>Area</label>
+          <input type="text"  className="form-control" id="area" placeholder="Area of property"
+          
+          value=""
+          onChange=""
+          />
+        </div>
+        <div className="form-group">
+          <label>Location</label>
+          <input type="text"  className="form-control" id="property" placeholder="Property Location"
+          
+          value=""
+          onChange=""
+          />
+        </div>
+        <div className="form-group">
+          <label>PIN</label>
+          <input type="text"  className="form-control" id="pin" placeholder="Pin Code"
+          
+          value=""
+          onChange=""
+          />
+        </div>
+        </div>
+        <div className="col-1"></div>
+        <div className="form-group">
             <br></br>
             <ImageUpload img={img} onSetImg={setImages}/>
           </div>
-
         <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
-        <div className='allimage'>
-          {
-            allImage.map((image,index) =>{
-              return (
-                <div className={"row"} key={index}>
-                <img src={image} width={"250px"} height={"180px"} alt={"image-" + index}/>
-                </div> )
-            })
-          }
-        </div>       
+        </div>     
       </form>
+      </div>
+      <div className="col-sm-1"></div>
+      </div>
     </div>
-
     </div>
      </div>
     );
