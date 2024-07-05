@@ -44,13 +44,16 @@ function Login() {
 
     return (
      <div>
-            <div className="container">
+          <div className="container">
+            <div className="card">
+
             <div className="row">
-                <h2>Login</h2>
+                <h2><center>Login</center></h2>
              <hr/>
              </div>
 
              <div className="row">
+             <div className="col-sm-3"></div>
              <div className="col-sm-6">
  
              <form>
@@ -83,6 +86,8 @@ function Login() {
                   <button type="submit" className="btn btn-primary" onClick={login} >Login</button>
               </form>
 
+            </div>
+            <div className="col-sm-3"></div>
             </div>
             </div>
             </div>

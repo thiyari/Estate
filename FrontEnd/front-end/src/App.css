@@ -3,6 +3,8 @@
 }
 body{
   background-color: #f4f6f8;
+  background-image: url('../public/background.jpg');
+  background-size: 150px;
   margin: 0;
   padding: 10px;
 }
@@ -11,7 +13,7 @@ body{
 .btn {
   display: flex;
   height: 38px;
-  width: 500px;
+  width: 300px;
   justify-content: center;
   position: relative;
   top:50px;
