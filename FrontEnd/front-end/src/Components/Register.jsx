@@ -48,10 +48,11 @@ function Register() {
      <div>
         <div className="container mt-4" >
     <div className="card">
-            <h1><center>User Registation</center></h1>
+    <h1 className="card-header"><center>User Registation</center></h1>
     <div className="row">
 		  <div className="col-sm-1"></div>
 			<div className="col-sm-10 form-container">
+        <div className="card-body">
     <form>
       <div className="row">
       <div className="col-md-1"></div>
@@ -147,6 +148,7 @@ function Register() {
         <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
         </div>     
       </form>
+      </div>
       </div>
       <div className="col-sm-1"></div>
       </div>

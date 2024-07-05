@@ -47,15 +47,12 @@ function Login() {
           <div className="container mt-4">
             <div className="card">
 
-            <div className="row">
-                <h2><center>Login</center></h2>
-             <hr/>
-             </div>
+              <h1 className="card-header"><center>User Login</center></h1>
 
              <div className="row">
              <div className="col-sm-3"></div>
              <div className="col-sm-6">
- 
+             <div className="card-body">
              <form>
              <div className="form-group">
           <label>email</label>
@@ -85,7 +82,7 @@ function Login() {
           </div>
                   <button type="submit" className="btn btn-primary mt-4" onClick={login} >Login</button>
               </form>
-
+            </div>
             </div>
             <div className="col-sm-3"></div>
             </div>
