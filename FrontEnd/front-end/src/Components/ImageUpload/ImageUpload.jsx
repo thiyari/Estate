@@ -29,6 +29,7 @@ function ImageUpload(props){
   <div className='uploadBox'>
     <input type='file' multiple accept="image/*" id='uploadImage' onChange={handleUploadImage}/>
     { props.img.length === 0 ? <PiUploadSimpleBold/> :
+    <div className="slider__item">
             <SimpleImageSlider
             width={700}
             height={400}
@@ -41,6 +42,7 @@ function ImageUpload(props){
             autoPlay={true}
             loop={true}
             />
+    </div>
     }
   </div>
 </label>
