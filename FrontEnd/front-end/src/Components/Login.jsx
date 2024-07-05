@@ -44,7 +44,7 @@ function Login() {
 
     return (
      <div>
-          <div className="container">
+          <div className="container mt-4">
             <div className="card">
 
             <div className="row">
@@ -83,7 +83,7 @@ function Login() {
             
             />
           </div>
-                  <button type="submit" className="btn btn-primary" onClick={login} >Login</button>
+                  <button type="submit" className="btn btn-primary mt-4" onClick={login} >Login</button>
               </form>
 
             </div>
@@ -91,10 +91,8 @@ function Login() {
             </div>
             </div>
             </div>
-
      </div>
     );
-
 
   }
   
