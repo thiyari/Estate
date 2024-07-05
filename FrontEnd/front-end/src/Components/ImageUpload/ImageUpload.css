@@ -22,26 +22,19 @@
     align-items: center;
     cursor: pointer;
     font-size: 60px;
+    box-sizing: border-box;
+    min-width: 100%;
+    overflow: hidden;
+    object-fit: cover;
+    transform: translateX(0);
+    transition: transform 1s ease;
   }
   
   input[type='file']{
     display: none;
   }
   
-  .uploadBox img{
-    width: 700px;
-    height: 400px;
-    border-radius: 5px;
-  }
+ 
   
-  .slider__item {
-    box-sizing: border-box;
-    min-width: 100%;
-    height: auto;
-    overflow: hidden;
-    object-fit: cover;
-    transform: translateX(0);
-    transition: transform 1s ease;
-  }
   
   
