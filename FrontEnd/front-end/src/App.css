@@ -13,7 +13,7 @@ body{
 .btn {
   display: flex;
   height: 38px;
-  width: 300px;
+  width: 200px;
   justify-content: center;
   position: relative;
 }
