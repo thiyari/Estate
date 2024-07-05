@@ -47,7 +47,7 @@ function Login() {
           <div className="container mt-4">
             <div className="card">
 
-              <h1 className="card-header"><center>User Login</center></h1>
+            <h1 className="card-header"><center><div className="header-font">User Login</div></center></h1>
 
              <div className="row">
              <div className="col-sm-3"></div>
@@ -55,8 +55,8 @@ function Login() {
              <div className="card-body">
              <form>
              <div className="form-group">
-          <label>email</label>
-          <input type="email"  className="form-control" id="email" placeholder="Enter Name"
+          <label className="form-label">email</label>
+          <input type="email"  className="form-control mb-3" id="email" placeholder="Enter Name"
           
           value={email}
           onChange={(event) => {
@@ -70,8 +70,8 @@ function Login() {
         </div>
 
         <div className="form-group">
-            <label>password</label>
-            <input type="password"  className="form-control" id="password" placeholder="Enter password"
+            <label className="form-label">password</label>
+            <input type="password"  className="form-control mb-3" id="password" placeholder="Enter password"
             
             value={password}
             onChange={(event) => {

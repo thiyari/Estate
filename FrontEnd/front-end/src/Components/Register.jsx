@@ -48,7 +48,7 @@ function Register() {
      <div>
         <div className="container mt-4" >
     <div className="card">
-    <h1 className="card-header"><center>User Registation</center></h1>
+    <h1 className="card-header"><center><div className="header-font">User Registration</div></center></h1>
     <div className="row">
 		  <div className="col-sm-1"></div>
 			<div className="col-sm-10 form-container">
@@ -58,8 +58,8 @@ function Register() {
       <div className="col-md-1"></div>
       <div className="col-md-4">
         <div className="form-group">
-          <label>First name</label>
-          <input type="text"  className="form-control" id="fname" placeholder="First Name"
+          <label className="form-label">First name</label>
+          <input type="text"  className="form-control mb-3" id="fname" placeholder="First Name"
           
           value={fname}
           onChange={(event) => {
@@ -69,8 +69,8 @@ function Register() {
         </div>
 
         <div className="form-group">
-            <label>Last name</label>
-            <input type="text"  className="form-control" id="lname" placeholder="Last Name"
+            <label className="form-label">Last name</label>
+            <input type="text"  className="form-control mb-3" id="lname" placeholder="Last Name"
             
             value={lname}
             onChange={(event) => {
@@ -81,8 +81,8 @@ function Register() {
           </div>
     
         <div className="form-group">
-          <label>email</label>
-          <input type="email"  className="form-control" id="email" placeholder="Email"
+          <label className="form-label">email</label>
+          <input type="email"  className="form-control mb-3" id="email" placeholder="Email"
           
           value={email}
           onChange={(event) => {
@@ -94,8 +94,8 @@ function Register() {
         </div>
 
         <div className="form-group">
-            <label>password</label>
-            <input type="password"  className="form-control" id="password" placeholder="Remeber password"
+            <label className="form-label">password</label>
+            <input type="password"  className="form-control mb-3" id="password" placeholder="Remeber password"
             
             value={password}
             onChange={(event) => {
@@ -108,32 +108,32 @@ function Register() {
         <div className="col-md-2"></div>
         <div className="col-md-4">
         <div className="form-group">
-          <label>Phone</label>
-          <input type="text"  className="form-control" id="phone" placeholder="Phone"
+          <label className="form-label">Phone</label>
+          <input type="text"  className="form-control mb-3" id="phone" placeholder="Phone"
           
           value=""
           onChange=""
           />
         </div>
         <div className="form-group">
-          <label>Area</label>
-          <input type="text"  className="form-control" id="area" placeholder="Area of property"
+          <label className="form-label">Area</label>
+          <input type="text"  className="form-control mb-3" id="area" placeholder="Area of property"
           
           value=""
           onChange=""
           />
         </div>
         <div className="form-group">
-          <label>Location</label>
-          <input type="text"  className="form-control" id="property" placeholder="Property Location"
+          <label className="form-label">Location</label>
+          <input type="text"  className="form-control mb-3" id="property" placeholder="Property Location"
           
           value=""
           onChange=""
           />
         </div>
         <div className="form-group">
-          <label>PIN</label>
-          <input type="text"  className="form-control" id="pin" placeholder="Pin Code"
+          <label className="form-label">PIN</label>
+          <input type="text"  className="form-control mb-3" id="pin" placeholder="Pin Code"
           
           value=""
           onChange=""
@@ -141,10 +141,14 @@ function Register() {
         </div>
         </div>
         <div className="col-md-1"></div>
-        <div className="form-group">
-            <br></br>
+        <div className="col-sm-1"></div>
+        <div className="col-sm-10">
+          <div className="form-group">
+            <label className="form-label">Upload Images</label>
             <ImageUpload img={img} onSetImg={setImages}/>
           </div>
+        </div>
+        <div className="col-sm-1"></div>
         <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
         </div>     
       </form>
