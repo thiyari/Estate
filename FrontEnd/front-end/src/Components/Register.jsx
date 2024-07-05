@@ -54,8 +54,8 @@ function Register() {
 			<div className="col-sm-10 form-container">
     <form>
       <div className="row">
-      <div className="col-1"></div>
-      <div className="col-4">
+      <div className="col-md-1"></div>
+      <div className="col-md-4">
         <div className="form-group">
           <label>First name</label>
           <input type="text"  className="form-control" id="fname" placeholder="First Name"
@@ -104,8 +104,8 @@ function Register() {
             />
           </div>
         </div>
-        <div className="col-2"></div>
-        <div className="col-4">
+        <div className="col-md-2"></div>
+        <div className="col-md-4">
         <div className="form-group">
           <label>Phone</label>
           <input type="text"  className="form-control" id="phone" placeholder="Phone"
@@ -139,7 +139,7 @@ function Register() {
           />
         </div>
         </div>
-        <div className="col-1"></div>
+        <div className="col-md-1"></div>
         <div className="form-group">
             <br></br>
             <ImageUpload img={img} onSetImg={setImages}/>
