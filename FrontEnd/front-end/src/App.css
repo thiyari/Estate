@@ -56,3 +56,26 @@ form button{
   font-size: 18px;
   font-weight: 500;
 }
+
+
+::placeholder {
+  font-size: 12px;
+  font-weight: 400;
+  color: #e8e8e8;
+}
+
+
+
+.error-message {
+  font-size: 12px;
+  font-weight: 500;
+  color: red;
+  margin-top: 6px;
+}
+
+.success-message{
+  font-size: 12px;
+  font-weight: 500;
+  color: green;
+  margin-top: 16px;
+}

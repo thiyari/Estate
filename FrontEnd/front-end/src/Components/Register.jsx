@@ -5,11 +5,29 @@ import ImageUpload from './ImageUpload/ImageUpload';
 
 function Register() {
     const [fname, setFName] = useState("");
-    const [lname, setLName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");    
+    const [lname, setLName] = useState("");    
     const [img,setImg] = useState([])
 
+
+    const [formInput, setFormInput] = useState({
+      email: "",
+      password: "",
+      confirmPassword: "",
+      successMsg: ""
+    });
+
+    const [formError, setFormError] = useState({
+      email: "",
+      password: "",
+      confirmPassword: ""
+    })
+
+    const handleUserInput = (name, value) => {
+      setFormInput({
+        ...formInput,
+        [name]: value,
+      });
+    };
 
     const setImages = (images)=>{
       setImg(images);
@@ -17,12 +35,67 @@ function Register() {
 
     async function submitHandler(event) {
         event.preventDefault();
+
+
+          // Initialize an object to track input errors
+          let inputError = {
+            email: "",
+            password: "",
+            confirmPassword: "",
+          };
+
+          // Check if email and password are empty
+          if(!formInput.email && !formInput.password){
+            setFormError({
+              ...inputError,
+              email: "Enter a valid email address",
+              password: "Password should not be empty",
+            })
+            return;
+          }
+
+          // Check if email is empty
+          if(!formInput.email){
+            setFormError({
+              ...inputError,
+              email: "Enter a valid email address",
+            })
+            return;
+          }
+
+          // Check if password and confirm password match
+          if (formInput.confirmPassword !== formInput.password){
+            setFormError({
+              ...inputError,
+              confirmPassword: "Password and Confirm password should be the same",
+            });
+            return;
+          } 
+
+          // Check if password is empty
+          if (!formInput.password){
+            setFormError({
+              ...inputError,
+              password: "Password should not be empty",
+            });
+            return;
+          }
+
+          // Clear any previous errors and show success message
+          setFormError(inputError);
+          setFormInput((prevState)=>({
+            ...prevState,
+            successMsg: "Validation Success",
+          }));
+
+
+
         try {
           await axios.post("http://localhost:8000/user/create", JSON.stringify({
           firstname: fname,
           lastname: lname,
-          email: email,
-          password: password,
+          email: formInput.email,
+          password: formInput.password,
           images: img
           }),
         {
@@ -34,9 +107,7 @@ function Register() {
           alert("User Registation Successful");
           setFName('')
           setLName('')
-          setEmail('')
           setImg('')
-          setPassword('')
 
         } catch (err) {
           alert(err);
@@ -80,30 +151,68 @@ function Register() {
             />
           </div>
     
-        <div className="form-group">
+          <div className="form-group">
           <label className="form-label">email</label>
-          <input type="email"  className="form-control mb-3" id="email" placeholder="Email"
+          <input 
+          type="email"  
+          className="form-control mb-3" 
+          id="email" 
+          placeholder="Email"
           
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
+          value={formInput.email}
+          onChange={({target})=>{
+            handleUserInput(target.name, target.value)
           }}
-          
+          name="email"
           />
-          
-        </div>
+          </div>
+        <p className="error-message">{formError.email}</p>
+
+
+
+
 
         <div className="form-group">
-            <label className="form-label">password</label>
-            <input type="password"  className="form-control mb-3" id="password" placeholder="Remeber password"
-            
-            value={password}
-            onChange={(event) => {
-              setPassword(event.target.value);
-            }}
-            
-            />
+          <label className="form-label">Password</label>
+          <input 
+          type="password"  
+          className="form-control mb-3" 
+          id="password" 
+          placeholder="Password"
+          
+          value={formInput.password}
+          onChange={({target})=>{
+            handleUserInput(target.name, target.value)
+          }}
+          name="password"
+          />
           </div>
+        <p className="error-message">{formError.password}</p>
+
+
+
+
+        <div className="form-group">
+          <label className="form-label">Confirm Password</label>
+          <input 
+          type="password"  
+          className="form-control mb-3" 
+          id="confirmPassword" 
+          placeholder="Confirm Password"
+          
+          value={formInput.confirmPassword}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }}  
+          name="confirmPassword"
+          />
+          </div>
+        <p className="error-message">{formError.confirmPassword}</p>
+
+
+
+
+
         </div>
         <div className="col-md-2"></div>
         <div className="col-md-4">
@@ -150,6 +259,7 @@ function Register() {
         </div>
         <div className="col-sm-1"></div>
         <button type="submit" className="btn btn-primary mt-4">Submit</button>
+        <p className="success-message">{formInput.successMsg}</p>
         </div>     
       </form>
       </div>
