@@ -87,7 +87,12 @@ function Login() {
             <div className="col-sm-3"></div>
             </div>
             <div class="card-footer text-muted">
-              MK Works
+                  <p>
+                    Not yet registered?<br />
+                    <span className="line">
+                    <a href="/Register">Register</a>
+                    </span>
+                  </p>  
             </div>
             </div>
             </div>
