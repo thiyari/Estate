@@ -3,25 +3,19 @@ import '../App.css';
 import {useState} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 
+
 function Register() {
    
+    const initialState = {
+      username: "",
+      email: "",
+      password: "",
+      passwordConfirmation: ""    
+    };
     const [img,setImg] = useState([])
-    const [formInput, setFormInput] = useState({
-      fname: "",
-      lname: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      successMsg: ""
-    });
+    const [formInput, setFormInput] = useState({...initialState, successMsg: ""});
 
-    const [formError, setFormError] = useState({
-      fname: "",
-      lname: "",
-      email: "",
-      password: "",
-      confirmPassword: ""
-    })
+    const [formError, setFormError] = useState({...initialState})
 
     const handleUserInput = (name, value) => {
       setFormInput({
@@ -34,19 +28,14 @@ function Register() {
       setImg(images);
     }
 
+
+
     async function submitHandler(event) {
         event.preventDefault();
 
 
           // Initialize an object to track input errors
-          let inputError = {
-            fname: "",
-            lname: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-          };
-
+          let inputError = {...initialState};
 
           // Check if first name is empty
           if(!formInput.fname){
@@ -128,7 +117,7 @@ function Register() {
           });
           console.log(img)
           alert("User Registation Successful");
-          formInput({})
+          setFormInput({...initialState})
           setImg('')
 
         } catch (err) {
