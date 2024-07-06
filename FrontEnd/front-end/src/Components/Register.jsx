@@ -4,12 +4,11 @@ import {useState} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 
 function Register() {
-    const [fname, setFName] = useState("");
-    const [lname, setLName] = useState("");    
+   
     const [img,setImg] = useState([])
-
-
     const [formInput, setFormInput] = useState({
+      fname: "",
+      lname: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -17,6 +16,8 @@ function Register() {
     });
 
     const [formError, setFormError] = useState({
+      fname: "",
+      lname: "",
       email: "",
       password: "",
       confirmPassword: ""
@@ -39,10 +40,32 @@ function Register() {
 
           // Initialize an object to track input errors
           let inputError = {
+            fname: "",
+            lname: "",
             email: "",
             password: "",
             confirmPassword: "",
           };
+
+
+          // Check if first name is empty
+          if(!formInput.fname){
+            setFormError({
+              ...inputError,
+              fname: "First name should not be empty",
+            })
+            return;
+          }
+
+          // Check if last name is empty
+          if(!formInput.lname){
+            setFormError({
+              ...inputError,
+              lname: "Last name should not be empty",
+            })
+            return;
+          }
+
 
           // Check if email and password are empty
           if(!formInput.email && !formInput.password){
@@ -92,21 +115,20 @@ function Register() {
 
         try {
           await axios.post("http://localhost:8000/user/create", JSON.stringify({
-          firstname: fname,
-          lastname: lname,
+          firstname: formInput.fname,
+          lastname: formInput.lname,
           email: formInput.email,
           password: formInput.password,
           images: img
           }),
-        {
-          headers:{
-          "Content-Type":"application/json"
-          }
-        });
+          {
+            headers:{
+            "Content-Type":"application/json"
+            }
+          });
           console.log(img)
           alert("User Registation Successful");
-          setFName('')
-          setLName('')
+          formInput({})
           setImg('')
 
         } catch (err) {
@@ -130,27 +152,41 @@ function Register() {
       <div className="col-md-4">
         <div className="form-group">
           <label className="form-label">First name</label>
-          <input type="text"  className="form-control mb-3" id="fname" placeholder="First Name"
-          
-          value={fname}
-          onChange={(event) => {
-            setFName(event.target.value);
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="fname" 
+          placeholder="First Name"
+          name="fname"
+          value={formInput.fname}
+          onChange={({target})=>{
+            handleUserInput(target.name, target.value)
           }}
           />
         </div>
+        <p className="error-message">{formError.fname}</p>
+
+
 
         <div className="form-group">
             <label className="form-label">Last name</label>
-            <input type="text"  className="form-control mb-3" id="lname" placeholder="Last Name"
-            
-            value={lname}
-            onChange={(event) => {
-              setLName(event.target.value);
+            <input 
+            type="text"  
+            className="form-control mb-3" 
+            id="lname" 
+            placeholder="Last Name"
+            name="lname"
+            value={formInput.lname}
+            onChange={({target})=>{
+              handleUserInput(target.name, target.value)
             }}
             
             />
           </div>
-    
+          <p className="error-message">{formError.lname}</p>
+
+
+
           <div className="form-group">
           <label className="form-label">email</label>
           <input 
@@ -158,12 +194,11 @@ function Register() {
           className="form-control mb-3" 
           id="email" 
           placeholder="Email"
-          
+          name="email"
           value={formInput.email}
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
-          name="email"
           />
           </div>
         <p className="error-message">{formError.email}</p>
@@ -179,12 +214,11 @@ function Register() {
           className="form-control mb-3" 
           id="password" 
           placeholder="Password"
-          
+          name="password"
           value={formInput.password}
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
-          name="password"
           />
           </div>
         <p className="error-message">{formError.password}</p>
@@ -199,12 +233,11 @@ function Register() {
           className="form-control mb-3" 
           id="confirmPassword" 
           placeholder="Confirm Password"
-          
+          name="confirmPassword"
           value={formInput.confirmPassword}
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }}  
-          name="confirmPassword"
           />
           </div>
         <p className="error-message">{formError.confirmPassword}</p>
@@ -258,8 +291,8 @@ function Register() {
           </div>
         </div>
         <div className="col-sm-1"></div>
+        <p align="center" className="success-message">{formInput.successMsg}</p>
         <button type="submit" className="btn btn-primary mt-4">Submit</button>
-        <p className="success-message">{formInput.successMsg}</p>
         </div>     
       </form>
       </div>
