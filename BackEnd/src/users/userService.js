@@ -11,6 +11,10 @@ module.exports.createUserDBService = (userDetails) => {
                                 lastname: userDetails.lastname,
                                 email: userDetails.email,
                                 password: encrypted,
+                                phone: userDetails.phone,
+                                area: userDetails.area,
+                                location: userDetails.location,
+                                zip: userDetails.zip,
                                 images: userDetails.images 
                         });
                         

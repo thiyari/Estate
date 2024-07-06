@@ -10,7 +10,11 @@ function Register() {
       username: "",
       email: "",
       password: "",
-      confirmPassword: ""    
+      confirmPassword: "",
+      phone: "",
+      area: "",
+      location: "",
+      zip: ""    
     };
     const [img,setImg] = useState([])
     const [formInput, setFormInput] = useState({...initialState, successMsg: ""});
@@ -93,11 +97,51 @@ function Register() {
             return;
           }
 
+
+          // Check if phone is empty
+          if(!formInput.phone){
+            setFormError({
+              ...inputError,
+              phone: "Phone number should not be empty",
+            })
+            return;
+          }
+
+
+          // Check if area is empty
+          if(!formInput.area){
+            setFormError({
+              ...inputError,
+              area: "Area should not be empty",
+            })
+            return;
+          }
+
+
+          // Check if location is empty
+          if(!formInput.location){
+            setFormError({
+              ...inputError,
+              location: "Location should not be empty",
+            })
+            return;
+          }
+
+          // Check if zip is empty
+          if(!formInput.zip){
+            setFormError({
+              ...inputError,
+              zip: "Last name should not be empty",
+            })
+            return;
+          }
+          
+
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
             ...prevState,
-            successMsg: "Validation Success",
+            successMsg: "Validation Successful",
           }));
 
 
@@ -108,6 +152,10 @@ function Register() {
           lastname: formInput.lname,
           email: formInput.email,
           password: formInput.password,
+          phone: formInput.phone,
+          area: formInput.area,
+          location:formInput.location,
+          zip: formInput.zip,
           images: img
           }),
           {
@@ -122,7 +170,11 @@ function Register() {
             lname: "",
             email: "",
             password: "",
-            confirmPassword: "" 
+            confirmPassword: "",
+            phone: "",
+            area: "",
+            location: "",
+            zip: ""
           })
           setImg('')
 
@@ -246,36 +298,77 @@ function Register() {
         <div className="col-md-4">
         <div className="form-group">
           <label className="form-label">Phone</label>
-          <input type="text"  className="form-control mb-3" id="phone" placeholder="Phone"
-          
-          value=""
-          onChange=""
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="phone" 
+          placeholder="Phone"
+          name="phone"
+          value={formInput.phone}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
           />
         </div>
+        <p className="error-message">{formError.phone}</p>
+
+
+        
         <div className="form-group">
           <label className="form-label">Area</label>
-          <input type="text"  className="form-control mb-3" id="area" placeholder="Area of property"
-          
-          value=""
-          onChange=""
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="area" 
+          placeholder="Area in Sq.Feet"
+          name="area"
+          value={formInput.area}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
           />
         </div>
+        <p className="error-message">{formError.area}</p>
+
+
+
         <div className="form-group">
           <label className="form-label">Location</label>
-          <input type="text"  className="form-control mb-3" id="property" placeholder="Property Location"
-          
-          value=""
-          onChange=""
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="location" 
+          placeholder="Property Location"
+          name="location"
+          value={formInput.location}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
           />
         </div>
+        <p className="error-message">{formError.location}</p>
+
+
+
+
         <div className="form-group">
-          <label className="form-label">PIN</label>
-          <input type="text"  className="form-control mb-3" id="pin" placeholder="Pin Code"
-          
-          value=""
-          onChange=""
+          <label className="form-label">Zip</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="zip" 
+          placeholder="Zip Code"
+          name="zip"
+          value={formInput.zip}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
           />
         </div>
+        <p className="error-message">{formError.zip}</p>
+
+
+        
         </div>
         <div className="col-md-1"></div>
         <div className="col-sm-1"></div>

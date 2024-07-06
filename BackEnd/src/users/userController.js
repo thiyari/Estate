@@ -38,22 +38,4 @@ var loginUserControllerFn = async(req,res)=>
     }
 }
 
-/*
-var uploadImageControllerFn = async(req,res)=>{
-    var result = null
-    try{
-        var result = await userService.uploadImageDBService(req.body)
-        if (result.status){
-            res.send({"status":true,"message":result.msg});
-        } else {
-            res.send({"status":false,"message":result.msg});
-        }
-    } 
-    catch(err){
-        console.log(err)
-    }
-    
-}
-*/
 module.exports = { createUserControllerFn, loginUserControllerFn }
-//module.exports = { createUserControllerFn, loginUserControllerFn, uploadImageControllerFn }

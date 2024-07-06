@@ -8,7 +8,7 @@ const cors = require('cors');
 const userModel = require('./src/users/userModel');
 
 app.use(cors(
-    {   origin:'http://localhost:3000', 
+    {   origin: ['http://localhost:3000', 'http://estateserver-vi8u.onrender.com'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
 ));

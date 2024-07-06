@@ -19,6 +19,22 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
+    phone: {
+        type: Number,
+        required: true
+    },
+    area: {
+        type: Number,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    zip: {
+        type: Number,
+        required: true
+    },
     images: [{
         type: String    
     }]
