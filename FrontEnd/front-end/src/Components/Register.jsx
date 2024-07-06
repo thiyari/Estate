@@ -10,7 +10,7 @@ function Register() {
       username: "",
       email: "",
       password: "",
-      passwordConfirmation: ""    
+      confirmPassword: ""    
     };
     const [img,setImg] = useState([])
     const [formInput, setFormInput] = useState({...initialState, successMsg: ""});
@@ -117,7 +117,13 @@ function Register() {
           });
           console.log(img)
           alert("User Registation Successful");
-          setFormInput({...initialState})
+          setFormInput({
+            fname: "",
+            lname: "",
+            email: "",
+            password: "",
+            confirmPassword: "" 
+          })
           setImg('')
 
         } catch (err) {
