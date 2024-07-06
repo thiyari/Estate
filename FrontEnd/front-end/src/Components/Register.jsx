@@ -2,6 +2,7 @@ import axios from "axios";
 import '../App.css';
 import {useState} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
+import { useNavigate } from 'react-router-dom';
 
 
 function Register() {
@@ -17,9 +18,10 @@ function Register() {
       zip: ""    
     };
     const [img,setImg] = useState([])
+    const [success, setSuccess] = useState(false);
     const [formInput, setFormInput] = useState({...initialState, successMsg: ""});
-
     const [formError, setFormError] = useState({...initialState})
+    const navigate = useNavigate();
 
     const handleUserInput = (name, value) => {
       setFormInput({
@@ -177,14 +179,20 @@ function Register() {
             zip: ""
           })
           setImg('')
-
+          setSuccess(true);
         } catch (err) {
           alert(err);
         }
       }
     
     return (
-      
+   <>   
+               { success ? (
+                <section>
+                     {navigate('/Login')}
+                </section>
+            ) : (
+                <section>
      <div>
         <div className="container mt-4" >
     <div className="card">
@@ -388,11 +396,20 @@ function Register() {
       <div className="col-sm-1"></div>
       </div>
       <div class="card-footer text-muted">
-              MK Works
+            <p>
+              Already registered?<br />
+              <span className="line">
+              <a href="/Login">Sign In</a>
+              </span>
+            </p>      
       </div>
     </div>
     </div>
      </div>
+
+                </section>
+            )}
+     </>
     );
   }
   

@@ -22,7 +22,7 @@ function Login() {
              if (data.status === true) 
              {
                 alert("Login Successful"); 
-                navigate('/home');
+                navigate('/Profile');
              } 
              else 
              {
