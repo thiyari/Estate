@@ -15,10 +15,10 @@ function Register() {
       setImg(images);
     }
 
-    async function save(event) {
+    async function submitHandler(event) {
         event.preventDefault();
         try {
-          await axios.post("http://estateserver-vi8u.onrender.com/user/create", JSON.stringify({
+          await axios.post("http://localhost:8000/user/create", JSON.stringify({
           firstname: fname,
           lastname: lname,
           email: email,
@@ -53,7 +53,7 @@ function Register() {
 		  <div className="col-sm-1"></div>
 			<div className="col-sm-10 form-container">
         <div className="card-body">
-    <form>
+    <form onSubmit={submitHandler}>
       <div className="row">
       <div className="col-md-1"></div>
       <div className="col-md-4">
@@ -149,7 +149,7 @@ function Register() {
           </div>
         </div>
         <div className="col-sm-1"></div>
-        <button type="submit" className="btn btn-primary mt-4" onClick={save} >Save</button>
+        <button type="submit" className="btn btn-primary mt-4">Submit</button>
         </div>     
       </form>
       </div>
