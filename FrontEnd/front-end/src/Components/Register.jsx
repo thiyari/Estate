@@ -5,7 +5,7 @@ import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
 
 //const EMAIL_REGEX = /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
-const PWD_REGEX = /(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
 function Register() {
    
