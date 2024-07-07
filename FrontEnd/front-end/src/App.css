@@ -86,3 +86,7 @@ form button{
 .form-select{
   font-family: "Rajdhani", sans-serif;
 }
+
+.form-group input[type="text"], input[type="email"]{
+  font-family: "Rajdhani", sans-serif;
+}
