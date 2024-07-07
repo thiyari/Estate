@@ -1,8 +1,17 @@
 import axios from "axios";
 import '../App.css';
-import {useState} from 'react';
+import {useState, useCallback} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
+import Select from './Dropdown/Select';
+
+
+const phaseList = [
+  { value: 'east', label: 'East' },
+  { value: 'west', label: 'West' },
+  { value: 'north', label: 'North' },
+  { value: 'south', label: 'South' }
+];
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -12,15 +21,16 @@ const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 function Register() {
    
     const initialState = {
-      username: "",
       email: "",
       password: "",
       confirmPassword: "",
       phone: "",
       area: "",
       location: "",
-      zip: ""    
+      zip: "",
+      phase: ""    
     };
+
     const [img,setImg] = useState([])
     const [success, setSuccess] = useState(false);
     const [formInput, setFormInput] = useState({...initialState, successMsg: ""});
@@ -34,10 +44,32 @@ function Register() {
       });
     };
 
+    const onValidate = (value, name) => {
+      setError((prev) => ({
+        ...prev,
+        [name]: { ...prev[name], errorMsg: value },
+      }));
+    };
+  
+    const [error, setError] = useState({
+      phase: {
+        isReq: true,
+        errorMsg: '',
+        onValidateFunc: onValidate,
+      },
+    }); 
+
+
     const setImages = (images)=>{
       setImg(images);
     }
 
+    const onHandleChange = useCallback((value, name) => {
+      setFormInput((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }, []);
 
 
     async function submitHandler(event) {
@@ -206,6 +238,7 @@ function Register() {
           area: formInput.area,
           location:formInput.location,
           zip: formInput.zip,
+          phase: formInput.phase,
           images: img
           }),
           {
@@ -224,7 +257,8 @@ function Register() {
             phone: "",
             area: "",
             location: "",
-            zip: ""
+            zip: "",
+            phase: ""
           })
           setImg('')
           setSuccess(true);
@@ -423,8 +457,17 @@ function Register() {
         </div>
         <p className="error-message">{formError.zip}</p>
 
+        <div className="form-group">
+              <Select
+                name="phase"
+                title="Phase"
+                value={formInput.phase}
+                options={phaseList}
+                onChangeFunc={onHandleChange}
+                {...error.phase}
+              />
+        </div>
 
-        
         </div>
         <div className="col-md-1"></div>
         <div className="col-sm-1"></div>

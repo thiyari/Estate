@@ -15,6 +15,7 @@ module.exports.createUserDBService = (userDetails) => {
                                 area: userDetails.area,
                                 location: userDetails.location,
                                 zip: userDetails.zip,
+                                phase: userDetails.phase,
                                 images: userDetails.images 
                         });
                         

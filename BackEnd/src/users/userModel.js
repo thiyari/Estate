@@ -33,6 +33,10 @@ var userSchema = new Schema({
     },
     zip: {
         type: Number,
+        required: true
+    },
+    phase: {
+        type: String,
     },
     images: [{
         type: String    
