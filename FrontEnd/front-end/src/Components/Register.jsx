@@ -141,11 +141,20 @@ function Register() {
           }
           
 
+          // Check if area is empty
+          if(!formInput.area){
+            setFormError({
+              ...inputError,
+              area: "Area should not be empty else enter numeric zero",
+            })
+            return;
+          }
+
           // Check if area has numbers
           if(/\D/.test(formInput.area)){
             setFormError({
               ...inputError,
-              area: "Enter the valid measurements",
+              area: "Provide the valid measurements",
             })
             return;
           }
@@ -164,7 +173,7 @@ function Register() {
           if(!formInput.zip){
             setFormError({
               ...inputError,
-              zip: "Last name should not be empty",
+              zip: "Zip code should not be empty",
             })
             return;
           }
@@ -173,7 +182,7 @@ function Register() {
           if(!zip_pattern){
             setFormError({
               ...inputError,
-              zip: "Zip code invalid",
+              zip: "Zip code is invalid",
             })
             return;
           }
