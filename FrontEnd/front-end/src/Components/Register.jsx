@@ -1,12 +1,11 @@
 import axios from "axios";
 import '../App.css';
-import {useState, useCallback} from 'react';
+import {useState} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
-import Select from './Dropdown/Select';
-
 
 const phaseList = [
+  { value: '', label: 'Select Phase'},
   { value: 'east', label: 'East' },
   { value: 'west', label: 'West' },
   { value: 'north', label: 'North' },
@@ -46,32 +45,15 @@ function Register() {
       });
     };
 
-    const onDropdownValidate = (value, name) => {
-      setDropdownError((prev) => ({
-        ...prev,
-        [name]: { ...prev[name], dropdownErrorMsg: value },
-      }));
-    };
-  
-    const [dropdownError, setDropdownError] = useState({
-      phase: {
-        isReq: true,
-        dropdownErrorMsg: '',
-        onDropdownValidateFunc: onDropdownValidate,
-      },
-    }); 
+
+
 
 
     const setImages = (images)=>{
       setImg(images);
     }
 
-    const onHandleDropdownChange = useCallback((value, name) => {
-      setFormInput((prev) => ({
-        ...prev,
-        [name]: value,
-      }));
-    }, []);
+
 
 
     async function submitHandler(event) {
@@ -473,15 +455,21 @@ function Register() {
         <p className="error-message">{formError.zip}</p>
 
         <div className="form-group">
-              <Select
-                name="phase"
-                title="Phase"
-                value={formInput.phase}
-                options={phaseList}
-                onChangeFunc={onHandleDropdownChange}
-                {...dropdownError.phase}
-                required
-              />
+          <label className="form-label">Phase</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="phase"
+            name="phase"
+            value={formInput.phase}
+            onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }}>
+              {phaseList.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
         <p className="error-message">{formError.phase}</p>
 
