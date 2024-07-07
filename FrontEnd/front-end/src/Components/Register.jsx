@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom';
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
+const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 
 function Register() {
    
@@ -139,11 +140,12 @@ function Register() {
             return;
           }
           
-          // Check if area is empty
-          if(!formInput.area){
+
+          // Check if area has numbers
+          if(/\D/.test(formInput.area)){
             setFormError({
               ...inputError,
-              area: "Area should not be empty",
+              area: "Enter the valid measurements",
             })
             return;
           }
@@ -167,6 +169,14 @@ function Register() {
             return;
           }
           
+          const zip_pattern = ZIP_REGEX.test(formInput.zip);
+          if(!zip_pattern){
+            setFormError({
+              ...inputError,
+              zip: "Zip code invalid",
+            })
+            return;
+          }
 
           // Clear any previous errors and show success message
           setFormError(inputError);
