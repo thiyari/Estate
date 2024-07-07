@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+const DIGIT_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
 
 function Register() {
    
@@ -129,7 +130,15 @@ function Register() {
             return;
           }
 
-
+          const phone_pattern = DIGIT_REGEX.test(formInput.phone);
+          if (!phone_pattern){
+            setFormError({
+              ...inputError,
+              phone: "Invalid phone number",
+            })
+            return;
+          }
+          
           // Check if area is empty
           if(!formInput.area){
             setFormError({
