@@ -464,7 +464,7 @@ function Register() {
             value={formInput.phase}
             onChange={({target})=>{            
             handleUserInput(target.name, target.value)
-          }}>
+              }}>
               {phaseList.map((option) => (
                 <option value={option.value}>{option.label}</option>
               ))}

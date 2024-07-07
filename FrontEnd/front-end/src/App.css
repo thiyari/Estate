@@ -82,3 +82,7 @@ form button{
   color: green;
   margin-top: 16px;
 }
+
+.form-select{
+  font-family: "Rajdhani", sans-serif;
+}
