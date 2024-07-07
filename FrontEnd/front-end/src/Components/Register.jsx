@@ -222,7 +222,14 @@ function Register() {
           }
 
 
-
+          // Check if phase is empty
+          if(!formInput.phase){
+            setFormError({
+              ...inputError,
+              phase: "Please select the phase",
+            })
+            return;
+          }
 
 
           // Clear any previous errors and show success message
@@ -473,9 +480,10 @@ function Register() {
                 options={phaseList}
                 onChangeFunc={onHandleDropdownChange}
                 {...dropdownError.phase}
+                required
               />
         </div>
-        <p className="error-message">{formError.location}</p>
+        <p className="error-message">{formError.phase}</p>
 
         </div>
         <div className="col-md-1"></div>

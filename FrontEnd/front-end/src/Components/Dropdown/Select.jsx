@@ -47,7 +47,7 @@ Select.defaultProps = {
   title: '',
   placeholder: '',
   className: '',
-  outerClassName: 'mb-2',
+  outerClassName: 'mb-3',
   isClearable: true,
   value: '',
   options: [],
