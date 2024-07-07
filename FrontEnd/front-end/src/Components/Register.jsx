@@ -35,6 +35,8 @@ function Register() {
     const [success, setSuccess] = useState(false);
     const [formInput, setFormInput] = useState({...initialState, successMsg: ""});
     const [formError, setFormError] = useState({...initialState})
+
+    
     const navigate = useNavigate();
 
     const handleUserInput = (name, value) => {
@@ -44,18 +46,18 @@ function Register() {
       });
     };
 
-    const onValidate = (value, name) => {
-      setError((prev) => ({
+    const onDropdownValidate = (value, name) => {
+      setDropdownError((prev) => ({
         ...prev,
-        [name]: { ...prev[name], errorMsg: value },
+        [name]: { ...prev[name], dropdownErrorMsg: value },
       }));
     };
   
-    const [error, setError] = useState({
+    const [dropdownError, setDropdownError] = useState({
       phase: {
         isReq: true,
-        errorMsg: '',
-        onValidateFunc: onValidate,
+        dropdownErrorMsg: '',
+        onDropdownValidateFunc: onDropdownValidate,
       },
     }); 
 
@@ -64,7 +66,7 @@ function Register() {
       setImg(images);
     }
 
-    const onHandleChange = useCallback((value, name) => {
+    const onHandleDropdownChange = useCallback((value, name) => {
       setFormInput((prev) => ({
         ...prev,
         [name]: value,
@@ -219,6 +221,10 @@ function Register() {
             return;
           }
 
+
+
+
+
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
@@ -227,6 +233,8 @@ function Register() {
           }));
 
 
+
+      
 
         try {
           await axios.post("http://localhost:8000/user/create", JSON.stringify({
@@ -463,10 +471,11 @@ function Register() {
                 title="Phase"
                 value={formInput.phase}
                 options={phaseList}
-                onChangeFunc={onHandleChange}
-                {...error.phase}
+                onChangeFunc={onHandleDropdownChange}
+                {...dropdownError.phase}
               />
         </div>
+        <p className="error-message">{formError.location}</p>
 
         </div>
         <div className="col-md-1"></div>
