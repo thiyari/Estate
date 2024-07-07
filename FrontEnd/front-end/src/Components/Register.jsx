@@ -4,7 +4,7 @@ import {useState} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
 
-//const EMAIL_REGEX = /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
+const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
 function Register() {
@@ -64,25 +64,33 @@ function Register() {
           }
 
 
-          // Check if email and password are empty
-          if(!formInput.email && !formInput.password){
-            setFormError({
-              ...inputError,
-              email: "Enter a valid email address",
-              password: "Password should not be empty",
-            })
-            return;
-          }
-
           // Check if email is empty
           if(!formInput.email){
             setFormError({
               ...inputError,
-              email: "Enter a valid email address",
+              email: "Email should not be empty",
             })
             return;
           }
 
+
+          const email_pattern = EMAIL_REGEX.test(formInput.email);
+          if (!email_pattern) {
+              setFormError({
+                ...inputError,
+                email: "Email format is incorrect",
+              });
+              return;
+          }
+
+          // Check if password are empty
+          if(!formInput.password){
+            setFormError({
+              ...inputError,
+              password: "Password should not be empty",
+            })
+            return;
+          }
 
           const password_pattern = PWD_REGEX.test(formInput.password);
           if (!password_pattern) {
