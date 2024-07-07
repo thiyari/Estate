@@ -4,6 +4,8 @@ import {useState} from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
 
+//const EMAIL_REGEX = /[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$/;
+const PWD_REGEX = /(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
 function Register() {
    
@@ -79,6 +81,16 @@ function Register() {
               email: "Enter a valid email address",
             })
             return;
+          }
+
+
+          const password_pattern = PWD_REGEX.test(formInput.password);
+          if (!password_pattern) {
+              setFormError({
+                ...inputError,
+                password: "Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters",
+              });
+              return;
           }
 
           // Check if password and confirm password match
