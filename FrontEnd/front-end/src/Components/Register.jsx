@@ -643,25 +643,22 @@ function Register() {
 
 
         <div className="form-group">
-          <label className="form-label">Rooms</label>
-          <div className="d-flex justify-content-center mb-3">
-            <select 
-            className="form-select" 
-            title="rooms"
-            name="rooms"
-            value={formInput.rooms}
-            onChange={({target})=>{            
+          <label className="form-label">Phone</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="phone" 
+          placeholder="Phone"
+          name="phone"
+          value={formInput.phone}
+          onChange={({target})=>{            
             handleUserInput(target.name, target.value)
-              }}
-            style={{borderColor: formError.rooms_status !== "error" ?"":"red"}}  
-              >
-              {roomsList.map((option,index) => (
-                <option value={option.value} key={index}>{option.label}</option>
-              ))}
-            </select>
-          </div>
+          }} 
+          style={{borderColor: formError.phone_status !== "error" ?"":"red"}}
+          />
         </div>
-        <p className="error-message">{formError.rooms}</p>
+        <p className="error-message">{formError.phone}</p>
+
 
 
 
@@ -688,28 +685,7 @@ function Register() {
         <p className="error-message">{formError.property}</p>
 
 
-        </div>
-        <div className="col-md-2"></div>
-        <div className="col-md-4">
-        <div className="form-group">
-          <label className="form-label">Phone</label>
-          <input 
-          type="text"  
-          className="form-control mb-3" 
-          id="phone" 
-          placeholder="Phone"
-          name="phone"
-          value={formInput.phone}
-          onChange={({target})=>{            
-            handleUserInput(target.name, target.value)
-          }} 
-          style={{borderColor: formError.phone_status !== "error" ?"":"red"}}
-          />
-        </div>
-        <p className="error-message">{formError.phone}</p>
 
-
-        
         <div className="form-group">
           <label className="form-label">Area of Property</label>
           <input 
@@ -729,42 +705,39 @@ function Register() {
 
 
 
-        <div className="form-group">
-          <label className="form-label">Location of Property</label>
-          <input 
-          type="text"  
-          className="form-control mb-3" 
-          id="location" 
-          placeholder="Property Location"
-          name="location"
-          value={formInput.location}
-          onChange={({target})=>{            
-            handleUserInput(target.name, target.value)
-          }} 
-          style={{borderColor: formError.location_status !== "error" ?"":"red"}}
-          />
-        </div>
-        <p className="error-message">{formError.location}</p>
 
+
+
+        </div>
+        <div className="col-md-2"></div>
+        <div className="col-md-4">
 
 
 
         <div className="form-group">
-          <label className="form-label">Zip</label>
-          <input 
-          type="text"  
-          className="form-control mb-3" 
-          id="zip" 
-          placeholder="Zip Code"
-          name="zip"
-          value={formInput.zip}
-          onChange={({target})=>{            
+          <label className="form-label">Rooms</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="rooms"
+            name="rooms"
+            value={formInput.rooms}
+            onChange={({target})=>{            
             handleUserInput(target.name, target.value)
-          }} 
-          style={{borderColor: formError.zip_status !== "error" ?"":"red"}}
-          />
+              }}
+            style={{borderColor: formError.rooms_status !== "error" ?"":"red"}}  
+              >
+              {roomsList.map((option,index) => (
+                <option value={option.value} key={index}>{option.label}</option>
+              ))}
+            </select>
+          </div>
         </div>
-        <p className="error-message">{formError.zip}</p>
+        <p className="error-message">{formError.rooms}</p>
+
+
+
+
 
         <div className="form-group">
           <label className="form-label">Phase</label>
@@ -857,6 +830,47 @@ function Register() {
         <p className="error-message">{formError.price}</p>
 
 
+
+
+
+        <div className="form-group">
+          <label className="form-label">Location of Property</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="location" 
+          placeholder="Property Location"
+          name="location"
+          value={formInput.location}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.location_status !== "error" ?"":"red"}}
+          />
+        </div>
+        <p className="error-message">{formError.location}</p>
+
+
+
+        <div className="form-group">
+          <label className="form-label">Zip</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="zip" 
+          placeholder="Zip Code"
+          name="zip"
+          value={formInput.zip}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.zip_status !== "error" ?"":"red"}}
+          />
+        </div>
+        <p className="error-message">{formError.zip}</p>
+
+
+
         <div className="form-group">
         <div className="mb-3">
           <label htmlFor="address" className="form-label">Address of Property</label>
@@ -874,6 +888,12 @@ function Register() {
         </div>
         </div>
         <p className="error-message">{formError.address}</p>
+
+
+
+
+
+
 
 
         </div>
