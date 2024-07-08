@@ -38,7 +38,7 @@ function ImageUpload(props){
             })}
             showBullets={true}
             showNavs={true}
-            autoPlay={true}
+            autoPlay={false}
             loop={true}
             />
     }
