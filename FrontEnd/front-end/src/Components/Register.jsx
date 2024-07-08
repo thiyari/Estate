@@ -19,23 +19,23 @@ const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 
 function Register() {
    
-    const initialState = {
-      email: "",
-      password: "",
-      confirmPassword: "",
-      phone: "",
-      area: "",
-      location: "",
-      zip: "",
-      phase: "",
+    const initialErrorState = {
       fname_status: "",
-      lname_status: ""    
+      lname_status: "", 
+      email_status: "",
+      password_status: "",
+      confirmPassword_status: "",
+      phone_status: "",
+      area_status: "",
+      location_status: "",
+      zip_status: "",
+      phase_status: "",
     };
 
     const [img,setImg] = useState([])
     const [success, setSuccess] = useState(false);
-    const [formInput, setFormInput] = useState({...initialState, successMsg: ""});
-    const [formError, setFormError] = useState({...initialState})
+    const [formInput, setFormInput] = useState({successMsg: ""});
+    const [formError, setFormError] = useState({...initialErrorState})
 
     
     const navigate = useNavigate();
@@ -63,7 +63,7 @@ function Register() {
 
 
           // Initialize an object to track input errors
-          let inputError = {...initialState};
+          let inputError = {...initialErrorState};
 
           // Check if first name is empty
           if(!formInput.fname){
@@ -91,7 +91,7 @@ function Register() {
             setFormError({
               ...inputError,
               email: "Email should not be empty",
-              status: "error"
+              email_status: "error"
             })
             return;
           }
@@ -102,17 +102,27 @@ function Register() {
               setFormError({
                 ...inputError,
                 email: "Email format is incorrect",
-                status: "error"
+                email_status: "error"
               });
               return;
           }
 
-          // Check if password are empty
+          // Check if password is empty
           if(!formInput.password){
             setFormError({
               ...inputError,
               password: "Password should not be empty",
-              status: "error"
+              password_status: "error"
+            })
+            return;
+          }
+
+          // Check if confirm password is empty
+          if(!formInput.confirmPassword){
+            setFormError({
+              ...inputError,
+              confirmPassword: "Password should not be empty",
+              confirmPassword_status: "error"
             })
             return;
           }
@@ -122,7 +132,7 @@ function Register() {
               setFormError({
                 ...inputError,
                 password: "Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters",
-                status: "error"
+                password_status: "error"
               });
               return;
           }
@@ -132,20 +142,10 @@ function Register() {
             setFormError({
               ...inputError,
               confirmPassword: "Password and Confirm password should be the same",
-              fname_status: "error"
+              confirmPassword_status: "error"
             });
             return;
           } 
-
-          // Check if password is empty
-          if (!formInput.password){
-            setFormError({
-              ...inputError,
-              password: "Password should not be empty",
-              lname_status: "error"
-            });
-            return;
-          }
 
 
           // Check if phone is empty
@@ -352,6 +352,7 @@ function Register() {
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
+          style={{borderColor: formError.email !== "" && formError.email_status !== "error" ?"":"red"}}
           />
           </div>
         <p className="error-message">{formError.email}</p>
@@ -372,6 +373,7 @@ function Register() {
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
+          style={{borderColor: formError.password !== "" && formError.password_status !== "error" ?"":"red"}}
           />
           </div>
         <p className="error-message">{formError.password}</p>
@@ -391,6 +393,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }}  
+          style={{borderColor: formError.confirmPassword !== "" && formError.confirmPassword_status !== "error" ?"":"red"}}
           />
           </div>
         <p className="error-message">{formError.confirmPassword}</p>
