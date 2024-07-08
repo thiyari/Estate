@@ -47,16 +47,9 @@ function Register() {
       });
     };
 
-
-
-
-
     const setImages = (images)=>{
       setImg(images);
     }
-
-
-
 
     async function submitHandler(event) {
         event.preventDefault();
@@ -153,7 +146,7 @@ function Register() {
             setFormError({
               ...inputError,
               phone: "Phone number should not be empty",
-              status: "error"
+              phone_status: "error"
             })
             return;
           }
@@ -163,7 +156,7 @@ function Register() {
             setFormError({
               ...inputError,
               phone: "Invalid phone number",
-              status: "error"
+              phone_status: "error"
             })
             return;
           }
@@ -174,7 +167,7 @@ function Register() {
             setFormError({
               ...inputError,
               area: "Area should not be empty else enter numeric zero",
-              status: "error"
+              area_status: "error"
             })
             return;
           }
@@ -184,7 +177,7 @@ function Register() {
             setFormError({
               ...inputError,
               area: "Provide the valid measurements",
-              status: "error"
+              area_status: "error"
             })
             return;
           }
@@ -195,7 +188,7 @@ function Register() {
             setFormError({
               ...inputError,
               location: "Location should not be empty",
-              status: "error"
+              location_status: "error"
             })
             return;
           }
@@ -205,7 +198,7 @@ function Register() {
             setFormError({
               ...inputError,
               zip: "Zip code should not be empty",
-              status: "error"
+              zip_status: "error"
             })
             return;
           }
@@ -215,7 +208,7 @@ function Register() {
             setFormError({
               ...inputError,
               zip: "Zip code is invalid",
-              status: "error"
+              zip_status: "error"
             })
             return;
           }
@@ -226,7 +219,7 @@ function Register() {
             setFormError({
               ...inputError,
               phase: "Please select the phase",
-              status: "error"
+              phase_status: "error"
             })
             return;
           }
@@ -417,6 +410,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
+          style={{borderColor: formError.phone !== "" && formError.phone_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.phone}</p>
@@ -435,6 +429,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
+          style={{borderColor: formError.area !== "" && formError.area_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.area}</p>
@@ -453,6 +448,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
+          style={{borderColor: formError.location !== "" && formError.location_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.location}</p>
@@ -472,6 +468,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
+          style={{borderColor: formError.zip !== "" && formError.zip_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.zip}</p>
@@ -486,7 +483,9 @@ function Register() {
             value={formInput.phase}
             onChange={({target})=>{            
             handleUserInput(target.name, target.value)
-              }}>
+              }}
+            style={{borderColor: formError.phase !== "" && formError.phase_status !== "error" ?"":"red"}}  
+              >
               {phaseList.map((option) => (
                 <option value={option.value}>{option.label}</option>
               ))}
