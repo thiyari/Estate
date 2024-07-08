@@ -179,6 +179,7 @@ function Register() {
       floor:"",
       currency:"",
       price: "",
+      address: "",
       fname_status: "",
       lname_status: "", 
       email_status: "",
@@ -193,7 +194,8 @@ function Register() {
       property_status: "",
       floor_status: "",
       currency_status:"",
-      price_status: ""
+      price_status: "",
+      address_status: ""
     };
 
     const [img,setImg] = useState([])
@@ -454,6 +456,16 @@ function Register() {
           }
 
 
+          // Check if property address is empty
+          if(!formInput.address){
+            setFormError({
+              ...inputError,
+              address: "Last name should not be empty",
+              address_status: "error"
+            })
+            return;
+          }          
+
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
@@ -481,6 +493,7 @@ function Register() {
           currency: formInput.currency,
           property: formInput.property,
           price: formInput.price,
+          address: formInput.address,
           images: img
           }),
           {
@@ -505,7 +518,8 @@ function Register() {
             floor: "",
             currency: "",
             property: "",
-            price: ""
+            price: "",
+            address: ""
           })
           setImg('')
           navigate('/Login');
@@ -843,6 +857,23 @@ function Register() {
         <p className="error-message">{formError.price}</p>
 
 
+        <div className="form-group">
+        <div className="mb-3">
+          <label htmlFor="address" className="form-label">Address of Property</label>
+          <textarea 
+          className="form-control" 
+          id="address" 
+          placeholder="Enter your property address"
+          name="address"
+          rows="3"
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.address_status !== "error" ?"":"red"}}
+          ></textarea>
+        </div>
+        </div>
+        <p className="error-message">{formError.address}</p>
 
 
         </div>
