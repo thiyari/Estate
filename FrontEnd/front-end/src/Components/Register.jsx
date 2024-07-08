@@ -197,12 +197,10 @@ function Register() {
     };
 
     const [img,setImg] = useState([])
-    const [success, setSuccess] = useState(false);
     const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
     const [formError, setFormError] = useState({...initialState})
-
-    
     const navigate = useNavigate();
+    
 
     const handleUserInput = (name, value) => {
       setFormInput({
@@ -510,7 +508,7 @@ function Register() {
             price: ""
           })
           setImg('')
-          setSuccess(true);
+          navigate('/Login');
         } catch (err) {
           alert(err);
         }
@@ -518,12 +516,7 @@ function Register() {
     
     return (
    <>   
-               { success ? (
-                <section>
-                     {navigate('/Login')}
-                </section>
-            ) : (
-                <section>
+
      <div>
         <div className="container mt-4" >
     <div className="card">
@@ -882,8 +875,6 @@ function Register() {
     </div>
      </div>
 
-                </section>
-            )}
      </>
     );
   }
