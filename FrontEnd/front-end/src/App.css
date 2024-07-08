@@ -90,6 +90,7 @@ form button{
   font-family: "Rajdhani", sans-serif;
 }
 
-.form-group input[type="text"], input[type="email"]{
+.form-group input[type="text"], input[type="email"], textarea {
   font-family: "Rajdhani", sans-serif;
 }
+
