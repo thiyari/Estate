@@ -20,6 +20,7 @@ module.exports.createUserDBService = (userDetails) => {
                                 rooms: userDetails.rooms, 
                                 floor: userDetails.floor,
                                 currency: userDetails.currency,
+                                price: userDetails.price,
                                 property: userDetails.property
                         });
                         

@@ -178,6 +178,7 @@ function Register() {
       property: "",
       floor:"",
       currency:"",
+      price: "",
       fname_status: "",
       lname_status: "", 
       email_status: "",
@@ -191,7 +192,8 @@ function Register() {
       rooms_status: "",
       property_status: "",
       floor_status: "",
-      currency_status:""
+      currency_status:"",
+      price_status: ""
     };
 
     const [img,setImg] = useState([])
@@ -341,7 +343,7 @@ function Register() {
           if(/\D/.test(formInput.area)){
             setFormError({
               ...inputError,
-              area: "Provide the valid measurements",
+              area: "Provide the valid measurements, only the numerals",
               area_status: "error"
             })
             return;
@@ -420,8 +422,29 @@ function Register() {
             })
             return;
           }
+          // Check if price is empty
+          if(!formInput.price){
+            setFormError({
+              ...inputError,
+              price: "Price should not be empty else enter numeric zero",
+              price_status: "error"
+            })
+            return;
+          }
 
+          // Check if price has numbers
+          if(/\D/.test(formInput.price)){
+            setFormError({
+              ...inputError,
+              price: "Provide the valid price, only the numerals",
+              price_status: "error"
+            })
+            return;
+          }
 
+          
+
+          
           // Check if property type is empty
           if(!formInput.property){
             setFormError({
@@ -459,6 +482,7 @@ function Register() {
           floor: formInput.floor,
           currency: formInput.currency,
           property: formInput.property,
+          price: formInput.price,
           images: img
           }),
           {
@@ -483,6 +507,7 @@ function Register() {
             floor: "",
             currency: "",
             property: "",
+            price: ""
           })
           setImg('')
           setSuccess(true);
@@ -802,6 +827,27 @@ function Register() {
           </div>
         </div>
         <p className="error-message">{formError.currency}</p>
+
+
+
+
+        
+        <div className="form-group">
+          <label className="form-label">Price</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="price" 
+          placeholder="Estimated Price"
+          name="price"
+          value={formInput.price}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.price_status !== "error" ?"":"red"}}
+          />
+        </div>
+        <p className="error-message">{formError.price}</p>
 
 
 
