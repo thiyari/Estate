@@ -142,6 +142,13 @@ const floorList = [
   { value: '108', label: '108' },
 ];
 
+
+const currencyList = [
+  { value: '', label: 'Select Currency'},
+  { value: 'INR', label: 'INR'},
+  { value: 'USD', label: 'USD'},
+]
+
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
@@ -162,6 +169,7 @@ function Register() {
       phase:"",
       rooms:"",
       floor:"",
+      currency:"",
       fname_status: "",
       lname_status: "", 
       email_status: "",
@@ -173,7 +181,8 @@ function Register() {
       zip_status: "",
       phase_status: "",
       rooms_status: "",
-      floor_status: ""
+      floor_status: "",
+      currency_status:""
     };
 
     const [img,setImg] = useState([])
@@ -391,7 +400,18 @@ function Register() {
             })
             return;
           }
+
           
+          // Check if currency is empty
+          if(!formInput.currency){
+            setFormError({
+              ...inputError,
+              currency: "Please select your currency",
+              currency_status: "error"
+            })
+            return;
+          }
+
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
@@ -416,6 +436,7 @@ function Register() {
           phase: formInput.phase,
           rooms: formInput.rooms,
           floor: formInput.floor,
+          currency: formInput.currency,
           images: img
           }),
           {
@@ -437,7 +458,8 @@ function Register() {
             zip: "",
             phase: "",
             rooms: "",
-            floor: ""
+            floor: "",
+            currency: ""
           })
           setImg('')
           setSuccess(true);
@@ -710,6 +732,32 @@ function Register() {
           </div>
         </div>
         <p className="error-message">{formError.floor}</p>
+
+
+
+
+        <div className="form-group">
+          <label className="form-label">Currency</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="currency"
+            name="currency"
+            value={formInput.currency}
+            onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+              }}
+            style={{borderColor: formError.currency_status !== "error" ?"":"red"}}  
+              >
+              {currencyList.map((option, index) => (
+                <option value={option.value} key={index}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p className="error-message">{formError.currency}</p>
+
+
 
 
         </div>
