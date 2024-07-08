@@ -149,7 +149,19 @@ const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 
 function Register() {
    
-    const initialErrorState = {
+    const initialState = {
+      fname:"",
+      lname:"",
+      email:"",
+      password:"",
+      confirmPassword:"",
+      phone:"",
+      area:"",
+      location:"",
+      zip:"",
+      phase:"",
+      rooms:"",
+      floor:"",
       fname_status: "",
       lname_status: "", 
       email_status: "",
@@ -166,8 +178,8 @@ function Register() {
 
     const [img,setImg] = useState([])
     const [success, setSuccess] = useState(false);
-    const [formInput, setFormInput] = useState({successMsg: ""});
-    const [formError, setFormError] = useState({...initialErrorState})
+    const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
+    const [formError, setFormError] = useState({...initialState})
 
     
     const navigate = useNavigate();
@@ -188,7 +200,7 @@ function Register() {
 
 
           // Initialize an object to track input errors
-          let inputError = {...initialErrorState};
+          let inputError = {...initialState};
 
           // Check if first name is empty
           if(!formInput.fname){
@@ -242,15 +254,6 @@ function Register() {
             return;
           }
 
-          // Check if confirm password is empty
-          if(!formInput.confirmPassword){
-            setFormError({
-              ...inputError,
-              confirmPassword: "Password should not be empty",
-              confirmPassword_status: "error"
-            })
-            return;
-          }
 
           const password_pattern = PWD_REGEX.test(formInput.password);
           if (!password_pattern) {
@@ -261,6 +264,18 @@ function Register() {
               });
               return;
           }
+
+          // Check if confirm password is empty
+          if(!formInput.confirmPassword){
+            setFormError({
+              ...inputError,
+              confirmPassword: "Password should not be empty",
+              confirmPassword_status: "error"
+            })
+            return;
+          }
+
+
 
           // Check if password and confirm password match
           if (formInput.confirmPassword !== formInput.password){
@@ -463,7 +478,7 @@ function Register() {
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
-          style={{borderColor: formError.fname !== "" && formError.fname_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.fname_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.fname}</p>
@@ -482,7 +497,7 @@ function Register() {
             onChange={({target})=>{
               handleUserInput(target.name, target.value)
             }}
-            style={{borderColor: formError.lname !== "" && formError.lname_status !== "error" ?"":"red"}}
+            style={{borderColor: formError.lname_status !== "error" ?"":"red"}}
             />
           </div>
           <p className="error-message">{formError.lname}</p>
@@ -501,7 +516,7 @@ function Register() {
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
-          style={{borderColor: formError.email !== "" && formError.email_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.email_status !== "error" ?"":"red"}}
           />
           </div>
         <p className="error-message">{formError.email}</p>
@@ -522,7 +537,7 @@ function Register() {
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
-          style={{borderColor: formError.password !== "" && formError.password_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.password_status !== "error" ?"":"red"}}
           />
           </div>
         <p className="error-message">{formError.password}</p>
@@ -542,7 +557,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }}  
-          style={{borderColor: formError.confirmPassword !== "" && formError.confirmPassword_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.confirmPassword_status !== "error" ?"":"red"}}
           />
           </div>
         <p className="error-message">{formError.confirmPassword}</p>
@@ -561,7 +576,7 @@ function Register() {
             onChange={({target})=>{            
             handleUserInput(target.name, target.value)
               }}
-            style={{borderColor: formError.rooms !== "" && formError.rooms_status !== "error" ?"":"red"}}  
+            style={{borderColor: formError.rooms_status !== "error" ?"":"red"}}  
               >
               {roomsList.map((option,index) => (
                 <option value={option.value} key={index}>{option.label}</option>
@@ -588,7 +603,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
-          style={{borderColor: formError.phone !== "" && formError.phone_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.phone_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.phone}</p>
@@ -607,7 +622,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
-          style={{borderColor: formError.area !== "" && formError.area_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.area_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.area}</p>
@@ -626,7 +641,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
-          style={{borderColor: formError.location !== "" && formError.location_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.location_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.location}</p>
@@ -646,7 +661,7 @@ function Register() {
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 
-          style={{borderColor: formError.zip !== "" && formError.zip_status !== "error" ?"":"red"}}
+          style={{borderColor: formError.zip_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.zip}</p>
@@ -662,7 +677,7 @@ function Register() {
             onChange={({target})=>{            
             handleUserInput(target.name, target.value)
               }}
-            style={{borderColor: formError.phase !== "" && formError.phase_status !== "error" ?"":"red"}}  
+            style={{borderColor: formError.phase_status !== "error" ?"":"red"}}  
               >
               {phaseList.map((option,index) => (
                 <option value={option.value} key={index}>{option.label}</option>
@@ -686,7 +701,7 @@ function Register() {
             onChange={({target})=>{            
             handleUserInput(target.name, target.value)
               }}
-            style={{borderColor: formError.floor !== "" && formError.floor_status !== "error" ?"":"red"}}  
+            style={{borderColor: formError.floor_status !== "error" ?"":"red"}}  
               >
               {floorList.map((option, index) => (
                 <option value={option.value} key={index}>{option.label}</option>
