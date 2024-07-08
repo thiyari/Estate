@@ -153,7 +153,7 @@ const propertyList = [
   { value: 'Independent House', label: 'Independent House'},
   { value: 'Duplex Home', label: 'Duplex Home'},
   { value: 'Flat', label: 'Flat'},
-  { value: 'Commercial Complex', label: 'Commericial Complex'},
+  { value: 'Commercial Complex', label: 'Commerial Complex'},
 ]
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -329,6 +329,17 @@ function Register() {
           }
           
 
+          // Check if property type is empty
+          if(!formInput.property){
+            setFormError({
+              ...inputError,
+              property: "Please select your type of property",
+              property_status: "error"
+            })
+            return;
+          }          
+
+
           // Check if area is empty
           if(!formInput.area){
             setFormError({
@@ -348,6 +359,77 @@ function Register() {
             })
             return;
           }
+
+
+
+          // Check if rooms are empty
+          if(!formInput.rooms){
+            setFormError({
+              ...inputError,
+              rooms: "Please select the rooms",
+              rooms_status: "error"
+            })
+            return;
+          }
+
+
+          // Check if phase is empty
+          if(!formInput.phase){
+            setFormError({
+              ...inputError,
+              phase: "Please select the phase",
+              phase_status: "error"
+            })
+            return;
+          }
+
+
+
+          // Check if floor is empty
+          if(!formInput.floor){
+            setFormError({
+              ...inputError,
+              floor: "Please select the floor",
+              floor_status: "error"
+            })
+            return;
+          }
+
+          
+          // Check if currency is empty
+          if(!formInput.currency){
+            setFormError({
+              ...inputError,
+              currency: "Please select your currency",
+              currency_status: "error"
+            })
+            return;
+          }
+
+
+
+
+          // Check if price is empty
+          if(!formInput.price){
+            setFormError({
+              ...inputError,
+              price: "Price should not be empty else enter numeric zero",
+              price_status: "error"
+            })
+            return;
+          }
+
+          // Check if price has numbers
+          if(/\D/.test(formInput.price)){
+            setFormError({
+              ...inputError,
+              price: "Provide the valid price, only the numerals",
+              price_status: "error"
+            })
+            return;
+          }
+
+          
 
 
           // Check if location is empty
@@ -380,81 +462,7 @@ function Register() {
             return;
           }
 
-
-          // Check if phase is empty
-          if(!formInput.phase){
-            setFormError({
-              ...inputError,
-              phase: "Please select the phase",
-              phase_status: "error"
-            })
-            return;
-          }
-
-
-          // Check if rooms are empty
-          if(!formInput.rooms){
-            setFormError({
-              ...inputError,
-              rooms: "Please select the phase",
-              rooms_status: "error"
-            })
-            return;
-          }
-
-          // Check if floors are empty
-          if(!formInput.floor){
-            setFormError({
-              ...inputError,
-              floor: "Please select the floor",
-              floor_status: "error"
-            })
-            return;
-          }
-
           
-          // Check if currency is empty
-          if(!formInput.currency){
-            setFormError({
-              ...inputError,
-              currency: "Please select your currency",
-              currency_status: "error"
-            })
-            return;
-          }
-          // Check if price is empty
-          if(!formInput.price){
-            setFormError({
-              ...inputError,
-              price: "Price should not be empty else enter numeric zero",
-              price_status: "error"
-            })
-            return;
-          }
-
-          // Check if price has numbers
-          if(/\D/.test(formInput.price)){
-            setFormError({
-              ...inputError,
-              price: "Provide the valid price, only the numerals",
-              price_status: "error"
-            })
-            return;
-          }
-
-          
-
-          
-          // Check if property type is empty
-          if(!formInput.property){
-            setFormError({
-              ...inputError,
-              property: "Please select your type of property",
-              property_status: "error"
-            })
-            return;
-          }
-
 
           // Check if property address is empty
           if(!formInput.address){
