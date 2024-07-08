@@ -563,8 +563,8 @@ function Register() {
               }}
             style={{borderColor: formError.rooms !== "" && formError.rooms_status !== "error" ?"":"red"}}  
               >
-              {roomsList.map((option) => (
-                <option value={option.value}>{option.label}</option>
+              {roomsList.map((option,index) => (
+                <option value={option.value} key={index}>{option.label}</option>
               ))}
             </select>
           </div>
@@ -664,8 +664,8 @@ function Register() {
               }}
             style={{borderColor: formError.phase !== "" && formError.phase_status !== "error" ?"":"red"}}  
               >
-              {phaseList.map((option) => (
-                <option value={option.value}>{option.label}</option>
+              {phaseList.map((option,index) => (
+                <option value={option.value} key={index}>{option.label}</option>
               ))}
             </select>
           </div>
@@ -688,8 +688,8 @@ function Register() {
               }}
             style={{borderColor: formError.floor !== "" && formError.floor_status !== "error" ?"":"red"}}  
               >
-              {floorList.map((option) => (
-                <option value={option.value}>{option.label}</option>
+              {floorList.map((option, index) => (
+                <option value={option.value} key={index}>{option.label}</option>
               ))}
             </select>
           </div>
