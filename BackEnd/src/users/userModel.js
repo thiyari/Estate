@@ -37,6 +37,11 @@ var userSchema = new Schema({
     },
     phase: {
         type: String,
+        required: true
+    },
+    rooms: {
+        type: String,
+        required: true
     },
     images: [{
         type: String    

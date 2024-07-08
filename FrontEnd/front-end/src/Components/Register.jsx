@@ -12,6 +12,22 @@ const phaseList = [
   { value: 'south', label: 'South' }
 ];
 
+
+const roomsList = [
+  { value: '', label: 'Select Rooms'},
+  { value: '1 BHK', label: '1 BHK' },
+  { value: '2 BHK', label: '2 BHK' },
+  { value: '3 BHK', label: '3 BHK' },
+  { value: '1B + 2HK', label: '1B + 2HK'},
+  { value: '1B + 3HK', label: '1B + 3HK'},
+  { value: '2B + 2HK', label: '2B + 2HK'},
+  { value: '2B + 3HK', label: '2B + 3HK'},
+  { value: '3B + 2HK', label: '3B + 2HK'},
+  { value: '3B + 3HK', label: '3B + 3HK'},
+  { value: 'Others', label: 'Others'}
+];
+
+
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
@@ -30,6 +46,7 @@ function Register() {
       location_status: "",
       zip_status: "",
       phase_status: "",
+      rooms_status: "",
     };
 
     const [img,setImg] = useState([])
@@ -225,6 +242,16 @@ function Register() {
           }
 
 
+          // Check if phase is empty
+          if(!formInput.rooms){
+            setFormError({
+              ...inputError,
+              rooms: "Please select the phase",
+              rooms_status: "error"
+            })
+            return;
+          }
+
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
@@ -247,6 +274,7 @@ function Register() {
           location:formInput.location,
           zip: formInput.zip,
           phase: formInput.phase,
+          rooms: formInput.rooms,
           images: img
           }),
           {
@@ -266,7 +294,8 @@ function Register() {
             area: "",
             location: "",
             zip: "",
-            phase: ""
+            phase: "",
+            rooms: "",
           })
           setImg('')
           setSuccess(true);
@@ -286,7 +315,7 @@ function Register() {
      <div>
         <div className="container mt-4" >
     <div className="card">
-    <h1 className="card-header"><center><div className="header-font">User Registration</div></center></h1>
+    <h1 className="card-header"><center><div className="header-font">Proprietor's Registration</div></center></h1>
     <div className="row">
 		  <div className="col-sm-1"></div>
 			<div className="col-sm-10 form-container">
@@ -392,6 +421,28 @@ function Register() {
         <p className="error-message">{formError.confirmPassword}</p>
 
 
+
+
+        <div className="form-group">
+          <label className="form-label">Rooms</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="rooms"
+            name="rooms"
+            value={formInput.rooms}
+            onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+              }}
+            style={{borderColor: formError.rooms !== "" && formError.rooms_status !== "error" ?"":"red"}}  
+              >
+              {roomsList.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p className="error-message">{formError.rooms}</p>
 
 
 
