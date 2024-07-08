@@ -27,7 +27,9 @@ function Register() {
       area: "",
       location: "",
       zip: "",
-      phase: ""    
+      phase: "",
+      fname_status: "",
+      lname_status: ""    
     };
 
     const [img,setImg] = useState([])
@@ -68,6 +70,7 @@ function Register() {
             setFormError({
               ...inputError,
               fname: "First name should not be empty",
+              fname_status: "error"
             })
             return;
           }
@@ -77,6 +80,7 @@ function Register() {
             setFormError({
               ...inputError,
               lname: "Last name should not be empty",
+              lname_status: "error"
             })
             return;
           }
@@ -87,6 +91,7 @@ function Register() {
             setFormError({
               ...inputError,
               email: "Email should not be empty",
+              status: "error"
             })
             return;
           }
@@ -97,6 +102,7 @@ function Register() {
               setFormError({
                 ...inputError,
                 email: "Email format is incorrect",
+                status: "error"
               });
               return;
           }
@@ -106,6 +112,7 @@ function Register() {
             setFormError({
               ...inputError,
               password: "Password should not be empty",
+              status: "error"
             })
             return;
           }
@@ -115,6 +122,7 @@ function Register() {
               setFormError({
                 ...inputError,
                 password: "Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters",
+                status: "error"
               });
               return;
           }
@@ -124,6 +132,7 @@ function Register() {
             setFormError({
               ...inputError,
               confirmPassword: "Password and Confirm password should be the same",
+              fname_status: "error"
             });
             return;
           } 
@@ -133,6 +142,7 @@ function Register() {
             setFormError({
               ...inputError,
               password: "Password should not be empty",
+              lname_status: "error"
             });
             return;
           }
@@ -143,6 +153,7 @@ function Register() {
             setFormError({
               ...inputError,
               phone: "Phone number should not be empty",
+              status: "error"
             })
             return;
           }
@@ -152,6 +163,7 @@ function Register() {
             setFormError({
               ...inputError,
               phone: "Invalid phone number",
+              status: "error"
             })
             return;
           }
@@ -162,6 +174,7 @@ function Register() {
             setFormError({
               ...inputError,
               area: "Area should not be empty else enter numeric zero",
+              status: "error"
             })
             return;
           }
@@ -171,6 +184,7 @@ function Register() {
             setFormError({
               ...inputError,
               area: "Provide the valid measurements",
+              status: "error"
             })
             return;
           }
@@ -181,6 +195,7 @@ function Register() {
             setFormError({
               ...inputError,
               location: "Location should not be empty",
+              status: "error"
             })
             return;
           }
@@ -190,6 +205,7 @@ function Register() {
             setFormError({
               ...inputError,
               zip: "Zip code should not be empty",
+              status: "error"
             })
             return;
           }
@@ -199,6 +215,7 @@ function Register() {
             setFormError({
               ...inputError,
               zip: "Zip code is invalid",
+              status: "error"
             })
             return;
           }
@@ -209,6 +226,7 @@ function Register() {
             setFormError({
               ...inputError,
               phase: "Please select the phase",
+              status: "error"
             })
             return;
           }
@@ -296,6 +314,7 @@ function Register() {
           onChange={({target})=>{
             handleUserInput(target.name, target.value)
           }}
+          style={{borderColor: formError.fname !== "" && formError.fname_status !== "error" ?"":"red"}}
           />
         </div>
         <p className="error-message">{formError.fname}</p>
@@ -314,7 +333,7 @@ function Register() {
             onChange={({target})=>{
               handleUserInput(target.name, target.value)
             }}
-            
+            style={{borderColor: formError.lname !== "" && formError.lname_status !== "error" ?"":"red"}}
             />
           </div>
           <p className="error-message">{formError.lname}</p>
