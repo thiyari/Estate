@@ -18,6 +18,7 @@ module.exports.createUserDBService = (userDetails) => {
                                 phase: userDetails.phase,
                                 images: userDetails.images,
                                 rooms: userDetails.rooms, 
+                                floor: userDetails.floor
                         });
                         
                 }

@@ -27,6 +27,120 @@ const roomsList = [
   { value: 'Others', label: 'Others'}
 ];
 
+const floorList = [
+  { value: '', label: 'Select Floor'},
+  { value: 'Open Plot', label: 'Open Plot' },
+  { value: 'Independent', label: 'Independent' },
+  { value: 'Duplex', label: 'Duplex' },
+  { value: '1', label: '1' },
+  { value: '2', label: '2' },
+  { value: '3', label: '3' },
+  { value: '4', label: '4' },
+  { value: '5', label: '5' },
+  { value: '6', label: '6' },
+  { value: '7', label: '7' },
+  { value: '8', label: '8' },
+  { value: '9', label: '9' },
+  { value: '10', label: '10' },
+  { value: '11', label: '11' },
+  { value: '12', label: '12' },
+  { value: '13', label: '13' },
+  { value: '14', label: '14' },
+  { value: '15', label: '15' },
+  { value: '16', label: '16' },
+  { value: '17', label: '17' },
+  { value: '18', label: '18' },
+  { value: '19', label: '19' },
+  { value: '20', label: '20' },
+  { value: '21', label: '21' },
+  { value: '22', label: '22' },
+  { value: '23', label: '23' },
+  { value: '24', label: '24' },
+  { value: '25', label: '25' },
+  { value: '26', label: '26' },
+  { value: '27', label: '27' },
+  { value: '28', label: '28' },
+  { value: '29', label: '29' },
+  { value: '30', label: '30' },
+  { value: '31', label: '31' },
+  { value: '32', label: '32' },
+  { value: '33', label: '33' },
+  { value: '34', label: '34' },
+  { value: '35', label: '35' },
+  { value: '36', label: '36' },
+  { value: '37', label: '37' },
+  { value: '38', label: '38' },
+  { value: '39', label: '39' },
+  { value: '40', label: '40' },
+  { value: '41', label: '41' },
+  { value: '42', label: '42' },
+  { value: '43', label: '43' },
+  { value: '44', label: '44' },
+  { value: '45', label: '45' },
+  { value: '46', label: '46' },
+  { value: '47', label: '47' },
+  { value: '48', label: '48' },
+  { value: '49', label: '49' },
+  { value: '50', label: '50' },
+  { value: '51', label: '51' },
+  { value: '52', label: '52' },
+  { value: '53', label: '53' },
+  { value: '54', label: '54' },
+  { value: '55', label: '55' },
+  { value: '56', label: '56' },
+  { value: '57', label: '57' },
+  { value: '58', label: '58' },
+  { value: '59', label: '59' },
+  { value: '60', label: '60' },
+  { value: '61', label: '61' },
+  { value: '62', label: '62' },
+  { value: '63', label: '63' },
+  { value: '64', label: '64' },
+  { value: '65', label: '65' },
+  { value: '66', label: '66' },
+  { value: '67', label: '67' },
+  { value: '68', label: '68' },
+  { value: '69', label: '69' },
+  { value: '70', label: '70' },
+  { value: '71', label: '71' },
+  { value: '72', label: '72' },
+  { value: '73', label: '73' },
+  { value: '74', label: '74' },
+  { value: '75', label: '75' },
+  { value: '76', label: '76' },
+  { value: '77', label: '77' },
+  { value: '78', label: '78' },
+  { value: '79', label: '79' },
+  { value: '80', label: '80' },
+  { value: '81', label: '81' },
+  { value: '82', label: '82' },
+  { value: '83', label: '83' },
+  { value: '84', label: '84' },
+  { value: '85', label: '85' },
+  { value: '86', label: '86' },
+  { value: '87', label: '87' },
+  { value: '88', label: '88' },
+  { value: '89', label: '89' },
+  { value: '90', label: '90' },
+  { value: '91', label: '91' },
+  { value: '92', label: '92' },
+  { value: '93', label: '93' },
+  { value: '94', label: '94' },
+  { value: '95', label: '95' },
+  { value: '96', label: '96' },
+  { value: '97', label: '97' },
+  { value: '98', label: '98' },
+  { value: '99', label: '99' },
+  { value: '100', label: '100' },
+  { value: '101', label: '101' },
+  { value: '102', label: '102' },
+  { value: '103', label: '103' },
+  { value: '104', label: '104' },
+  { value: '105', label: '105' },
+  { value: '106', label: '106' },
+  { value: '107', label: '107' },
+  { value: '108', label: '108' },
+];
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -47,6 +161,7 @@ function Register() {
       zip_status: "",
       phase_status: "",
       rooms_status: "",
+      floor_status: ""
     };
 
     const [img,setImg] = useState([])
@@ -242,7 +357,7 @@ function Register() {
           }
 
 
-          // Check if phase is empty
+          // Check if rooms are empty
           if(!formInput.rooms){
             setFormError({
               ...inputError,
@@ -252,6 +367,16 @@ function Register() {
             return;
           }
 
+          // Check if floors are empty
+          if(!formInput.floor){
+            setFormError({
+              ...inputError,
+              floor: "Please select the floor",
+              floor_status: "error"
+            })
+            return;
+          }
+          
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
@@ -275,6 +400,7 @@ function Register() {
           zip: formInput.zip,
           phase: formInput.phase,
           rooms: formInput.rooms,
+          floor: formInput.floor,
           images: img
           }),
           {
@@ -296,6 +422,7 @@ function Register() {
             zip: "",
             phase: "",
             rooms: "",
+            floor: ""
           })
           setImg('')
           setSuccess(true);
@@ -469,7 +596,7 @@ function Register() {
 
         
         <div className="form-group">
-          <label className="form-label">Area</label>
+          <label className="form-label">Area of Property</label>
           <input 
           type="text"  
           className="form-control mb-3" 
@@ -488,7 +615,7 @@ function Register() {
 
 
         <div className="form-group">
-          <label className="form-label">Location</label>
+          <label className="form-label">Location of Property</label>
           <input 
           type="text"  
           className="form-control mb-3" 
@@ -544,6 +671,31 @@ function Register() {
           </div>
         </div>
         <p className="error-message">{formError.phase}</p>
+
+
+
+
+        <div className="form-group">
+          <label className="form-label">Floor</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="floor"
+            name="floor"
+            value={formInput.floor}
+            onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+              }}
+            style={{borderColor: formError.floor !== "" && formError.floor_status !== "error" ?"":"red"}}  
+              >
+              {floorList.map((option) => (
+                <option value={option.value}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p className="error-message">{formError.floor}</p>
+
 
         </div>
         <div className="col-md-1"></div>
