@@ -51,6 +51,10 @@ var userSchema = new Schema({
         type: String,
         required: true
     },
+    property: {
+        type: String,
+        required: true
+    },
     images: [{
         type: String    
     }]

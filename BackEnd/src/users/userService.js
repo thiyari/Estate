@@ -19,7 +19,8 @@ module.exports.createUserDBService = (userDetails) => {
                                 images: userDetails.images,
                                 rooms: userDetails.rooms, 
                                 floor: userDetails.floor,
-                                currency: userDetails.currency
+                                currency: userDetails.currency,
+                                property: userDetails.property
                         });
                         
                 }

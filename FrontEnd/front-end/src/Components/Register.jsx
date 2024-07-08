@@ -29,9 +29,7 @@ const roomsList = [
 
 const floorList = [
   { value: '', label: 'Select Floor'},
-  { value: 'Open Plot', label: 'Open Plot' },
-  { value: 'Independent', label: 'Independent' },
-  { value: 'Duplex', label: 'Duplex' },
+  { value: '0', label: 'Not Available'},
   { value: '1', label: '1' },
   { value: '2', label: '2' },
   { value: '3', label: '3' },
@@ -149,6 +147,15 @@ const currencyList = [
   { value: 'USD', label: 'USD'},
 ]
 
+const propertyList = [
+  { value: '', label: 'Select Property Type'},
+  { value: 'Open Plot', label: 'Open Plot'},
+  { value: 'Independent House', label: 'Independent House'},
+  { value: 'Duplex Home', label: 'Duplex Home'},
+  { value: 'Flat', label: 'Flat'},
+  { value: 'Commercial Complex', label: 'Commericial Complex'},
+]
+
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
@@ -168,6 +175,7 @@ function Register() {
       zip:"",
       phase:"",
       rooms:"",
+      property: "",
       floor:"",
       currency:"",
       fname_status: "",
@@ -181,6 +189,7 @@ function Register() {
       zip_status: "",
       phase_status: "",
       rooms_status: "",
+      property_status: "",
       floor_status: "",
       currency_status:""
     };
@@ -412,6 +421,18 @@ function Register() {
             return;
           }
 
+
+          // Check if property type is empty
+          if(!formInput.property){
+            setFormError({
+              ...inputError,
+              property: "Please select your type of property",
+              property_status: "error"
+            })
+            return;
+          }
+
+
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
@@ -437,6 +458,7 @@ function Register() {
           rooms: formInput.rooms,
           floor: formInput.floor,
           currency: formInput.currency,
+          property: formInput.property,
           images: img
           }),
           {
@@ -459,7 +481,8 @@ function Register() {
             phase: "",
             rooms: "",
             floor: "",
-            currency: ""
+            currency: "",
+            property: "",
           })
           setImg('')
           setSuccess(true);
@@ -608,6 +631,29 @@ function Register() {
         </div>
         <p className="error-message">{formError.rooms}</p>
 
+
+
+
+        <div className="form-group">
+          <label className="form-label">Type of Property</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="property"
+            name="property"
+            value={formInput.property}
+            onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+              }}
+            style={{borderColor: formError.property_status !== "error" ?"":"red"}}  
+              >
+              {propertyList.map((option,index) => (
+                <option value={option.value} key={index}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p className="error-message">{formError.property}</p>
 
 
         </div>
