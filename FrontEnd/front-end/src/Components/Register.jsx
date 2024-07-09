@@ -365,6 +365,29 @@ function Register() {
           }          
 
 
+
+          // Check if rooms are empty
+          if(!roomSelect.rooms){
+            setFormError({
+              ...inputError,
+              rooms: "Please select the rooms",
+              rooms_status: "error"
+            })
+            return;
+          }
+
+
+          // Check if other option in rooms is empty
+          if(roomSelect.rooms === "others" && !otherOption){
+            setFormError({
+              ...inputError,
+              other_room: "Please type your choice",
+              other_room_status: "error"
+            })
+            return;
+          }
+
+
           // Check if area is empty
           if(!formInput.area){
             setFormError({
@@ -387,26 +410,6 @@ function Register() {
 
 
 
-          // Check if rooms are empty
-          if(!roomSelect.rooms){
-            setFormError({
-              ...inputError,
-              rooms: "Please select the rooms",
-              rooms_status: "error"
-            })
-            return;
-          }
-
-
-          // Check if other option in rooms is empty
-          if(roomSelect.rooms === "others" && !otherOption){
-            setFormError({
-              ...inputError,
-              other_room: "Please type your choice",
-              other_room_status: "error"
-            })
-            return;
-          }
 
           // Check if phase is empty
           if(!formInput.phase){
@@ -730,33 +733,6 @@ function Register() {
 
 
 
-        <div className="form-group">
-          <label className="form-label">Area of Property</label>
-          <input 
-          type="text"  
-          className="form-control mb-3" 
-          id="area" 
-          placeholder="Area in Sq.Feet"
-          name="area"
-          value={formInput.area}
-          onChange={({target})=>{            
-            handleUserInput(target.name, target.value)
-          }} 
-          style={{borderColor: formError.area_status !== "error" ?"":"red"}}
-          />
-        </div>
-        <p className="error-message">{formError.area}</p>
-
-
-
-
-
-
-        </div>
-        <div className="col-md-2"></div>
-        <div className="col-md-4">
-
-
 
         <div className="form-group">
           <label className="form-label">Rooms</label>
@@ -798,7 +774,37 @@ function Register() {
                           </div>
         }
         <p className="error-message">{formError.other_room}</p>
-      
+
+
+
+
+        </div>
+        <div className="col-md-2"></div>
+        <div className="col-md-4">
+
+
+
+
+        <div className="form-group">
+          <label className="form-label">Area of Property</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="area" 
+          placeholder="Area in Sq.Feet"
+          name="area"
+          value={formInput.area}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.area_status !== "error" ?"":"red"}}
+          />
+        </div>
+        <p className="error-message">{formError.area}</p>
+
+
+
+
 
 
         <div className="form-group">
