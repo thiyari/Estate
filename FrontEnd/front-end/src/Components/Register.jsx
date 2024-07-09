@@ -979,7 +979,7 @@ function Register() {
         <div className="col-sm-1"></div>
         <p align="center" className="success-message">{formInput.successMsg}</p>
         {!loading && <button type="submit" className="btn btn-primary mt-4">Submit</button>}
-        {loading && <img src={"../../public/loading.gif"} alt="...Loading"  width="30" height="30" align="center"/>}
+        {loading && <img src={require("./loading.gif")} alt="...Loading" width={30} height={30}/>}
         </div>     
       </form>
       </div>
