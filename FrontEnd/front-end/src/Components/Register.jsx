@@ -399,7 +399,7 @@ function Register() {
 
 
           // Check if other option in rooms is empty
-          if(!otherOption){
+          if(roomSelect.rooms === "others" && !otherOption){
             setFormError({
               ...inputError,
               other_room: "Please type your choice",
