@@ -2,16 +2,50 @@ import axios from "axios";
 import {  useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
+
+const initialState = {
+  email: "",
+  password: "",
+  email_status: "",
+  password_status: "",
+};
+
 function Login() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const [formError, setFormError] = useState({...initialState})
+    let inputError = {...initialState};
 
+    
     async function login(event) {
         event.preventDefault();
+
+        // Check if email is empty
+    if(!email){
+      setFormError({
+        ...inputError,
+        email: "Email should not be empty",
+        email_status: "error"
+            })
+        return;
+      }
+
+      // Check if password is empty
+      if(!password){
+            setFormError({
+              ...inputError,
+              password: "Password should not be empty",
+              password_status: "error"
+            })
+        return;
+      }
+
+
+
         try {
-          await axios.post("http://estateserver-vi8u.onrender.com/user/login", {
+          await axios.post("http://localhost:8000/user/login", {
             email: email,
             password: password,
             }).then((res) => 
@@ -30,7 +64,7 @@ function Login() {
              }  
           }, fail => {
            console.error(fail); // Error!
-  });
+      });
         }
 
  
@@ -55,24 +89,28 @@ function Login() {
              <div className="card-body">
              <form>
              <div className="form-group">
-          <label className="form-label">email</label>
-          <input type="email"  className="form-control mb-3" id="email" placeholder="Enter Name"
-          
-          value={email}
-          onChange={(event) => {
-            setEmail(event.target.value);
-          }}
-          
-          />
-          
-          
-          
-        </div>
+                  <label className="form-label">email</label>
+                  <input type="email"  
+                  className="form-control mb-3" 
+                  id="email" 
+                  placeholder="Enter Name"
+                  style={{borderColor: formError.email_status !== "error" ?"":"red"}}  
+                  value={email}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                  }}
+                  />
+              </div>
+              <p className="error-message">{formError.email}</p>
+
 
         <div className="form-group">
             <label className="form-label">password</label>
-            <input type="password"  className="form-control mb-3" id="password" placeholder="Enter password"
-            
+            <input type="password"  
+            className="form-control mb-3" 
+            id="password" 
+            placeholder="Enter password"
+            style={{borderColor: formError.password_status !== "error" ?"":"red"}}  
             value={password}
             onChange={(event) => {
               setPassword(event.target.value);
@@ -80,6 +118,8 @@ function Login() {
             
             />
           </div>
+          <p className="error-message">{formError.password}</p>
+
                   <button type="submit" className="btn btn-primary mt-4" onClick={login} >Login</button>
               </form>
             </div>

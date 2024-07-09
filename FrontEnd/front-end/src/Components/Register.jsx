@@ -1,6 +1,6 @@
 import axios from "axios";
 import '../App.css';
-import {useState} from 'react';
+import { useState } from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
 
@@ -517,7 +517,7 @@ function Register() {
           setFormError(inputError);
           setFormInput((prevState)=>({
             ...prevState,
-            successMsg: "Validation Successful",
+            successMsg: "Verification Successful, Saving the details",
           }));
 
 
