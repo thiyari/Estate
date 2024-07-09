@@ -206,6 +206,7 @@ function Register() {
     const [showOtherOption, setShowOtherOption] = useState(false);
     const [otherOption, setOtherOption] = useState("");
     const [roomSelect, setRoomSelect] = useState({...initialState,successMsg: ""});
+    const [loading,setLoading] = useState(false);
 
     const navigate = useNavigate();
     
@@ -524,6 +525,7 @@ function Register() {
       
 
         try {
+          setLoading(true);
           await axios.post("http://localhost:8000/user/create", JSON.stringify({
           firstname: formInput.fname,
           lastname: formInput.lname,
@@ -567,6 +569,7 @@ function Register() {
             price: "",
             address: ""
           })
+          setLoading(false);
           setRoomSelect('')
           setImg('')
           navigate('/Login');
@@ -975,7 +978,8 @@ function Register() {
         </div>
         <div className="col-sm-1"></div>
         <p align="center" className="success-message">{formInput.successMsg}</p>
-        <button type="submit" className="btn btn-primary mt-4">Submit</button>
+        {!loading && <button type="submit" className="btn btn-primary mt-4">Submit</button>}
+        {loading && <img src={"../../public/loading.gif"} alt="...Loading"  width="30" height="30" align="center"/>}
         </div>     
       </form>
       </div>
