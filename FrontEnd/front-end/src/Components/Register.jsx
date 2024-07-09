@@ -24,7 +24,7 @@ const roomsList = [
   { value: '2B + 3HK', label: '2B + 3HK'},
   { value: '3B + 2HK', label: '3B + 2HK'},
   { value: '3B + 3HK', label: '3B + 3HK'},
-  { value: 'Others', label: 'Others'}
+  { value: 'others', label: 'Others'}
 ];
 
 const floorList = [
@@ -201,9 +201,12 @@ function Register() {
     const [img,setImg] = useState([])
     const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
     const [formError, setFormError] = useState({...initialState})
+    const [showOtherOption, setShowOtherOption] = useState(false);
+    const [otherOption, setOtherOption] = useState("");
+    const [roomSelect, setRoomSelect] = useState({...initialState,successMsg: ""});
+
     const navigate = useNavigate();
     
-
     const handleUserInput = (name, value) => {
       setFormInput({
         ...formInput,
@@ -211,9 +214,29 @@ function Register() {
       });
     };
 
+
+    const handleRoomSelect = (name, value) => {
+      setRoomSelect({
+        ...roomSelect,
+        [name]: value,
+      });
+      if (value === "others") setShowOtherOption(true);
+        else setShowOtherOption(false);
+    };
+
+    let selected_room = {}
+    if (roomSelect.rooms==="others"){
+      selected_room = otherOption
+    } else {
+      selected_room = roomSelect.rooms
+    }
+
     const setImages = (images)=>{
       setImg(images);
     }
+
+
+
 
     async function submitHandler(event) {
         event.preventDefault();
@@ -363,7 +386,7 @@ function Register() {
 
 
           // Check if rooms are empty
-          if(!formInput.rooms){
+          if(!roomSelect.rooms){
             setFormError({
               ...inputError,
               rooms: "Please select the rooms",
@@ -482,7 +505,7 @@ function Register() {
           }));
 
 
-
+        
       
 
         try {
@@ -496,7 +519,7 @@ function Register() {
           location:formInput.location,
           zip: formInput.zip,
           phase: formInput.phase,
-          rooms: formInput.rooms,
+          rooms: selected_room,
           floor: formInput.floor,
           currency: formInput.currency,
           property: formInput.property,
@@ -529,6 +552,7 @@ function Register() {
             price: "",
             address: ""
           })
+          setRoomSelect('')
           setImg('')
           navigate('/Login');
         } catch (err) {
@@ -729,9 +753,9 @@ function Register() {
             className="form-select" 
             title="rooms"
             name="rooms"
-            value={formInput.rooms}
+            value={roomSelect.rooms}
             onChange={({target})=>{            
-            handleUserInput(target.name, target.value)
+            handleRoomSelect(target.name, target.value)
               }}
             style={{borderColor: formError.rooms_status !== "error" ?"":"red"}}  
               >
@@ -742,9 +766,25 @@ function Register() {
           </div>
         </div>
         <p className="error-message">{formError.rooms}</p>
+        
 
 
-
+        { showOtherOption && 
+                          <div className="form-group">
+                          <input 
+                          type="text"  
+                          className="form-control mb-3" 
+                          id="rooms" 
+                          placeholder="Type here...."
+                          name="rooms"
+                          value={otherOption}
+                          onChange={({target})=>{
+                            setOtherOption(target.value)}
+                              }
+                          />
+                          </div>
+        }
+      
 
 
         <div className="form-group">
