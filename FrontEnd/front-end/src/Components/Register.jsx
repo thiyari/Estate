@@ -175,6 +175,7 @@ function Register() {
       zip:"",
       phase:"",
       rooms:"",
+      other_room:"",
       property: "",
       floor:"",
       currency:"",
@@ -191,6 +192,7 @@ function Register() {
       zip_status: "",
       phase_status: "",
       rooms_status: "",
+      other_room_status: "",
       property_status: "",
       floor_status: "",
       currency_status:"",
@@ -395,6 +397,16 @@ function Register() {
             return;
           }
 
+
+          // Check if other option in rooms is empty
+          if(!otherOption){
+            setFormError({
+              ...inputError,
+              other_room: "Please type your choice",
+              other_room_status: "error"
+            })
+            return;
+          }
 
           // Check if phase is empty
           if(!formInput.phase){
@@ -781,9 +793,11 @@ function Register() {
                           onChange={({target})=>{
                             setOtherOption(target.value)}
                               }
+                          style={{borderColor: formError.other_room_status !== "error" ?"":"red"}}  
                           />
                           </div>
         }
+        <p className="error-message">{formError.other_room}</p>
       
 
 
