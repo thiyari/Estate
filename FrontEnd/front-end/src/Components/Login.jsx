@@ -1,5 +1,5 @@
 import axios from "axios";
-import {  useState } from "react";
+import {  useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -19,6 +19,21 @@ function Login() {
     let inputError = {...initialState};
 
     
+    axios.defaults.withCredentials = true;
+    useEffect(()=>{
+      axios.get('http://localhost:8000/user')
+      .then(res => {
+        if(res.data.valid){
+          setEmail(res.data.email);
+          navigate('/Home')
+        } else {
+          navigate('/Login')
+        }
+      })
+      .catch(err => console.log(err))
+    },[navigate])
+
+
     async function login(event) {
         event.preventDefault();
 
@@ -41,7 +56,6 @@ function Login() {
             })
         return;
       }
-
 
 
         try {

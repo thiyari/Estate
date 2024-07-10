@@ -1,3 +1,6 @@
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const bodyParser = require('body-parser')
 const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
@@ -9,16 +12,32 @@ const userModel = require('./src/users/userModel');
 
 app.use(cors(
     {   origin: ['http://localhost:3000', 'https://estateclient.onrender.com'],
+        methods: ['POST','GET'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
 ));
 app.use(express.json({limit:"10mb"}))
 
+app.use(cookieParser());
+app.use(bodyParser.json())
+app.use(session({
+    secret: 'secret',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        secure: false,
+        maxAge: 1000 * 60 * 60 *24
+    }
+}
+))
 
+/*
 app.get("/",async(req,res)=>{
     const data = await (await userModel.find().sort({_id:-1})).reverse()
     res.json({message: "All Image", data: data})
 })
+*/
+
 
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})

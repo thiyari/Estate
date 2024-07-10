@@ -1,6 +1,7 @@
 var userModel = require('./userModel')
 var key = '123456789asdflkj';
 var encryptor = require('simple-encryptor')(key);
+const session = require('express-session')
 
 module.exports.createUserDBService = (userDetails) => {
         return new Promise(function myFn(resolve,reject){

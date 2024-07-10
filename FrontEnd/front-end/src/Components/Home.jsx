@@ -1,3 +1,32 @@
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+function Home(){
+  const [email, setEmail] = useState('')
+  const navigate = useNavigate()
+
+  axios.defaults.withCredentials = true;
+  useEffect(()=>{
+    axios.get('http://localhost:8000/user')
+    .then(res => {
+      if(res.data.valid){
+        setEmail(res.data.email);
+      } else {
+        navigate('/Login')
+      }
+    })
+    .catch(err => console.log(err))
+  },[navigate])
+  return (
+    <div><h1>Welcome {email}</h1></div>
+  )
+}
+
+export default Home
+
+
+/*
 import {useState, useEffect} from 'react';
 import '../App.css';
 
@@ -32,3 +61,4 @@ function Home() {
   }
 
   export default Home;
+  */

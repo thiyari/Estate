@@ -24,6 +24,7 @@ var loginUserControllerFn = async(req,res)=>
     var result = null;
     try
     {
+        req.session.email = req.body.email
         var result = await userService.loginuserDBService(req.body)
         if(result.status){
             res.send({"status":true,"message":result.msg});
@@ -38,4 +39,12 @@ var loginUserControllerFn = async(req,res)=>
     }
 }
 
-module.exports = { createUserControllerFn, loginUserControllerFn }
+var sessionControllerFn = async(req,res)=>{
+        if(req.session.email){
+            return res.json({valid: true, email: req.session.email})
+        } else {
+            return res.json({valid: false})
+        }
+}
+
+module.exports = { createUserControllerFn, loginUserControllerFn, sessionControllerFn }
