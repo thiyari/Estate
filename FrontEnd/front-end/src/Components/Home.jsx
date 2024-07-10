@@ -19,11 +19,13 @@ function Home(){
     .catch(err => console.log(err))
   },[navigate])
   return (
-    <div><h1>Welcome {email}</h1></div>
+    <React.Fragment>
+      <div><h1>Welcome {email}</h1></div>
+    </React.Fragment>
   )
 }
 
-export default Home
+export default Home;
 
 
 /*
