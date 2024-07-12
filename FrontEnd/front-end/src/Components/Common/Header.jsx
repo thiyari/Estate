@@ -4,8 +4,8 @@ function Header(){
     return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
-  <div className="container-fluid">
-    <a className="navbar-brand" href="#a">Navbar</a>
+  <div className="container">
+    <a className="navbar-brand" href="#a">Estate</a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
@@ -15,21 +15,24 @@ function Header(){
           <a className="nav-link active" aria-current="page" href="#b">Home</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#c">Link</a>
+          <a className="nav-link" href="#c">Plots</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#c">Flats</a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#c">Commercial</a>
         </li>
         <li className="nav-item dropdown">
           <a className="nav-link dropdown-toggle" href="#d" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+            My Account
           </a>
           <ul className="dropdown-menu">
-            <li><a className="dropdown-item" href="#e">Action</a></li>
-            <li><a className="dropdown-item" href="#f">Another action</a></li>
+            <li><a className="dropdown-item" href="#e">Profile</a></li>
+            <li><a className="dropdown-item" href="#f">Change Password</a></li>
             <li><hr className="dropdown-divider"/></li>
-            <li><a className="dropdown-item" href="#g">Something else here</a></li>
+            <li><a className="dropdown-item" href="#g">Logout</a></li>
           </ul>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link disabled" aria-disabled="true" href="#z">Disabled</a>
         </li>
       </ul>
       <form className="d-flex" role="search">
