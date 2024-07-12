@@ -4,15 +4,15 @@ import { useNavigate } from 'react-router-dom';
 
 
 const initialState = {
-  email: "",
+  user: "",
   password: "",
-  email_status: "",
+  user_status: "",
   password_status: "",
 };
 
 function Login() {
 
-    const [email, setEmail] = useState("");
+    const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const [formError, setFormError] = useState({...initialState})
@@ -21,10 +21,10 @@ function Login() {
     
     axios.defaults.withCredentials = true;
     useEffect(()=>{
-      axios.get('http://localhost:8000/user')
+      axios.get('http://localhost:8000/user/session')
       .then(res => {
         if(res.data.valid){
-          setEmail(res.data.email);
+          setUser(res.data.user);
           navigate('/Home')
         } else {
           navigate('/Login')
@@ -37,12 +37,12 @@ function Login() {
     async function login(event) {
         event.preventDefault();
 
-        // Check if email is empty
-    if(!email){
+        // Check if username is empty
+    if(!user){
       setFormError({
         ...inputError,
-        email: "Email should not be empty",
-        email_status: "error"
+        user: "Username should not be empty",
+        user_status: "error"
             })
         return;
       }
@@ -60,7 +60,7 @@ function Login() {
 
         try {
           await axios.post("http://localhost:8000/user/login", {
-            email: email,
+            user: user,
             password: password,
             }).then((res) => 
             {
@@ -103,19 +103,19 @@ function Login() {
              <div className="card-body">
              <form>
              <div className="form-group">
-                  <label className="form-label">email</label>
-                  <input type="email"  
+                  <label className="form-label">Username</label>
+                  <input type="text"  
                   className="form-control mb-3" 
-                  id="email" 
+                  id="user" 
                   placeholder="Enter Name"
-                  style={{borderColor: formError.email_status !== "error" ?"":"red"}}  
-                  value={email}
+                  style={{borderColor: formError.user_status !== "error" ?"":"red"}}  
+                  value={user}
                   onChange={(event) => {
-                    setEmail(event.target.value);
+                    setUser(event.target.value);
                   }}
                   />
               </div>
-              <p className="error-message">{formError.email}</p>
+              <p className="error-message">{formError.user}</p>
 
 
         <div className="form-group">

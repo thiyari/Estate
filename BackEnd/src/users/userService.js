@@ -42,7 +42,7 @@ module.exports.createUserDBService = (userDetails) => {
 
 module.exports.loginuserDBService = (userDetails) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.findOne({email:userDetails.email});
+                result = await userModel.findOne({username:userDetails.user});
                 if(result != undefined && result != null){
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){
