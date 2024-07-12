@@ -47,4 +47,15 @@ var sessionControllerFn = async(req,res)=>{
         }
 }
 
-module.exports = { createUserControllerFn, loginUserControllerFn, sessionControllerFn }
+var fetchImagesControllerFn = async(req,res)=>{
+    const result = await (userService.fetchImagesDBService())
+    if(result.status){
+       return res.send({message:"All Images",data:result.data});
+    }
+    else {
+        return res.send({message:'No Images',data:{}});
+    }
+}
+
+
+module.exports = { createUserControllerFn, loginUserControllerFn, sessionControllerFn, fetchImagesControllerFn }

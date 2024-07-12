@@ -56,3 +56,16 @@ module.exports.loginuserDBService = (userDetails) => {
         })
 }
 
+module.exports.fetchImagesDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await userModel.find().sort({_id:-1});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({satus: false, data: 'Invalid data'})
+                }
+        })
+}
+
+
+

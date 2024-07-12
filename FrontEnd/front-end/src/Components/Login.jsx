@@ -25,7 +25,7 @@ function Login() {
       .then(res => {
         if(res.data.valid){
           setUser(res.data.user);
-          navigate('/Home')
+          navigate('/Profile')
         } else {
           navigate('/Login')
         }

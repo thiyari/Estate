@@ -31,13 +31,6 @@ app.use(session({
 }
 ))
 
-/*
-app.get("/",async(req,res)=>{
-    const data = await (await userModel.find().sort({_id:-1})).reverse()
-    res.json({message: "All Image", data: data})
-})
-*/
-
 
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
