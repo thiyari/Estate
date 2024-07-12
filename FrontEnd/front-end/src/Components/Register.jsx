@@ -153,9 +153,10 @@ const propertyList = [
   { value: 'Independent House', label: 'Independent House'},
   { value: 'Duplex Home', label: 'Duplex Home'},
   { value: 'Flat', label: 'Flat'},
-  { value: 'Commercial Complex', label: 'Commerial Complex'},
+  { value: 'Commercial', label: 'Commerial'},
 ]
 
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
@@ -166,6 +167,7 @@ function Register() {
     const initialState = {
       fname:"",
       lname:"",
+      user:"",
       email:"",
       password:"",
       confirmPassword:"",
@@ -181,6 +183,7 @@ function Register() {
       currency:"",
       price: "",
       address: "",
+      user_status: "",
       fname_status: "",
       lname_status: "", 
       email_status: "",
@@ -266,6 +269,27 @@ function Register() {
               lname_status: "error"
             })
             return;
+          }
+
+
+          // Check if user is empty
+          if(!formInput.user){
+            setFormError({
+              ...inputError,
+              user: "Username should not be empty",
+              user_status: "error"
+            })
+            return;
+          }
+
+          const user_pattern = USER_REGEX.test(formInput.user);
+          if (!user_pattern) {
+              setFormError({
+                ...inputError,
+                user: "Can have 4 to 24 characters. Must begin with a letter. Numbers, letters, underscores, and hyphens are allowed",
+                user_status: "error"
+              });
+              return;
           }
 
 
@@ -507,7 +531,7 @@ function Register() {
           if(!formInput.address){
             setFormError({
               ...inputError,
-              address: "Last name should not be empty",
+              address: "Address should not be empty",
               address_status: "error"
             })
             return;
@@ -529,6 +553,7 @@ function Register() {
           await axios.post("http://localhost:8000/user/create", JSON.stringify({
           firstname: formInput.fname,
           lastname: formInput.lname,
+          username: formInput.user,
           email: formInput.email,
           password: formInput.password,
           phone: formInput.phone,
@@ -554,6 +579,7 @@ function Register() {
           setFormInput({
             fname: "",
             lname: "",
+            user: "",
             email: "",
             password: "",
             confirmPassword: "",
@@ -593,6 +619,8 @@ function Register() {
       <div className="row">
       <div className="col-md-1"></div>
       <div className="col-md-4">
+
+
         <div className="form-group">
           <label className="form-label">First name</label>
           <input 
@@ -629,6 +657,24 @@ function Register() {
           </div>
           <p className="error-message">{formError.lname}</p>
 
+
+
+          <div className="form-group">
+          <label className="form-label">User name</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="user" 
+          placeholder="Provide User Name of your choice"
+          name="user"
+          value={formInput.user}
+          onChange={({target})=>{
+            handleUserInput(target.name, target.value)
+          }}
+          style={{borderColor: formError.user_status !== "error" ?"":"red"}}
+          />
+        </div>
+        <p className="error-message">{formError.user}</p>
 
 
           <div className="form-group">
@@ -905,12 +951,12 @@ function Register() {
 
 
         <div className="form-group">
-          <label className="form-label">Location of Property</label>
+          <label className="form-label">Property Location</label>
           <input 
           type="text"  
           className="form-control mb-3" 
           id="location" 
-          placeholder="Property Location"
+          placeholder="Enter your Property Location"
           name="location"
           value={formInput.location}
           onChange={({target})=>{            
@@ -944,13 +990,13 @@ function Register() {
 
         <div className="form-group">
         <div className="mb-3">
-          <label htmlFor="address" className="form-label">Address of Property</label>
+          <label htmlFor="address" className="form-label">Property Address</label>
           <textarea 
           className="form-control" 
           id="address" 
-          placeholder="Enter your property address"
+          placeholder="Enter the address of your property details"
           name="address"
-          rows="3"
+          rows="5"
           onChange={({target})=>{            
             handleUserInput(target.name, target.value)
           }} 

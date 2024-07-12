@@ -10,6 +10,7 @@ module.exports.createUserDBService = (userDetails) => {
                         await userModel.create({
                                 firstname: userDetails.firstname,
                                 lastname: userDetails.lastname,
+                                username: userDetails.username,
                                 email: userDetails.email,
                                 password: encrypted,
                                 phone: userDetails.phone,
