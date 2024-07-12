@@ -11,10 +11,10 @@ function Footer(){
                         <span>Get connected with us on social media Network</span>
                     </div>
                     <div>
-                        <a href=''><FaFacebook/></a>
-                        <a href=''><FaTwitter/></a>
-                        <a href=''><FaLinkedin/></a>
-                        <a href=''><FaYoutube/></a>
+                        <a href='#f'><FaFacebook/></a>
+                        <a href='#t'><FaTwitter/></a>
+                        <a href='#l'><FaLinkedin/></a>
+                        <a href='#y'><FaYoutube/></a>
                     </div>
                 </section>
                 <div className='container p-4'>
