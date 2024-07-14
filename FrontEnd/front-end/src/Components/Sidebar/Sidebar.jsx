@@ -28,7 +28,7 @@ const Sidebar = () => {
   };
 
   return (
-      <CDBSidebar textColor="#333" backgroundColor="#f0f0f0">
+      <CDBSidebar textColor="#333" backgroundColor="#f8f9fb">
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
           <div className="container" style={{ display: 'flex', alignItems: 'center' }}>
             <img
