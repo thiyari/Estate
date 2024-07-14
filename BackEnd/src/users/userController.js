@@ -44,6 +44,7 @@ var logoutUserControllerFn = async(req,res)=>
     {
         if(req.session.username){
             req.session.destroy();
+            res.clearCookie('connect.sid');
             return res.json({valid: true})
         } else {
             return res.json({valid: false})
