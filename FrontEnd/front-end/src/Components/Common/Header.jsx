@@ -36,7 +36,7 @@ function Header(){
           <a className="nav-link" href="#a">About Us</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link active" aria-current="page" href="../Login">Login</a>
+          <a className="nav-link" href="../Login">Login</a>
         </li>
       </ul>
     </div>
