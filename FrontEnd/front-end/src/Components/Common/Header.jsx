@@ -1,5 +1,6 @@
 import React from 'react';
 import { SlHome } from "react-icons/sl";
+import './common.css'
 
 function Header(){
 

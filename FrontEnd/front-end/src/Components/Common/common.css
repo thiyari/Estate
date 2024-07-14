@@ -1,0 +1,8 @@
+.nav-link:hover{
+    border-top: 4px solid #9b9b9b;
+}
+
+.nav-link:active{
+    border-top: 4px solid #9b9b9b;
+    color: #9b9b9b;
+}
