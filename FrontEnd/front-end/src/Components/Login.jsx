@@ -134,7 +134,10 @@ function Login() {
           </div>
           <p className="error-message">{formError.password}</p>
 
-                  <button type="submit" className="btn btn-primary mt-4" onClick={login} >Login</button>
+            <div align="center">
+              <button type="submit" className="btn btn-primary mt-4" onClick={login} >Login</button>
+            </div>
+
               </form>
             </div>
             </div>
