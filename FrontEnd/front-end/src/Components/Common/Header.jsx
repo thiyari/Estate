@@ -1,5 +1,4 @@
 import React from 'react';
-import { SlHome } from "react-icons/sl";
 import './common.css'
 
 function Header(){
@@ -8,7 +7,7 @@ function Header(){
         <React.Fragment>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container-fluid">
-    <a className="navbar-brand" href="/"><SlHome /></a>
+    <a className="navbar-brand" href="/"><i className='fa fa-fw fa-home'/></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
     </button>
