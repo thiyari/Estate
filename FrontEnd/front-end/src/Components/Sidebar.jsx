@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+
 import {
   CDBSidebar,
   CDBSidebarHeader,
@@ -8,6 +11,22 @@ import {
 } from 'cdbreact';
 
 const Sidebar = () => {
+
+  const navigate = useNavigate()
+
+  const logoutHandler = () => {
+    axios.post('http://localhost:8000/user/logout')
+    .then(res => {
+      if(res.data.valid){
+        alert("Logout Successful")
+        navigate('/Login')
+      } else {
+        alert("Logout Failed")
+      }
+    })
+    .catch(err => console.log(err))
+  };
+
   return (
       <CDBSidebar textColor="#333" backgroundColor="#f0f0f0">
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
@@ -22,11 +41,9 @@ const Sidebar = () => {
         </CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="th-large">Dashboard</CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="sticky-note">Components</CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="chart-line" iconType="solid">
-              metrics
-            </CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="user">Profile</CDBSidebarMenuItem>
+            <CDBSidebarMenuItem icon="wrench">Change Password</CDBSidebarMenuItem>
+            <CDBSidebarMenuItem onClick={logoutHandler}>Logout</CDBSidebarMenuItem>
           </CDBSidebarMenu>
         </CDBSidebarContent>
       </CDBSidebar>
