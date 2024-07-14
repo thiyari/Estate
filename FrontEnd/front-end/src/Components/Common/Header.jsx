@@ -29,10 +29,10 @@ function Header(){
           <a className="nav-link" href="../Register">Register</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="../Register">Contact Us</a>
+          <a className="nav-link" href="#c">Contact Us</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="../Register">About Us</a>
+          <a className="nav-link" href="#a">About Us</a>
         </li>
         <li className="nav-item">
           <a className="nav-link active" aria-current="page" href="../Login">Login</a>
