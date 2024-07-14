@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 
 import {
   CDBSidebar,
@@ -41,8 +42,12 @@ const Sidebar = () => {
         </CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <CDBSidebarMenuItem icon="user">Profile</CDBSidebarMenuItem>
-            <CDBSidebarMenuItem icon="wrench">Change Password</CDBSidebarMenuItem>
+            <NavLink exact to="/Register" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Profile</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink exact to="/" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Change Password</CDBSidebarMenuItem>
+            </NavLink>
             <CDBSidebarMenuItem onClick={logoutHandler}>Logout</CDBSidebarMenuItem>
           </CDBSidebarMenu>
         </CDBSidebarContent>
