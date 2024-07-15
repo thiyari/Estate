@@ -33,7 +33,6 @@ function Home(props) {
      
     return (
      <div>
-        <h1>index</h1>
         <div className='allimage'>
           {
             allImage.map((image,index) =>{
