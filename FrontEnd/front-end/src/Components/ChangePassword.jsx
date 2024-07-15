@@ -3,17 +3,31 @@ import React, {useState, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
+const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+
 function ChangePassword(props){
   const [user, setUser] = useState('')
   const navigate = useNavigate();
   const initialState = {
     old_password:"",
-    new_assword:"",
+    new_password:"",
     confirm_new_password:"",
     old_password_status: "",
     new_password_status: "",
     confirm_new_password_status: "",
   }
+
+
+  const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
+  const [formError, setFormError] = useState({...initialState})
+
+  const handleUserInput = (name, value) => {
+    setFormInput({
+      ...formInput,
+      [name]: value,
+    });
+  };
+
 
   axios.defaults.withCredentials = true;
   useEffect(()=>{
@@ -30,6 +44,65 @@ function ChangePassword(props){
     .catch(err => console.log(err))
   },[navigate, props])
 
+  async function submitHandler(event) {
+    event.preventDefault();
+
+    let inputError = {...initialState};
+
+    
+          // Check if new password is empty
+          if(!formInput.new_password){
+            setFormError({
+              ...inputError,
+              new_password: "New Password should not be empty",
+              new_password_status: "error"
+            })
+            return;
+          }
+
+
+          const new_password_pattern = PWD_REGEX.test(formInput.new_password);
+          if (!new_password_pattern) {
+              setFormError({
+                ...inputError,
+                new_password: "Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters",
+                new_password_status: "error"
+              });
+              return;
+          }
+
+
+          // Check if confirm new password is empty
+          if(!formInput.confirm_new_password){
+            setFormError({
+              ...inputError,
+              confirm_new_password: "Confirm Password should not be empty",
+              confirm_new_password_status: "error"
+            })
+            return;
+          }
+
+
+
+          // Check if new password and confirm new password match
+          if (formInput.confirm_new_password !== formInput.new_password){
+            setFormError({
+              ...inputError,
+              confirm_new_password: "New Password and Confirm password should be the same",
+              confirm_new_password_status: "error"
+            });
+            return;
+          } 
+
+          // Clear any previous errors and show success message
+          setFormError(inputError);
+          setFormInput((prevState)=>({
+            ...prevState,
+            successMsg: "Verification Successful, Saving the details",
+          }));
+
+
+  }
 
 return (
   <React.Fragment>
@@ -49,7 +122,7 @@ return (
     </h1>
 			<div className="form-container">
         <div className="card-body">
-    <form onSubmit={""}>
+    <form onSubmit={submitHandler}>
       <div className="row">
       <div className="col-md-12">
       <div className='row'>
@@ -63,11 +136,14 @@ return (
           id="old_password" 
           placeholder="Enter Old Password"
           name="old_password"
-          value=""
-          onChange=""
+          value={formInput.old_password}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.old_password_status !== "error" ?"":"red"}}
           />
           </div>
-        <p className="error-message">{""}</p>
+        <p className="error-message">{formError.old_password}</p>
 
 
 
@@ -80,12 +156,14 @@ return (
           id="new_password" 
           placeholder="Enter New Password"
           name="new_password"
-          value=""
-          onChange=""
+          value={formInput.new_password}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.new_password_status !== "error" ?"":"red"}}
           />
           </div>
-        <p className="error-message">{""}</p>
-
+        <p className="error-message">{formError.new_password}</p>
 
 
 
@@ -94,15 +172,20 @@ return (
           <input 
           type="password"  
           className="form-control mb-3" 
-          id="confirm_new_Password" 
-          placeholder="Confirm New Password"
-          name="confirm_new_Password"
-          value=""
-          onChange="" 
+          id="confirm_new_password" 
+          placeholder="Enter New Password"
+          name="confirm_new_password"
+          value={formInput.confirm_new_password}
+          onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+          }} 
+          style={{borderColor: formError.confirm_new_password_status !== "error" ?"":"red"}}
           />
           </div>
-        <p className="error-message">{""}</p>
+        <p className="error-message">{formError.confirm_new_password}</p>
 
+
+        <p align="center" className="success-message">{formInput.successMsg}</p>
 
 
         <div align="center">
