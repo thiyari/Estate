@@ -12,7 +12,7 @@ import {
 const Sidebar = () => {
 
   return (
-      <CDBSidebar className="border" maxWidth="343px" textColor="#333" backgroundColor="#f8f9fb">
+      <CDBSidebar className="border" maxWidth="218px" textColor="#333" backgroundColor="#f8f9fb">
         <CDBSidebarHeader prefix={<i className="fa fa-bars" />}>
           <div className="container" style={{ display: 'flex', alignItems: 'center' }}>
             <img

@@ -26,21 +26,80 @@ function ChangePassword(props){
 return (
   <React.Fragment>
   <div className="row">
-  <div className="col-md-3">        
+  <div className="col-md-2">        
     <Sidebar/>
   </div>
-  <div className="col-md-9">
-    <div className='container' style={{backgroundColor:"#fff"}}>
-      <h1>Change Password</h1>
-      <p>Welcome {user}</p>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      <br></br>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-      <br></br>
-      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+  <div className="col-md-10">
+
+
+  <div className="container mt-4" >
+    <div className="card">
+    <h1 className="card-header">
+      <center>
+        <div className="header-font">Change Password {user}</div>
+      </center>
+    </h1>
+			<div className="form-container">
+        <div className="card-body">
+    <form onSubmit={""}>
+      <div className="row">
+      <div className="col-md-12">
+
+      <div className="form-group">
+          <label className="form-label">Password</label>
+          <input 
+          type="password"  
+          className="form-control mb-3" 
+          id="password" 
+          placeholder="Password"
+          name="password"
+          value=""
+          onChange=""
+          />
+          </div>
+        <p className="error-message">{""}</p>
+
+
+
+
+        <div className="form-group">
+          <label className="form-label">Confirm Password</label>
+          <input 
+          type="password"  
+          className="form-control mb-3" 
+          id="confirmPassword" 
+          placeholder="Confirm Password"
+          name="confirmPassword"
+          value=""
+          onChange="" 
+          />
+          </div>
+        <p className="error-message">{""}</p>
+
+
+
+        <div align="center">
+          <button type="submit" className="btn btn-primary mt-4">Submit</button>
+        </div>
+
+          </div>
+          </div>
+      </form>
+      </div>
+      </div>
+
+      <div className="card-footer text-muted">
+            <p>
+              Already registered?<br />
+              <span className="line">
+              <a href="/Login">Sign In</a>
+              </span>
+            </p>      
+      </div>
+      </div>
+      </div>
     </div>
-  </div>
-  </div>
+</div>
 </React.Fragment>
 );
 }
