@@ -26,10 +26,10 @@ const Sidebar = () => {
         <CDBSidebarContent>
           <CDBSidebarMenu>
             <NavLink exact to="/Profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Profile</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="fa fa-user">Profile</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/ChangePassword" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="wrench">Change Password</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="fa-solid fa-gear">Change Password</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
