@@ -5,6 +5,7 @@ import Register from './Components/Register';
 import Login from './Components/Login';
 import Header from './Components/Common/Header';
 import Footer from './Components/Common/Footer';
+import ChangePassword from './Components/ChangePassword';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/register" element = {<Register/>} />
           <Route path="/login" element = {<Login/>} />
           <Route path="/" element = {<Home/>} />
+          <Route path="/ChangePassword" element = {<ChangePassword/>} />
         </Routes>
       </BrowserRouter>
 
