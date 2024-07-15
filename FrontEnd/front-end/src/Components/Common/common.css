@@ -13,6 +13,6 @@
     padding-right:20px;
   }
 
-#login{
+#login, #logout{
     width: 100px;
 }

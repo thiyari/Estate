@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar'
 
-function Profile(){
+function Profile(props){
   const [user, setUser] = useState('')
   const navigate = useNavigate()
 
@@ -13,12 +13,14 @@ function Profile(){
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
+        props.onLogin(true)
       } else {
+        props.onLogin(false)
         navigate('/Login')
       }
     })
     .catch(err => console.log(err))
-  },[navigate])
+  },[navigate, props])
 
   
 

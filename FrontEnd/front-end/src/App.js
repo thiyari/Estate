@@ -6,16 +6,20 @@ import Login from './Components/Login';
 import Header from './Components/Common/Header';
 import Footer from './Components/Common/Footer';
 import ChangePassword from './Components/ChangePassword';
+import {useState} from 'react'
 
 function App() {
 
-
+  const [LoggedIn, setLoggedIn] = useState(false)
+  const setLogin = (status)=>{
+    setLoggedIn(status);
+  }
   return (
     <div>
-      <Header/>
+      <Header LoggedIn={LoggedIn}/>
       <BrowserRouter>
         <Routes>
-          <Route path="/Profile" element = {<Profile/>} />
+          <Route path="/Profile" element = {<Profile onLogin={setLogin}/>} />
           <Route path="/register" element = {<Register/>} />
           <Route path="/login" element = {<Login/>} />
           <Route path="/" element = {<Home/>} />

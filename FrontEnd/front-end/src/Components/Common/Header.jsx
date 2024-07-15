@@ -1,9 +1,8 @@
 import React from 'react';
 import './common.css'
 
-function Header(){
-
-    return(
+function Header(props){
+  return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
   <div className="container">
@@ -35,9 +34,16 @@ function Header(){
           <a className="nav-link" href="#a">About us</a>
         </li>
         <li className="nav-item">
-        <form class="d-flex" action='../Login'>
-            <button id="login" class="btn btn-outline-success" type="submit">Login</button>
-        </form>
+          {  props.LoggedIn ?
+              (<form class="d-flex" action='../Logout'>
+                  <button id="logout" class="btn btn-outline-success" type="submit">Logout</button>
+              </form>)
+              :
+              (<form class="d-flex" action='../Login'>
+                  <button id="login" class="btn btn-outline-success" type="submit">Login</button>
+              </form>)              
+            }
+
         </li>
       </ul>
     </div>

@@ -16,6 +16,7 @@ function Login() {
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const [formError, setFormError] = useState({...initialState})
+
     let inputError = {...initialState};
 
     
@@ -74,7 +75,7 @@ function Login() {
              } 
              else 
              {
-                   alert("Login Failed")
+                alert("Login Failed")
              }  
           }, fail => {
            console.error(fail); // Error!
@@ -155,7 +156,6 @@ function Login() {
             </div>
      </div>
     );
-
   }
   
   export default Login;
