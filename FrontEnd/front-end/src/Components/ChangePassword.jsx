@@ -49,6 +49,15 @@ function ChangePassword(props){
 
     let inputError = {...initialState};
 
+          // Check if old password is empty
+          if(!formInput.old_password){
+            setFormError({
+              ...inputError,
+              old_password: "Old Password should not be empty",
+              old_password_status: "error"
+            })
+            return;
+          }
     
           // Check if new password is empty
           if(!formInput.new_password){
