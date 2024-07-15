@@ -12,7 +12,7 @@ function Header(){
       <span className="navbar-toggler-icon"></span>
     </button>
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
         <li className="nav-item">
           <a className="nav-link"  href="#c">Plots</a>
         </li>
@@ -35,14 +35,10 @@ function Header(){
           <a className="nav-link" href="#a">About us</a>
         </li>
         <li className="nav-item">
-        </li>
-        <li className="nav-item">
-        </li>
-        <li className="nav-item">
-        </li>
         <form class="d-flex" action='../Login'>
             <button id="login" class="btn btn-outline-success" type="submit">Login</button>
         </form>
+        </li>
       </ul>
     </div>
   </div>

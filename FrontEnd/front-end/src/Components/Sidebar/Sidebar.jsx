@@ -37,7 +37,7 @@ const Sidebar = () => {
               alt=""
               style={{ width: '30px' }}
             />
-            <h6 className="ms-2">BABYCARE ™</h6>
+            <h6 className="ms-2">ESTATE ™</h6>
           </div>
         </CDBSidebarHeader>
         <CDBSidebarContent>
@@ -46,7 +46,7 @@ const Sidebar = () => {
               <CDBSidebarMenuItem icon="user">Profile</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/ChangePassword" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Change Password</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="wrench">Change Password</CDBSidebarMenuItem>
             </NavLink>
             <CDBSidebarMenuItem onClick={logoutHandler}>Logout</CDBSidebarMenuItem>
           </CDBSidebarMenu>
