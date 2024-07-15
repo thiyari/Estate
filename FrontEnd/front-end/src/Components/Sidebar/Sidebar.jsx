@@ -1,6 +1,4 @@
 import React from 'react';
-import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
 import { NavLink } from 'react-router-dom';
 
 import {
@@ -12,21 +10,6 @@ import {
 } from 'cdbreact';
 
 const Sidebar = () => {
-
-  const navigate = useNavigate()
-
-  const logoutHandler = () => {
-    axios.post('http://localhost:8000/user/logout')
-    .then(res => {
-      if(res.data.valid){
-        alert("Logout Successful")
-        navigate('/Login')
-      } else {
-        alert("Logout Failed")
-      }
-    })
-    .catch(err => console.log(err))
-  };
 
   return (
       <CDBSidebar textColor="#333" backgroundColor="#f8f9fb">
@@ -48,7 +31,6 @@ const Sidebar = () => {
             <NavLink exact to="/ChangePassword" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="wrench">Change Password</CDBSidebarMenuItem>
             </NavLink>
-            <CDBSidebarMenuItem onClick={logoutHandler}>Logout</CDBSidebarMenuItem>
           </CDBSidebarMenu>
         </CDBSidebarContent>
       </CDBSidebar>

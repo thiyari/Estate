@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Components/Home';
 import Profile from './Components/Profile';
 import Register from './Components/Register';
@@ -16,8 +16,8 @@ function App() {
   }
   return (
     <div>
+      <Router>
       <Header LoggedIn={LoggedIn}/>
-      <BrowserRouter>
         <Routes>
           <Route path="/Profile" element = {<Profile onLogin={setLogin}/>} />
           <Route path="/register" element = {<Register/>} />
@@ -25,9 +25,8 @@ function App() {
           <Route path="/" element = {<Home/>} />
           <Route path="/ChangePassword" element = {<ChangePassword/>} />
         </Routes>
-      </BrowserRouter>
-
-      <Footer/>
+        <Footer/>
+      </Router>
     </div>
   );
 }

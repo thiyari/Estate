@@ -1,7 +1,25 @@
 import React from 'react';
 import './common.css'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 function Header(props){
+
+const navigate = useNavigate()
+
+const logoutHandler = () => {
+  axios.post('http://localhost:8000/user/logout')
+  .then(res => {
+    if(res.data.valid){
+      alert("Logout Successful")
+      navigate('/Login')
+    } else {
+      alert("Logout Failed")
+    }
+  })
+  .catch(err => console.log(err))
+};
+
   return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
@@ -35,8 +53,8 @@ function Header(props){
         </li>
         <li className="nav-item">
           {  props.LoggedIn ?
-              (<form class="d-flex" action='../Logout'>
-                  <button id="logout" class="btn btn-outline-success" type="submit">Logout</button>
+              (<form class="d-flex">
+                  <button id="logout" class="btn btn-outline-success" type="submit" onClick={logoutHandler}>Logout</button>
               </form>)
               :
               (<form class="d-flex" action='../Login'>
