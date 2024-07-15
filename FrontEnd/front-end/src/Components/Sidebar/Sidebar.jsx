@@ -25,10 +25,10 @@ const Sidebar = () => {
         </CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <NavLink exact to="/Profile" activeClassName="activeClicked">
+            <NavLink exact="true" to="/Profile" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa fa-user">Profile</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/ChangePassword" activeClassName="activeClicked">
+            <NavLink exact="true" to="/ChangePassword" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-gear">Change Password</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
