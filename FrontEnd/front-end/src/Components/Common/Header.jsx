@@ -6,7 +6,7 @@ function Header(){
     return(
         <React.Fragment>
             <nav className="navbar navbar-expand-lg bg-body-tertiary">
-  <div className="container-fluid">
+  <div className="container">
     <a className="navbar-brand" href="/"><i className='fa fa-fw fa-home'/></a>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon"></span>
@@ -29,14 +29,20 @@ function Header(){
           <a className="nav-link" href="../Register">Register</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#c">Contact Us</a>
+          <a className="nav-link" href="#c">Contact us</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#a">About Us</a>
+          <a className="nav-link" href="#a">About us</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="../Login">Login</a>
         </li>
+        <li className="nav-item">
+        </li>
+        <li className="nav-item">
+        </li>
+        <form class="d-flex" action='../Login'>
+            <button id="login" class="btn btn-outline-success" type="submit">Login</button>
+        </form>
       </ul>
     </div>
   </div>
