@@ -1,6 +1,6 @@
 import axios from "axios";
 import '../App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
 
@@ -162,7 +162,7 @@ const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
 const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 
-function Register() {
+function Register(props) {
    
     const initialState = {
       fname:"",
@@ -242,7 +242,18 @@ function Register() {
     }
 
 
-
+    axios.defaults.withCredentials = true;
+    useEffect(()=>{
+      axios.get('http://localhost:8000/user/session')
+      .then(res => {
+        if(res.data.valid){
+          props.onLogin(true)
+        } else {
+          props.onLogin(false)
+        }
+      })
+      .catch(err => console.log(err))
+    },[navigate, props])
 
     async function submitHandler(event) {
         event.preventDefault();
@@ -543,7 +554,6 @@ function Register() {
             ...prevState,
             successMsg: "Verification Successful, Saving the details",
           }));
-
 
         
       

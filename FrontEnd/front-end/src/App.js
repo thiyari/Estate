@@ -20,9 +20,9 @@ function App() {
       <Header LoggedIn={LoggedIn}/>
         <Routes>
           <Route path="/Profile" element = {<Profile onLogin={setLogin}/>} />
-          <Route path="/register" element = {<Register/>} />
+          <Route path="/register" element = {<Register onLogin={setLogin}/>} />
           <Route path="/login" element = {<Login/>} />
-          <Route path="/" element = {<Home/>} />
+          <Route path="/" element = {<Home onLogin={setLogin}/>} />
           <Route path="/ChangePassword" element = {<ChangePassword/>} />
         </Routes>
         <Footer/>
