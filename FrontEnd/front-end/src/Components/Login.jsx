@@ -144,7 +144,7 @@ function Login() {
             </div>
             <div className="col-sm-3"></div>
             </div>
-            <div class="card-footer text-muted">
+            <div className="card-footer text-muted">
                   <p>
                     Not yet registered?<br />
                     <span className="line">

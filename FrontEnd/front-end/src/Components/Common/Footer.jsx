@@ -5,7 +5,7 @@ function Footer(){
 
     return(
         <React.Fragment>
-            <footer class="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary">
+            <footer className="bd-footer py-4 py-md-5 mt-5 bg-body-tertiary">
                 <section className='d-flex justify-content-center'>
                     <div className='me-5 d-none d-lg-block'>
                         <span>Get connected with us on social media Network</span>

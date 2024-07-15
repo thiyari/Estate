@@ -1046,7 +1046,7 @@ function Register(props) {
       </div>
       <div className="col-sm-1"></div>
       </div>
-      <div class="card-footer text-muted">
+      <div className="card-footer text-muted">
             <p>
               Already registered?<br />
               <span className="line">

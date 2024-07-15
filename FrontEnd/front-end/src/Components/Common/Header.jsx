@@ -56,12 +56,12 @@ const logoutHandler = () => {
         </li>
         <li className="nav-item">
           {  props.LoggedIn ?
-              (<form class="d-flex">
-                  <button id="logout" class="btn btn-outline-success" type="submit" onClick={logoutHandler}>Logout</button>
+              (<form className="d-flex">
+                  <button id="logout" className="btn btn-outline-success" type="submit" onClick={logoutHandler}>Logout</button>
               </form>)
               :
-              (<form class="d-flex" action='../Login'>
-                  <button id="login" class="btn btn-outline-success" type="submit">Login</button>
+              (<form className="d-flex" action='../Login'>
+                  <button id="login" className="btn btn-outline-success" type="submit">Login</button>
               </form>)              
             }
 
