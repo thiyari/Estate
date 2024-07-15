@@ -6,6 +6,14 @@ import axios from "axios";
 function ChangePassword(props){
   const [user, setUser] = useState('')
   const navigate = useNavigate();
+  const initialState = {
+    old_password:"",
+    new_assword:"",
+    confirm_new_password:"",
+    old_password_status: "",
+    new_password_status: "",
+    confirm_new_password_status: "",
+  }
 
   axios.defaults.withCredentials = true;
   useEffect(()=>{
