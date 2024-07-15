@@ -43,6 +43,9 @@ const logoutHandler = () => {
           <a className="nav-link" href="#s">Search</a>
         </li>
         <li className="nav-item">
+          <a className="nav-link" href="../Profile">My Account</a>
+        </li>
+        <li className="nav-item">
           <a className="nav-link" href="../Register">Register</a>
         </li>
         <li className="nav-item">
