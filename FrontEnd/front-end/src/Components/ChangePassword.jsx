@@ -36,7 +36,7 @@ return (
     <div className="card">
     <h1 className="card-header">
       <center>
-        <div className="header-font">Change Password {user}</div>
+        <div className="header-font">Change Password for {user}</div>
       </center>
     </h1>
 			<div className="form-container">
@@ -44,15 +44,34 @@ return (
     <form onSubmit={""}>
       <div className="row">
       <div className="col-md-12">
-
+      <div className='row'>
+      <div className="col-sm-4"></div>
+      <div className="col-sm-4">
       <div className="form-group">
-          <label className="form-label">Password</label>
+          <label className="form-label">Old Password</label>
           <input 
           type="password"  
           className="form-control mb-3" 
-          id="password" 
-          placeholder="Password"
-          name="password"
+          id="old_password" 
+          placeholder="Enter Old Password"
+          name="old_password"
+          value=""
+          onChange=""
+          />
+          </div>
+        <p className="error-message">{""}</p>
+
+
+
+
+      <div className="form-group">
+          <label className="form-label">New Password</label>
+          <input 
+          type="password"  
+          className="form-control mb-3" 
+          id="new_password" 
+          placeholder="Enter New Password"
+          name="new_password"
           value=""
           onChange=""
           />
@@ -67,9 +86,9 @@ return (
           <input 
           type="password"  
           className="form-control mb-3" 
-          id="confirmPassword" 
-          placeholder="Confirm Password"
-          name="confirmPassword"
+          id="confirm_new_Password" 
+          placeholder="Confirm New Password"
+          name="confirm_new_Password"
           value=""
           onChange="" 
           />
@@ -82,9 +101,13 @@ return (
           <button type="submit" className="btn btn-primary mt-4">Submit</button>
         </div>
 
-          </div>
-          </div>
-      </form>
+          </div> 
+          </div> 
+          <div className="col-sm-4"></div>
+
+        </div>
+        </div>
+        </form>
       </div>
       </div>
 
