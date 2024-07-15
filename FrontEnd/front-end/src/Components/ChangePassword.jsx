@@ -182,7 +182,7 @@ return (
           type="password"  
           className="form-control mb-3" 
           id="confirm_new_password" 
-          placeholder="Enter New Password"
+          placeholder="Confirm New Password"
           name="confirm_new_password"
           value={formInput.confirm_new_password}
           onChange={({target})=>{            
