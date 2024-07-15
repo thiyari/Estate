@@ -23,7 +23,7 @@ function App() {
           <Route path="/register" element = {<Register onLogin={setLogin}/>} />
           <Route path="/login" element = {<Login/>} />
           <Route path="/" element = {<Home onLogin={setLogin}/>} />
-          <Route path="/ChangePassword" element = {<ChangePassword/>} />
+          <Route path="/ChangePassword" element = {<ChangePassword onLogin={setLogin}/>} />
         </Routes>
         <Footer/>
       </Router>
