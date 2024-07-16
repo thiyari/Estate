@@ -246,7 +246,7 @@ function Register(props) {
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
-      axios.get('http://localhost:8000/user/session')
+      axios.get('http://localhost:8000/api/session')
       .then(res => {
         if(res.data.valid){
           props.onLogin(true)
@@ -256,7 +256,7 @@ function Register(props) {
       })
       .catch(err => console.log(err))
 
-      axios.get('http://localhost:8000/user/users')
+      axios.get('http://localhost:8000/api/users')
       .then(res => {
         if(res.data.status){
           const doc_users = res.data.users          
@@ -588,7 +588,7 @@ function Register(props) {
 
         try {
           setLoading(true);
-          await axios.post("http://localhost:8000/user/create", JSON.stringify({
+          await axios.post("http://localhost:8000/api/create", JSON.stringify({
           firstname: formInput.fname,
           lastname: formInput.lname,
           username: formInput.user,

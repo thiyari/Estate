@@ -33,7 +33,7 @@ function ChangePassword(props){
 
   axios.defaults.withCredentials = true;
   useEffect(()=>{
-    axios.get('http://localhost:8000/user/session')
+    axios.get('http://localhost:8000/api/session')
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
@@ -139,7 +139,7 @@ function ChangePassword(props){
 
 
           try{
-            await axios.put(`http://localhost:8000/user/changepassword/${props.Id}`, JSON.stringify({
+            await axios.put(`http://localhost:8000/api/changepassword/${props.Id}`, JSON.stringify({
               username: user,
               password: formInput.new_password,
               }),

@@ -8,7 +8,7 @@ function Header(props){
 const navigate = useNavigate()
 
 const logoutHandler = () => {
-  axios.post('http://localhost:8000/user/logout')
+  axios.post('http://localhost:8000/api/logout')
   .then(res => {
     if(res.data.valid){
       alert("Logout Successful")

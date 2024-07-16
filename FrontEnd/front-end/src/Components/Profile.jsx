@@ -9,7 +9,7 @@ function Profile(props){
 
   axios.defaults.withCredentials = true;
   useEffect(()=>{
-    axios.get('http://localhost:8000/user/session')
+    axios.get('http://localhost:8000/api/session')
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);

@@ -22,7 +22,7 @@ function Login(props) {
     
     axios.defaults.withCredentials = true;
     useEffect(()=>{
-      axios.get('http://localhost:8000/user/session')
+      axios.get('http://localhost:8000/api/session')
       .then(res => {
         if(res.data.valid){
           setUser(res.data.user);
@@ -60,7 +60,7 @@ function Login(props) {
 
 
         try {
-          await axios.post("http://localhost:8000/user/login", {
+          await axios.post("http://localhost:8000/api/login", {
             user: user,
             password: password,
             }).then((res) => 
