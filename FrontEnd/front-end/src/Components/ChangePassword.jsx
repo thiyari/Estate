@@ -109,6 +109,16 @@ function ChangePassword(props){
               return;
           }
 
+          // Check if old password and new passwords match
+          if(formInput.new_password === password){
+            setFormError({
+              ...inputError,
+              new_password: "Old Password and New password should not be same",
+              new_password_status: "error"
+            })
+            return;
+          }
+
           // Check if confirm new password is empty
           if(!formInput.confirm_new_password){
             setFormError({
@@ -139,6 +149,29 @@ function ChangePassword(props){
             ...prevState,
             successMsg: "Verification Successful, Saving the details",
           }));
+
+
+          try{
+            await axios.put(`http://localhost:8000/user/changepassword/${user}`, JSON.stringify({
+              username: user,
+              password: formInput.new_password,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Password Changed Successfully");
+              setFormInput({
+                old_password: "",
+                new_password: "",
+                confirm_new_password: ""
+              })
+              setUser('');
+              setPassword('');
+            } catch (err) {
+              alert(err);
+            }
           
   }
 

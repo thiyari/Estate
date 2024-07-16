@@ -85,3 +85,23 @@ module.exports.passworduserDBService = (userDetails) => {
                 }
         })
 }
+
+
+module.exports.changepassworduserDBService = (userDetails) => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await UserModel.updateOne(
+                                { username: userDetails.username }, 
+                                { $set: { password: encryptor.encrypt(userDetails.password) }})
+                .catch( error => {
+                           console.log(error);
+                         }
+                      );
+                console.log('user updated');
+
+                if(result != undefined && result != null){
+                        resolve({status: true, msg:"password changed"});
+                } else {
+                        reject({status: false, msg:"changing password failed"});
+                }
+        })
+}

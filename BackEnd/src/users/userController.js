@@ -77,7 +77,6 @@ var passwordUserControllerFn = async(req,res)=>
         try
         {
             var result = await userService.passworduserDBService(req.body)
-            console.log(result)
             if(result.status){
                 return res.send({"status": true, "message": result.msg, password: result.password});
             }
@@ -92,11 +91,36 @@ var passwordUserControllerFn = async(req,res)=>
     }
     
 
+var changepasswordUserControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                console.log(req.body)
+                var result = await userService.changepassworduserDBService(req.body)
+                console.log(result)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+        }
+    
+    
+    
+    
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
     logoutUserControllerFn,
     sessionControllerFn, 
     fetchImagesControllerFn,
-    passwordUserControllerFn 
+    passwordUserControllerFn,
+    changepasswordUserControllerFn 
 }
