@@ -7,6 +7,8 @@ const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
 function ChangePassword(props){
   const [user, setUser] = useState('')
+  const [password, setPassword] = useState('')
+
   const navigate = useNavigate();
   const initialState = {
     old_password:"",
@@ -42,7 +44,23 @@ function ChangePassword(props){
       }
     })
     .catch(err => console.log(err))
-  },[navigate, props])
+    
+    axios.post('http://localhost:8000/user/password', 
+      {
+        username: user
+      }
+    )
+    .then(res => {
+      console.log(res)
+      if(res.status){
+        setPassword(res.data.password);
+      } 
+    })
+    .catch(err => console.log(err))
+
+  },[navigate, user, props])
+
+
 
   async function submitHandler(event) {
     event.preventDefault();
@@ -58,7 +76,18 @@ function ChangePassword(props){
             })
             return;
           }
-    
+
+ 
+           // Check for old password match
+           if(formInput.old_password !== password){
+            setFormError({
+              ...inputError,
+              old_password: "Old Password didn't match",
+              old_password_status: "error"
+            })
+            return;
+          }         
+
           // Check if new password is empty
           if(!formInput.new_password){
             setFormError({
@@ -79,7 +108,6 @@ function ChangePassword(props){
               });
               return;
           }
-
 
           // Check if confirm new password is empty
           if(!formInput.confirm_new_password){
@@ -103,14 +131,15 @@ function ChangePassword(props){
             return;
           } 
 
+
+
           // Clear any previous errors and show success message
           setFormError(inputError);
           setFormInput((prevState)=>({
             ...prevState,
             successMsg: "Verification Successful, Saving the details",
           }));
-
-
+          
   }
 
 return (

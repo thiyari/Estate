@@ -46,6 +46,7 @@ module.exports.loginuserDBService = (userDetails) => {
                 if(result != undefined && result != null){
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){
+                                console.log(true)
                                 resolve({status: true, msg: "user validated successfully"});
                         } else {
                                 reject({status: false, msg: "user validation failed"});
@@ -69,3 +70,18 @@ module.exports.fetchImagesDBService = () => {
 
 
 
+module.exports.passworduserDBService = (userDetails) => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await userModel.findOne({username:userDetails.username});
+                if(result != undefined && result != null){
+                        var decrypted = encryptor.decrypt(result.password);
+                        if(decrypted){
+                                resolve({status: true, msg:"password retrieved", password: decrypted});
+                        } else {
+                                reject({status: false, msg:"password retrieval failed"});
+                        }
+                } else {
+                        reject({status: false, msg:"invalid password"})
+                }
+        })
+}

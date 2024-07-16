@@ -70,10 +70,33 @@ var fetchImagesControllerFn = async(req,res)=>{
 }
 
 
+
+var passwordUserControllerFn = async(req,res)=>
+    {
+        var result = null;
+        try
+        {
+            var result = await userService.passworduserDBService(req.body)
+            console.log(result)
+            if(result.status){
+                return res.send({"status": true, "message": result.msg, password: result.password});
+            }
+            else {
+                return res.send({"status": false, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+    }
+    
+
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
     logoutUserControllerFn,
     sessionControllerFn, 
-    fetchImagesControllerFn 
+    fetchImagesControllerFn,
+    passwordUserControllerFn 
 }
