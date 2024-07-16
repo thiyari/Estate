@@ -47,7 +47,7 @@ module.exports.loginuserDBService = (userDetails) => {
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){
                                 console.log(true)
-                                resolve({status: true, msg: "user validated successfully"});
+                                resolve({status: true, msg: "user validated successfully", id: result._id});
                         } else {
                                 reject({status: false, msg: "user validation failed"});
                         }
@@ -72,7 +72,7 @@ module.exports.fetchImagesDBService = () => {
 
 module.exports.changepassworduserDBService = (userDetails) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await UserModel.updateOne(
+                result = await userModel.updateOne(
                                 { username: userDetails.username }, 
                                 { $set: { password: encryptor.encrypt(userDetails.password) }})
                 .catch( error => {

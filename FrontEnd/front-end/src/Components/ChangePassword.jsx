@@ -139,7 +139,7 @@ function ChangePassword(props){
 
 
           try{
-            await axios.put(`http://localhost:8000/user/changepassword/${user}`, JSON.stringify({
+            await axios.put(`http://localhost:8000/user/changepassword/${props.Id}`, JSON.stringify({
               username: user,
               password: formInput.new_password,
               }),
@@ -175,7 +175,7 @@ return (
     <div className="card">
     <h1 className="card-header">
       <center>
-        <div className="header-font">Change Password for {user}</div>
+        <div className="header-font">Change Password</div>
       </center>
     </h1>
 			<div className="form-container">

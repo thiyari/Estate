@@ -11,8 +11,12 @@ import {useState} from 'react'
 function App() {
 
   const [LoggedIn, setLoggedIn] = useState(false)
+  const [Id,setId] = useState("");
   const setLogin = (status)=>{
     setLoggedIn(status);
+  }
+  const setObjectId = (id)=>{
+    setId(id)
   }
   return (
     <div>
@@ -21,9 +25,9 @@ function App() {
         <Routes>
           <Route path="/Profile" element = {<Profile onLogin={setLogin}/>} />
           <Route path="/register" element = {<Register onLogin={setLogin}/>} />
-          <Route path="/login" element = {<Login/>} />
+          <Route path="/login" element = {<Login ObjectId={setObjectId}/>} />
           <Route path="/" element = {<Home onLogin={setLogin}/>} />
-          <Route path="/ChangePassword" element = {<ChangePassword onLogin={setLogin}/>} />
+          <Route path="/ChangePassword" element = {<ChangePassword Id={Id} onLogin={setLogin}/>} />
         </Routes>
         <Footer/>
       </Router>
