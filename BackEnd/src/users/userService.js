@@ -92,7 +92,7 @@ module.exports.changepassworduserDBService = (userDetails) => {
 
 module.exports.fetchUsersDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.find({}).select({username: 1});
+                result = await userModel.find({}).select({_id: 0, username: 1});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {

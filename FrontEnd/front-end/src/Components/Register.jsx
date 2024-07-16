@@ -211,6 +211,8 @@ function Register(props) {
     const [roomSelect, setRoomSelect] = useState({...initialState,successMsg: ""});
     const [loading,setLoading] = useState(false);
 
+    const [usernames, setUsernames] = useState([]);
+
     const navigate = useNavigate();
     
     const handleUserInput = (name, value) => {
@@ -253,6 +255,20 @@ function Register(props) {
         }
       })
       .catch(err => console.log(err))
+
+      axios.get('http://localhost:8000/user/users')
+      .then(res => {
+        if(res.data.status){
+          const doc_users = res.data.users          
+          let users_list = []
+          for (let i = 0; i < doc_users.data.length; i++) {
+             users_list.push(doc_users.data[i].username)
+          }
+          setUsernames(users_list)
+        }     
+      })
+      .catch(err => console.log(err))
+
     },[navigate, props])
 
     async function submitHandler(event) {
@@ -302,6 +318,18 @@ function Register(props) {
               });
               return;
           }
+
+          // Check if user already exists
+            for (let i = 0; i < usernames.length; i++) {
+                if(formInput.user === usernames[i]){
+                    setFormError({
+                      ...inputError,
+                      user: "Username already exists, please provide another",
+                      user_status: "error"
+                    })
+                  return;
+                }
+            }
 
 
           // Check if email is empty
@@ -608,6 +636,7 @@ function Register(props) {
           setLoading(false);
           setRoomSelect('')
           setImg('')
+          setUsernames('')
           navigate('/Login');
         } catch (err) {
           alert(err);
