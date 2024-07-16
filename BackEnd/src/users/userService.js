@@ -70,23 +70,6 @@ module.exports.fetchImagesDBService = () => {
 
 
 
-module.exports.passworduserDBService = (userDetails) => {
-        return new Promise(async function myFn(resolve,reject){
-                result = await userModel.findOne({username:userDetails.username});
-                if(result != undefined && result != null){
-                        var decrypted = encryptor.decrypt(result.password);
-                        if(decrypted){
-                                resolve({status: true, msg:"password retrieved", password: decrypted});
-                        } else {
-                                reject({status: false, msg:"password retrieval failed"});
-                        }
-                } else {
-                        reject({status: false, msg:"invalid password"})
-                }
-        })
-}
-
-
 module.exports.changepassworduserDBService = (userDetails) => {
         return new Promise(async function myFn(resolve,reject){
                 result = await UserModel.updateOne(
