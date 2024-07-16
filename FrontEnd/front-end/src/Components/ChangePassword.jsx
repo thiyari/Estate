@@ -37,6 +37,7 @@ function ChangePassword(props){
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
+        setPassword(res.data.password);
         props.onLogin(true)
       } else {
         props.onLogin(false)
@@ -44,21 +45,7 @@ function ChangePassword(props){
       }
     })
     .catch(err => console.log(err))
-    
-    axios.post('http://localhost:8000/user/password', 
-      {
-        username: user
-      }
-    )
-    .then(res => {
-      console.log(res)
-      if(res.status){
-        setPassword(res.data.password);
-      } 
-    })
-    .catch(err => console.log(err))
-
-  },[navigate, user, props])
+  },[navigate, props])
 
 
 

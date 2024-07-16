@@ -8,7 +8,6 @@ router.route('/').get(userController.fetchImagesControllerFn)
 router.route('/user/login').post(userController.loginUserControllerFn);
 router.route('/user/logout').post(userController.logoutUserControllerFn);
 router.route('/user/create').post(userController.createUserControllerFn);
-router.route('/user/password').post(userController.passwordUserControllerFn);
 router.route('/user/changepassword/:id').put(userController.changepasswordUserControllerFn);
 
 module.exports = router;

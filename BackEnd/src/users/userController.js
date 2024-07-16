@@ -25,6 +25,7 @@ var loginUserControllerFn = async(req,res)=>
     try
     {
         req.session.username = req.body.user
+        req.session.password = req.body.password
         req.session.save();
         var result = await userService.loginuserDBService(req.body)
         if(result.status){
@@ -53,7 +54,7 @@ var logoutUserControllerFn = async(req,res)=>
 
 var sessionControllerFn = async(req,res)=>{
         if(req.session.username){
-            return res.json({valid: true, username: req.session.username})
+            return res.json({valid: true, username: req.session.username, password: req.session.password})
         } else {
             return res.json({valid: false})
         }
@@ -68,27 +69,6 @@ var fetchImagesControllerFn = async(req,res)=>{
         return res.send({message:'No Images',data:{}});
     }
 }
-
-
-
-var passwordUserControllerFn = async(req,res)=>
-    {
-        var result = null;
-        try
-        {
-            var result = await userService.passworduserDBService(req.body)
-            if(result.status){
-                return res.send({"status": true, "message": result.msg, password: result.password});
-            }
-            else {
-                return res.send({"status": false, "message": result.msg});
-            }
-        }
-        catch(err){
-            console.log(err);
-            res.send({"status":false,"message":err.msg});
-        }
-    }
     
 
 var changepasswordUserControllerFn = async(req,res)=>
@@ -121,6 +101,5 @@ module.exports = {
     logoutUserControllerFn,
     sessionControllerFn, 
     fetchImagesControllerFn,
-    passwordUserControllerFn,
     changepasswordUserControllerFn 
 }
