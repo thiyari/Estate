@@ -92,7 +92,15 @@ var changepasswordUserControllerFn = async(req,res)=>
             }
         }
     
-    
+var usersControllerFn = async(req,res)=>{
+            const result = await (userService.fetchUsersDBService())
+            if(result.status){
+               return res.send({"status":true,users: result});
+            }
+            else {
+                return res.send({"status":false,users:{}});
+            }
+        }    
     
     
 module.exports = { 
@@ -101,5 +109,6 @@ module.exports = {
     logoutUserControllerFn,
     sessionControllerFn, 
     fetchImagesControllerFn,
-    changepasswordUserControllerFn 
+    changepasswordUserControllerFn,
+    usersControllerFn, 
 }
