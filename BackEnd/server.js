@@ -12,7 +12,7 @@ const userModel = require('./src/users/userModel');
 
 app.use(cors(
     {   origin: ['http://localhost:3000', 'https://estateclient.onrender.com'],
-        methods: ['POST','GET'],
+        methods: ['POST','GET','PUT','DELETE'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
 ));
@@ -61,5 +61,4 @@ const connectDB = async()=>{
 // mongo connecction
 connectDB();
 
-app.use(express.json());
 app.use(routes);
