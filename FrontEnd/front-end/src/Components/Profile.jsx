@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar'
 import { FaEdit,FaCheck } from "react-icons/fa";
+import '../App.css'
 
 function Profile(props){
   const [loggedIn, setLoggedIn] = useState(false)
@@ -53,6 +54,10 @@ function Profile(props){
   },[navigate, props, Id, loggedIn])
 
 
+  const handleFnameInput = (event) => {
+    setFname(event.target.value);
+  };
+
   const handleFnameEdit = (event) => {
     event.preventDefault()
     setFnametoggle(true)
@@ -76,11 +81,6 @@ function Profile(props){
         alert(err);
       }
   };  
-
-
-  const handleFnameInput = (event) => {
-    setFname(event.target.value);
-  };
 
 
   const handleLnameEdit = (event) => {
