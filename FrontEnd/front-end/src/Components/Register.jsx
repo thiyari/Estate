@@ -203,6 +203,7 @@ function Register(props) {
       address_status: ""
     };
 
+    const [loggedIn, setLoggedIn] = useState(false)
     const [img,setImg] = useState([])
     const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
     const [formError, setFormError] = useState({...initialState})
@@ -210,7 +211,6 @@ function Register(props) {
     const [otherOption, setOtherOption] = useState("");
     const [roomSelect, setRoomSelect] = useState({...initialState,successMsg: ""});
     const [loading,setLoading] = useState(false);
-
     const [usernames, setUsernames] = useState([]);
 
     const navigate = useNavigate();
@@ -249,9 +249,10 @@ function Register(props) {
       axios.get('http://localhost:8000/api/session')
       .then(res => {
         if(res.data.valid){
-          props.onLogin(true)
+          setLoggedIn(res.data.isLoggedIn);
+          props.LoginStatus(loggedIn);
         } else {
-          props.onLogin(false)
+          props.LoginStatus(!loggedIn);
         }
       })
       .catch(err => console.log(err))
@@ -269,7 +270,7 @@ function Register(props) {
       })
       .catch(err => console.log(err))
 
-    },[navigate, props])
+    },[navigate, props, loggedIn])
 
     async function submitHandler(event) {
         event.preventDefault();

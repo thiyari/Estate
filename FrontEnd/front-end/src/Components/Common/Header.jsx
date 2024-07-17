@@ -1,13 +1,30 @@
 import './common.css'
 import axios from 'axios'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+
 
 function Header(props){
 
+const [isLoggedIn,setIsLoggedIn] = useState(false)
 const navigate = useNavigate()
 
+
+
 axios.defaults.withCredentials = true;
+useEffect(()=>{
+axios.get('http://localhost:8000/api/session')
+.then(res => {
+  if(res.data.valid){
+    setIsLoggedIn(res.data.isLoggedIn);
+    props.LoginStatus(isLoggedIn);
+  } else {
+    props.LoginStatus(!isLoggedIn);
+  }
+})
+.catch(err => console.log(err))
+},[props, isLoggedIn]);
+
 
 const logoutHandler = () => {
   axios.post('http://localhost:8000/api/logout')
@@ -20,7 +37,9 @@ const logoutHandler = () => {
     }
   })
   .catch(err => console.log(err))
+
 };
+
 
   return(
         <React.Fragment>
@@ -57,7 +76,7 @@ const logoutHandler = () => {
           <a className="nav-link" href="#a">About us</a>
         </li>
         <li className="nav-item">
-          {  <props className="LoginStatus"></props> ?
+          {  isLoggedIn ?
               (<form className="d-flex">
                   <button id="logout" className="btn btn-outline-success" type="submit" onClick={logoutHandler}>Logout</button>
               </form>)

@@ -6,6 +6,7 @@ import axios from "axios";
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
 function ChangePassword(props){
+  const [loggedIn, setLoggedIn] = useState(false)
   const [Id, setId] = useState('')
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
@@ -40,14 +41,15 @@ function ChangePassword(props){
         setUser(res.data.username);
         setPassword(res.data.password);
         setId(res.data.id);
-        props.onLogin(true)
+        setLoggedIn(res.data.isLoggedIn);
+        props.LoginStatus(loggedIn);
       } else {
-        props.onLogin(false)
+        props.LoginStatus(!loggedIn);
         navigate('/Login')
       }
     })
     .catch(err => console.log(err))
-  },[navigate, props, Id])
+  },[navigate, props, Id, loggedIn])
 
 
 

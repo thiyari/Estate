@@ -8,20 +8,23 @@ import Footer from './Components/Common/Footer';
 import ChangePassword from './Components/ChangePassword';
 import { useState } from 'react';
 
-function App(props) {
+function App() {
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+const handleLogin = (status) => {
+  setIsLoggedIn(status)
+}
 
   return (
     <div>
       <Router>
-      <Header LoginStatus={isLoggedIn}/>
+      <Header LoginStatus={isLoggedIn} />
         <Routes>
-          <Route path="/Profile" element = {<Profile LoginStatus={(status)=>{setIsLoggedIn(status)}}/>} />
-          <Route path="/register" element = {<Register LoginStatus={(status)=>{setIsLoggedIn(status)}}/>} />
+          <Route path="/Profile" element = {<Profile LoginStatus={handleLogin}/>} />
+          <Route path="/register" element = {<Register LoginStatus={handleLogin}/>} />
           <Route path="/login" element = {<Login />} />
-          <Route path="/" element = {<Home LoginStatus={(status)=>{setIsLoggedIn(status)}}/>} />
-          <Route path="/ChangePassword" element = {<ChangePassword LoginStatus={(status)=>{setIsLoggedIn(status)}}/>} />
+          <Route path="/" element = {<Home LoginStatus={handleLogin}/>} />
+          <Route path="/ChangePassword" element = {<ChangePassword LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>
       </Router>

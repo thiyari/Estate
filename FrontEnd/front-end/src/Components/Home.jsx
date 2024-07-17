@@ -3,8 +3,9 @@ import {useState, useEffect} from 'react';
 import '../App.css';
 import axios from "axios";
 
-function Home() {
-   const [allImage,setAllImage] = useState([])
+function Home(props) {
+  const [loggedIn, setLoggedIn] = useState(false)
+  const [allImage,setAllImage] = useState([])
    const fetchImage = async()=>{
       const res = await fetch("http://localhost:8000")
       const doc_res = await res.json()
@@ -14,8 +15,19 @@ function Home() {
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
+      axios.get('http://localhost:8000/api/session')
+      .then(res => {
+        if(res.data.valid){
+          setLoggedIn(res.data.isLoggedIn);
+          props.LoginStatus(loggedIn);
+        } else {
+          props.LoginStatus(!loggedIn);
+        }
+      })
+      .catch(err => console.log(err))
+    
        fetchImage()
-     },[])
+     },[props, loggedIn])
 
      
      
