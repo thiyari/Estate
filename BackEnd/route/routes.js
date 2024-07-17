@@ -10,5 +10,5 @@ router.route('/api/login').post(userController.loginUserControllerFn);
 router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);
 router.route('/api/changepassword/:id').put(userController.changepasswordUserControllerFn);
-
+router.route('/api/profile/:id').get(userController.profileControllerFn);
 module.exports = router;

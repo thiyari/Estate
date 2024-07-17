@@ -6,6 +6,10 @@ import { FaEdit,FaCheck } from "react-icons/fa";
 
 function Profile(props){
   const [user, setUser] = useState('')
+  const [fname, setFname] = useState('')
+  const [lname, setLname] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
   const [fnametoggle,setFnametoggle] = useState(false)
   const [lnametoggle,setLnametoggle] = useState(false)
   const [usertoggle,setUsertoggle] = useState(false)
@@ -15,7 +19,8 @@ function Profile(props){
 
   axios.defaults.withCredentials = true;
   useEffect(()=>{
-    axios.get('http://localhost:8000/api/session')
+     
+     axios.get('http://localhost:8000/api/session')
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
@@ -26,7 +31,23 @@ function Profile(props){
       }
     })
     .catch(err => console.log(err))
+  
+
+   
+       axios.get(`http://localhost:8000/api/profile/${props.Id}`)
+      .then(res => {
+        if(res.data.status){
+          const profile_doc = res.data.profile          
+          setFname(profile_doc.data[0].firstname)
+          setLname(profile_doc.data[0].lastname)
+          setEmail(profile_doc.data[0].email)
+          setPhone(profile_doc.data[0].phone)
+        } 
+      })
+      .catch(err => console.log(err))
+    
   },[navigate, props])
+
 
   const handleFnameEdit = (event) => {
     event.preventDefault()
@@ -133,13 +154,14 @@ function Profile(props){
                     className="form-control" 
                     id="firstname" 
                     placeholder="First Name"
+                    value={fname}
                     disabled
                   />
                 }
               </td>
               <td>{ fnametoggle?
-                <button onClick={handleFnameSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={handleFnameEdit} style={{width:25}}><FaEdit /></button>
+                <button onClick={()=>handleFnameSubmit} style={{width:25}}><FaCheck /></button>
+                :<button onClick={()=>handleFnameEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>               
             </tr>
@@ -157,13 +179,14 @@ function Profile(props){
                   className="form-control" 
                   id="lastname" 
                   placeholder="Last Name"
+                  value={lname}
                   disabled
                   />
                   }
               </td>
               <td>{ lnametoggle?
-                <button onClick={handleLnameSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={handleLnameEdit} style={{width:25}}><FaEdit /></button>
+                <button onClick={()=>handleLnameSubmit} style={{width:25}}><FaCheck /></button>
+                :<button onClick={()=>handleLnameEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>            
             </tr>
@@ -182,13 +205,14 @@ function Profile(props){
                   className="form-control" 
                   id="username" 
                   placeholder="User Name"
+                  value={user}
                   disabled
                   />
                   }
               </td>
               <td>{ usertoggle?
-                <button onClick={handleUserSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={handleUserEdit} style={{width:25}}><FaEdit /></button>
+                <button onClick={()=>handleUserSubmit} style={{width:25}}><FaCheck /></button>
+                :<button onClick={()=>handleUserEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>
             </tr>
@@ -206,12 +230,13 @@ function Profile(props){
                   className="form-control" 
                   id="email" 
                   placeholder="Email"
+                  value={email}
                   disabled
                   />}
               </td>
               <td>{ emailtoggle?
-                <button onClick={handleEmailSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={handleEmailEdit} style={{width:25}}><FaEdit /></button>
+                <button onClick={()=>handleEmailSubmit} style={{width:25}}><FaCheck /></button>
+                :<button onClick={()=>handleEmailEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>
             </tr>
@@ -230,14 +255,15 @@ function Profile(props){
                   className="form-control" 
                   id="phone" 
                   placeholder="Phone"
+                  value={phone}
                   disabled
                   />
                }
               </td>
               <td>
               { phonetoggle?
-                <button onClick={handlePhoneSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={handlePhoneEdit} style={{width:25}}><FaEdit /></button>
+                <button onClick={()=>handlePhoneSubmit} style={{width:25}}><FaCheck /></button>
+                :<button onClick={()=>handlePhoneEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>
             </tr>

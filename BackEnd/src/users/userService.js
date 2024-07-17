@@ -100,3 +100,18 @@ module.exports.fetchUsersDBService = () => {
                 }
         })
 }
+
+
+module.exports.fetchProfileDBService = (Id) => {
+        return new Promise(async function myFn(resolve,reject){
+                console.log(Id)
+                result = await userModel.find({_id:Id}).select({_id: 0, firstname: 1, lastname: 1, email: 1, phone: 1});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({satus: false, data: 'Invalid data'})
+                }
+        })
+}
+
+

@@ -101,7 +101,16 @@ var usersControllerFn = async(req,res)=>{
                 return res.send({"status":false,users:{}});
             }
         }    
-    
+
+var profileControllerFn = async(req,res)=>{
+            const result = await (userService.fetchProfileDBService(req.params.id))
+            if(result.status){
+               return res.send({"status":true,profile: result});
+            }
+            else {
+                return res.send({"status":false,profile:{}});
+            }
+        }         
     
 module.exports = { 
     createUserControllerFn, 
@@ -111,4 +120,5 @@ module.exports = {
     fetchImagesControllerFn,
     changepasswordUserControllerFn,
     usersControllerFn, 
+    profileControllerFn,
 }
