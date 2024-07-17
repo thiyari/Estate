@@ -144,3 +144,21 @@ module.exports.profileLnameUserDBService = async (id,data) => {
                     });               
         })
 }
+
+
+module.exports.profileUnameUserDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{username:data.username},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"First name changed"});
+                        } else {
+                           reject({success:false,msg:"changing first name failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+

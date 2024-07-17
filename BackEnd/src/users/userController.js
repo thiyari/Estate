@@ -159,6 +159,29 @@ var profileLnameControllerFn = async(req,res)=>
                         res.send({"status":false,"message":err.msg});
                     }
                 }          
+
+
+
+var profileUserControllerFn = async(req,res)=>
+                    {
+                        var result = null;
+                        try
+                        {
+                            var result = await userService.profileUnameUserDBService(req.params.id,req.body)
+                            if(result.status){
+                                return res.send({"status": true, "message": result.msg});
+                            }
+                            else {
+                                return res.send({"status": false, "message": result.msg});
+                            }
+                        }
+                        catch(err){
+                            console.log(err);
+                            res.send({"status":false,"message":err.msg});
+                        }
+                    }        
+
+                
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
@@ -170,4 +193,5 @@ module.exports = {
     profileControllerFn,
     profileFnameControllerFn,
     profileLnameControllerFn,
+    profileUserControllerFn,
 }

@@ -110,16 +110,33 @@ function Profile(props){
         alert(err);
       }
   };  
-  
+
+  const handleUserInput = (event) => {
+    setUser(event.target.value);
+  };  
 
   const handleUserEdit = (event) => {
     event.preventDefault()
     setUsertoggle(true)
   };
 
-  const handleUserSubmit = (event) => {
+  const handleUserSubmit = async (event) => {
     event.preventDefault()
-    setUsertoggle(false)
+
+    try{
+      await axios.put(`http://localhost:8000/api/profile/user/${Id}`, JSON.stringify({
+        username: user,
+        }),
+        {
+          headers:{
+          "Content-Type":"application/json"
+          }
+        });
+        alert("User Name Updated Successfully");
+        setUsertoggle(false)
+      } catch (err) {
+        alert(err);
+      }
   };  
 
   const handleEmailEdit = (event) => {
@@ -244,6 +261,8 @@ function Profile(props){
                     className="form-control" 
                     id="username" 
                     placeholder="User Name"
+                    value={user}
+                    onChange={handleUserInput}
                   />
                 :<input type="text"  
                   className="form-control" 
