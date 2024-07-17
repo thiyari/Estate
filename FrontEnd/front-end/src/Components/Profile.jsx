@@ -160,8 +160,8 @@ function Profile(props){
                 }
               </td>
               <td>{ fnametoggle?
-                <button onClick={()=>handleFnameSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={()=>handleFnameEdit} style={{width:25}}><FaEdit /></button>
+                <button type="submit" onClick={handleFnameSubmit} style={{width:25}}><FaCheck /></button>
+                :<button type="submit" onClick={handleFnameEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>               
             </tr>
@@ -185,8 +185,8 @@ function Profile(props){
                   }
               </td>
               <td>{ lnametoggle?
-                <button onClick={()=>handleLnameSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={()=>handleLnameEdit} style={{width:25}}><FaEdit /></button>
+                <button type="submit" onClick={handleLnameSubmit} style={{width:25}}><FaCheck /></button>
+                :<button type="submit" onClick={handleLnameEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>            
             </tr>
@@ -211,8 +211,8 @@ function Profile(props){
                   }
               </td>
               <td>{ usertoggle?
-                <button onClick={()=>handleUserSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={()=>handleUserEdit} style={{width:25}}><FaEdit /></button>
+                <button type="submit" onClick={handleUserSubmit} style={{width:25}}><FaCheck /></button>
+                :<button type="submit" onClick={handleUserEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>
             </tr>
@@ -235,8 +235,8 @@ function Profile(props){
                   />}
               </td>
               <td>{ emailtoggle?
-                <button onClick={()=>handleEmailSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={()=>handleEmailEdit} style={{width:25}}><FaEdit /></button>
+                <button type="submit" onClick={handleEmailSubmit} style={{width:25}}><FaCheck /></button>
+                :<button type="submit" onClick={handleEmailEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>
             </tr>
@@ -262,8 +262,8 @@ function Profile(props){
               </td>
               <td>
               { phonetoggle?
-                <button onClick={()=>handlePhoneSubmit} style={{width:25}}><FaCheck /></button>
-                :<button onClick={()=>handlePhoneEdit} style={{width:25}}><FaEdit /></button>
+                <button type="submit" onClick={handlePhoneSubmit} style={{width:25}}><FaCheck /></button>
+                :<button type="submit" onClick={handlePhoneEdit} style={{width:25}}><FaEdit /></button>
                 }
               </td>
             </tr>
