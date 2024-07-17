@@ -38,7 +38,7 @@ function Profile(props){
   
 
    
-       axios.get(`http://localhost:8000/api/profile/${Id}`)
+    axios.get(`http://localhost:8000/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile          
@@ -58,10 +58,29 @@ function Profile(props){
     setFnametoggle(true)
   };
 
-  const handleFnameSubmit = (event) => {
+  const handleFnameSubmit = async (event) => {
     event.preventDefault()
-    setFnametoggle(false)
+
+    try{
+      await axios.put(`http://localhost:8000/api/profile/fname/${Id}`, JSON.stringify({
+        firstname: fname,
+        }),
+        {
+          headers:{
+          "Content-Type":"application/json"
+          }
+        });
+        alert("First Name Updated Successfully");
+        setFnametoggle(false)
+      } catch (err) {
+        alert(err);
+      }
   };  
+
+
+  const handleFnameInput = (event) => {
+    setFname(event.target.value);
+  };
 
 
   const handleLnameEdit = (event) => {
@@ -104,6 +123,9 @@ function Profile(props){
     event.preventDefault()
     setPhonetoggle(false)
   };
+
+
+
 
   return (
     <React.Fragment>
@@ -151,12 +173,12 @@ function Profile(props){
                 { fnametoggle?
                   <input type="text"  
                     className="form-control" 
-                    id="firstname" 
                     placeholder="First Name"
+                    value={fname}
+                    onChange={handleFnameInput} 
                   />
                 : <input type="text"  
                     className="form-control" 
-                    id="firstname" 
                     placeholder="First Name"
                     value={fname}
                     disabled

@@ -113,3 +113,18 @@ module.exports.fetchProfileDBService = (Id) => {
 }
 
 
+
+module.exports.profileFnameUserDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{firstname:data.firstname},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"First name changed"});
+                        } else {
+                           reject({success:false,msg:"changing first name failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}

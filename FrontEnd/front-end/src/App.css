@@ -92,3 +92,7 @@ form button{
 .form-group input[type="text"], input[type="email"], textarea{
   font-family: "Rajdhani", sans-serif;
 }
+
+input:disabled {
+  background-color: lightgrey;
+}
