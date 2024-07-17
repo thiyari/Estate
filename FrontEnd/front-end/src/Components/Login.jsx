@@ -10,7 +10,7 @@ const initialState = {
   password_status: "",
 };
 
-function Login(props) {
+function Login() {
 
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -71,7 +71,6 @@ function Login(props) {
              if (data.status === true) 
              {
                 alert("Login Successful"); 
-                props.ObjectId(data.id)
                 navigate('/Profile');
              } 
              else 

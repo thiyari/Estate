@@ -5,6 +5,7 @@ import Sidebar from './Sidebar/Sidebar'
 import { FaEdit,FaCheck } from "react-icons/fa";
 
 function Profile(props){
+  const [loggedIn, setLoggedIn] = useState(false)
   const [Id, setId] = useState('')
   const [user, setUser] = useState('')
   const [fname, setFname] = useState('')
@@ -26,9 +27,10 @@ function Profile(props){
       if(res.data.valid){
         setUser(res.data.username);
         setId(res.data.id);
-        props.onLogin(true)
+        setLoggedIn(res.data.isLoggedIn);
+        props.LoginStatus(loggedIn);
       } else {
-        props.onLogin(false)
+        props.LoginStatus(!loggedIn);
         navigate('/Login')
       }
     })
@@ -48,7 +50,7 @@ function Profile(props){
       })
       .catch(err => console.log(err))
     
-  },[navigate, Id])
+  },[navigate, props, Id, loggedIn])
 
 
   const handleFnameEdit = (event) => {

@@ -1,10 +1,9 @@
 
 import {useState, useEffect} from 'react';
 import '../App.css';
-import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
-function Home(props) {
+function Home() {
    const [allImage,setAllImage] = useState([])
    const fetchImage = async()=>{
       const res = await fetch("http://localhost:8000")
@@ -13,21 +12,10 @@ function Home(props) {
       setAllImage(img_data)
     }
 
-    const navigate = useNavigate()
-
     axios.defaults.withCredentials = true;
     useEffect(()=>{
-       axios.get('http://localhost:8000/api/session')
-       .then(res => {
-         if(res.data.valid){
-           props.onLogin(true)
-         } else {
-           props.onLogin(false)
-         }
-       })
-       .catch(err => console.log(err))
        fetchImage()
-     },[navigate, props])
+     },[])
 
      
      
