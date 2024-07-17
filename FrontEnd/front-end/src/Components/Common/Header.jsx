@@ -9,21 +9,16 @@ function Header(props){
 const [isLoggedIn,setIsLoggedIn] = useState(false)
 const navigate = useNavigate()
 
-
-
 axios.defaults.withCredentials = true;
 useEffect(()=>{
 axios.get('http://localhost:8000/api/session')
 .then(res => {
   if(res.data.valid){
-    setIsLoggedIn(res.data.isLoggedIn);
-    props.LoginStatus(isLoggedIn);
-  } else {
-    props.LoginStatus(!isLoggedIn);
-  }
+    setIsLoggedIn(props.LoginStatus);
+  } 
 })
 .catch(err => console.log(err))
-},[props, isLoggedIn]);
+},[props]);
 
 
 const logoutHandler = () => {
