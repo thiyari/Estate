@@ -169,14 +169,35 @@ function Profile(props){
 
   };
 
+
+  const handlePhoneInput = (event) => {
+    setPhone(event.target.value);
+  };
+
   const handlePhoneEdit = (event) => {
     event.preventDefault()
     setPhonetoggle(true)
   };
 
-  const handlePhoneSubmit = (event) => {
+  const handlePhoneSubmit = async (event) => {
     event.preventDefault()
-    setPhonetoggle(false)
+
+
+    try{
+      await axios.put(`http://localhost:8000/api/profile/phone/${Id}`, JSON.stringify({
+        phone: phone,
+        }),
+        {
+          headers:{
+          "Content-Type":"application/json"
+          }
+        });
+        alert("Phone Updated Successfully");
+        setPhonetoggle(false)
+      } catch (err) {
+        alert(err);
+      }
+
   };
 
 
@@ -331,6 +352,8 @@ function Profile(props){
                <input type="phone"  
                   className="form-control" 
                   placeholder="Phone"
+                  value={phone}
+                  onChange={handlePhoneInput}
                />
               :<input type="phone"  
                   className="form-control" 

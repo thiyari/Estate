@@ -3,9 +3,10 @@ var express = require('express');
 var userController = require('../src/users/userController');
 const router = express.Router();
 
+
+router.route('/').get(userController.fetchImagesControllerFn)
 router.route('/api/session').get(userController.sessionControllerFn);
 router.route('/api/users').get(userController.usersControllerFn);
-router.route('/').get(userController.fetchImagesControllerFn)
 router.route('/api/login').post(userController.loginUserControllerFn);
 router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);
@@ -15,5 +16,6 @@ router.route('/api/profile/fname/:id').put(userController.profileFnameController
 router.route('/api/profile/lname/:id').put(userController.profileLnameControllerFn);
 router.route('/api/profile/user/:id').put(userController.profileUserControllerFn);
 router.route('/api/profile/email/:id').put(userController.profileEmailControllerFn);
+router.route('/api/profile/phone/:id').put(userController.profilePhoneControllerFn);
 
 module.exports = router;
