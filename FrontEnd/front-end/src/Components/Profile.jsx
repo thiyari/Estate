@@ -139,14 +139,34 @@ function Profile(props){
       }
   };  
 
+  const handleEmailInput = (event) => {
+    setEmail(event.target.value);
+  };
+
   const handleEmailEdit = (event) => {
     event.preventDefault()
     setEmailtoggle(true)
   };
 
-  const handleEmailSubmit = (event) => {
+  const handleEmailSubmit = async (event) => {
     event.preventDefault()
-    setEmailtoggle(false)
+
+
+    try{
+      await axios.put(`http://localhost:8000/api/profile/email/${Id}`, JSON.stringify({
+        email: email,
+        }),
+        {
+          headers:{
+          "Content-Type":"application/json"
+          }
+        });
+        alert("Email Updated Successfully");
+        setEmailtoggle(false)
+      } catch (err) {
+        alert(err);
+      }
+
   };
 
   const handlePhoneEdit = (event) => {
@@ -187,7 +207,7 @@ function Profile(props){
         <div className="col-sm-3"></div>
         <div className="col-sm-6">
 
-        <h1 align="center">Welcome {user}</h1>
+        <h2 align="center">Welcome {fname} {lname}</h2>
   
   
         <table className="table table-striped ">
@@ -259,14 +279,12 @@ function Profile(props){
               { usertoggle?
                   <input type="text"  
                     className="form-control" 
-                    id="username" 
                     placeholder="User Name"
                     value={user}
                     onChange={handleUserInput}
                   />
                 :<input type="text"  
                   className="form-control" 
-                  id="username" 
                   placeholder="User Name"
                   value={user}
                   disabled
@@ -284,14 +302,15 @@ function Profile(props){
               <th scope="row">4</th>
               <td>Email</td>
               <td>
-              {emailtoggle?<input type="email"  
+              {emailtoggle?
+                <input type="email"  
                   className="form-control" 
-                  id="email" 
                   placeholder="Email"
+                  value={email}
+                  onChange={handleEmailInput}
                   />:
                   <input type="email"  
                   className="form-control" 
-                  id="email" 
                   placeholder="Email"
                   value={email}
                   disabled
@@ -311,12 +330,10 @@ function Profile(props){
                { phonetoggle?
                <input type="phone"  
                   className="form-control" 
-                  id="phone" 
                   placeholder="Phone"
                />
               :<input type="phone"  
                   className="form-control" 
-                  id="phone" 
                   placeholder="Phone"
                   value={phone}
                   disabled

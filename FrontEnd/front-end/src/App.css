@@ -93,6 +93,6 @@ form button{
   font-family: "Rajdhani", sans-serif;
 }
 
-input:disabled {
-  background-color: lightgrey;
+input[type="text"], input[type="email"], h2, th, td {
+  font-family: "Rajdhani", sans-serif;
 }

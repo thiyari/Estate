@@ -14,5 +14,6 @@ router.route('/api/profile/:id').get(userController.profileControllerFn);
 router.route('/api/profile/fname/:id').put(userController.profileFnameControllerFn);
 router.route('/api/profile/lname/:id').put(userController.profileLnameControllerFn);
 router.route('/api/profile/user/:id').put(userController.profileUserControllerFn);
+router.route('/api/profile/email/:id').put(userController.profileEmailControllerFn);
 
 module.exports = router;
