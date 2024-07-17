@@ -27,11 +27,12 @@ var loginUserControllerFn = async(req,res)=>
     {
         req.session.username = req.body.user
         req.session.password = req.body.password
+        req.session.isLoggedIn = true;
         var result = await userService.loginuserDBService(req.body)
         session.id = result.id
         req.session.save()
         if(result.status){
-            res.send({"status":true,"message":result.msg, id: session.id});
+            res.send({"status":true,"message":result.msg});
         }
         else {
             res.send({"status":false,"message":result.msg});
@@ -59,7 +60,9 @@ var sessionControllerFn = async(req,res)=>{
             return res.json({valid: true, 
                 username: req.session.username, 
                 password: req.session.password, 
-                id: session.id})
+                id: session.id,
+                isLoggedIn: req.session.isLoggedIn
+            })
         } else {
             return res.json({valid: false})
         }

@@ -48,7 +48,7 @@ function Profile(props){
       })
       .catch(err => console.log(err))
     
-  },[navigate, props, Id])
+  },[navigate, Id])
 
 
   const handleFnameEdit = (event) => {

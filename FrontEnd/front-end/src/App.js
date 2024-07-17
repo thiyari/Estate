@@ -18,16 +18,17 @@ function App() {
   const setObjectId = (id)=>{
     setId(id)
   }
+  console.log(Id)
   return (
     <div>
       <Router>
       <Header LoggedIn={LoggedIn}/>
         <Routes>
-          <Route path="/Profile" element = {<Profile Id={Id} onLogin={setLogin}/>} />
+          <Route path="/Profile" element = {<Profile onLogin={setLogin}/>} />
           <Route path="/register" element = {<Register onLogin={setLogin}/>} />
           <Route path="/login" element = {<Login ObjectId={setObjectId}/>} />
           <Route path="/" element = {<Home onLogin={setLogin}/>} />
-          <Route path="/ChangePassword" element = {<ChangePassword Id={Id} onLogin={setLogin}/>} />
+          <Route path="/ChangePassword" element = {<ChangePassword onLogin={setLogin}/>} />
         </Routes>
         <Footer/>
       </Router>

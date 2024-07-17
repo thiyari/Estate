@@ -6,6 +6,7 @@ import axios from "axios";
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
 function ChangePassword(props){
+  const [Id, setId] = useState('')
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
 
@@ -38,6 +39,7 @@ function ChangePassword(props){
       if(res.data.valid){
         setUser(res.data.username);
         setPassword(res.data.password);
+        setId(res.data.id);
         props.onLogin(true)
       } else {
         props.onLogin(false)
@@ -45,7 +47,7 @@ function ChangePassword(props){
       }
     })
     .catch(err => console.log(err))
-  },[navigate, props])
+  },[navigate, props, Id])
 
 
 
@@ -139,7 +141,7 @@ function ChangePassword(props){
 
 
           try{
-            await axios.put(`http://localhost:8000/api/changepassword/${props.Id}`, JSON.stringify({
+            await axios.put(`http://localhost:8000/api/changepassword/${Id}`, JSON.stringify({
               username: user,
               password: formInput.new_password,
               }),
