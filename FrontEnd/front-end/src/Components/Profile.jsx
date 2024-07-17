@@ -82,17 +82,35 @@ function Profile(props){
       }
   };  
 
+  const handleLnameInput = (event) => {
+    setLname(event.target.value);
+  };
 
   const handleLnameEdit = (event) => {
     event.preventDefault()
     setLnametoggle(true)
   };
 
-  const handleLnameSubmit = (event) => {
-    event.preventDefault()
-    setLnametoggle(false)
-  };  
 
+  const handleLnameSubmit = async (event) => {
+    event.preventDefault()
+
+    try{
+      await axios.put(`http://localhost:8000/api/profile/lname/${Id}`, JSON.stringify({
+        lastname: lname,
+        }),
+        {
+          headers:{
+          "Content-Type":"application/json"
+          }
+        });
+        alert("Last Name Updated Successfully");
+        setLnametoggle(false)
+      } catch (err) {
+        alert(err);
+      }
+  };  
+  
 
   const handleUserEdit = (event) => {
     event.preventDefault()
@@ -198,12 +216,12 @@ function Profile(props){
               <td>{ lnametoggle? 
                 <input type="text"  
                   className="form-control" 
-                  id="lastname" 
                   placeholder="Last Name"
+                  value={lname}
+                  onChange={handleLnameInput}
                   />
               : <input type="text"  
                   className="form-control" 
-                  id="lastname" 
                   placeholder="Last Name"
                   value={lname}
                   disabled
