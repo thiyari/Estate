@@ -1,3 +1,4 @@
+const session = require('express-session');
 var userService = require('./userService');
 
 var createUserControllerFn = async(req,res)=>
@@ -26,10 +27,11 @@ var loginUserControllerFn = async(req,res)=>
     {
         req.session.username = req.body.user
         req.session.password = req.body.password
-        req.session.save();
         var result = await userService.loginuserDBService(req.body)
+        session.id = result.id
+        req.session.save()
         if(result.status){
-            res.send({"status":true,"message":result.msg, id: result.id});
+            res.send({"status":true,"message":result.msg, id: session.id});
         }
         else {
             res.send({"status":false,"message":result.msg});
@@ -54,7 +56,10 @@ var logoutUserControllerFn = async(req,res)=>
 
 var sessionControllerFn = async(req,res)=>{
         if(req.session.username){
-            return res.json({valid: true, username: req.session.username, password: req.session.password})
+            return res.json({valid: true, 
+                username: req.session.username, 
+                password: req.session.password, 
+                id: session.id})
         } else {
             return res.json({valid: false})
         }

@@ -5,6 +5,7 @@ import Sidebar from './Sidebar/Sidebar'
 import { FaEdit,FaCheck } from "react-icons/fa";
 
 function Profile(props){
+  const [Id, setId] = useState('')
   const [user, setUser] = useState('')
   const [fname, setFname] = useState('')
   const [lname, setLname] = useState('')
@@ -24,6 +25,7 @@ function Profile(props){
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
+        setId(res.data.id);
         props.onLogin(true)
       } else {
         props.onLogin(false)
@@ -34,7 +36,7 @@ function Profile(props){
   
 
    
-       axios.get(`http://localhost:8000/api/profile/${props.Id}`)
+       axios.get(`http://localhost:8000/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile          
@@ -46,7 +48,7 @@ function Profile(props){
       })
       .catch(err => console.log(err))
     
-  },[navigate, props])
+  },[navigate, props, Id])
 
 
   const handleFnameEdit = (event) => {

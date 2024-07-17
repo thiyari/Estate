@@ -25,7 +25,7 @@ const Sidebar = () => {
         </CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <NavLink exact="true" to="/Profile" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+            <NavLink forceRefresh exact="true" to="/Profile" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa fa-user">Profile</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact="true" to="/ChangePassword" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
