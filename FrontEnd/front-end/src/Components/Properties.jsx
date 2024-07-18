@@ -3,11 +3,11 @@ import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar'
 import '../App.css'
+import ImageSlider from './ImageSlider/ImageSlider'
 
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
     const [Id, setId] = useState('')
-    const [images,setImages] = useState([])
     const navigate = useNavigate()
 
     axios.defaults.withCredentials = true;
@@ -24,18 +24,6 @@ function Properties(props){
         }
       })
       .catch(err => console.log(err))
-
-
-   
-      axios.get(`http://localhost:8000/api/profile/${Id}`)
-      .then(res => {
-        if(res.data.status){
-          const profile_doc = res.data.profile          
-          setImages(profile_doc.data[0].images)
-        } 
-      })
-      .catch(err => console.log(err))
-
 
     },[navigate, props, Id, loggedIn])
   
@@ -65,12 +53,7 @@ function Properties(props){
       <div className="col-sm-3"></div>
       <div className="col-sm-6">
       
-        {images.map((image, key)=>{ 
-          return(
-              <img src={image} key={key} alt={image} width="500px" height="300px"/>
-            )
-              }
-          )}
+          <ImageSlider Id={Id} />
 
           </div> 
           </div> 
