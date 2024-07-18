@@ -37,7 +37,7 @@ const logoutHandler = () => {
 
   return(
         <React.Fragment>
-  <img src={require('./banner.jpg')} height="150" width="100%" alt="banner"></img>
+  <img src='https://media.istockphoto.com/id/1471683196/vector/black-wavy-lines-isolated-on-white-abstract-background-design.jpg?s=612x612&w=0&k=20&c=OiEcsV3iKnIS96d2fHbVXQS-aWBeWaTfx5o_fY3Q_Rg=' height="150" width="100%" alt="banner"></img>
             <nav className="navbar navbar-expand-lg bg-body-tertiary border">
   <div className="container">
     <a className="navbar-brand" href="/"><i className='fa fa-fw fa-home'/></a>
