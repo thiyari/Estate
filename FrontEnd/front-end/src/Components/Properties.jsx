@@ -7,6 +7,7 @@ import '../App.css'
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
     const [Id, setId] = useState('')
+    const [images,setImages] = useState([])
     const navigate = useNavigate()
 
     axios.defaults.withCredentials = true;
@@ -30,7 +31,7 @@ function Properties(props){
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile          
-          console.log(profile_doc)
+          setImages(profile_doc.data[0].images)
         } 
       })
       .catch(err => console.log(err))
@@ -61,24 +62,25 @@ function Properties(props){
       <div className="row">
       <div className="col-md-12">
       <div className='row'>
-      <div className="col-sm-4"></div>
-      <div className="col-sm-4">
+      <div className="col-sm-3"></div>
+      <div className="col-sm-6">
       
-
-
-        <div align="center">
-          <button type="submit" className="btn btn-primary mt-4">Submit</button>
-        </div>
+        {images.map((image, key)=>{ 
+          return(
+              <img src={image} key={key} alt={image} width="500px" height="300px"/>
+            )
+              }
+          )}
 
           </div> 
           </div> 
-          <div className="col-sm-4"></div>
+          <div className="col-sm-3"></div>
 
         </div>
-        </div>
-        </form>
       </div>
-      </div>
+    </form>
+  </div>
+</div>
 
       <div className="card-footer text-muted">
             <p>
