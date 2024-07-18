@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import './ImageSlider.css';
 import axios from 'axios';
+import { GiNextButton, GiPreviousButton } from "react-icons/gi";
+
+
 function ImageSlider(props) {
-  /*
-  const imgs=[
-    {id:0,value:"https://wallpaperaccess.com/full/2637581.jpg"},
-    {id:1,value:"https://png.pngtree.com/thumb_back/fw800/background/20230817/pngtree-lotus-flower-jpg-pink-lotus-flower-image_13023952.jpg"},
-    {id:2,value:"https://png.pngtree.com/thumb_back/fh260/background/20230519/pngtree-landscape-jpg-wallpapers-free-download-image_2573540.jpg"},
-  ]*/
-  
+
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [Images,setImages] = useState([])
 
   useEffect(()=>{
@@ -22,25 +19,26 @@ function ImageSlider(props) {
         .catch(err => console.log(err))
     },[props])
 
-  const [wordData,setWordData]=useState(Images)
-
-  const handleClick=(index)=>{
-    console.log(index)
-    const wordSlider=Images[index];
-    setWordData(wordSlider)
-  }
+    const handlePrevClick = (e) => {
+        e.preventDefault()
+        if (currentPhotoIndex > 0) {
+          setCurrentPhotoIndex(currentPhotoIndex - 1);
+        }
+      };
+      
+    const handleNextClick = (e) => {
+        e.preventDefault()
+        if (currentPhotoIndex < Images.length - 1) {
+          setCurrentPhotoIndex(currentPhotoIndex + 1);
+        }
+      };
 
   return (
-    <div className="main">
-      <img alt="" src={wordData} height="300" width="500" /> 
-      <div className='flex_row'>
-        {Images.map((data,i)=>
-        <div className="thumbnail" key={i} >
-          <img alt="" className={wordData.id===i?"clicked":""} src={data} onClick={()=>handleClick(i)} height="70" width="100" />
-        </div>
-        )}
-      </div>
-    </div>
+    <div>
+    <button onClick={handlePrevClick}><GiPreviousButton /></button>
+    <button onClick={handleNextClick}><GiNextButton /></button>
+    <img src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
+  </div>
   );
 }
 
