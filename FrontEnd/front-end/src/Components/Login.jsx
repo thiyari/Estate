@@ -99,8 +99,8 @@ function Login() {
             <h1 className="card-header"><center><div className="header-font">User Login</div></center></h1>
 
              <div className="row">
-             <div className="col-sm-3"></div>
-             <div className="col-sm-6">
+             <div className="col-sm-4"></div>
+             <div className="col-sm-4">
              <div className="card-body">
              <form>
              <div className="form-group">
@@ -142,7 +142,7 @@ function Login() {
               </form>
             </div>
             </div>
-            <div className="col-sm-3"></div>
+            <div className="col-sm-4"></div>
             </div>
             <div className="card-footer text-muted">
                   <p>
