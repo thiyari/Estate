@@ -5,6 +5,19 @@ import Sidebar from './Sidebar/Sidebar'
 import { FaEdit,FaCheck } from "react-icons/fa";
 import '../App.css'
 
+
+const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
+
+const initialState = {
+  fname_status: "",
+  lname_status: "", 
+  user_status: "",
+  email_status: "",
+  phone_status: ""
+}
+
 function Profile(props){
   const [loggedIn, setLoggedIn] = useState(false)
   const [Id, setId] = useState('')
@@ -18,6 +31,9 @@ function Profile(props){
   const [usertoggle,setUsertoggle] = useState(false)
   const [emailtoggle,setEmailtoggle] = useState(false)
   const [phonetoggle,setPhonetoggle] = useState(false)
+  const [formError, setFormError] = useState({...initialState})
+  const [usernames, setUsernames] = useState([]);
+
   const navigate = useNavigate()
 
   axios.defaults.withCredentials = true;
@@ -37,7 +53,18 @@ function Profile(props){
     })
     .catch(err => console.log(err))
   
-
+    axios.get('http://localhost:8000/api/users')
+    .then(res => {
+      if(res.data.status){
+        const doc_users = res.data.users          
+        let users_list = []
+        for (let i = 0; i < doc_users.data.length; i++) {
+           users_list.push(doc_users.data[i].username)
+        }
+        setUsernames(users_list)
+      }     
+    })
+    .catch(err => console.log(err))
    
     axios.get(`http://localhost:8000/api/profile/${Id}`)
       .then(res => {
@@ -54,6 +81,9 @@ function Profile(props){
   },[navigate, props, Id, loggedIn])
 
 
+  // Initialize an object to track input errors
+  let inputError = {...initialState};
+
   const handleFnameInput = (event) => {
     setFname(event.target.value);
   };
@@ -66,6 +96,16 @@ function Profile(props){
   const handleFnameSubmit = async (event) => {
     event.preventDefault()
 
+          // Check if first name is empty
+          if(!fname){
+            setFormError({
+              ...inputError,
+              fname: "First name should not be empty",
+              fname_status: "error"
+            })
+            return;
+          }
+    
     try{
       await axios.put(`http://localhost:8000/api/profile/fname/${Id}`, JSON.stringify({
         firstname: fname,
@@ -80,6 +120,7 @@ function Profile(props){
       } catch (err) {
         alert(err);
       }
+      setFormError(inputError);
   };  
 
   const handleLnameInput = (event) => {
@@ -95,6 +136,16 @@ function Profile(props){
   const handleLnameSubmit = async (event) => {
     event.preventDefault()
 
+          // Check if last name is empty
+          if(!lname){
+            setFormError({
+              ...inputError,
+              lname: "Last name should not be empty",
+              lname_status: "error"
+            })
+            return;
+          }
+
     try{
       await axios.put(`http://localhost:8000/api/profile/lname/${Id}`, JSON.stringify({
         lastname: lname,
@@ -109,6 +160,7 @@ function Profile(props){
       } catch (err) {
         alert(err);
       }
+      setFormError(inputError);
   };  
 
   const handleUserInput = (event) => {
@@ -122,6 +174,40 @@ function Profile(props){
 
   const handleUserSubmit = async (event) => {
     event.preventDefault()
+
+
+          // Check if user is empty
+          if(!user){
+            setFormError({
+              ...inputError,
+              user: "Username should not be empty",
+              user_status: "error"
+            })
+            return;
+          }
+
+          const user_pattern = USER_REGEX.test(user);
+          if (!user_pattern) {
+              setFormError({
+                ...inputError,
+                user: "Can have 4 to 24 characters. Must begin with a letter. Numbers, letters, underscores, and hyphens are allowed",
+                user_status: "error"
+              });
+              return;
+          }
+
+          // Check if user already exists
+            for (let i = 0; i < usernames.length; i++) {
+                if(user === usernames[i]){
+                    setFormError({
+                      ...inputError,
+                      user: "Username already exists, please provide another",
+                      user_status: "error"
+                    })
+                  return;
+                }
+            }
+
 
     try{
       await axios.put(`http://localhost:8000/api/profile/user/${Id}`, JSON.stringify({
@@ -137,6 +223,7 @@ function Profile(props){
       } catch (err) {
         alert(err);
       }
+      setFormError(inputError);
   };  
 
   const handleEmailInput = (event) => {
@@ -150,6 +237,28 @@ function Profile(props){
 
   const handleEmailSubmit = async (event) => {
     event.preventDefault()
+
+
+          // Check if email is empty
+          if(!email){
+            setFormError({
+              ...inputError,
+              email: "Email should not be empty",
+              email_status: "error"
+            })
+            return;
+          }
+
+
+          const email_pattern = EMAIL_REGEX.test(email);
+          if (!email_pattern) {
+              setFormError({
+                ...inputError,
+                email: "Email format is incorrect",
+                email_status: "error"
+              });
+              return;
+          }
 
 
     try{
@@ -166,7 +275,7 @@ function Profile(props){
       } catch (err) {
         alert(err);
       }
-
+      setFormError(inputError);
   };
 
 
@@ -183,6 +292,26 @@ function Profile(props){
     event.preventDefault()
 
 
+          // Check if phone is empty
+          if(!phone){
+            setFormError({
+              ...inputError,
+              phone: "Phone number should not be empty",
+              phone_status: "error"
+            })
+            return;
+          }
+
+          const phone_pattern = PHONE_REGEX.test(phone);
+          if (!phone_pattern){
+            setFormError({
+              ...inputError,
+              phone: "Invalid phone number",
+              phone_status: "error"
+            })
+            return;
+          }
+
     try{
       await axios.put(`http://localhost:8000/api/profile/phone/${Id}`, JSON.stringify({
         phone: phone,
@@ -197,10 +326,9 @@ function Profile(props){
       } catch (err) {
         alert(err);
       }
-
+      setFormError(inputError);
   };
-
-
+ 
 
 
   return (
@@ -252,10 +380,12 @@ function Profile(props){
                     placeholder="First Name"
                     value={fname}
                     onChange={handleFnameInput} 
+                    style={{borderColor: formError.fname_status !== "error" ?"":"red"}}
                   />
                 : <input type="text"  
                     className="form-control" 
                     placeholder="First Name"
+                    name="fname"
                     value={fname}
                     disabled
                   />
@@ -265,7 +395,7 @@ function Profile(props){
                 <button type="submit" onClick={handleFnameSubmit} style={{width:25}}><FaCheck /></button>
                 :<button type="submit" onClick={handleFnameEdit} style={{width:25}}><FaEdit /></button>
                 }
-              </td>               
+              </td> 
             </tr>
 
             <tr>
@@ -277,6 +407,7 @@ function Profile(props){
                   placeholder="Last Name"
                   value={lname}
                   onChange={handleLnameInput}
+                  style={{borderColor: formError.lname_status !== "error" ?"":"red"}}
                   />
               : <input type="text"  
                   className="form-control" 
@@ -303,6 +434,7 @@ function Profile(props){
                     placeholder="User Name"
                     value={user}
                     onChange={handleUserInput}
+                    style={{borderColor: formError.user_status !== "error" ?"":"red"}}
                   />
                 :<input type="text"  
                   className="form-control" 
@@ -329,6 +461,7 @@ function Profile(props){
                   placeholder="Email"
                   value={email}
                   onChange={handleEmailInput}
+                  style={{borderColor: formError.email_status !== "error" ?"":"red"}}
                   />:
                   <input type="email"  
                   className="form-control" 
@@ -354,6 +487,7 @@ function Profile(props){
                   placeholder="Phone"
                   value={phone}
                   onChange={handlePhoneInput}
+                  style={{borderColor: formError.phone_status !== "error" ?"":"red"}}
                />
               :<input type="phone"  
                   className="form-control" 
@@ -385,7 +519,15 @@ function Profile(props){
           </form>
         </div>
         </div>
-  
+        <div align="center">
+          <p className="error-message">
+            {formError.fname}
+            {formError.lname}{
+            formError.user}
+            {formError.email}
+            {formError.phone} 
+          </p>
+        </div>
         <div className="card-footer text-muted">
               <p>
                 Already registered?<br />
