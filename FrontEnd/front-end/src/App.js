@@ -26,7 +26,7 @@ const handleLogin = (status) => {
           <Route path="/login" element = {<Login />} />
           <Route path="/" element = {<Home LoginStatus={handleLogin}/>} />
           <Route path="/ChangePassword" element = {<ChangePassword LoginStatus={handleLogin}/>} />
-          <Route path="/Properties" element = {<Properties />} />
+          <Route path="/Properties" element = {<Properties LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>
       </Router>

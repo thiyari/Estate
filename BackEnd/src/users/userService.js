@@ -103,7 +103,7 @@ module.exports.fetchUsersDBService = () => {
 
 module.exports.fetchProfileDBService = (Id) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.find({_id:Id}).select({_id: 0, firstname: 1, lastname: 1, email: 1, phone: 1});
+                result = await userModel.find({_id:Id});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {

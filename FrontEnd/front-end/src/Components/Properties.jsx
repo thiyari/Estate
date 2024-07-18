@@ -1,7 +1,43 @@
-import React from 'react';
-import Sidebar from './Sidebar/Sidebar';
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Sidebar from './Sidebar/Sidebar'
+import '../App.css'
 
-function Properties(){
+function Properties(props){
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [Id, setId] = useState('')
+    const navigate = useNavigate()
+
+    axios.defaults.withCredentials = true;
+    useEffect(()=>{
+      axios.get('http://localhost:8000/api/session')
+      .then(res => {
+        if(res.data.valid){
+          setId(res.data.id);
+          setLoggedIn(res.data.isLoggedIn);
+          props.LoginStatus(loggedIn);
+        } else {
+          props.LoginStatus(!loggedIn);
+          navigate('/Login')
+        }
+      })
+      .catch(err => console.log(err))
+
+
+   
+      axios.get(`http://localhost:8000/api/profile/${Id}`)
+      .then(res => {
+        if(res.data.status){
+          const profile_doc = res.data.profile          
+          console.log(profile_doc)
+        } 
+      })
+      .catch(err => console.log(err))
+
+
+    },[navigate, props, Id, loggedIn])
+  
 
     return(
 <React.Fragment>
