@@ -6,6 +6,7 @@ import Login from './Components/Login';
 import Header from './Components/Common/Header';
 import Footer from './Components/Common/Footer';
 import ChangePassword from './Components/ChangePassword';
+import Properties from './Components/Properties';
 import { useState } from 'react';
 
 function App() {
@@ -25,6 +26,7 @@ const handleLogin = (status) => {
           <Route path="/login" element = {<Login />} />
           <Route path="/" element = {<Home LoginStatus={handleLogin}/>} />
           <Route path="/ChangePassword" element = {<ChangePassword LoginStatus={handleLogin}/>} />
+          <Route path="/Properties" element = {<Properties />} />
         </Routes>
         <Footer/>
       </Router>
