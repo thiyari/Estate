@@ -18,6 +18,6 @@ router.route('/api/profile/user/:id').put(userController.profileUserControllerFn
 router.route('/api/profile/email/:id').put(userController.profileEmailControllerFn);
 router.route('/api/profile/phone/:id').put(userController.profilePhoneControllerFn);
 router.route('/api/profile/upload/:id').post(userController.profileUploadImagesControllerFn);
-router.route('/api/profile/deleteimage/:id').post(userController.profileDeleteImageControllerFn);
+router.route('/api/profile/deleteimage/:id').delete(userController.profileDeleteImageControllerFn);
 
 module.exports = router;
