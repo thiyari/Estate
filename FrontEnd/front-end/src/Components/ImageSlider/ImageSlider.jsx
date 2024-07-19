@@ -74,9 +74,22 @@ function ImageSlider(props) {
           }
       }; 
 
-    const handleDelete = (e) => {
+    const handleDelete = async (e) => {
         e.preventDefault()
-        console.log(currentPhotoIndex)
+        try{
+          await axios.delete(`http://localhost:8000/api/profile/deleteimage/${props.Id}`, JSON.stringify({
+            image: Images[currentPhotoIndex],
+            }),
+            {
+              headers:{
+              "Content-Type":"application/json"
+              }
+            });
+            alert("Image Deleted Successfully");
+            window.location.reload(false);
+          } catch (err) {
+            alert(err);
+          }
       };
 
 

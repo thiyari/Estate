@@ -208,3 +208,18 @@ module.exports.profileUploadImageDBService = async (id,data) => {
                     });               
         })
 }
+
+module.exports.profileDeleteImageDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findOneAndUpdate({_id: id},{$pull:{images:image}},{upsert:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Images uploaded successfully"});
+                        } else {
+                           reject({success:false,msg:"Uploading images failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
