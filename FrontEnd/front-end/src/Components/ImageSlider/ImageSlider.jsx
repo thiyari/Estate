@@ -68,7 +68,7 @@ function ImageSlider(props) {
             alert("Images Updated Successfully");
             setUploadImages('')
             setUploadToggle(false)
-            window.location.reload(false);
+            window.location.reload();
           } catch (err) {
             alert(err);
           }
@@ -76,6 +76,7 @@ function ImageSlider(props) {
 
     const handleDelete = async (e) => {
         e.preventDefault()
+        window.confirm('Are you sure deleting the current image!')
         try{
           await axios.delete(`http://localhost:8000/api/profile/deleteimage/${props.Id}`, 
             { data: JSON.stringify({
@@ -83,7 +84,7 @@ function ImageSlider(props) {
               }), headers: { "Content-Type":"application/json" } }
             )
             alert("Image Deleted Successfully");
-            window.location.reload(false);
+            window.location.reload();
           } catch (err) {
             alert(err);
           }
