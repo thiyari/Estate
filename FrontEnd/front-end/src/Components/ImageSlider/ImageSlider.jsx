@@ -6,6 +6,7 @@ function ImageSlider(props) {
   const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
   const [Images,setImages] = useState([])
   const [uploadToggle,setUploadToggle] = useState(false)
+  const [uploadImages, setUploadImages] = useState([])
 
   useEffect(()=>{
     axios.get(`http://localhost:8000/api/profile/${props.Id}`)
@@ -49,18 +50,34 @@ function ImageSlider(props) {
           for (let i = 0; i < e.target.files.length; i++) {
              images.push(await imagebased64(e.target.files[i]))
           }
+        setUploadImages(images)
         setUploadToggle(true)  
       };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        setUploadToggle(false)
-    } 
+        try{
+          await axios.post(`http://localhost:8000/api/profile/upload/${props.Id}`, JSON.stringify({
+            images: uploadImages,
+            }),
+            {
+              headers:{
+              "Content-Type":"application/json"
+              }
+            });
+            alert("Images Updated Successfully");
+            setUploadImages('')
+            setUploadToggle(false)
+          } catch (err) {
+            alert(err);
+          }
+      }; 
 
     const handleDelete = (e) => {
         e.preventDefault()
         console.log(currentPhotoIndex)
       };
+
 
   return (
 
@@ -85,7 +102,9 @@ function ImageSlider(props) {
         <td><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
         <td><button onClick={handleNextClick}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>        
         <td>{ uploadToggle ? 
+          <>
           <button type="submit" style={{paddingLeft: 80, paddingRight: 80, width: 25}} onClick={handleSubmit}><i class="fa fa-check" aria-hidden="true"></i></button>
+          </>
         :
           <div>
             <label htmlFor='uploadImage'>

@@ -135,9 +135,9 @@ module.exports.profileLnameUserDBService = async (id,data) => {
         await userModel.findByIdAndUpdate(id,{lastname:data.lastname},{new:true})
                 .then((docs)=>{
                         if(docs) {
-                           resolve({success:true,msg:"First name changed"});
+                           resolve({success:true,msg:"Last name changed"});
                         } else {
-                           reject({success:false,msg:"changing first name failed"});
+                           reject({success:false,msg:"changing last name failed"});
                         }
                     }).catch((err)=>{
                        reject(err);
@@ -151,9 +151,9 @@ module.exports.profileUnameUserDBService = async (id,data) => {
         await userModel.findByIdAndUpdate(id,{username:data.username},{new:true})
                 .then((docs)=>{
                         if(docs) {
-                           resolve({success:true,msg:"First name changed"});
+                           resolve({success:true,msg:"User name changed"});
                         } else {
-                           reject({success:false,msg:"changing first name failed"});
+                           reject({success:false,msg:"changing user name failed"});
                         }
                     }).catch((err)=>{
                        reject(err);
@@ -167,9 +167,9 @@ module.exports.profileEmailUserDBService = async (id,data) => {
         await userModel.findByIdAndUpdate(id,{email:data.email},{new:true})
                 .then((docs)=>{
                         if(docs) {
-                           resolve({success:true,msg:"First name changed"});
+                           resolve({success:true,msg:"Email changed"});
                         } else {
-                           reject({success:false,msg:"changing first name failed"});
+                           reject({success:false,msg:"changing email failed"});
                         }
                     }).catch((err)=>{
                        reject(err);
@@ -183,9 +183,25 @@ module.exports.profilePhoneUserDBService = async (id,data) => {
         await userModel.findByIdAndUpdate(id,{phone:data.phone},{new:true})
                 .then((docs)=>{
                         if(docs) {
-                           resolve({success:true,msg:"First name changed"});
+                           resolve({success:true,msg:"Phone name changed"});
                         } else {
-                           reject({success:false,msg:"changing first name failed"});
+                           reject({success:false,msg:"changing phone number failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.profileUploadImageDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findOneAndUpdate({_id: id},{$push:{images:data.images}},{upsert:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Images uploaded successfully"});
+                        } else {
+                           reject({success:false,msg:"Uploading images failed"});
                         }
                     }).catch((err)=>{
                        reject(err);

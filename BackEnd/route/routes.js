@@ -17,5 +17,6 @@ router.route('/api/profile/lname/:id').put(userController.profileLnameController
 router.route('/api/profile/user/:id').put(userController.profileUserControllerFn);
 router.route('/api/profile/email/:id').put(userController.profileEmailControllerFn);
 router.route('/api/profile/phone/:id').put(userController.profilePhoneControllerFn);
+router.route('/api/profile/upload/:id').post(userController.profileUploadImagesControllerFn);
 
 module.exports = router;
