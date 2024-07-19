@@ -77,14 +77,11 @@ function ImageSlider(props) {
     const handleDelete = async (e) => {
         e.preventDefault()
         try{
-          await axios.delete(`http://localhost:8000/api/profile/deleteimage/${props.Id}`, JSON.stringify({
-            image: Images[currentPhotoIndex],
-            }),
-            {
-              headers:{
-              "Content-Type":"application/json"
-              }
-            });
+          await axios.delete(`http://localhost:8000/api/profile/deleteimage/${props.Id}`, 
+            { data: JSON.stringify({
+              image: Images[currentPhotoIndex],
+              }), headers: { "Content-Type":"application/json" } }
+            )
             alert("Image Deleted Successfully");
             window.location.reload(false);
           } catch (err) {
