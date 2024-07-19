@@ -85,6 +85,7 @@ function Profile(props){
   let inputError = {...initialState};
 
   const handleFnameInput = (event) => {
+    event.preventDefault()
     setFname(event.target.value);
   };
 
@@ -124,6 +125,7 @@ function Profile(props){
   };  
 
   const handleLnameInput = (event) => {
+    event.preventDefault()
     setLname(event.target.value);
   };
 
@@ -164,6 +166,7 @@ function Profile(props){
   };  
 
   const handleUserInput = (event) => {
+    event.preventDefault()
     setUser(event.target.value);
   };  
 
@@ -227,6 +230,7 @@ function Profile(props){
   };  
 
   const handleEmailInput = (event) => {
+    event.preventDefault()
     setEmail(event.target.value);
   };
 
@@ -280,6 +284,7 @@ function Profile(props){
 
 
   const handlePhoneInput = (event) => {
+    event.preventDefault()
     setPhone(event.target.value);
   };
 
@@ -349,7 +354,7 @@ function Profile(props){
       </h1>
         <div className="form-container">
           <div className="card-body">
-      <form onSubmit="">
+      <form>
         <div className="row">
         <div className="col-md-12">
         <div className='row'>
