@@ -78,7 +78,7 @@ function ImageSlider(props) {
         e.preventDefault()
         try{
           await axios.delete(`http://localhost:8000/api/profile/deleteimage/${props.Id}`, JSON.stringify({
-            image: Images[currentPhotoIndex],
+            index: currentPhotoIndex,
             }),
             {
               headers:{

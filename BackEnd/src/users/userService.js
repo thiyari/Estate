@@ -211,12 +211,12 @@ module.exports.profileUploadImageDBService = async (id,data) => {
 
 module.exports.profileDeleteImageDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.findOneAndUpdate({_id: id},{$pull:{images:image}},{upsert:true})
+        await userModel.findOneAndUpdate({_id: id},{$pull:{images:images[data.index]}},{upsert:true})
                 .then((docs)=>{
                         if(docs) {
-                           resolve({success:true,msg:"Images uploaded successfully"});
+                           resolve({success:true,msg:"Image Deleteed successfully"});
                         } else {
-                           reject({success:false,msg:"Uploading images failed"});
+                           reject({success:false,msg:"Deleting image failed"});
                         }
                     }).catch((err)=>{
                        reject(err);
