@@ -76,7 +76,7 @@ function ImageSlider(props) {
 
     const handleDelete = async (e) => {
         e.preventDefault()
-        window.confirm('Are you sure deleting the current image!')
+        if(window.confirm('Are you sure deleting this current image!')){
         try{
           await axios.delete(`http://localhost:8000/api/profile/deleteimage/${props.Id}`, 
             { data: JSON.stringify({
@@ -88,6 +88,7 @@ function ImageSlider(props) {
           } catch (err) {
             alert(err);
           }
+        }
       };
 
 
