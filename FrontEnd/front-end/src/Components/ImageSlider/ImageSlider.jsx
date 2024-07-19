@@ -42,14 +42,34 @@ function ImageSlider(props) {
       };
 
   return (
-    <div>
-    <img src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
-    <button onClick={handlePrevClick}><i class="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button>
-    <button onClick={handleNextClick}><i class="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button>
-    <p>Image [{currentPhotoIndex+1}/{Images.length}] </p>
-    <button onClick={handleUpload}><i class="fa fa-upload" aria-hidden="true"></i></button>
-    <button onClick={handleDelete}><i class="fas fa-trash-alt"></i></button>
-  </div>
+
+<>
+<table class="table" style={{width:"100%"}}>
+  <thead>
+    <tr>
+      <th scope="col">Images</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+          <div>
+            <img src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
+          </div>
+      </td>
+    </tr>
+    <tr>
+      <th scope="col">
+        <td><button onClick={handlePrevClick}><i class="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
+        <td><button onClick={handleNextClick}><i class="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>
+        <td><p style={{fontWeight:"lighter"}}>Picture [{currentPhotoIndex+1}/{Images.length}]</p></td>
+        <td><button onClick={handleUpload}><i class="fa fa-upload" aria-hidden="true"></i></button></td>
+        <td><button onClick={handleDelete}><i class="fas fa-trash-alt"></i></button></td>
+      </th>
+    </tr>
+  </tbody>
+</table>
+</>
   );
 }
 
