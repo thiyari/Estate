@@ -68,6 +68,7 @@ function ImageSlider(props) {
             alert("Images Updated Successfully");
             setUploadImages('')
             setUploadToggle(false)
+            window.location.reload(false);
           } catch (err) {
             alert(err);
           }
