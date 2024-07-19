@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+//import './ImageSlider.css'
 
 function ImageSlider(props) {
 
@@ -29,22 +30,22 @@ function ImageSlider(props) {
         if (currentPhotoIndex < Images.length - 1) {
           setCurrentPhotoIndex(currentPhotoIndex + 1);
         }
+        console.log(currentPhotoIndex)
       };
 
     const handleDelete = (e) => {
         e.preventDefault()
-
+        console.log(currentPhotoIndex)
       };
 
-    const handleUpload = (e) => {
+    const handleUploadImage = (e) => {
         e.preventDefault()
-
       };
 
   return (
 
-<>
-<table class="table" style={{width:"100%"}}>
+<div className ="table-responsive-md">
+<table className ="table">
   <thead>
     <tr>
       <th scope="col">Images</th>
@@ -60,16 +61,25 @@ function ImageSlider(props) {
     </tr>
     <tr>
       <th scope="col">
-        <td><button onClick={handlePrevClick}><i class="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
-        <td><button onClick={handleNextClick}><i class="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>
+        <td><button onClick={handlePrevClick}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
+        <td><button onClick={handleNextClick}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>
         <td><p style={{fontWeight:"lighter"}}>Picture [{currentPhotoIndex+1}/{Images.length}]</p></td>
-        <td><button onClick={handleUpload}><i class="fa fa-upload" aria-hidden="true"></i></button></td>
-        <td><button onClick={handleDelete}><i class="fas fa-trash-alt"></i></button></td>
+        <td>
+          <div>
+            <label htmlFor='uploadImage'>
+              <div style={{paddingLeft:60, cursor: 'pointer'}}>
+                <input  type='file' multiple accept="image/*" id='uploadImage' onChange={handleUploadImage}/>
+                <i className="fa fa-upload" aria-hidden="true"></i>
+              </div>
+            </label>
+          </div>
+        </td>
+        <td><button style={{paddingLeft:80}} onClick={handleDelete}><i className="fas fa-trash-alt"></i></button></td>
       </th>
     </tr>
   </tbody>
 </table>
-</>
+</div>
   );
 }
 
