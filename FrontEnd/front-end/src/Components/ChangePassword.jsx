@@ -161,6 +161,18 @@ function ChangePassword(props){
               })
               setUser('');
               setPassword('');
+
+              axios.post('http://localhost:8000/api/logout')
+              .then(res => {
+                if(res.data.valid){
+                  alert("Please Login Again")
+                  navigate('/Login')
+                } else {
+                  alert("Logout Failed")
+                }
+              })
+              .catch(err => console.log(err))
+
             } catch (err) {
               alert(err);
             }
