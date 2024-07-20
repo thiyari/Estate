@@ -48,20 +48,80 @@ function Properties(props){
         <div className="card-body">
     <form>
     <div className='col-md-12'>
+
     <div className='row'>
         <div className='col-md-1'></div>
-        <div className='col-md-4'>
-          <div className='form-group'>
-            <label className="form-label">Name</label>
-            <input className="form-control" type="text"></input>
+        <div className='col-md-5'>
+
+
+        <div className="form-group">
+          <table>
+            <tr>
+              <th><label className="form-label">Property Location</label></th>
+            </tr>
+            <tr>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="location" 
+              placeholder="Enter your Property Location"
+              name="location" 
+              /></td>
+              <td><button style={{width: 25}}>x</button></td>
+            </tr>
+          </table>
+        </div>
+
+
+
+        <div className="form-group">
+          <label className="form-label">Type of Property</label>
+          <div className="d-flex justify-content-center mb-3">
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="property" 
+          placeholder="Enter your Property Location"
+          name="property" 
+          />
           </div>
         </div>
-        <div className='col-md-2'></div>
-        <div className='col-md-4'>
-        <div className='form-group'>
-          <label className="form-label">Password</label>
-          <input className="form-control" type="text"></input>
+
+
         </div>
+        <div className='col-md-5'>
+
+        <div className="form-group">
+          <table>
+            <tr>
+              <th><label className="form-label">Area of Property</label></th>
+            </tr>
+            <tr>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="area" 
+              placeholder="Area in Sq.Feet"
+              name="area"
+              readonly
+              /></td>
+              <td><button style={{width: 25}}>x</button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Price</label>
+          <input 
+          type="text"  
+          className="form-control mb-3" 
+          id="price" 
+          placeholder="Estimated Price"
+          name="price"
+          />
+        </div>
+
+
         </div>
         <div className='col-md-1'></div>
       </div>
