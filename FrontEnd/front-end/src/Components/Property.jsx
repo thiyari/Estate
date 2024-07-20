@@ -19,7 +19,8 @@ function Properties(props){
     const [floor, setFloor] = useState('')
     const [currency, setCurrency] = useState('')
     const [price, setPrice] = useState('')
-
+    const [zip, setZip] = useState('')
+    const [propertyAddress, setPropertyAddress] = useState('')
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -49,6 +50,8 @@ function Properties(props){
           setFloor(profile_doc.data[0].floor)
           setCurrency(profile_doc.data[0].currency)
           setPrice(profile_doc.data[0].price)
+          setZip(profile_doc.data[0].zip)
+          setPropertyAddress(profile_doc.data[0].address)
         } 
       })
       .catch(err => console.log(err))
@@ -167,6 +170,28 @@ function Properties(props){
         </div>
 
 
+        <div className="form-group">
+          <table align='center'>
+            <tr>
+              <th><label className="form-label">Zip</label></th>
+            </tr>
+            <tr>
+              <td><input 
+                  type="text"  
+                  className="form-control mb-3" 
+                  id="zip" 
+                  placeholder="Zip Code"
+                  name="zip" 
+                  value={zip}
+                  readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
+        </div>
+
+
+
         </div>
         <div className='col-md-5'>
 
@@ -254,6 +279,30 @@ function Properties(props){
         </div>
 
 
+
+        <div className="form-group">
+          <table align='center'>
+            <tr>
+              <th><label htmlFor="address" className="form-label">Property Address</label></th>
+            </tr>
+            <tr>
+              <td>
+                <textarea 
+                  className="form-control" 
+                  id="address" 
+                  placeholder="Enter the address of your property details"
+                  name="address"
+                  rows="3"
+                  value={propertyAddress}
+                  readOnly
+                ></textarea>
+              </td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
+        </div>
+
+
         </div>
         <div className='col-md-1'></div>
       </div>
@@ -266,23 +315,7 @@ function Properties(props){
 
           </div> 
       </div> 
-      <div className='row'>
-        <div className='col-md-1'></div>
-        <div className='col-md-4'>
-          <div className='form-group'>
-            <label className="form-label">Name</label>
-            <input className="form-control" type="text"></input>
-          </div>
-        </div>
-        <div className='col-md-2'></div>
-        <div className='col-md-4'>
-        <div className='form-group'>
-          <label className="form-label">Password</label>
-          <input className="form-control" type="text"></input>
-        </div>
-        </div>
-        <div className='col-md-1'></div>
-      </div>
+
 
     <div className="col-sm-3"></div>
   </div>
