@@ -108,9 +108,10 @@ function Profile(props){
           }
     
     try{
-      await axios.put(`http://localhost:8000/api/profile/fname/${Id}`, JSON.stringify({
+      await axios.put(`http://localhost:8000/api/profile/fname/${Id}`, 
+        {data: JSON.stringify({
         firstname: fname,
-        }),
+        })},
         {
           headers:{
           "Content-Type":"application/json"
@@ -149,9 +150,10 @@ function Profile(props){
           }
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/lname/${Id}`, JSON.stringify({
+      await axios.put(`http://localhost:8000/api/profile/lname/${Id}`,
+       { data: JSON.stringify({
         lastname: lname,
-        }),
+        })},
         {
           headers:{
           "Content-Type":"application/json"
@@ -213,9 +215,10 @@ function Profile(props){
 
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/user/${Id}`, JSON.stringify({
+      await axios.put(`http://localhost:8000/api/profile/user/${Id}`,
+        { data: JSON.stringify({
         username: user,
-        }),
+        })},
         {
           headers:{
           "Content-Type":"application/json"
@@ -278,9 +281,10 @@ function Profile(props){
 
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/email/${Id}`, JSON.stringify({
+      await axios.put(`http://localhost:8000/api/profile/email/${Id}`,
+        {data: JSON.stringify({
         email: email,
-        }),
+        })},
         {
           headers:{
           "Content-Type":"application/json"
@@ -330,9 +334,10 @@ function Profile(props){
           }
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/phone/${Id}`, JSON.stringify({
+      await axios.put(`http://localhost:8000/api/profile/phone/${Id}`, 
+        {data: JSON.stringify({
         phone: phone,
-        }),
+        })},
         {
           headers:{
           "Content-Type":"application/json"

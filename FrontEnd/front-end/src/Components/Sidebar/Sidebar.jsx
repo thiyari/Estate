@@ -25,13 +25,13 @@ const Sidebar = () => {
         </CDBSidebarHeader>
         <CDBSidebarContent>
           <CDBSidebarMenu>
-            <NavLink forceRefresh exact="true" to="/Profile" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+            <NavLink forcerefresh exact="true" to="/Profile" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa fa-user">Profile</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact="true" to="/ChangePassword" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-gear">Change Password</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink forceRefresh exact="true" to="/Properties" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+            <NavLink forcerefresh exact="true" to="/Properties" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-building">My Property</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
