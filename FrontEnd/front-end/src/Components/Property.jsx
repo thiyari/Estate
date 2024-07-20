@@ -73,8 +73,26 @@ function Properties(props){
           <ImageSlider Id={Id} />
 
           </div> 
-          </div> 
-          <div className="col-sm-3"></div>
+      </div> 
+      <div className='row'>
+        <div className='col-md-1'></div>
+        <div className='col-md-4'>
+          <div className='form-group'>
+            <label className="form-label">Name</label>
+            <input className="form-control" type="text"></input>
+          </div>
+        </div>
+        <div className='col-md-2'></div>
+        <div className='col-md-4'>
+        <div className='form-group'>
+          <label className="form-label">Password</label>
+          <input className="form-control" type="text"></input>
+        </div>
+        </div>
+        <div className='col-md-1'></div>
+      </div>
+
+    <div className="col-sm-3"></div>
   </div>
     </form>
   </div>
