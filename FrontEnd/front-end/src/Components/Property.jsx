@@ -47,12 +47,35 @@ function Properties(props){
 			<div className="form-container">
         <div className="card-body">
     <form>
+    <div className='col-md-12'>
+    <div className='row'>
+        <div className='col-md-1'></div>
+        <div className='col-md-4'>
+          <div className='form-group'>
+            <label className="form-label">Name</label>
+            <input className="form-control" type="text"></input>
+          </div>
+        </div>
+        <div className='col-md-2'></div>
+        <div className='col-md-4'>
+        <div className='form-group'>
+          <label className="form-label">Password</label>
+          <input className="form-control" type="text"></input>
+        </div>
+        </div>
+        <div className='col-md-1'></div>
+      </div>
+      </div>
+
       <div className="row">
       <div className="col-md-12">
+
+
+      
       <div className='row'>
       <div className="col-sm-3"></div>
       <div className="col-sm-6">
-      
+
           <ImageSlider Id={Id} />
 
           </div> 
