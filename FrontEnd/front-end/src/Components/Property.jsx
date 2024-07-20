@@ -65,13 +65,7 @@ function Properties(props){
         </div>
         <div className='col-md-1'></div>
       </div>
-      </div>
 
-      <div className="row">
-      <div className="col-md-12">
-
-
-      
       <div className='row'>
       <div className="col-sm-3"></div>
       <div className="col-sm-6">
@@ -81,9 +75,7 @@ function Properties(props){
           </div> 
           </div> 
           <div className="col-sm-3"></div>
-
-        </div>
-      </div>
+  </div>
     </form>
   </div>
 </div>
