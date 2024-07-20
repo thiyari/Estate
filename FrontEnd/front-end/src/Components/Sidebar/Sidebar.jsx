@@ -31,7 +31,7 @@ const Sidebar = () => {
             <NavLink exact="true" to="/ChangePassword" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-gear">Change Password</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink forcerefresh exact="true" to="/Properties" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+            <NavLink forcerefresh exact="true" to="/Property" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-building">My Property</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>

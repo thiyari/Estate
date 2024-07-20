@@ -143,10 +143,11 @@ function ChangePassword(props){
 
 
           try{
-            await axios.put(`http://localhost:8000/api/changepassword/${Id}`, JSON.stringify({
+            await axios.put(`http://localhost:8000/api/changepassword/${Id}`, 
+              { body: JSON.stringify({
               username: user,
               password: formInput.new_password,
-              }),
+              })},
               {
                 headers:{
                 "Content-Type":"application/json"
