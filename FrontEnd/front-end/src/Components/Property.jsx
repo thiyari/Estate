@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar'
 import '../App.css'
 import ImageSlider from './ImageSlider/ImageSlider'
+import { FaEdit } from "react-icons/fa";
 
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
@@ -55,7 +56,7 @@ function Properties(props){
 
 
         <div className="form-group">
-          <table>
+          <table align='center'>
             <tr>
               <th><label className="form-label">Property Location</label></th>
             </tr>
@@ -65,34 +66,43 @@ function Properties(props){
               className="form-control mb-3" 
               id="location" 
               placeholder="Enter your Property Location"
-              name="location" 
+              name="location"
+              readOnly
               /></td>
-              <td><button style={{width: 25}}>x</button></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
             </tr>
           </table>
         </div>
 
 
 
+
         <div className="form-group">
-          <label className="form-label">Type of Property</label>
-          <div className="d-flex justify-content-center mb-3">
-          <input 
-          type="text"  
-          className="form-control mb-3" 
-          id="property" 
-          placeholder="Enter your Property Location"
-          name="property" 
-          />
-          </div>
+          <table align='center'>
+            <tr>
+              <th><label className="form-label">Type of Property</label></th>
+            </tr>
+            <tr>
+              <td><input 
+                  type="text"  
+                  className="form-control mb-3" 
+                  id="property" 
+                  placeholder="Enter your Property Location"
+                  name="property" 
+                  readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
         </div>
+
 
 
         </div>
         <div className='col-md-5'>
 
         <div className="form-group">
-          <table>
+          <table align='center'>
             <tr>
               <th><label className="form-label">Area of Property</label></th>
             </tr>
@@ -103,22 +113,32 @@ function Properties(props){
               id="area" 
               placeholder="Area in Sq.Feet"
               name="area"
-              readonly
+              readOnly
               /></td>
-              <td><button style={{width: 25}}>x</button></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
             </tr>
           </table>
         </div>
 
+
+
         <div className="form-group">
-          <label className="form-label">Price</label>
-          <input 
-          type="text"  
-          className="form-control mb-3" 
-          id="price" 
-          placeholder="Estimated Price"
-          name="price"
-          />
+          <table align='center'>
+            <tr>
+              <th><label className="form-label">Price</label></th>
+            </tr>
+            <tr>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="price" 
+              placeholder="Estimated Price"
+              name="price"
+              readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
         </div>
 
 
