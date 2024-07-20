@@ -87,7 +87,7 @@ function Properties(props){
                   type="text"  
                   className="form-control mb-3" 
                   id="property" 
-                  placeholder="Enter your Property Location"
+                  placeholder="Select your Property type"
                   name="property" 
                   readOnly
               /></td>
@@ -96,6 +96,44 @@ function Properties(props){
           </table>
         </div>
 
+
+        <div className="form-group">
+          <table align='center'>
+            <tr>
+              <th><label className="form-label">Rooms</label></th>
+            </tr>
+            <tr>
+              <td><input 
+                  type="text"  
+                  className="form-control mb-3" 
+                  id="rooms" 
+                  placeholder="Select Rooms"
+                  name="rooms" 
+                  readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div className="form-group">
+          <table align='center'>
+            <tr>
+              <th><label className="form-label">Currency</label></th>
+            </tr>
+            <tr>
+              <td><input 
+                  type="text"  
+                  className="form-control mb-3" 
+                  id="currency" 
+                  placeholder="Select your currency"
+                  name="currency" 
+                  readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
+        </div>
 
 
         </div>
@@ -113,6 +151,45 @@ function Properties(props){
               id="area" 
               placeholder="Area in Sq.Feet"
               name="area"
+              readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
+        </div>
+
+        <div className="form-group">
+          <table align='center'>
+            <tr>
+              <th><label className="form-label">Phase</label></th>
+            </tr>
+            <tr>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="phase" 
+              placeholder="Select Phase"
+              name="Phase"
+              readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+            </tr>
+          </table>
+        </div>
+
+
+        <div className="form-group">
+          <table align='center'>
+            <tr>
+              <th><label className="form-label">Floor</label></th>
+            </tr>
+            <tr>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="floor" 
+              placeholder="Select your floor"
+              name="floor"
               readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
