@@ -11,6 +11,16 @@ function Properties(props){
     const [Id, setId] = useState('')
     const navigate = useNavigate()
 
+    const [propertyLocation, setPropertyLocation] = useState('')
+    const [propertyArea, setPropertyArea] = useState('')
+    const [propertyType, setPropertyType] = useState('')
+    const [phase, setPhase] = useState('')
+    const [rooms, setRooms] = useState('')
+    const [floor, setFloor] = useState('')
+    const [currency, setCurrency] = useState('')
+    const [price, setPrice] = useState('')
+
+
     axios.defaults.withCredentials = true;
     useEffect(()=>{
       axios.get('http://localhost:8000/api/session')
@@ -23,6 +33,23 @@ function Properties(props){
           props.LoginStatus(!loggedIn);
           navigate('/Login')
         }
+      })
+      .catch(err => console.log(err))
+
+
+      axios.get(`http://localhost:8000/api/profile/${Id}`)
+      .then(res => {
+        if(res.data.status){
+          const profile_doc = res.data.profile          
+          setPropertyLocation(profile_doc.data[0].location)
+          setPropertyArea(profile_doc.data[0].area)
+          setPropertyType(profile_doc.data[0].property)
+          setPhase(profile_doc.data[0].phase)
+          setRooms(profile_doc.data[0].rooms)
+          setFloor(profile_doc.data[0].floor)
+          setCurrency(profile_doc.data[0].currency)
+          setPrice(profile_doc.data[0].price)
+        } 
       })
       .catch(err => console.log(err))
 
@@ -67,6 +94,7 @@ function Properties(props){
               id="location" 
               placeholder="Enter your Property Location"
               name="location"
+              value={propertyLocation}
               readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
@@ -88,7 +116,8 @@ function Properties(props){
                   className="form-control mb-3" 
                   id="property" 
                   placeholder="Select your Property type"
-                  name="property" 
+                  name="property"
+                  value={propertyType} 
                   readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
@@ -109,6 +138,7 @@ function Properties(props){
                   id="rooms" 
                   placeholder="Select Rooms"
                   name="rooms" 
+                  value={rooms}
                   readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
@@ -128,6 +158,7 @@ function Properties(props){
                   id="currency" 
                   placeholder="Select your currency"
                   name="currency" 
+                  value={currency}
                   readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
@@ -151,6 +182,7 @@ function Properties(props){
               id="area" 
               placeholder="Area in Sq.Feet"
               name="area"
+              value={propertyArea}
               readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
@@ -170,6 +202,7 @@ function Properties(props){
               id="phase" 
               placeholder="Select Phase"
               name="Phase"
+              value={phase}
               readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
@@ -190,6 +223,7 @@ function Properties(props){
               id="floor" 
               placeholder="Select your floor"
               name="floor"
+              value={floor}
               readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
@@ -211,6 +245,7 @@ function Properties(props){
               id="price" 
               placeholder="Estimated Price"
               name="price"
+              value={price}
               readOnly
               /></td>
               <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
