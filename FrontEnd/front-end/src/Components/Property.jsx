@@ -15,13 +15,15 @@ const initialState = {
   rooms: "",
   other_room: "",
   floor: "",
+  currency: "",
   propertyLocation_status: "",
   propertyArea_status: "",
   propertyType_status: "",
   phase_status: "",
   rooms_status: "",
   other_room_status: "",
-  floor_status: ""
+  floor_status: "",
+  currency_status: ""
 }
 
 const propertyList = [
@@ -168,6 +170,11 @@ const floorList = [
   { value: '108', label: '108' },
 ];
 
+const currencyList = [
+  { value: '', label: 'Select Currency'},
+  { value: 'INR', label: 'INR'},
+  { value: 'USD', label: 'USD'},
+]
 
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
@@ -194,6 +201,7 @@ function Properties(props){
     const [phasetoggle, setPhasetoggle] = useState(false)
     const [roomstoggle, setRoomstoggle] = useState(false)
     const [floortoggle, setFloortoggle] = useState(false)
+    const [currencytoggle, setCurrencytoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -431,6 +439,32 @@ function Properties(props){
           }
       setFloortoggle(false)
     }
+
+
+    const handleCurrencyInput = (event) => {
+      event.preventDefault()
+      setCurrency(event.target.value);
+    };
+  
+    const handleCurrencyEdit = (event) => {
+      event.preventDefault()
+      setCurrencytoggle(true)
+    };
+
+    const handleCurrencySubmit = async (event) => {
+      event.preventDefault()
+          // Check if currency is empty
+          if(!currency){
+            setFormError({
+              ...inputError,
+              currency: "Please select your currency",
+              currency_status: "error"
+            })
+            return;
+          }
+      setCurrencytoggle(false)
+    }
+
     return(
 <React.Fragment>
   <div className="row">
@@ -611,6 +645,28 @@ function Properties(props){
               <th><label className="form-label">Currency</label></th>
             </tr>
             <tr>
+              { currencytoggle ?
+              <>
+              <td>
+              <div className="d-flex justify-content-center mb-3">
+                <select 
+                className="form-select" 
+                title="currency"
+                name="currency"
+                value={currency}
+                onChange={handleCurrencyInput}
+                style={{borderColor: formError.currency_status !== "error" ?"":"red"}}  
+                  >
+                  {currencyList.map((option, index) => (
+                    <option value={option.value} key={index}>{option.label}</option>
+                  ))}
+                </select>
+              </div>
+              </td>
+              <td style={{verticalAlign: "top"}}><button onClick={handleCurrencySubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>
+              :
+              <>
               <td><input 
                   type="text"  
                   className="form-control mb-3" 
@@ -620,8 +676,11 @@ function Properties(props){
                   value={currency}
                   readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
-            </tr>
+              <td style={{verticalAlign: "top"}}><button onClick={handleCurrencyEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>
+              }
+              </tr>
+              <p className="error-message">{formError.currency}</p>
           </table>
         </div>
 
