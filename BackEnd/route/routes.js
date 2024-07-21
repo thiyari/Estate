@@ -24,5 +24,7 @@ router.route('/api/profile/propertyarea/:id').put(userController.profileProperty
 router.route('/api/profile/propertytype/:id').put(userController.profilePropertyTypeControllerFn)
 router.route('/api/profile/propertyphase/:id').put(userController.profilePhaseControllerFn)
 router.route('/api/profile/rooms/:id').put(userController.profileRoomsControllerFn)
+router.route('/api/profile/floor/:id').put(userController.profileFloorControllerFn)
+router.route('/api/profile/currency/:id').put(userController.profileCurrencyControllerFn)
 
 module.exports = router;

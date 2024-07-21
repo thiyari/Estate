@@ -524,7 +524,23 @@ function Properties(props){
             })
             return;
           }
-      setFloortoggle(false)
+
+          try{
+            await axios.put(`http://localhost:8000/api/profile/floor/${Id}`, 
+              JSON.stringify({
+              floor: floor,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Floor is Updated Successfully");
+              setFloortoggle(false)
+            } catch (err) {
+              alert(err);
+            }                    
+            setFormError(inputError);          
     }
 
 
@@ -549,7 +565,22 @@ function Properties(props){
             })
             return;
           }
-      setCurrencytoggle(false)
+          try{
+            await axios.put(`http://localhost:8000/api/profile/currency/${Id}`, 
+              JSON.stringify({
+              currency: currency,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Currency is Updated Successfully");
+              setCurrencytoggle(false)
+            } catch (err) {
+              alert(err);
+            }                    
+            setFormError(inputError);   
     }
 
 

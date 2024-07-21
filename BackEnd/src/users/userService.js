@@ -302,3 +302,35 @@ module.exports.profileRoomsDBService = async (id,data) => {
                     });               
         })
 }
+
+
+module.exports.profileFloorDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{floor:data.floor},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Floor updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Floor failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.profileCurrencyDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{currency:data.currency},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Currency updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Currency failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
