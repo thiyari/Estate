@@ -4,7 +4,13 @@ import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar'
 import '../App.css'
 import ImageSlider from './ImageSlider/ImageSlider'
-import { FaEdit } from "react-icons/fa";
+import { FaEdit, FaCheck } from "react-icons/fa";
+
+
+const initialState = {
+  propertylocation: "",
+  propertyLocation_status: "",
+}
 
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
@@ -21,6 +27,9 @@ function Properties(props){
     const [price, setPrice] = useState('')
     const [zip, setZip] = useState('')
     const [propertyAddress, setPropertyAddress] = useState('')
+
+    const [formError, setFormError] = useState({...initialState})
+    const [propertyLocationtoggle,setPropertylocationtoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -58,6 +67,34 @@ function Properties(props){
 
     },[navigate, props, Id, loggedIn])
   
+ // Initialize an object to track input errors
+ let inputError = {...initialState};
+
+    const handlePropertyLocationInput = (event) => {
+      event.preventDefault()
+      setPropertyLocation(event.target.value);
+    };
+  
+    const handlePropertyLocationEdit = (event) => {
+      event.preventDefault()
+      setPropertylocationtoggle(true)
+    };
+
+    const handlePropertyLocationSubmit = async (event) => {
+      event.preventDefault()
+
+          // Check if property location is empty
+          if(!propertyLocation){
+            setFormError({
+              ...inputError,
+              propertyLocation: "Location should not be empty",
+              propertyLocation_status: "error"
+            })
+            return;
+          }
+
+      setPropertylocationtoggle(false)
+    }
 
     return(
 <React.Fragment>
@@ -91,6 +128,20 @@ function Properties(props){
               <th><label className="form-label">Property Location</label></th>
             </tr>
             <tr>
+              {propertyLocationtoggle?<>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="location" 
+              placeholder="Enter your Property Location"
+              name="location"
+              value={propertyLocation}
+              onChange={handlePropertyLocationInput}
+              style={{borderColor: formError.propertyLocation_status !== "error" ?"":"red"}}
+              /></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyLocationSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>:
+              <>
               <td><input 
               type="text"  
               className="form-control mb-3" 
@@ -100,8 +151,10 @@ function Properties(props){
               value={propertyLocation}
               readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
-            </tr>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyLocationEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>}
+              </tr>
+              <p className="error-message">{formError.propertyLocation}</p>
           </table>
         </div>
 
