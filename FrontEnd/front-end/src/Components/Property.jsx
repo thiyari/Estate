@@ -10,9 +10,20 @@ import { FaEdit, FaCheck } from "react-icons/fa";
 const initialState = {
   propertylocation: "",
   propertyArea: "",
+  propertyType: "",
   propertyLocation_status: "",
   propertyArea_status: "",
+  propertyType_status: "",
 }
+
+const propertyList = [
+  { value: '', label: 'Select Property Type'},
+  { value: 'Open Plot', label: 'Open Plot'},
+  { value: 'Independent House', label: 'Independent House'},
+  { value: 'Duplex Home', label: 'Duplex Home'},
+  { value: 'Flat', label: 'Flat'},
+  { value: 'Commercial', label: 'Commerial'},
+]
 
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
@@ -33,6 +44,7 @@ function Properties(props){
     const [formError, setFormError] = useState({...initialState})
     const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
     const [propertyAreatoggle,setPropertyAreatoggle] = useState(false)
+    const [propertyTypetoggle, setPropertyTypetoggle] = useState(false)
 
 
     axios.defaults.withCredentials = true;
@@ -136,11 +148,36 @@ function Properties(props){
             return;
           }
 
-
-
       setPropertyAreatoggle(false)
     }
 
+
+
+    const handlePropertyTypeInput = (event) => {
+      event.preventDefault()
+      setPropertyType(event.target.value);
+    };
+  
+    const handlePropertyTypeEdit = (event) => {
+      event.preventDefault()
+      setPropertyTypetoggle(true)
+    };
+
+    const handlePropertyTypeSubmit = async (event) => {
+      event.preventDefault()
+
+          // Check if property type is empty
+          if(!propertyType){
+            setFormError({
+              ...inputError,
+              propertyType: "Please select your type of property",
+              propertyType_status: "error"
+            })
+            return;
+          }   
+      
+      setPropertyTypetoggle(false)
+    }
 
 
     return(
@@ -214,6 +251,28 @@ function Properties(props){
               <th><label className="form-label">Type of Property</label></th>
             </tr>
             <tr>
+              { propertyTypetoggle ?
+              <>
+              <td>
+              <div className="d-flex justify-content-center mb-3">
+                <select 
+                className="form-select" 
+                title="property"
+                name="property"
+                value={propertyType}
+                onChange={handlePropertyTypeInput}
+                style={{borderColor: formError.propertyType_status !== "error" ?"":"red"}}  
+                  >
+                  {propertyList.map((option,index) => (
+                    <option value={option.value} key={index}>{option.label}</option>
+                  ))}
+                </select>
+              </div>
+              </td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyTypeSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>
+              :
+              <>
               <td><input 
                   type="text"  
                   className="form-control mb-3" 
@@ -223,8 +282,11 @@ function Properties(props){
                   value={propertyType} 
                   readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
-            </tr>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyTypeEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>
+              }
+              </tr>
+              <p className="error-message">{formError.propertyType}</p>
           </table>
         </div>
 
