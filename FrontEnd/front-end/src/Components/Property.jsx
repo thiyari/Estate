@@ -11,9 +11,11 @@ const initialState = {
   propertylocation: "",
   propertyArea: "",
   propertyType: "",
+  phase: "",
   propertyLocation_status: "",
   propertyArea_status: "",
   propertyType_status: "",
+  phase_status: ""
 }
 
 const propertyList = [
@@ -24,6 +26,14 @@ const propertyList = [
   { value: 'Flat', label: 'Flat'},
   { value: 'Commercial', label: 'Commerial'},
 ]
+
+const phaseList = [
+  { value: '', label: 'Select Phase'},
+  { value: 'east', label: 'East' },
+  { value: 'west', label: 'West' },
+  { value: 'north', label: 'North' },
+  { value: 'south', label: 'South' }
+];
 
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
@@ -45,7 +55,7 @@ function Properties(props){
     const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
     const [propertyAreatoggle,setPropertyAreatoggle] = useState(false)
     const [propertyTypetoggle, setPropertyTypetoggle] = useState(false)
-
+    const [phasetoggle, setPhasetoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -177,6 +187,33 @@ function Properties(props){
           }   
       
       setPropertyTypetoggle(false)
+    }
+
+
+    const handlePhaseInput = (event) => {
+      event.preventDefault()
+      setPhase(event.target.value);
+    };
+  
+    const handlePhaseEdit = (event) => {
+      event.preventDefault()
+      setPhasetoggle(true)
+    };
+    
+    const handlePhaseSubmit = async (event) => {
+      event.preventDefault()
+
+          // Check if phase is empty
+          if(!phase){
+            setFormError({
+              ...inputError,
+              phase: "Please select the phase",
+              phase_status: "error"
+            })
+            return;
+          } 
+      
+      setPhasetoggle(false)
     }
 
 
@@ -400,6 +437,26 @@ function Properties(props){
               <th><label className="form-label">Phase</label></th>
             </tr>
             <tr>
+              { phasetoggle?
+              <>
+              <td><div className="d-flex justify-content-center mb-3">
+                  <select 
+                  className="form-select" 
+                  title="phase"
+                  name="phase"
+                  value={phase}
+                  onChange={handlePhaseInput}
+                  style={{borderColor: formError.phase_status !== "error" ?"":"red"}}  
+                    >
+                    {phaseList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                  </select>
+                  </div>
+              </td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePhaseSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>:
+              <>
               <td><input 
               type="text"  
               className="form-control mb-3" 
@@ -409,8 +466,10 @@ function Properties(props){
               value={phase}
               readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePhaseEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>}
             </tr>
+            <p className="error-message">{formError.phase}</p>
           </table>
         </div>
 
