@@ -29,7 +29,7 @@ function Properties(props){
     const [propertyAddress, setPropertyAddress] = useState('')
 
     const [formError, setFormError] = useState({...initialState})
-    const [propertyLocationtoggle,setPropertylocationtoggle] = useState(false)
+    const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -77,7 +77,7 @@ function Properties(props){
   
     const handlePropertyLocationEdit = (event) => {
       event.preventDefault()
-      setPropertylocationtoggle(true)
+      setPropertyLocationtoggle(true)
     };
 
     const handlePropertyLocationSubmit = async (event) => {
@@ -93,7 +93,7 @@ function Properties(props){
             return;
           }
 
-      setPropertylocationtoggle(false)
+      setPropertyLocationtoggle(false)
     }
 
     return(
