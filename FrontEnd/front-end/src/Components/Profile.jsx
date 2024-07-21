@@ -348,7 +348,6 @@ function Profile(props){
       } catch (err) {
         alert(err);
       }
-      setFormError(inputError);
   };
  
 
@@ -544,8 +543,8 @@ function Profile(props){
         <div align="center">
           <p className="error-message">
             {formError.fname}
-            {formError.lname}{
-            formError.user}
+            {formError.lname}
+            {formError.user}
             {formError.email}
             {formError.phone} 
           </p>
