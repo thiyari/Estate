@@ -9,7 +9,9 @@ import { FaEdit, FaCheck } from "react-icons/fa";
 
 const initialState = {
   propertylocation: "",
+  propertyArea: "",
   propertyLocation_status: "",
+  propertyArea_status: "",
 }
 
 function Properties(props){
@@ -30,6 +32,8 @@ function Properties(props){
 
     const [formError, setFormError] = useState({...initialState})
     const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
+    const [propertyAreatoggle,setPropertyAreatoggle] = useState(false)
+
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -87,7 +91,7 @@ function Properties(props){
           if(!propertyLocation){
             setFormError({
               ...inputError,
-              propertyLocation: "Location should not be empty",
+              propertyLocation: "Property Location should not be empty",
               propertyLocation_status: "error"
             })
             return;
@@ -95,6 +99,49 @@ function Properties(props){
 
       setPropertyLocationtoggle(false)
     }
+
+
+
+
+    const handlePropertyAreaInput = (event) => {
+      event.preventDefault()
+      setPropertyArea(event.target.value);
+    };
+  
+    const handlePropertyAreaEdit = (event) => {
+      event.preventDefault()
+      setPropertyAreatoggle(true)
+    };
+
+    const handlePropertyAreaSubmit = async (event) => {
+      event.preventDefault()
+
+          // Check if property area is empty
+          if(!propertyArea){
+            setFormError({
+              ...inputError,
+              propertyArea: "Area should not be empty else enter numeric zero",
+              propertyArea_status: "error"
+            })
+            return;
+          }
+
+          // Check if property area has numbers
+          if(/\D/.test(propertyArea)){
+            setFormError({
+              ...inputError,
+              propertyArea: "Provide the valid measurements, only the numerals",
+              propertyArea_status: "error"
+            })
+            return;
+          }
+
+
+
+      setPropertyAreatoggle(false)
+    }
+
+
 
     return(
 <React.Fragment>
@@ -254,6 +301,21 @@ function Properties(props){
               <th><label className="form-label">Area of Property</label></th>
             </tr>
             <tr>
+              {propertyAreatoggle?
+              <>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="area" 
+              placeholder="Area in Sq.Feet"
+              name="area"
+              value={propertyArea}
+              onChange={handlePropertyAreaInput}
+              style={{borderColor: formError.propertyArea_status !== "error" ?"":"red"}}
+              /></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyAreaSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>
+              :<>
               <td><input 
               type="text"  
               className="form-control mb-3" 
@@ -263,8 +325,10 @@ function Properties(props){
               value={propertyArea}
               readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyAreaEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>}
             </tr>
+            <p className="error-message">{formError.propertyArea}</p>
           </table>
         </div>
 
