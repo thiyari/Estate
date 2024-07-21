@@ -290,7 +290,7 @@ function Properties(props){
       } catch (err) {
         alert(err);
       }
-
+      setFormError(inputError);
     }
 
 
@@ -344,7 +344,7 @@ function Properties(props){
             } catch (err) {
               alert(err);
             }
-
+            setFormError(inputError);
     }
 
 
@@ -387,6 +387,7 @@ function Properties(props){
             } catch (err) {
               alert(err);
             }
+            setFormError(inputError);
     }
 
 
@@ -427,7 +428,8 @@ function Properties(props){
               setPhasetoggle(false)
             } catch (err) {
               alert(err);
-            }          
+            }         
+            setFormError(inputError); 
     }
 
 
@@ -480,7 +482,24 @@ function Properties(props){
             return;
           }
 
-        setRoomstoggle(false)
+
+          try{
+            await axios.put(`http://localhost:8000/api/profile/rooms/${Id}`, 
+              JSON.stringify({
+              rooms: selected_room,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Rooms Updated Successfully");
+              setRoomstoggle(false)
+              window.location.reload();
+            } catch (err) {
+              alert(err);
+            }                    
+            setFormError(inputError);
     }
 
 

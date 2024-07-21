@@ -287,3 +287,18 @@ module.exports.profilePhaseDBService = async (id,data) => {
         })
 }
 
+
+module.exports.profileRoomsDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{rooms:data.rooms},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Phase updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Phase failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
