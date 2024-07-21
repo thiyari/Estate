@@ -12,10 +12,14 @@ const initialState = {
   propertyArea: "",
   propertyType: "",
   phase: "",
+  rooms: "",
+  other_room: "",
   propertyLocation_status: "",
   propertyArea_status: "",
   propertyType_status: "",
-  phase_status: ""
+  phase_status: "",
+  rooms_status: "",
+  other_room_status: ""
 }
 
 const propertyList = [
@@ -35,6 +39,20 @@ const phaseList = [
   { value: 'south', label: 'South' }
 ];
 
+const roomsList = [
+  { value: '', label: 'Select Rooms'},
+  { value: '1 BHK', label: '1 BHK' },
+  { value: '2 BHK', label: '2 BHK' },
+  { value: '3 BHK', label: '3 BHK' },
+  { value: '1B + 2HK', label: '1B + 2HK'},
+  { value: '1B + 3HK', label: '1B + 3HK'},
+  { value: '2B + 2HK', label: '2B + 2HK'},
+  { value: '2B + 3HK', label: '2B + 3HK'},
+  { value: '3B + 2HK', label: '3B + 2HK'},
+  { value: '3B + 3HK', label: '3B + 3HK'},
+  { value: 'others', label: 'Others'}
+];
+
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
     const [Id, setId] = useState('')
@@ -52,10 +70,13 @@ function Properties(props){
     const [propertyAddress, setPropertyAddress] = useState('')
 
     const [formError, setFormError] = useState({...initialState})
+    const [showOtherOption, setShowOtherOption] = useState(false);
+    const [otherOption, setOtherOption] = useState("");
     const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
     const [propertyAreatoggle,setPropertyAreatoggle] = useState(false)
     const [propertyTypetoggle, setPropertyTypetoggle] = useState(false)
     const [phasetoggle, setPhasetoggle] = useState(false)
+    const [roomstoggle, setRoomstoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -217,6 +238,58 @@ function Properties(props){
     }
 
 
+
+
+    let selected_room = {}
+    if (rooms==="others"){
+      selected_room = otherOption
+    } else {
+      selected_room = rooms
+    }
+
+    console.log(selected_room)
+
+    
+    const handleRoomsInput = (event) => {
+      event.preventDefault()
+      setRooms(event.target.value);
+      if (event.target.value === "others") setShowOtherOption(true);
+      else setShowOtherOption(false);
+    };
+  
+    const handleRoomsEdit = (event) => {
+      event.preventDefault()
+      setRoomstoggle(true)
+    };
+
+    const handleRoomsSubmit = async (event) => {
+      event.preventDefault()
+
+
+
+          // Check if rooms are empty
+          if(!rooms){
+            setFormError({
+              ...inputError,
+              rooms: "Please select the rooms",
+              rooms_status: "error"
+            })
+            return;
+          }
+
+          // Check if other option in rooms is empty
+          if(rooms === "others" && !otherOption){
+            setFormError({
+              ...inputError,
+              other_room: "Please type your choice",
+              other_room_status: "error"
+            })
+            return;
+          }
+
+        setRoomstoggle(false)
+    }
+
     return(
 <React.Fragment>
   <div className="row">
@@ -334,6 +407,47 @@ function Properties(props){
               <th><label className="form-label">Rooms</label></th>
             </tr>
             <tr>
+              { roomstoggle ?
+              <>
+              <td>
+                <div className="d-flex justify-content-center mb-3">
+                  <select 
+                  className="form-select" 
+                  title="rooms"
+                  name="rooms"
+                  value={rooms}
+                  onChange={handleRoomsInput}
+                  style={{borderColor: formError.rooms_status !== "error" ?"":"red"}}  
+                    >
+                    {roomsList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                  </select>
+                </div>
+
+                { showOtherOption && 
+                          <div className="form-group">
+                          <input 
+                          type="text"  
+                          className="form-control mb-3" 
+                          id="rooms" 
+                          placeholder="Type here...."
+                          name="rooms"
+                          value={otherOption}
+                          onChange={({target})=>{
+                            setOtherOption(target.value)}
+                              }
+                          style={{borderColor: formError.other_room_status !== "error" ?"":"red"}}  
+                          />
+                          </div>
+                }
+                <p className="error-message">{formError.other_room}</p>
+                
+              </td>
+              <td style={{verticalAlign: "top"}}><button onClick={handleRoomsSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>
+              :
+              <>
               <td><input 
                   type="text"  
                   className="form-control mb-3" 
@@ -343,8 +457,10 @@ function Properties(props){
                   value={rooms}
                   readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
-            </tr>
+              <td style={{verticalAlign: "top"}}><button onClick={handleRoomsEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>}
+              </tr>
+              <p className="error-message">{formError.rooms}</p>
           </table>
         </div>
 
