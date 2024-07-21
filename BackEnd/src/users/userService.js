@@ -334,3 +334,35 @@ module.exports.profileCurrencyDBService = async (id,data) => {
                     });               
         })
 }
+
+
+module.exports.profileZipDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{zip:data.zip},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Zip code updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating zip code failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.profilePropertyAddressDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{address:data.address},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Property Address updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating property adddress failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}

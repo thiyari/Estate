@@ -409,6 +409,47 @@ var profileUploadImagesControllerFn = async(req,res)=>
     
         }
 
+
+    var profileZipControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profileZipDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
+
+    var profilePropertyAddressControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profilePropertyAddressDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
+
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
@@ -431,5 +472,7 @@ module.exports = {
     profilePhaseControllerFn,
     profileRoomsControllerFn,
     profileFloorControllerFn,
-    profileCurrencyControllerFn
+    profileCurrencyControllerFn,
+    profileZipControllerFn,
+    profilePropertyAddressControllerFn
 }

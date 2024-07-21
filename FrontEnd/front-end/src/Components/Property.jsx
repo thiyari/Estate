@@ -651,7 +651,22 @@ function Properties(props){
             return;
           }
 
-      setZiptoggle(false)
+          try{
+            await axios.put(`http://localhost:8000/api/profile/zip/${Id}`, 
+              JSON.stringify({
+              zip: zip,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Zip code Updated Successfully");
+              setZiptoggle(false)
+            } catch (err) {
+              alert(err);
+            }                    
+            setFormError(inputError);
     }
 
 
@@ -675,8 +690,23 @@ function Properties(props){
               propertyAddress_status: "error"
             })
             return;
-          }  
-      setPropertyAddresstoggle(false)
+          }
+          try{
+            await axios.put(`http://localhost:8000/api/profile/propertyaddress/${Id}`, 
+              JSON.stringify({
+              address: propertyAddress,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Property Address Updated Successfully");
+              setPropertyAddresstoggle(false)
+            } catch (err) {
+              alert(err);
+            }                    
+            setFormError(inputError);
     }
 
     return(
