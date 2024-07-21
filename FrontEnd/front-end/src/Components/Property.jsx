@@ -19,6 +19,7 @@ const initialState = {
   currency: "",
   price: "",
   zip: "",
+  propertyAddress: "",
   propertyLocation_status: "",
   propertyArea_status: "",
   propertyType_status: "",
@@ -28,7 +29,8 @@ const initialState = {
   floor_status: "",
   currency_status: "",
   price_status: "",
-  zip_status: ""
+  zip_status: "",
+  propertyAddress_status:""
 }
 
 const propertyList = [
@@ -209,6 +211,7 @@ function Properties(props){
     const [currencytoggle, setCurrencytoggle] = useState(false)
     const [pricetoggle, setPricetoggle] = useState(false)
     const [ziptoggle, setZiptoggle] = useState(false)
+    const [propertyAddresstoggle, setPropertyAddresstoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -541,6 +544,31 @@ function Properties(props){
           }
 
       setZiptoggle(false)
+    }
+
+
+    const handlePropertyAddressInput = (event) => {
+      event.preventDefault()
+      setPropertyAddress(event.target.value);
+    };
+  
+    const handlePropertyAddressEdit = (event) => {
+      event.preventDefault()
+      setPropertyAddresstoggle(true)
+    };
+
+    const handlePropertyAddressSubmit = async (event) => {
+      event.preventDefault()
+          // Check if property address is empty
+          if(!propertyAddress){
+            setFormError({
+              ...inputError,
+              propertyAddress: "Address should not be empty",
+              propertyAddress_status: "error"
+            })
+            return;
+          }  
+      setPropertyAddresstoggle(false)
     }
 
     return(
@@ -977,7 +1005,23 @@ function Properties(props){
             <tr>
               <th><label htmlFor="address" className="form-label">Property Address</label></th>
             </tr>
-            <tr>
+            <tr>{ propertyAddresstoggle?
+            <>
+            <td>
+              <textarea 
+                className="form-control" 
+                id="address" 
+                placeholder="Enter the address of your property details"
+                name="address"
+                rows="3"
+                value={propertyAddress}
+                onChange={handlePropertyAddressInput}
+                style={{borderColor: formError.propertyAddress_status !== "error" ?"":"red"}}  
+              ></textarea>
+            </td>
+            <td style={{verticalAlign: "top"}}><button onClick={handlePropertyAddressSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+            </>
+              :<>
               <td>
                 <textarea 
                   className="form-control" 
@@ -989,8 +1033,11 @@ function Properties(props){
                   readOnly
                 ></textarea>
               </td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
-            </tr>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyAddressEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>
+              }
+              </tr>
+              <p className="error-message">{formError.propertyAddress}</p>
           </table>
         </div>
 
