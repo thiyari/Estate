@@ -266,6 +266,87 @@ var profileUploadImagesControllerFn = async(req,res)=>
     
 
 
+    var profilePropertyLocationControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profilePropertyLocationDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
+
+
+    var profilePropertyAreaControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profilePropertyAreaDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
+
+    var profilePropertyTypeControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profilePropertyTypeDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
+
+    var profilePhaseControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profilePhaseDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
+
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
@@ -281,5 +362,9 @@ module.exports = {
     profileEmailControllerFn,
     profilePhoneControllerFn,
     profileUploadImagesControllerFn,
-    profileDeleteImageControllerFn
+    profileDeleteImageControllerFn,
+    profilePropertyLocationControllerFn,
+    profilePropertyAreaControllerFn,
+    profilePropertyTypeControllerFn,
+    profilePhaseControllerFn
 }

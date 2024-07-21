@@ -214,7 +214,7 @@ module.exports.profileDeleteImageDBService = async (id,data) => {
         await userModel.findOneAndUpdate({_id: id},{$pull:{images: data.image}})
                 .then((docs)=>{
                         if(docs) {
-                           resolve({success:true,msg:"Image Deleteed successfully"});
+                           resolve({success:true,msg:"Image Deleted successfully"});
                         } else {
                            reject({success:false,msg:"Deleting image failed"});
                         }
@@ -223,3 +223,67 @@ module.exports.profileDeleteImageDBService = async (id,data) => {
                     });               
         })
 }
+
+
+module.exports.profilePropertyLocationDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{location:data.location},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Property Location updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Property Location failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+module.exports.profilePropertyAreaDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{area:data.area},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Property Area updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Property Area failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.profilePropertyTypeDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{property:data.property},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Property Type updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Property Type failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+module.exports.profilePhaseDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await userModel.findByIdAndUpdate(id,{phase:data.phase},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Phase updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Phase failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+

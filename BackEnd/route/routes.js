@@ -19,5 +19,9 @@ router.route('/api/profile/email/:id').put(userController.profileEmailController
 router.route('/api/profile/phone/:id').put(userController.profilePhoneControllerFn);
 router.route('/api/profile/upload/:id').post(userController.profileUploadImagesControllerFn);
 router.route('/api/profile/deleteimage/:id').delete(userController.profileDeleteImageControllerFn);
+router.route('/api/profile/propertylocation/:id').put(userController.profilePropertyLocationControllerFn)
+router.route('/api/profile/propertyarea/:id').put(userController.profilePropertyAreaControllerFn)
+router.route('/api/profile/propertytype/:id').put(userController.profilePropertyTypeControllerFn)
+router.route('/api/profile/propertyphase/:id').put(userController.profilePhaseControllerFn)
 
 module.exports = router;

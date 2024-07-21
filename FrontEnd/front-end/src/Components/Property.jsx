@@ -274,8 +274,23 @@ function Properties(props){
             })
             return;
           }
+        
+    try{
+      await axios.put(`http://localhost:8000/api/profile/propertylocation/${Id}`, 
+        JSON.stringify({
+        location: propertyLocation,
+        }),
+        {
+          headers:{
+          "Content-Type":"application/json"
+          }
+        });
+        alert("Property Location Updated Successfully");
+        setPropertyLocationtoggle(false)
+      } catch (err) {
+        alert(err);
+      }
 
-      setPropertyLocationtoggle(false)
     }
 
 
@@ -314,7 +329,22 @@ function Properties(props){
             return;
           }
 
-      setPropertyAreatoggle(false)
+          try{
+            await axios.put(`http://localhost:8000/api/profile/propertyarea/${Id}`, 
+              JSON.stringify({
+              area: propertyArea,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Property Area Updated Successfully");
+              setPropertyAreatoggle(false)
+            } catch (err) {
+              alert(err);
+            }
+
     }
 
 
@@ -341,8 +371,22 @@ function Properties(props){
             })
             return;
           }   
-      
-      setPropertyTypetoggle(false)
+
+          try{
+            await axios.put(`http://localhost:8000/api/profile/propertytype/${Id}`, 
+              JSON.stringify({
+              property: propertyType,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Property Type Updated Successfully");
+              setPropertyTypetoggle(false)
+            } catch (err) {
+              alert(err);
+            }
     }
 
 
@@ -368,8 +412,22 @@ function Properties(props){
             })
             return;
           } 
-      
-      setPhasetoggle(false)
+
+          try{
+            await axios.put(`http://localhost:8000/api/profile/propertyphase/${Id}`, 
+              JSON.stringify({
+              phase: phase,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Phase Updated Successfully");
+              setPhasetoggle(false)
+            } catch (err) {
+              alert(err);
+            }          
     }
 
 
