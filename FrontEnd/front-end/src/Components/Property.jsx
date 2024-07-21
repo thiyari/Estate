@@ -6,6 +6,7 @@ import '../App.css'
 import ImageSlider from './ImageSlider/ImageSlider'
 import { FaEdit, FaCheck } from "react-icons/fa";
 
+const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 
 const initialState = {
   propertylocation: "",
@@ -17,6 +18,7 @@ const initialState = {
   floor: "",
   currency: "",
   price: "",
+  zip: "",
   propertyLocation_status: "",
   propertyArea_status: "",
   propertyType_status: "",
@@ -25,7 +27,8 @@ const initialState = {
   other_room_status: "",
   floor_status: "",
   currency_status: "",
-  price_status: ""
+  price_status: "",
+  zip_status: ""
 }
 
 const propertyList = [
@@ -193,10 +196,10 @@ function Properties(props){
     const [price, setPrice] = useState('')
     const [zip, setZip] = useState('')
     const [propertyAddress, setPropertyAddress] = useState('')
+    const [otherOption, setOtherOption] = useState("");
 
     const [formError, setFormError] = useState({...initialState})
     const [showOtherOption, setShowOtherOption] = useState(false);
-    const [otherOption, setOtherOption] = useState("");
     const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
     const [propertyAreatoggle,setPropertyAreatoggle] = useState(false)
     const [propertyTypetoggle, setPropertyTypetoggle] = useState(false)
@@ -205,6 +208,7 @@ function Properties(props){
     const [floortoggle, setFloortoggle] = useState(false)
     const [currencytoggle, setCurrencytoggle] = useState(false)
     const [pricetoggle, setPricetoggle] = useState(false)
+    const [ziptoggle, setZiptoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -504,6 +508,41 @@ function Properties(props){
       setPricetoggle(false)
     }
 
+    const handleZipInput = (event) => {
+      event.preventDefault()
+      setZip(event.target.value);
+    };
+  
+    const handleZipEdit = (event) => {
+      event.preventDefault()
+      setZiptoggle(true)
+    };
+
+    const handleZipSubmit = async (event) => {
+      event.preventDefault()
+          // Check if zip is empty
+          if(!zip){
+            setFormError({
+              ...inputError,
+              zip: "Zip code should not be empty",
+              zip_status: "error"
+            })
+            return;
+          }
+          
+          const zip_pattern = ZIP_REGEX.test(zip);
+          if(!zip_pattern){
+            setFormError({
+              ...inputError,
+              zip: "Zip code is invalid",
+              zip_status: "error"
+            })
+            return;
+          }
+
+      setZiptoggle(false)
+    }
+
     return(
 <React.Fragment>
   <div className="row">
@@ -730,6 +769,22 @@ function Properties(props){
               <th><label className="form-label">Zip</label></th>
             </tr>
             <tr>
+              { ziptoggle ?
+            <>
+            <td><input 
+                type="text"  
+                className="form-control mb-3" 
+                id="zip" 
+                placeholder="Zip Code"
+                name="zip" 
+                value={zip}
+                onChange={handleZipInput}
+                style={{borderColor: formError.zip_status !== "error" ?"":"red"}}  
+            /></td>
+            <td style={{verticalAlign: "top"}}><button onClick={handleZipSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+            </> 
+            :
+            <>
               <td><input 
                   type="text"  
                   className="form-control mb-3" 
@@ -739,8 +794,11 @@ function Properties(props){
                   value={zip}
                   readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handleZipEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>  
+              }
             </tr>
+            <p className="error-message">{formError.zip}</p>
           </table>
         </div>
 
