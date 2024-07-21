@@ -16,6 +16,7 @@ const initialState = {
   other_room: "",
   floor: "",
   currency: "",
+  price: "",
   propertyLocation_status: "",
   propertyArea_status: "",
   propertyType_status: "",
@@ -23,7 +24,8 @@ const initialState = {
   rooms_status: "",
   other_room_status: "",
   floor_status: "",
-  currency_status: ""
+  currency_status: "",
+  price_status: ""
 }
 
 const propertyList = [
@@ -202,6 +204,7 @@ function Properties(props){
     const [roomstoggle, setRoomstoggle] = useState(false)
     const [floortoggle, setFloortoggle] = useState(false)
     const [currencytoggle, setCurrencytoggle] = useState(false)
+    const [pricetoggle, setPricetoggle] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -463,6 +466,42 @@ function Properties(props){
             return;
           }
       setCurrencytoggle(false)
+    }
+
+
+
+    const handlePriceInput = (event) => {
+      event.preventDefault()
+      setPrice(event.target.value);
+    };
+  
+    const handlePriceEdit = (event) => {
+      event.preventDefault()
+      setPricetoggle(true)
+    };
+
+    const handlePriceSubmit = async (event) => {
+      event.preventDefault()
+          // Check if price is empty
+          if(!price){
+            setFormError({
+              ...inputError,
+              price: "Price should not be empty else enter numeric zero",
+              price_status: "error"
+            })
+            return;
+          }
+
+          // Check if price has numbers
+          if(/\D/.test(price)){
+            setFormError({
+              ...inputError,
+              price: "Provide the valid price, only the numerals",
+              price_status: "error"
+            })
+            return;
+          }
+      setPricetoggle(false)
     }
 
     return(
@@ -843,6 +882,19 @@ function Properties(props){
               <th><label className="form-label">Price</label></th>
             </tr>
             <tr>
+              {pricetoggle?<>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="price" 
+              placeholder="Estimated Price"
+              name="price"
+              value={price}
+              onChange={handlePriceInput}
+              style={{borderColor: formError.price_status !== "error" ?"":"red"}}  
+              /></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePriceSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>:<>
               <td><input 
               type="text"  
               className="form-control mb-3" 
@@ -852,8 +904,11 @@ function Properties(props){
               value={price}
               readOnly
               /></td>
-              <td style={{verticalAlign: "top"}}><button type="submit" style={{width:25}}><FaEdit /></button></td>
-            </tr>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePriceEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>
+              }
+              </tr>
+              <p className="error-message">{formError.price}</p>
           </table>
         </div>
 
