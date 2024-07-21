@@ -21,12 +21,12 @@ app.use(express.json({limit:"10mb"}))
 app.use(cookieParser());
 app.use(bodyParser.json())
 app.use(session({
-    secret: 'secret',
+    secret: 'estate',
     resave: false,
     saveUninitialized: false,
     cookie: {
         secure: false,
-        maxAge: 86400000
+        maxAge: 24 * 60 * 60 * 1000 // 24 hours
     }
 }
 ))
