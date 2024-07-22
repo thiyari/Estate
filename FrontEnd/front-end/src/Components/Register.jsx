@@ -583,9 +583,14 @@ function Register(props) {
             ...prevState,
             successMsg: "Verification Successful, Saving the details",
           }));
-
         
-      
+        var pid = ""  
+        var randomNumber = Math.floor(100000000 + Math.random() * 900000000);
+        if (formInput.property === 'Open Plot') { pid = 'P'+ randomNumber.toString() }
+        else if(formInput.property === 'Independent House') { pid = 'I'+ randomNumber.toString()} 
+        else if(formInput.property === 'Duplex') { pid = 'D'+ randomNumber.toString()} 
+        else if(formInput.property === 'Flat') { pid = 'F'+ randomNumber.toString()} 
+        else if(formInput.property === 'Commercial') { pid = 'C'+ randomNumber.toString()} 
 
         try {
           setLoading(true);
@@ -607,7 +612,8 @@ function Register(props) {
           price: formInput.price,
           address: formInput.address,
           images: img,
-          requests: "Approved"
+          requests: "Approved",
+          propertyid: pid
           }),
           {
             headers:{
@@ -1064,6 +1070,7 @@ function Register(props) {
           </div>
         </div>
         <div className="col-sm-1"></div>
+        
         <p align="center" className="success-message">{formInput.successMsg}</p>
         <div align="center">
           {!loading && <button type="submit" className="btn btn-primary mt-4">Submit</button>}

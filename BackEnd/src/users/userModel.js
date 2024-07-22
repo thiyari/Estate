@@ -73,6 +73,10 @@ var userSchema = new Schema({
     requests: {
         type: String,
         required: true
+    },
+    propertyid: {
+        type: String,
+        required: true
     }
 });
 

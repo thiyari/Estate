@@ -24,7 +24,8 @@ module.exports.createUserDBService = (userDetails) => {
                                 price: userDetails.price,
                                 property: userDetails.property,
                                 address: userDetails.address,
-                                requests: userDetails.requests
+                                requests: userDetails.requests,
+                                propertyid: userDetails.propertyid
                         });
                         
                 }

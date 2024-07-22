@@ -213,6 +213,7 @@ function Properties(props){
     const [ziptoggle, setZiptoggle] = useState(false)
     const [propertyAddresstoggle, setPropertyAddresstoggle] = useState(false)
     const [approved, setApproved] = useState(false)
+    const [propertyId, setPropertyId] = useState('')
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -245,6 +246,7 @@ function Properties(props){
           setPrice(profile_doc.data[0].price)
           setZip(profile_doc.data[0].zip)
           setPropertyAddress(profile_doc.data[0].address)
+          setPropertyId(profile_doc.data[0].propertyid)
           setApproved(true)
           } else {
             setApproved(false)
@@ -733,7 +735,8 @@ function Properties(props){
         { approved ? ( 
     <form>
     <div className='col-md-12'>
-
+    
+    <div><h2 align="center" style={{color:"green"}}>Property ID: {propertyId}</h2></div>
     <div className='row'>
         <div className='col-md-1'></div>
         <div className='col-md-5'>
