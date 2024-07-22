@@ -713,8 +713,6 @@ function Properties(props){
     }
 
     return(
-<>
-{ approved && (    
 <React.Fragment>
   <div className="row">
   <div className="col-md-2">        
@@ -722,7 +720,7 @@ function Properties(props){
   </div>
   <div className="col-md-10">
 
-
+ 
   <div className="container mt-4" >
     <div className="card">
     <h1 className="card-header">
@@ -732,6 +730,7 @@ function Properties(props){
     </h1>
 			<div className="form-container">
         <div className="card-body">
+        { approved ? ( 
     <form>
     <div className='col-md-12'>
 
@@ -1201,7 +1200,9 @@ function Properties(props){
 
     <div className="col-sm-3"></div>
   </div>
-    </form>
+    </form>): 
+        <h2 align="center">Please wait as our support team will contact you and will update your property details shortly</h2>  
+      } 
   </div>
 </div>
 
@@ -1215,11 +1216,11 @@ function Properties(props){
       </div>
       </div>
       </div> 
+     
     </div>
 </div>
 </React.Fragment>
-  )}
-  </>
+  
     )
 }
 
