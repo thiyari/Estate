@@ -1,9 +1,12 @@
 import {useState, useEffect} from 'react';
 import '../App.css';
 import axios from "axios";
+import SimpleImageSlider from "react-simple-image-slider";
 
 function Home(props) {
     const [loggedIn, setLoggedIn] = useState(false)
+    const [dataExists, setDataExists] = useState(false)
+    const [profiles, setProfiles] = useState([{}])
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -17,55 +20,64 @@ function Home(props) {
         }
       })
       .catch(err => console.log(err))
-    
-     },[props, loggedIn])
+
+    axios.get("http://localhost:8000/api")
+        .then(res => {
+            let profiles_doc = res.data.data
+            if (!Object.keys(profiles_doc).length) { // Check for empty data in the response
+                setDataExists(false)
+            } else {
+                let profiles_list = []
+                for (let i = 0; i < profiles_doc.length;  i++) {
+                    profiles_list.push(profiles_doc[i])
+                }
+                setProfiles(profiles_list)
+                setDataExists(true)
+            }
+        })
+        
+      
+
+    },[props, loggedIn])
 
     return(
         <>
-<div className="row">
-<div className="col-md-1"></div>
-    <div className="col-md-10">
-        <div className='container mt-2'>
-            <div className="row">  
-
-                <div className="col-sm-6">
-                    <div className="card mt-3">
-                    <div className="card-body">
-                        <img className='img-fluid' alt="img" src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" width="100%"/>
-                        <h5 className="card-title">Special title treatment</h5>
-                        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#go" className="btn btn-primary">Go</a>
-                    </div>
-                    </div>
-                </div>
-
-                <div className="col-sm-6">
-                    <div className="card mt-3">
-                    <div className="card-body">
-                    <   img className='img-fluid' alt="img" src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" width="100%"/>
-                        <h5 className="card-title">Special title treatment</h5>
-                        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#go" className="btn btn-primary">Go</a>
-                    </div>
-                    </div>
-                </div>
-
-                <div className="col-sm-6">
-                    <div className="card mt-3">
-                    <div className="card-body">
-                        <img className='img-fluid' alt="img" src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" width="100%"/>
-                        <h5 className="card-title">Special title treatment</h5>
-                        <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        <a href="#go" className="btn btn-primary">Go</a>
-                    </div>
+        {dataExists && (
+            <div className="row">
+            <div className="col-md-1"></div>
+                <div className="col-md-10">
+                    <div className='container mt-2'>
+                        <div className="row">  
+                            {profiles.map((profile, index)=>{ 
+                            return (
+                            <div className="col-sm-6" key={index}>
+                                <div className="card mt-3">
+                                <div className="card-body">
+                                    <SimpleImageSlider
+                                        width={500}
+                                        height={300}
+                                        images={                  
+                                        profile.images.map((image)=>{
+                                        return ({url: image});
+                                        })}
+                                        showBullets={true}
+                                        showNavs={true}
+                                        autoPlay={true}
+                                        loop={true}
+                                        />
+                                    <h5 className="card-title">{profile.firstname}</h5>
+                                    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <a href="#go" className="btn btn-primary">Go</a>
+                                </div>
+                                </div>
+                            </div>)
+                            })}
+                            
+                        </div>
                     </div>
                 </div>
-
-            </div>
-    </div>
-</div>
-<div className="col-md-1"></div>
-</div>
+            <div className="col-md-1"></div>
+            </div> )}
         </>
     )
 }
