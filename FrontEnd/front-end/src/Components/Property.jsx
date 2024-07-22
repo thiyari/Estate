@@ -774,7 +774,7 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handlePropertyLocationEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
               </tr>
-              <p className="error-message">{formError.propertyLocation}</p>
+              <div className="error-message">{formError.propertyLocation}</div>
           </table>
         </div>
 
@@ -822,7 +822,7 @@ function Properties(props){
               </>
               }
               </tr>
-              <p className="error-message">{formError.propertyType}</p>
+              <div className="error-message">{formError.propertyType}</div>
           </table>
         </div>
 
@@ -867,7 +867,7 @@ function Properties(props){
                           />
                           </div>
                 }
-                <p className="error-message">{formError.other_room}</p>
+                <div className="error-message">{formError.other_room}</div>
                 
               </td>
               <td style={{verticalAlign: "top"}}><button onClick={handleRoomsSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
@@ -886,7 +886,7 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handleRoomsEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
               </tr>
-              <p className="error-message">{formError.rooms}</p>
+              <div className="error-message">{formError.rooms}</div>
           </table>
         </div>
 
@@ -931,7 +931,7 @@ function Properties(props){
               </>
               }
               </tr>
-              <p className="error-message">{formError.currency}</p>
+              <div className="error-message">{formError.currency}</div>
           </table>
         </div>
 
@@ -971,7 +971,7 @@ function Properties(props){
               </>  
               }
             </tr>
-            <p className="error-message">{formError.zip}</p>
+            <div className="error-message">{formError.zip}</div>
           </table>
         </div>
 
@@ -1013,7 +1013,7 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handlePropertyAreaEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
             </tr>
-            <p className="error-message">{formError.propertyArea}</p>
+            <div className="error-message">{formError.propertyArea}</div>
           </table>
         </div>
 
@@ -1055,7 +1055,7 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handlePhaseEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
             </tr>
-            <p className="error-message">{formError.phase}</p>
+            <div className="error-message">{formError.phase}</div>
           </table>
         </div>
 
@@ -1101,7 +1101,7 @@ function Properties(props){
               </>
               }
               </tr>
-              <p className="error-message">{formError.floor}</p>
+              <div className="error-message">{formError.floor}</div>
           </table>
         </div>
 
@@ -1139,7 +1139,7 @@ function Properties(props){
               </>
               }
               </tr>
-              <p className="error-message">{formError.price}</p>
+              <div className="error-message">{formError.price}</div>
           </table>
         </div>
 
@@ -1182,7 +1182,7 @@ function Properties(props){
               </>
               }
               </tr>
-              <p className="error-message">{formError.propertyAddress}</p>
+              <div className="error-message">{formError.propertyAddress}</div>
           </table>
         </div>
 
@@ -1210,12 +1210,12 @@ function Properties(props){
 </div>
 
       <div className="card-footer text-muted">
-            <p>
+            <div>
               Already registered?<br />
               <span className="line">
               <a href="/Login">Sign In</a>
               </span>
-            </p>      
+            </div>      
       </div>
       </div>
       </div> 
