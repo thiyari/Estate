@@ -232,7 +232,8 @@ function Properties(props){
       axios.get(`http://localhost:8000/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
-          const profile_doc = res.data.profile          
+          const profile_doc = res.data.profile      
+          if (profile_doc.data[0].requests === 'Approved'){
           setPropertyLocation(profile_doc.data[0].location)
           setPropertyArea(profile_doc.data[0].area)
           setPropertyType(profile_doc.data[0].property)
@@ -243,6 +244,9 @@ function Properties(props){
           setPrice(profile_doc.data[0].price)
           setZip(profile_doc.data[0].zip)
           setPropertyAddress(profile_doc.data[0].address)
+          } else {
+            console.log('Not Approved')
+          }
         } 
       })
       .catch(err => console.log(err))
@@ -441,9 +445,6 @@ function Properties(props){
     } else {
       selected_room = rooms
     }
-
-    console.log(selected_room)
-
     
     const handleRoomsInput = (event) => {
       event.preventDefault()

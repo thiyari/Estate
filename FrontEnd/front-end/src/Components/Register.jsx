@@ -606,7 +606,8 @@ function Register(props) {
           property: formInput.property,
           price: formInput.price,
           address: formInput.address,
-          images: img
+          images: img,
+          requests: "Approved"
           }),
           {
             headers:{
@@ -632,7 +633,7 @@ function Register(props) {
             currency: "",
             property: "",
             price: "",
-            address: ""
+            address: "",
           })
           setLoading(false);
           setRoomSelect('')

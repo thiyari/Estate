@@ -12,8 +12,10 @@ function ImageSlider(props) {
     axios.get(`http://localhost:8000/api/profile/${props.Id}`)
         .then(res => {
         if(res.data.status){
-            const profile_doc = res.data.profile          
+            const profile_doc = res.data.profile  
+            if (profile_doc.data[0].requests === 'Approved')        
             setImages(profile_doc.data[0].images)
+            else console.log('Not Approved')
         } 
         })
         .catch(err => console.log(err))
