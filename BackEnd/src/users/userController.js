@@ -74,7 +74,7 @@ var fetchImagesControllerFn = async(req,res)=>{
        return res.send({message:"All Images",data:result.data});
     }
     else {
-        return res.send({message:'No Images',data:{}});
+        return res.send({message:'No Images',data:result.data});
     }
 }
     

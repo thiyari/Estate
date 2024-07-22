@@ -62,7 +62,7 @@ module.exports.fetchImagesDBService = () => {
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
-                        reject({satus: false, data: 'Invalid data'})
+                        reject({satus: false, data: result})
                 }
         })
 }

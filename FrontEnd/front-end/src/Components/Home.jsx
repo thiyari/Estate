@@ -4,13 +4,20 @@ import '../App.css';
 import axios from "axios";
 
 function Home(props) {
+  const [checkImages, setCheckImages] = useState(false)
   const [loggedIn, setLoggedIn] = useState(false)
   const [allImage,setAllImage] = useState([])
    const fetchImage = async()=>{
       const res = await fetch("http://localhost:8000")
       const doc_res = await res.json()
-      const img_data = doc_res.data[doc_res.data.length-1].images
-      setAllImage(img_data)
+      console.log(doc_res)
+      if (!Object.keys(doc_res.data).length) { // Check for no data or images in the response
+        setCheckImages(false)
+      } else {
+        const img_data = doc_res.data[doc_res.data.length-1].images
+        setAllImage(img_data)      
+        setCheckImages(true)
+      }
     }
 
     axios.defaults.withCredentials = true;
@@ -34,7 +41,7 @@ function Home(props) {
     return (
      <div>
         <div className='allimage'>
-          {
+          { checkImages &&
             allImage.map((image,index) =>{
               return (
                 <div className={"row"} key={index}>
