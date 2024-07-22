@@ -1064,7 +1064,7 @@ function Register(props) {
         </div>
         <div className="col-sm-1"></div>
         
-        <p align="center" className="success-message">{formInput.successMsg}</p>
+        <p align="center" className="success-message mt-4">{formInput.successMsg}</p>
         <div align="center">
           {!loading && <button type="submit" className="btn btn-primary mt-4">Submit</button>}
         </div>
