@@ -588,7 +588,7 @@ function Register(props) {
         var randomNumber = Math.floor(100000000 + Math.random() * 900000000);
         if (formInput.property === 'Open Plot') { pid = 'P'+ randomNumber.toString() }
         else if(formInput.property === 'Independent House') { pid = 'I'+ randomNumber.toString()} 
-        else if(formInput.property === 'Duplex') { pid = 'D'+ randomNumber.toString()} 
+        else if(formInput.property === 'Duplex Home') { pid = 'D'+ randomNumber.toString()} 
         else if(formInput.property === 'Flat') { pid = 'F'+ randomNumber.toString()} 
         else if(formInput.property === 'Commercial') { pid = 'C'+ randomNumber.toString()} 
 
