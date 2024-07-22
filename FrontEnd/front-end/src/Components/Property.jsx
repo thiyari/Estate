@@ -212,6 +212,7 @@ function Properties(props){
     const [pricetoggle, setPricetoggle] = useState(false)
     const [ziptoggle, setZiptoggle] = useState(false)
     const [propertyAddresstoggle, setPropertyAddresstoggle] = useState(false)
+    const [approved, setApproved] = useState(false)
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -244,8 +245,9 @@ function Properties(props){
           setPrice(profile_doc.data[0].price)
           setZip(profile_doc.data[0].zip)
           setPropertyAddress(profile_doc.data[0].address)
+          setApproved(true)
           } else {
-            console.log('Not Approved')
+            setApproved(false)
           }
         } 
       })
@@ -711,6 +713,8 @@ function Properties(props){
     }
 
     return(
+<>
+{ approved && (    
 <React.Fragment>
   <div className="row">
   <div className="col-md-2">        
@@ -1210,10 +1214,12 @@ function Properties(props){
             </p>      
       </div>
       </div>
-      </div>
+      </div> 
     </div>
 </div>
 </React.Fragment>
+  )}
+  </>
     )
 }
 

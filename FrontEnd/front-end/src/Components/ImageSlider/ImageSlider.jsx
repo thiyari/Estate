@@ -7,15 +7,18 @@ function ImageSlider(props) {
   const [Images,setImages] = useState([])
   const [uploadToggle,setUploadToggle] = useState(false)
   const [uploadImages, setUploadImages] = useState([])
+  const [approved, setApproved] = useState(false)
 
   useEffect(()=>{
     axios.get(`http://localhost:8000/api/profile/${props.Id}`)
         .then(res => {
         if(res.data.status){
             const profile_doc = res.data.profile  
-            if (profile_doc.data[0].requests === 'Approved')        
-            setImages(profile_doc.data[0].images)
-            else console.log('Not Approved')
+            if (profile_doc.data[0].requests === 'Approved'){    
+              setImages(profile_doc.data[0].images)
+              setApproved(true)
+            }
+            else { setApproved(false) }
         } 
         })
         .catch(err => console.log(err))
@@ -95,7 +98,8 @@ function ImageSlider(props) {
 
 
   return (
-
+<>
+{ approved && (
 <div className ="table-responsive-md">
 <table className ="table">
   <thead>
@@ -137,6 +141,8 @@ function ImageSlider(props) {
   </tbody>
 </table>
 </div>
+  )}
+  </>
   );
 }
 
