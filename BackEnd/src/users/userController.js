@@ -25,10 +25,10 @@ var loginUserControllerFn = async(req,res)=>
     var result = null;
     try
     {
+        var result = await userService.loginuserDBService(req.body)
         req.session.username = req.body.user
         req.session.password = req.body.password
         req.session.isLoggedIn = true;
-        var result = await userService.loginuserDBService(req.body)
         session.id = result.id
         req.session.save()
         if(result.status){
