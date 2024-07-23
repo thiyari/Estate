@@ -55,21 +55,44 @@ function Plots(props) {
 <                               div className="card mb-4" key={index}>
                                     <div className="row g-0">
                                         <div className="col-md-8 ">
-                                        <img style={{padding: '10px'}} src={profile.images[currentPhotoIndex]} className="img-fluid" alt="images"/>
-                                        </div>
-                                        <div>
-                                        <button onClick={()=>{
+                                        <div className ="table-responsive-md">
+                                        <table className ="table">
+                                        <thead>
+                                            <tr>
+                                            <th scope="col">Images</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                            <td>
+                                                <div>
+                                                    <img style={{padding: '10px'}} src={profile.images[currentPhotoIndex]} className="img-fluid" alt="images"/>
+                                                </div>
+                                            </td>
+                                            </tr>
+                                            <tr>
+                                            <td> 
+                                                <button onClick={()=>{
                                                     if (currentPhotoIndex > 0) {
                                                         setCurrentPhotoIndex(currentPhotoIndex - 1);
                                                       }
-                                        }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button>
-                                        <p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{profile.images.length}]</p>
-                                        <button onClick={()=>{
-                                            if (currentPhotoIndex < profile.images.length - 1) {
-                                                setCurrentPhotoIndex(currentPhotoIndex + 1);
-                                            }
-                                        }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button>
+                                                }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button>
+                                            </td>
+                                            <td><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{profile.images.length}]</p></td>
+                                            <td>
+                                                    <button onClick={()=>{
+                                                        if (currentPhotoIndex < profile.images.length - 1) {
+                                                            setCurrentPhotoIndex(currentPhotoIndex + 1);
+                                                        }
+                                                    }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button>
+                                            </td>         
+                                            </tr>
+                                            </tbody>
+                                            </table>
+                                            </div>
+
                                         </div>
+                                        
                                         <div className="col-md-4">
                                         <div className="card-body mt-2">
                                             <h5 className="card-title">{profile.property}</h5>
