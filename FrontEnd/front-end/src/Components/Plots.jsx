@@ -51,7 +51,7 @@ function Plots(props) {
 
                            { profiles.map((profile,index)=>{
                                 return(
-<                               div className="card mb-4" key={index}>
+<                               div className="card mb-4 ml-1 mr-1" key={index}>
                                     <div className="row g-0">
                                         <div className="col-md-8 mt-3 mb-3">
                                         <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
