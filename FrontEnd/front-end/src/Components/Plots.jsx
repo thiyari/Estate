@@ -57,7 +57,7 @@ function Plots(props) {
                                         <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
                                         </div>
                                         <div className="col-md-4">
-                                        <div className="card-body">
+                                        <div className="card-body mt-5">
                                             <h5 className="card-title">{profile.property}</h5>
                                             <ul className="list-group list-group-flush">
                                                 <li className="list-group-item">Property ID: {profile.propertyid}</li>
@@ -66,7 +66,7 @@ function Plots(props) {
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
                                             </ul>
-                                            <a href="#go" className="btn btn-primary mt-3">Go</a>                                        </div>
+                                            <a href="#go" className="btn btn-primary mt-5">Go</a>                                        </div>
                                         </div>
                                     </div>
                                 </div>
