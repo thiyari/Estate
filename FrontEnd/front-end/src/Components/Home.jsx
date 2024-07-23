@@ -53,6 +53,7 @@ function Home(props) {
                             <div className="col-sm-6" key={index}>
                                 <div className="card mt-3">
                                 <div className="card-body">
+                                    <div className='slider'>
                                     <SimpleImageSlider
                                         width={500}
                                         height={300}
@@ -65,6 +66,7 @@ function Home(props) {
                                         autoPlay={true}
                                         loop={true}
                                         />
+                                        </div>
                                     <h5 className="card-title">{profile.firstname}</h5>
                                     <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                     <a href="#go" className="btn btn-primary">Go</a>

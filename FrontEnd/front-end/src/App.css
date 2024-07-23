@@ -96,3 +96,15 @@ form button{
 input[type="text"], input[type="email"], h2, th, td {
   font-family: "Rajdhani", sans-serif;
 }
+
+.slider{
+  max-width: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  object-fit: cover;
+  transform: translateX(0);
+  transition: transform 1s ease;
+}
