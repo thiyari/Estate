@@ -56,10 +56,10 @@ function Plots(props) {
 <                               div className="card mb-4" key={index}>
                                     <div className="row g-0">
                                         <div className="col-md-8 ">
-                                        <div style={{padding: '10px 10px 10px 50px'}} className='slider'>
+                                        <div style={{padding: '0px 0px 0px 0px'}} className='slider'>
                                             <SimpleImageSlider
                                                 width={500}
-                                                height={300}
+                                                height={330}
                                                 images={                  
                                                 profile.images.map((image)=>{
                                                 return ({url: image});
