@@ -1,7 +1,6 @@
 import {useState, useEffect} from 'react';
 import '../App.css';
 import axios from "axios";
-import SimpleImageSlider from "react-simple-image-slider";
 
 function Plots(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -47,39 +46,39 @@ function Plots(props) {
             <div className="row">
             <div className="col-md-1"></div>
                 <div className="col-md-10">
-                    <div className='container mt-2'>
+                    <div className='container mt-4'>
                         <div className="row">  
-                            {profiles.map((profile, index)=>{ 
-                            return (
-                            <div className="col-sm-6" key={index}>
-                                <div className="card mt-3">
-                                <div className="card-body">
-                                    <div className='slider'>
-                                    <SimpleImageSlider
-                                        width={500}
-                                        height={300}
-                                        images={                  
-                                        profile.images.map((image)=>{
-                                        return ({url: image});
-                                        })}
-                                        showBullets={true}
-                                        showNavs={false}
-                                        autoPlay={true}
-                                        loop={true}
-                                        />
-                                        </div>
-                                    <h5 className="card-title mt-3">{profile.property}</h5>
-                                    <ul className="list-group list-group-flush">
-                                        <li className="list-group-item">Area: {profile.area} Sq. ft</li>
-                                        <li className="list-group-item">Rooms: {profile.rooms}</li>
-                                        <li className="list-group-item">Locality: {profile.location}</li>
-                                    </ul>
-                                    <a href="#go" className="btn btn-primary mt-3">Go</a>
+
+                            <div className="card mb-4" >
+                                <div className="row g-0">
+                                    <div className="col-md-5 mt-3 mb-3">
+                                    <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
+                                    </div>
+                                    <div className="col-md-7">
+                                    <div className="card-body">
+                                        <h5 className="card-title">Card title</h5>
+                                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
+                                    </div>
+                                    </div>
                                 </div>
+                            </div>
+
+                            <div className="card" >
+                                <div className="row g-0">
+                                    <div className="col-md-5 mt-3 mb-3">
+                                    <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
+                                    </div>
+                                    <div className="col-md-7">
+                                    <div className="card-body">
+                                        <h5 className="card-title">Card title</h5>
+                                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                                        <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
+                                    </div>
+                                    </div>
                                 </div>
-                            </div>)
-                            })}
-                            
+                            </div>
+
                         </div>
                     </div>
                 </div>
