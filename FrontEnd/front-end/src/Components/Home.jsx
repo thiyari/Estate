@@ -62,7 +62,7 @@ function Home(props) {
                                         return ({url: image});
                                         })}
                                         showBullets={true}
-                                        showNavs={true}
+                                        showNavs={false}
                                         autoPlay={true}
                                         loop={true}
                                         />
