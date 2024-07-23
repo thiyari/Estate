@@ -4,7 +4,7 @@ var userController = require('../src/users/userController');
 const router = express.Router();
 
 
-router.route('/api').get(userController.fetchImagesControllerFn)
+router.route('/api').get(userController.fetchProfilesControllerFn)
 router.route('/api/session').get(userController.sessionControllerFn);
 router.route('/api/users').get(userController.usersControllerFn);
 router.route('/api/login').post(userController.loginUserControllerFn);

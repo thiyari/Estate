@@ -58,9 +58,9 @@ module.exports.loginuserDBService = (userDetails) => {
         })
 }
 
-module.exports.fetchImagesDBService = () => {
+module.exports.fetchProfilesDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.find().sort({_id:-1});
+                result = await userModel.find().sort({_id:-1}).limit(10);
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {

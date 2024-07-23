@@ -23,7 +23,7 @@ function Home(props) {
 
     axios.get("http://localhost:8000/api")
         .then(res => {
-            let profiles_doc = res.data.data
+            let profiles_doc = res.data.records
             if (!Object.keys(profiles_doc).length) { // Check for empty data in the response
                 setDataExists(false)
             } else {
@@ -67,14 +67,13 @@ function Home(props) {
                                         loop={true}
                                         />
                                         </div>
-                                    <h5 className="card-title">{profile.firstname}</h5>
-                                    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Cras justo odio</li>
-                                        <li class="list-group-item">Dapibus ac facilisis in</li>
-                                        <li class="list-group-item">Vestibulum at eros</li>
+                                    <h5 className="card-title mt-3">{profile.property}</h5>
+                                    <ul className="list-group list-group-flush">
+                                        <li className="list-group-item">Area: {profile.area} Sq. ft</li>
+                                        <li className="list-group-item">Rooms: {profile.rooms}</li>
+                                        <li className="list-group-item">Locality: {profile.location}</li>
                                     </ul>
-                                    <a href="#go" className="btn btn-primary">Go</a>
+                                    <a href="#go" className="btn btn-primary mt-3">Go</a>
                                 </div>
                                 </div>
                             </div>)

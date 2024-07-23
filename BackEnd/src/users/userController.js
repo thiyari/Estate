@@ -68,13 +68,13 @@ var sessionControllerFn = async(req,res)=>{
         }
 }
 
-var fetchImagesControllerFn = async(req,res)=>{
-    const result = await (userService.fetchImagesDBService())
+var fetchProfilesControllerFn = async(req,res)=>{
+    const result = await (userService.fetchProfilesDBService())
     if(result.status){
-       return res.send({message:"All Images",data:result.data});
+       return res.send({message:"All Images",records:result.data});
     }
     else {
-        return res.send({message:'No Images',data:result.data});
+        return res.send({message:'No Images',records:result.data});
     }
 }
     
@@ -455,7 +455,7 @@ module.exports = {
     loginUserControllerFn, 
     logoutUserControllerFn,
     sessionControllerFn, 
-    fetchImagesControllerFn,
+    fetchProfilesControllerFn,
     changepasswordUserControllerFn,
     usersControllerFn, 
     profileControllerFn,
