@@ -88,8 +88,18 @@ var fetchProfilesPlotsControllerFn = async(req,res)=>{
     }
 }
 
-var fetchProfilesFlatsControllerFn = async(req,res)=>{
-    const result = await (userService.fetchProfilesFlatsDBService())
+var fetchProfilesHousesControllerFn = async(req,res)=>{
+    const result = await (userService.fetchProfilesHousesDBService())
+    if(result.status){
+       return res.send({message:"All Images",records:result.data});
+    }
+    else {
+        return res.send({message:'No Images',records:result.data});
+    }
+}
+
+var fetchProfilesCommercialControllerFn = async(req,res)=>{
+    const result = await (userService.fetchProfilesCommercialDBService())
     if(result.status){
        return res.send({message:"All Images",records:result.data});
     }
@@ -495,5 +505,6 @@ module.exports = {
     profileZipControllerFn,
     profilePropertyAddressControllerFn,
     fetchProfilesPlotsControllerFn,
-    fetchProfilesFlatsControllerFn
+    fetchProfilesHousesControllerFn,
+    fetchProfilesCommercialControllerFn
 }

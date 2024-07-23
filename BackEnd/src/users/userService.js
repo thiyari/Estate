@@ -80,9 +80,14 @@ module.exports.fetchProfilesPlotsDBService = () => {
         })
 }
 
-module.exports.fetchProfilesFlatsDBService = () => {
+module.exports.fetchProfilesHousesDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.find({property: "Flat",requests: "Approved"}).sort({_id:-1});
+                result = await userModel.find({$or:
+                        [
+                                {property: "Flat", requests: "Approved"},
+                                {property: "Independent House", requests: "Approved"},
+                                {property: "Duplex Home", requests: "Approved"}
+                        ]}).sort({_id:-1});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
@@ -90,6 +95,18 @@ module.exports.fetchProfilesFlatsDBService = () => {
                 }
         })
 }
+
+module.exports.fetchProfilesCommercialDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await userModel.find({property: "Commercial",requests: "Approved"}).sort({_id:-1});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({satus: false, data: result})
+                }
+        })
+}
+
 
 module.exports.changepassworduserDBService = (userDetails) => {
         return new Promise(async function myFn(resolve,reject){

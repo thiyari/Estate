@@ -50,10 +50,10 @@ const logoutHandler = () => {
           <a className="nav-link"  href="../Plots">Plots</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="../Flats">Flats</a>
+          <a className="nav-link" href="../Houses">Houses</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#c">Commercial</a>
+          <a className="nav-link" href="../Commercial">Commercial</a>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="#s">Search</a>

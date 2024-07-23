@@ -6,7 +6,8 @@ const router = express.Router();
 
 router.route('/api').get(userController.fetchProfilesControllerFn);
 router.route('/api/plots').get(userController.fetchProfilesPlotsControllerFn)
-router.route('/api/flats').get(userController.fetchProfilesFlatsControllerFn)
+router.route('/api/houses').get(userController.fetchProfilesHousesControllerFn)
+router.route('/api/commercial').get(userController.fetchProfilesCommercialControllerFn)
 router.route('/api/session').get(userController.sessionControllerFn);
 router.route('/api/users').get(userController.usersControllerFn);
 router.route('/api/login').post(userController.loginUserControllerFn);

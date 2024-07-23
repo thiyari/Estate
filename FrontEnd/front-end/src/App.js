@@ -8,7 +8,8 @@ import Footer from './Components/Common/Footer';
 import ChangePassword from './Components/ChangePassword';
 import Property from './Components/Property';
 import Plots from './Components/Plots';
-import Flats from './Components/Flats';
+import Houses from './Components/Houses';
+import Commercial from './Components/Commercial';
 import { useState } from 'react';
 
 function App() {
@@ -28,7 +29,8 @@ const handleLogin = (status) => {
           <Route path="/Login" element = {<Login />} />
           <Route path="/" element = {<Home LoginStatus={handleLogin}/>} />
           <Route path="/Plots" element = {<Plots LoginStatus={handleLogin}/>} />
-          <Route path="/Flats" element = {<Flats LoginStatus={handleLogin}/>} />
+          <Route path="/Houses" element = {<Houses LoginStatus={handleLogin}/>} />
+          <Route path="/Commercial" element = {<Commercial LoginStatus={handleLogin}/>} />
           <Route path="/ChangePassword" element = {<ChangePassword LoginStatus={handleLogin}/>} />
           <Route path="/Property" element = {<Property LoginStatus={handleLogin}/>} />
         </Routes>

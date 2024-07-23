@@ -3,7 +3,7 @@ import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
 
-function Flats(props) {
+function Houses(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
@@ -21,7 +21,7 @@ function Flats(props) {
       })
       .catch(err => console.log(err))
 
-    axios.get("http://localhost:8000/api/flats")
+    axios.get("http://localhost:8000/api/houses")
         .then(res => {
             let profiles_doc = res.data.records
             console.log(profiles_doc)
@@ -56,7 +56,7 @@ function Flats(props) {
 <                               div className="card mb-4" key={index}>
                                     <div className="row g-0">
                                         <div className="col-md-8">
-                                        <div style={{padding: '0px 0px 0px 0px'}} className='slider'>
+                                        <div className='slider'>
                                             <SimpleImageSlider
                                                 width={610}
                                                 height={400}
@@ -101,4 +101,4 @@ function Flats(props) {
     )
 }
 
-export default Flats;
+export default Houses;
