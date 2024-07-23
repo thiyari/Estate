@@ -66,7 +66,7 @@ function Plots(props) {
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
                                             </ul>
-                                            <a href="#go" className="btn btn-primary mt-5">Go</a>                                        </div>
+                                            <a href="#go" className="btn btn-primary mt-5">Check Out</a>                                        </div>
                                         </div>
                                     </div>
                                 </div>
