@@ -44,45 +44,39 @@ function Plots(props) {
         <>
         {dataExists && (
             <div className="row">
-            <div className="col-md-1"></div>
-                <div className="col-md-10">
+            <div className="col-md-2"></div>
+                <div className="col-md-8">
                     <div className='container mt-4'>
                         <div className="row">  
 
-                            <div className="card mb-4" >
-                                <div className="row g-0">
-                                    <div className="col-md-5 mt-3 mb-3">
-                                    <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
-                                    </div>
-                                    <div className="col-md-7">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Card title</h5>
-                                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div className="card" >
-                                <div className="row g-0">
-                                    <div className="col-md-5 mt-3 mb-3">
-                                    <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
-                                    </div>
-                                    <div className="col-md-7">
-                                    <div className="card-body">
-                                        <h5 className="card-title">Card title</h5>
-                                        <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                        <p className="card-text"><small className="text-body-secondary">Last updated 3 mins ago</small></p>
-                                    </div>
+                           { profiles.map((profile,index)=>{
+                                return(
+<                               div className="card mb-4" key={index}>
+                                    <div className="row g-0">
+                                        <div className="col-md-8 mt-3 mb-3">
+                                        <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
+                                        </div>
+                                        <div className="col-md-4">
+                                        <div className="card-body">
+                                            <h5 className="card-title">{profile.property}</h5>
+                                            <ul className="list-group list-group-flush">
+                                                <li className="list-group-item">Property ID: {profile.propertyid}</li>
+                                                <li className="list-group-item">Area: {profile.area} Sq. ft</li>
+                                                <li className="list-group-item">Phase: {profile.phase}</li>
+                                                <li className="list-group-item">Locality: {profile.location}</li>
+                                                <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
+                                            </ul>
+                                            <a href="#go" className="btn btn-primary mt-3">Go</a>                                        </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
+                                )
+                            })}
+                            
                         </div>
                     </div>
                 </div>
-            <div className="col-md-1"></div>
+            <div className="col-md-2"></div>
             </div> )}
         </>
     )
