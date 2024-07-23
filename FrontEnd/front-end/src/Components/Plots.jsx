@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react';
 import '../App.css';
 import axios from "axios";
+import SimpleImageSlider from "react-simple-image-slider";
 
 function Plots(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -55,7 +56,20 @@ function Plots(props) {
 <                               div className="card mb-4" key={index}>
                                     <div className="row g-0">
                                         <div className="col-md-8 ">
-                                        <img style={{padding: '10px'}} src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
+                                        <div style={{padding: '10px 10px 10px 50px'}} className='slider'>
+                                            <SimpleImageSlider
+                                                width={500}
+                                                height={300}
+                                                images={                  
+                                                profile.images.map((image)=>{
+                                                return ({url: image});
+                                                })}
+                                                showBullets={true}
+                                                showNavs={true}
+                                                autoPlay={false}
+                                                loop={true}
+                                                />
+                                        </div>
                                         </div>
                                         <div className="col-md-4">
                                         <div className="card-body mt-2">
