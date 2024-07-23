@@ -45,8 +45,8 @@ function Plots(props) {
         <>
         {dataExists && (
             <div className="row">
-            <div className="col-md-2"></div>
-                <div className="col-md-8">
+            <div className="col-md-1"></div>
+                <div className="col-md-10">
                     <div className='container mt-4'>
                         <div className="row">  
                         <div className="col-sm-1"></div>
@@ -58,8 +58,8 @@ function Plots(props) {
                                         <div className="col-md-8">
                                         <div className='slider'>
                                             <SimpleImageSlider
-                                                width={500}
-                                                height={330}
+                                                width={610}
+                                                height={400}
                                                 images={                  
                                                 profile.images.map((image)=>{
                                                 return ({url: image});
@@ -72,7 +72,7 @@ function Plots(props) {
                                         </div>
                                         </div>
                                         <div className="col-md-4">
-                                        <div className="card-body mt-2">
+                                        <div className="card-body mt-4">
                                             <h5 className="card-title">{profile.property}</h5>
                                             <ul className="list-group list-group-flush">
                                                 <li className="list-group-item">Property ID: {profile.propertyid}</li>
@@ -81,7 +81,7 @@ function Plots(props) {
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
                                             </ul>
-                                            <a href="#go" className="btn btn-primary mt-2">Check Out</a>                                        </div>
+                                            <a href="#go" className="btn btn-primary mt-5">Check Out</a>                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@ function Plots(props) {
                         <div className='col-sm-1'></div>
                     </div>
                 </div>
-            <div className="col-md-2"></div>
+            <div className="col-md-1"></div>
             </div> )}
         </>
     )
