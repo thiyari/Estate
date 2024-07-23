@@ -48,16 +48,17 @@ function Plots(props) {
                 <div className="col-md-8">
                     <div className='container mt-4'>
                         <div className="row">  
-
+                        <div className="col-sm-1"></div>
+                        <div className="col-sm-10">
                            { profiles.map((profile,index)=>{
                                 return(
 <                               div className="card mb-4" key={index}>
                                     <div className="row g-0">
-                                        <div className="col-md-8 mt-3 mb-3">
-                                        <img src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
+                                        <div className="col-md-8 ">
+                                        <img style={{padding: '10px'}} src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
                                         </div>
                                         <div className="col-md-4">
-                                        <div className="card-body mt-5">
+                                        <div className="card-body mt-2">
                                             <h5 className="card-title">{profile.property}</h5>
                                             <ul className="list-group list-group-flush">
                                                 <li className="list-group-item">Property ID: {profile.propertyid}</li>
@@ -66,7 +67,7 @@ function Plots(props) {
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
                                             </ul>
-                                            <a href="#go" className="btn btn-primary mt-5">Check Out</a>                                        </div>
+                                            <a href="#go" className="btn btn-primary mt-2">Check Out</a>                                        </div>
                                         </div>
                                     </div>
                                 </div>
@@ -74,6 +75,8 @@ function Plots(props) {
                             })}
                             
                         </div>
+                        </div>
+                        <div className='col-sm-1'></div>
                     </div>
                 </div>
             <div className="col-md-2"></div>
