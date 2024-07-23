@@ -108,3 +108,7 @@ input[type="text"], input[type="email"], h2, th, td {
   transform: translateX(0);
   transition: transform 1s ease;
 }
+
+.card, .navbar, .border {
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
+}

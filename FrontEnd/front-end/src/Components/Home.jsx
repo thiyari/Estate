@@ -69,6 +69,11 @@ function Home(props) {
                                         </div>
                                     <h5 className="card-title">{profile.firstname}</h5>
                                     <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item">Cras justo odio</li>
+                                        <li class="list-group-item">Dapibus ac facilisis in</li>
+                                        <li class="list-group-item">Vestibulum at eros</li>
+                                    </ul>
                                     <a href="#go" className="btn btn-primary">Go</a>
                                 </div>
                                 </div>
