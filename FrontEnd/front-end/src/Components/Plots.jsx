@@ -6,6 +6,7 @@ function Plots(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     axios.defaults.withCredentials = true;
     useEffect(()=>{
@@ -35,10 +36,9 @@ function Plots(props) {
                 setDataExists(true)
             }
         })
-        
-      
 
     },[props, loggedIn])
+
 
     return(
         <>
@@ -55,7 +55,20 @@ function Plots(props) {
 <                               div className="card mb-4" key={index}>
                                     <div className="row g-0">
                                         <div className="col-md-8 ">
-                                        <img style={{padding: '10px'}} src="https://img.freepik.com/free-psd/blank-wall-psd-japandi-living-room-interior_53876-109284.jpg" className="img-fluid" alt="..."/>
+                                        <img style={{padding: '10px'}} src={profile.images[currentPhotoIndex]} className="img-fluid" alt="images"/>
+                                        </div>
+                                        <div>
+                                        <button onClick={()=>{
+                                                    if (currentPhotoIndex > 0) {
+                                                        setCurrentPhotoIndex(currentPhotoIndex - 1);
+                                                      }
+                                        }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button>
+                                        <p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{profile.images.length}]</p>
+                                        <button onClick={()=>{
+                                            if (currentPhotoIndex < profile.images.length - 1) {
+                                                setCurrentPhotoIndex(currentPhotoIndex + 1);
+                                            }
+                                        }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button>
                                         </div>
                                         <div className="col-md-4">
                                         <div className="card-body mt-2">
