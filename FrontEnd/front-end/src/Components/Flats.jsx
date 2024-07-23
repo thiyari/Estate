@@ -3,7 +3,7 @@ import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
 
-function Plots(props) {
+function Flats(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
@@ -21,7 +21,7 @@ function Plots(props) {
       })
       .catch(err => console.log(err))
 
-    axios.get("http://localhost:8000/api/plots")
+    axios.get("http://localhost:8000/api/flats")
         .then(res => {
             let profiles_doc = res.data.records
             console.log(profiles_doc)
@@ -45,8 +45,8 @@ function Plots(props) {
         <>
         {dataExists && (
             <div className="row">
-            <div className="col-md-2"></div>
-                <div className="col-md-8">
+            <div className="col-md-1"></div>
+                <div className="col-md-10">
                     <div className='container mt-4'>
                         <div className="row">  
                         <div className="col-sm-1"></div>
@@ -56,10 +56,10 @@ function Plots(props) {
 <                               div className="card mb-4" key={index}>
                                     <div className="row g-0">
                                         <div className="col-md-8">
-                                        <div className='slider'>
+                                        <div style={{padding: '0px 0px 0px 0px'}} className='slider'>
                                             <SimpleImageSlider
-                                                width={500}
-                                                height={330}
+                                                width={610}
+                                                height={400}
                                                 images={                  
                                                 profile.images.map((image)=>{
                                                 return ({url: image});
@@ -72,12 +72,14 @@ function Plots(props) {
                                         </div>
                                         </div>
                                         <div className="col-md-4">
-                                        <div className="card-body mt-2">
+                                        <div className="card-body">
                                             <h5 className="card-title">{profile.property}</h5>
                                             <ul className="list-group list-group-flush">
                                                 <li className="list-group-item">Property ID: {profile.propertyid}</li>
                                                 <li className="list-group-item">Area: {profile.area} Sq. ft</li>
                                                 <li className="list-group-item">Phase: {profile.phase}</li>
+                                                <li className="list-group-item">Rooms: {profile.rooms}</li>
+                                                <li className="list-group-item">Floor: {profile.floor}</li>
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
                                             </ul>
@@ -93,10 +95,10 @@ function Plots(props) {
                         <div className='col-sm-1'></div>
                     </div>
                 </div>
-            <div className="col-md-2"></div>
+            <div className="col-md-1"></div>
             </div> )}
         </>
     )
 }
 
-export default Plots;
+export default Flats;

@@ -88,6 +88,16 @@ var fetchProfilesPlotsControllerFn = async(req,res)=>{
     }
 }
 
+var fetchProfilesFlatsControllerFn = async(req,res)=>{
+    const result = await (userService.fetchProfilesFlatsDBService())
+    if(result.status){
+       return res.send({message:"All Images",records:result.data});
+    }
+    else {
+        return res.send({message:'No Images',records:result.data});
+    }
+}
+
 var changepasswordUserControllerFn = async(req,res)=>
         {
             var result = null;
@@ -484,5 +494,6 @@ module.exports = {
     profileCurrencyControllerFn,
     profileZipControllerFn,
     profilePropertyAddressControllerFn,
-    fetchProfilesPlotsControllerFn
+    fetchProfilesPlotsControllerFn,
+    fetchProfilesFlatsControllerFn
 }
