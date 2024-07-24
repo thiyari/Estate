@@ -5,7 +5,6 @@ const router = express.Router();
 
 
 router.route('/api').get(userController.fetchProfilesControllerFn);
-router.route('/api/:propertyid').get(userController.fetchProfilesPropertyidControllerFn);
 router.route('/api/plots').get(userController.fetchProfilesPlotsControllerFn)
 router.route('/api/houses').get(userController.fetchProfilesHousesControllerFn)
 router.route('/api/commercial').get(userController.fetchProfilesCommercialControllerFn)
@@ -14,6 +13,7 @@ router.route('/api/users').get(userController.usersControllerFn);
 router.route('/api/login').post(userController.loginUserControllerFn);
 router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);
+router.route('/api/:propertyid').get(userController.fetchProfilesPropertyidControllerFn);
 router.route('/api/changepassword/:id').put(userController.changepasswordUserControllerFn);
 router.route('/api/profile/:id').get(userController.profileControllerFn);
 router.route('/api/profile/fname/:id').put(userController.profileFnameControllerFn);
