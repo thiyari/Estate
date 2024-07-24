@@ -110,9 +110,7 @@ function ImageSlider(props) {
   <tbody>
     <tr>
       <td colSpan={5}>
-          <div>
             <img className="img-fluid" src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
-          </div>
       </td>
     </tr>
     <tr>
