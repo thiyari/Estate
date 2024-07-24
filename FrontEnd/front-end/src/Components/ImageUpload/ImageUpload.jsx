@@ -31,7 +31,7 @@ function ImageUpload(props){
     { props.img.length === 0 ? <PiUploadSimpleBold/> :
             <SimpleImageSlider
             width={700}
-            height={400}
+            height={500}
             images={                  
               props.img.map((image)=>{
               return ({url: image});

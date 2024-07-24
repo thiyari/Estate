@@ -40,6 +40,7 @@ function Home2(props) {
      
     return (
      <div>
+        <img src='https://media.istockphoto.com/id/1471683196/vector/black-wavy-lines-isolated-on-white-abstract-background-design.jpg?s=612x612&w=0&k=20&c=OiEcsV3iKnIS96d2fHbVXQS-aWBeWaTfx5o_fY3Q_Rg=' height="150" width="100%" alt="banner"></img>
         <div className='allimage'>
           { checkImages &&
             allImage.map((image,index) =>{
