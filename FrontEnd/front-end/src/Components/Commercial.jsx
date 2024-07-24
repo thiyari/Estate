@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
+import { Link } from 'react-router-dom';
 
 function Commercial(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -83,7 +84,10 @@ function Commercial(props) {
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
                                             </ul>
-                                            <a href="#go" className="btn btn-primary mt-2">Check Out</a>                                        </div>
+                                            <Link to={`/Checkout/${profile.propertyid}`}>
+                                                <a href="#Checkout" className="btn btn-primary mt-2">Check Out</a>
+                                            </Link>                                        
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

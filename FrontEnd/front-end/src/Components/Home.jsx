@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react';
 import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
+import { Link } from 'react-router-dom';
 
 function Home(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -35,8 +36,7 @@ function Home(props) {
                 setDataExists(true)
             }
         })
-        
-      
+
 
     },[props, loggedIn])
 
@@ -73,7 +73,9 @@ function Home(props) {
                                         <li className="list-group-item">Rooms: {profile.rooms}</li>
                                         <li className="list-group-item">Locality: {profile.location}</li>
                                     </ul>
-                                    <a href="#go" className="btn btn-primary mt-3">Go</a>
+                                    <Link to={`/Checkout/${profile.propertyid}`}>
+                                        <a href="#Go" className="btn btn-primary mt-3">Go</a>
+                                    </Link>
                                 </div>
                                 </div>
                             </div>)
