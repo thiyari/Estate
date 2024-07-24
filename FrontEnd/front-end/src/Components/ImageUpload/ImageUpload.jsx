@@ -46,13 +46,13 @@ function ImageUpload(props){
             </td>
           </tr>
           <tr>
-              <td><button onClick={()=>{
+              <td align="center"><button onClick={()=>{
                         if (currentPhotoIndex > 0) {
                           setCurrentPhotoIndex(currentPhotoIndex - 1);
                         }
               }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
-              <td><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{props.img.length}]</p></td>
-              <td><button onClick={()=>{
+              <td align="center"><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{props.img.length}]</p></td>
+              <td align="center"><button onClick={()=>{
                         if (currentPhotoIndex < props.img.length - 1) {
                           setCurrentPhotoIndex(currentPhotoIndex + 1);
                         }

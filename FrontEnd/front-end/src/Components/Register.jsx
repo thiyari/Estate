@@ -1057,7 +1057,7 @@ function Register(props) {
         <div className="col-md-1"></div>
         <div className="col-sm-1"></div>
         <div className="col-sm-10">
-          <div className="form-group">
+          <div className="form-group" align="center">
             <label className="form-label">Upload Images</label>
             <ImageUpload img={img} onSetImg={setImages}/>
           </div>
