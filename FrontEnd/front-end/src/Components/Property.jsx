@@ -744,6 +744,7 @@ function Properties(props){
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Property Location</label></th>
             </tr>
@@ -777,6 +778,7 @@ function Properties(props){
               <tr>
               <td><p className="error-message">{formError.propertyLocation}</p></td>
               </tr>
+              </tbody>
           </table>
         </div>
 
@@ -785,6 +787,7 @@ function Properties(props){
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Type of Property</label></th>
             </tr>
@@ -827,12 +830,14 @@ function Properties(props){
               <tr>
               <td><p className="error-message">{formError.propertyType}</p></td>
               </tr>
+              </tbody>
           </table>
         </div>
 
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Rooms</label></th>
             </tr>
@@ -894,11 +899,13 @@ function Properties(props){
               <tr>
               <td><p className="error-message">{formError.rooms}</p></td>
               </tr>
+              </tbody>
           </table>
         </div>
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Currency</label></th>
             </tr>
@@ -941,12 +948,14 @@ function Properties(props){
               <tr>
               <td><p className="error-message">{formError.currency}</p></td>
               </tr>
+              </tbody>
           </table>
         </div>
 
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Zip</label></th>
             </tr>
@@ -983,6 +992,7 @@ function Properties(props){
             <tr>
             <td><p className="error-message">{formError.zip}</p></td>
             </tr>
+            </tbody>
           </table>
         </div>
 
@@ -993,6 +1003,7 @@ function Properties(props){
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Area of Property</label></th>
             </tr>
@@ -1027,11 +1038,13 @@ function Properties(props){
             <tr>
             <td><p className="error-message">{formError.propertyArea}</p></td>
             </tr>
+            </tbody>
           </table>
         </div>
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Phase</label></th>
             </tr>
@@ -1071,12 +1084,14 @@ function Properties(props){
             <tr>
             <td><p className="error-message">{formError.phase}</p></td>
             </tr>
+            </tbody>
           </table>
         </div>
 
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Floor</label></th>
             </tr>
@@ -1119,6 +1134,7 @@ function Properties(props){
               <tr>
               <td><p className="error-message">{formError.floor}</p></td>
               </tr>
+              </tbody>
           </table>
         </div>
 
@@ -1126,6 +1142,7 @@ function Properties(props){
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label className="form-label">Price</label></th>
             </tr>
@@ -1159,6 +1176,7 @@ function Properties(props){
               <tr>
               <td><p className="error-message">{formError.price}</p></td>
               </tr>
+              </tbody>
           </table>
         </div>
 
@@ -1166,6 +1184,7 @@ function Properties(props){
 
         <div className="form-group">
           <table align='center'>
+            <tbody>
             <tr>
               <th><label htmlFor="address" className="form-label">Property Address</label></th>
             </tr>
@@ -1204,6 +1223,7 @@ function Properties(props){
               <tr>
               <td><p className="error-message">{formError.propertyAddress}</p></td>
               </tr>
+            </tbody> 
           </table>
         </div>
 
