@@ -104,19 +104,18 @@ function ImageSlider(props) {
 <table className ="table">
   <thead>
     <tr>
-      <th scope="col">Images</th>
+      <th scope="col" colSpan={5}>Images</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td>
+      <td colSpan={5}>
           <div>
             <img className="img-fluid" src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
           </div>
       </td>
     </tr>
     <tr>
-      <th scope="col">
         <td><button onClick={handlePrevClick}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
         <td><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
         <td><button onClick={handleNextClick}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>        
@@ -136,7 +135,6 @@ function ImageSlider(props) {
           }
         </td>
         <td><button style={{width: 25}} onClick={handleDelete}><i className="fas fa-trash-alt"></i></button></td>
-      </th>
     </tr>
   </tbody>
 </table>
