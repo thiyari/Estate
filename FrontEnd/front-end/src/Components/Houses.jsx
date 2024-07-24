@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
@@ -9,20 +9,22 @@ function Houses(props) {
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
 
-    axios.defaults.withCredentials = true;
-    useEffect(()=>{
-      axios.get('http://localhost:8000/api/session')
-      .then(res => {
-        if(res.data.valid){
-          setLoggedIn(res.data.isLoggedIn);
-          props.LoginStatus(loggedIn);
-        } else {
-          props.LoginStatus(!loggedIn);
-        }
-      })
-      .catch(err => console.log(err))
+    const session = useCallback(async ()=>{
+        await axios.get('http://localhost:8000/api/session')
+        .then(res => {
+          if(res.data.valid){
+            setLoggedIn(res.data.isLoggedIn);
+            props.LoginStatus(loggedIn);
+          } else {
+            props.LoginStatus(!loggedIn);
+          }
+        })
+        .catch(err => console.log(err))  
+    },[props, loggedIn])
 
-    axios.get("http://localhost:8000/api/houses")
+
+    const records = useCallback(async () =>{
+        await axios.get("http://localhost:8000/api/houses")
         .then(res => {
             let profiles_doc = res.data.records
             console.log(profiles_doc)
@@ -37,10 +39,14 @@ function Houses(props) {
                 setDataExists(true)
             }
         })
-        
-      
+    },[])
 
-    },[props, loggedIn])
+
+    axios.defaults.withCredentials = true;
+    useEffect(()=>{
+          session();
+          records();
+    },[session, records])
 
     return(
         <>

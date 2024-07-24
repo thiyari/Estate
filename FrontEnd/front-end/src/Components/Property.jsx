@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar'
 import '../App.css'
@@ -215,9 +215,9 @@ function Properties(props){
     const [approved, setApproved] = useState(false)
     const [propertyId, setPropertyId] = useState('')
 
-    axios.defaults.withCredentials = true;
-    useEffect(()=>{
-      axios.get('http://localhost:8000/api/session')
+
+    const session = useCallback( async () => {
+      await axios.get('http://localhost:8000/api/session')
       .then(res => {
         if(res.data.valid){
           setId(res.data.id);
@@ -229,9 +229,11 @@ function Properties(props){
         }
       })
       .catch(err => console.log(err))
+    },[navigate, props, loggedIn])
 
 
-      axios.get(`http://localhost:8000/api/profile/${Id}`)
+    const profile = useCallback(async () => {
+      await axios.get(`http://localhost:8000/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile      
@@ -254,8 +256,13 @@ function Properties(props){
         } 
       })
       .catch(err => console.log(err))
+    },[Id])
 
-    },[navigate, props, Id, loggedIn])
+    axios.defaults.withCredentials = true;
+    useEffect(()=>{
+      session();
+      profile();
+    },[session, profile])
   
  // Initialize an object to track input errors
  let inputError = {...initialState};

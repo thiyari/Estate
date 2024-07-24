@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Sidebar from './Sidebar/Sidebar'
 import { FaEdit,FaCheck } from "react-icons/fa";
@@ -36,10 +36,8 @@ function Profile(props){
 
   const navigate = useNavigate()
 
-  axios.defaults.withCredentials = true;
-  useEffect(()=>{
-     
-     axios.get('http://localhost:8000/api/session')
+  const session = useCallback(async () =>{
+    await axios.get('http://localhost:8000/api/session')
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
@@ -52,8 +50,11 @@ function Profile(props){
       }
     })
     .catch(err => console.log(err))
-  
-    axios.get('http://localhost:8000/api/users')
+  },[props, loggedIn, navigate])
+
+
+  const users = useCallback(async () => {
+    await axios.get('http://localhost:8000/api/users')
     .then(res => {
       if(res.data.status){
         const doc_users = res.data.users          
@@ -65,8 +66,10 @@ function Profile(props){
       }     
     })
     .catch(err => console.log(err))
-   
-    axios.get(`http://localhost:8000/api/profile/${Id}`)
+  },[])
+
+  const profile = useCallback(async ()=>{
+    await axios.get(`http://localhost:8000/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile          
@@ -77,8 +80,14 @@ function Profile(props){
         } 
       })
       .catch(err => console.log(err))
-    
-  },[navigate, props, Id, loggedIn])
+  },[Id]) 
+
+  axios.defaults.withCredentials = true;
+  useEffect(()=>{
+    session();
+    users();
+    profile();
+  },[session, users, profile])
 
 
   // Initialize an object to track input errors

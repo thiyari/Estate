@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 
 function ImageSlider(props) {
@@ -9,8 +9,8 @@ function ImageSlider(props) {
   const [uploadImages, setUploadImages] = useState([])
   const [approved, setApproved] = useState(false)
 
-  useEffect(()=>{
-    axios.get(`http://localhost:8000/api/profile/${props.Id}`)
+  const profile = useCallback(async ()=>{
+    await axios.get(`http://localhost:8000/api/profile/${props.Id}`)
         .then(res => {
         if(res.data.status){
             const profile_doc = res.data.profile  
@@ -22,7 +22,11 @@ function ImageSlider(props) {
         } 
         })
         .catch(err => console.log(err))
-    },[props])
+  },[props])
+
+  useEffect(()=>{
+    profile();
+    },[profile])
 
     const handlePrevClick = (e) => {
         e.preventDefault()

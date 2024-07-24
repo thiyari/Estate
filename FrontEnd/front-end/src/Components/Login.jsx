@@ -1,5 +1,5 @@
 import axios from "axios";
-import {  useState, useEffect } from "react";
+import {  useState, useEffect, useCallback } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -19,10 +19,8 @@ function Login() {
 
     let inputError = {...initialState};
 
-    
-    axios.defaults.withCredentials = true;
-    useEffect(()=>{
-      axios.get('http://localhost:8000/api/session')
+    const session = useCallback(async () => {
+      await axios.get('http://localhost:8000/api/session')
       .then(res => {
         if(res.data.valid){
           setUser(res.data.user);
@@ -33,6 +31,11 @@ function Login() {
       })
       .catch(err => console.log(err))
     },[navigate])
+
+    axios.defaults.withCredentials = true;
+    useEffect(()=>{
+      session();
+    },[session])
 
 
     async function login(event) {

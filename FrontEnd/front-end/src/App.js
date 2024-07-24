@@ -25,10 +25,10 @@ const handleLogin = (status) => {
       <Router>
       <Header LoginStatus={isLoggedIn} />
         <Routes>
+          <Route path="/" element = {<Home LoginStatus={handleLogin}/>} />
           <Route path="/Profile" element = {<Profile LoginStatus={handleLogin}/>} />
           <Route path="/Register" element = {<Register LoginStatus={handleLogin}/>} />
           <Route path="/Login" element = {<Login />} />
-          <Route path="/" element = {<Home LoginStatus={handleLogin}/>} />
           <Route path="/Plots" element = {<Plots LoginStatus={handleLogin}/>} />
           <Route path="/Houses" element = {<Houses LoginStatus={handleLogin}/>} />
           <Route path="/Commercial" element = {<Commercial LoginStatus={handleLogin}/>} />

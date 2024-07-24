@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
@@ -9,36 +9,43 @@ function Home(props) {
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
 
+
+    const session = useCallback(async() =>{
+        await axios.get('http://localhost:8000/api/session')
+        .then(res => {
+        if(res.data.valid){
+            setLoggedIn(res.data.isLoggedIn);
+            props.LoginStatus(loggedIn);
+        } else {
+            props.LoginStatus(!loggedIn);
+        }
+        })
+        .catch(err => console.log(err))
+
+    },[props, loggedIn]);
+
+    const records = useCallback(async()=>{
+        await axios.get("http://localhost:8000/api")
+            .then(res => {
+                let profiles_doc = res.data.records
+                if (!Object.keys(profiles_doc).length) { // Check for empty data in the response
+                    setDataExists(false)
+                } else {
+                    let profiles_list = []
+                    for (let i = 0; i < profiles_doc.length;  i++) {
+                        profiles_list.push(profiles_doc[i])
+                    }
+                    setProfiles(profiles_list)
+                    setDataExists(true)
+                }
+            })
+    },[]);
+
     axios.defaults.withCredentials = true;
     useEffect(()=>{
-      axios.get('http://localhost:8000/api/session')
-      .then(res => {
-        if(res.data.valid){
-          setLoggedIn(res.data.isLoggedIn);
-          props.LoginStatus(loggedIn);
-        } else {
-          props.LoginStatus(!loggedIn);
-        }
-      })
-      .catch(err => console.log(err))
-
-    axios.get("http://localhost:8000/api")
-        .then(res => {
-            let profiles_doc = res.data.records
-            if (!Object.keys(profiles_doc).length) { // Check for empty data in the response
-                setDataExists(false)
-            } else {
-                let profiles_list = []
-                for (let i = 0; i < profiles_doc.length;  i++) {
-                    profiles_list.push(profiles_doc[i])
-                }
-                setProfiles(profiles_list)
-                setDataExists(true)
-            }
-        })
-
-
-    },[props, loggedIn])
+      session();
+      records();
+    },[session, records])
 
     return(
         <>

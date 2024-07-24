@@ -1,6 +1,6 @@
 import './common.css'
 import axios from 'axios'
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -9,16 +9,20 @@ function Header(props){
 const [isLoggedIn,setIsLoggedIn] = useState(false)
 const navigate = useNavigate()
 
+const session = useCallback(async () => {
+  await axios.get('http://localhost:8000/api/session')
+  .then(res => {
+    if(res.data.valid){
+      setIsLoggedIn(props.LoginStatus);
+    } 
+  })
+  .catch(err => console.log(err))
+},[props])
+
 axios.defaults.withCredentials = true;
 useEffect(()=>{
-axios.get('http://localhost:8000/api/session')
-.then(res => {
-  if(res.data.valid){
-    setIsLoggedIn(props.LoginStatus);
-  } 
-})
-.catch(err => console.log(err))
-},[props]);
+  session();
+},[session]);
 
 
 const logoutHandler = () => {

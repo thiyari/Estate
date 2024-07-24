@@ -1,5 +1,5 @@
 import Sidebar from './Sidebar/Sidebar'
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useCallback} from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
@@ -33,9 +33,8 @@ function ChangePassword(props){
   };
 
 
-  axios.defaults.withCredentials = true;
-  useEffect(()=>{
-    axios.get('http://localhost:8000/api/session')
+  const session = useCallback(async ()=>{
+    await axios.get('http://localhost:8000/api/session')
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
@@ -49,7 +48,12 @@ function ChangePassword(props){
       }
     })
     .catch(err => console.log(err))
-  },[navigate, props, Id, loggedIn])
+    },[navigate, props, loggedIn])
+
+  axios.defaults.withCredentials = true;
+  useEffect(()=>{
+    session();
+  },[session])
 
 
 

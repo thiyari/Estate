@@ -1,6 +1,6 @@
 import axios from "axios";
 import '../App.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
 
@@ -243,10 +243,9 @@ function Register(props) {
       setImg(images);
     }
 
-
-    axios.defaults.withCredentials = true;
-    useEffect(()=>{
-      axios.get('http://localhost:8000/api/session')
+    
+    const session = useCallback(async ()=>{
+      await axios.get('http://localhost:8000/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -256,8 +255,11 @@ function Register(props) {
         }
       })
       .catch(err => console.log(err))
+    },[props, loggedIn])
 
-      axios.get('http://localhost:8000/api/users')
+
+    const users = useCallback(async ()=>{
+      await axios.get('http://localhost:8000/api/users')
       .then(res => {
         if(res.data.status){
           const doc_users = res.data.users          
@@ -269,8 +271,14 @@ function Register(props) {
         }     
       })
       .catch(err => console.log(err))
+    },[])
+    
 
-    },[navigate, props, loggedIn])
+    axios.defaults.withCredentials = true;
+    useEffect(()=>{
+      session();
+      users();
+    },[session, users])
 
     async function submitHandler(event) {
         event.preventDefault();
