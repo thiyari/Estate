@@ -1,8 +1,10 @@
 import { PiUploadSimpleBold } from "react-icons/pi";
-import SimpleImageSlider from "react-simple-image-slider";
+import { useState } from "react";
 import './ImageUpload.css'
 
 function ImageUpload(props){
+
+  const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
   const imagebased64 = async (file)=>{
     const reader = new FileReader()
@@ -24,23 +26,42 @@ function ImageUpload(props){
 
   return(
     
-<div className='imageContainer'>
+<div className="imageContainer">
 <label htmlFor='uploadImage'>
   <div className='uploadBox'>
     <input type='file' multiple accept="image/*" id='uploadImage' onChange={handleUploadImage}/>
     { props.img.length === 0 ? <PiUploadSimpleBold/> :
-            <SimpleImageSlider
-            width={700}
-            height={500}
-            images={                  
-              props.img.map((image)=>{
-              return ({url: image});
-            })}
-            showBullets={true}
-            showNavs={true}
-            autoPlay={false}
-            loop={true}
-            />
+   (   
+   <div className ="table-responsive-md">
+      <table className ="table">
+        <thead>
+          <tr>
+            <th scope="col" colSpan={3} >Images</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colSpan={3}>
+                  <img className="img-fluid" src={props.img[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
+            </td>
+          </tr>
+          <tr>
+              <td><button onClick={()=>{
+                        if (currentPhotoIndex > 0) {
+                          setCurrentPhotoIndex(currentPhotoIndex - 1);
+                        }
+              }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
+              <td><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{props.img.length}]</p></td>
+              <td><button onClick={()=>{
+                        if (currentPhotoIndex < props.img.length - 1) {
+                          setCurrentPhotoIndex(currentPhotoIndex + 1);
+                        }
+              }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>              
+          </tr>
+        </tbody>
+      </table>
+      </div>)
+
     }
   </div>
 </label>
