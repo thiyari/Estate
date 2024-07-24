@@ -774,7 +774,9 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handlePropertyLocationEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
               </tr>
-              <div className="error-message">{formError.propertyLocation}</div>
+              <tr>
+              <td><p className="error-message">{formError.propertyLocation}</p></td>
+              </tr>
           </table>
         </div>
 
@@ -822,7 +824,9 @@ function Properties(props){
               </>
               }
               </tr>
-              <div className="error-message">{formError.propertyType}</div>
+              <tr>
+              <td><p className="error-message">{formError.propertyType}</p></td>
+              </tr>
           </table>
         </div>
 
@@ -867,8 +871,9 @@ function Properties(props){
                           />
                           </div>
                 }
-                <div className="error-message">{formError.other_room}</div>
-                
+                <tr>
+                <td><p className="error-message">{formError.other_room}</p></td>
+                </tr>
               </td>
               <td style={{verticalAlign: "top"}}><button onClick={handleRoomsSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
               </>
@@ -886,7 +891,9 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handleRoomsEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
               </tr>
-              <div className="error-message">{formError.rooms}</div>
+              <tr>
+              <td><p className="error-message">{formError.rooms}</p></td>
+              </tr>
           </table>
         </div>
 
@@ -931,7 +938,9 @@ function Properties(props){
               </>
               }
               </tr>
-              <div className="error-message">{formError.currency}</div>
+              <tr>
+              <td><p className="error-message">{formError.currency}</p></td>
+              </tr>
           </table>
         </div>
 
@@ -971,7 +980,9 @@ function Properties(props){
               </>  
               }
             </tr>
-            <div className="error-message">{formError.zip}</div>
+            <tr>
+            <td><p className="error-message">{formError.zip}</p></td>
+            </tr>
           </table>
         </div>
 
@@ -1013,7 +1024,9 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handlePropertyAreaEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
             </tr>
-            <div className="error-message">{formError.propertyArea}</div>
+            <tr>
+            <td><p className="error-message">{formError.propertyArea}</p></td>
+            </tr>
           </table>
         </div>
 
@@ -1055,7 +1068,9 @@ function Properties(props){
               <td style={{verticalAlign: "top"}}><button onClick={handlePhaseEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
               </>}
             </tr>
-            <div className="error-message">{formError.phase}</div>
+            <tr>
+            <td><p className="error-message">{formError.phase}</p></td>
+            </tr>
           </table>
         </div>
 
@@ -1101,7 +1116,9 @@ function Properties(props){
               </>
               }
               </tr>
-              <div className="error-message">{formError.floor}</div>
+              <tr>
+              <td><p className="error-message">{formError.floor}</p></td>
+              </tr>
           </table>
         </div>
 
@@ -1139,7 +1156,9 @@ function Properties(props){
               </>
               }
               </tr>
-              <div className="error-message">{formError.price}</div>
+              <tr>
+              <td><p className="error-message">{formError.price}</p></td>
+              </tr>
           </table>
         </div>
 
@@ -1182,7 +1201,9 @@ function Properties(props){
               </>
               }
               </tr>
-              <div className="error-message">{formError.propertyAddress}</div>
+              <tr>
+              <td><p className="error-message">{formError.propertyAddress}</p></td>
+              </tr>
           </table>
         </div>
 
