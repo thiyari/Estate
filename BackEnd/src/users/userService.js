@@ -69,6 +69,18 @@ module.exports.fetchProfilesDBService = () => {
         })
 }
 
+module.exports.fetchProfilesPropertyidDBService = (propertyid) => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await userModel.find({propertyid: propertyid, requests: "Approved"}).sort({_id:-1}).limit(10);
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({satus: false, data: result})
+                }
+        })
+}
+
+
 module.exports.fetchProfilesPlotsDBService = () => {
         return new Promise(async function myFn(resolve,reject){
                 result = await userModel.find({property: "Open Plot",requests: "Approved"}).sort({_id:-1});

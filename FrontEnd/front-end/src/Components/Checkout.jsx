@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 function Checkout(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const { propertyid } = useParams()
-    
+
     axios.defaults.withCredentials = true;
     useEffect(()=>{
       axios.get('http://localhost:8000/api/session')
@@ -22,17 +22,12 @@ function Checkout(props) {
 
     },[props, loggedIn])
 
-/*
-    axios.get(`http://localhost:8000/api/${propertyId}`)
+
+    axios.get(`http://localhost:8000/api/${propertyid}`)
         .then(res => {
             let profiles_doc = res.data.records
-
-                let profiles_list = []
-                for (let i = 0; i < profiles_doc.length;  i++) {
-                    profiles_list.push(profiles_doc[i])
-                }
-                setProfiles(profiles_list)
-        })*/
+            console.log(profiles_doc)
+        })
 
     return(
         <div className="row">

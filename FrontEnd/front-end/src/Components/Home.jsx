@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react';
 import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function Home(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -73,9 +73,9 @@ function Home(props) {
                                         <li className="list-group-item">Rooms: {profile.rooms}</li>
                                         <li className="list-group-item">Locality: {profile.location}</li>
                                     </ul>
-                                    <Link to={`/Checkout/${profile.propertyid}`}>
+                                    <NavLink exact="true" to={`/Checkout/${profile.propertyid}`}>
                                         <a href="#Go" className="btn btn-primary mt-3">Go</a>
-                                    </Link>
+                                    </NavLink>
                                 </div>
                                 </div>
                             </div>)

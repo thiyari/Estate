@@ -77,7 +77,19 @@ var fetchProfilesControllerFn = async(req,res)=>{
         return res.send({message:'No Images',records:result.data});
     }
 }
-    
+
+
+var fetchProfilesPropertyidControllerFn = async(req,res)=>{
+    const result = await (userService.fetchProfilesPropertyidDBService(req.params.propertyid))
+    if(result.status){
+       return res.send({message:"All Images",records:result.data});
+    }
+    else {
+        return res.send({message:'No Images',records:result.data});
+    }
+}
+
+
 var fetchProfilesPlotsControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesPlotsDBService())
     if(result.status){
@@ -506,5 +518,6 @@ module.exports = {
     profilePropertyAddressControllerFn,
     fetchProfilesPlotsControllerFn,
     fetchProfilesHousesControllerFn,
-    fetchProfilesCommercialControllerFn
+    fetchProfilesCommercialControllerFn,
+    fetchProfilesPropertyidControllerFn,
 }

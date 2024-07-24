@@ -5,6 +5,7 @@ const router = express.Router();
 
 
 router.route('/api').get(userController.fetchProfilesControllerFn);
+router.route('/api/:propertyid').get(userController.fetchProfilesPropertyidControllerFn);
 router.route('/api/plots').get(userController.fetchProfilesPlotsControllerFn)
 router.route('/api/houses').get(userController.fetchProfilesHousesControllerFn)
 router.route('/api/commercial').get(userController.fetchProfilesCommercialControllerFn)
