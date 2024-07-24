@@ -73,8 +73,7 @@ function Home(props) {
                                         <li className="list-group-item">Rooms: {profile.rooms}</li>
                                         <li className="list-group-item">Locality: {profile.location}</li>
                                     </ul>
-                                    <NavLink exact="true" to={`/Checkout/${profile.propertyid}`}>
-                                        <a href="#Go" className="btn btn-primary mt-3">Go</a>
+                                    <NavLink exact="true" to={`/Checkout/${profile.propertyid}`} className="btn btn-primary mt-3">Go
                                     </NavLink>
                                 </div>
                                 </div>

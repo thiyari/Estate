@@ -84,8 +84,7 @@ function Commercial(props) {
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
                                             </ul>
-                                            <NavLink exact="true" to={`/Checkout/${profile.propertyid}`}>
-                                                <a href="#Checkout" className="btn btn-primary mt-2">Check Out</a>
+                                            <NavLink exact="true" to={`/Checkout/${profile.propertyid}`} className="btn btn-primary mt-2">Check Out
                                             </NavLink>                                        
                                             </div>
                                         </div>
