@@ -41,13 +41,13 @@ function Checkout(props) {
           <div className="card form-container mt-4">
               <h1 className="card-header">
                   <center>
-                    <div className="header-font">Request Form</div>
+                    <div className="header-font">Request Submission</div>
                   </center>
               </h1>
               <div className="card-body" align="center">
               <div className='col-md-2'></div>
               <div className='col-md-8'>
-              <h2 className='mt-4 mb-4'>Details of Confirmation</h2>
+              <h2 className='mb-2'>Details of Confirmation</h2>
               <table className="table table-striped border">
                 <thead>
                   <tr>
@@ -86,8 +86,9 @@ function Checkout(props) {
                   </tr>
                   </tbody>
               </table>
-              <h2 className='mt-4 mb-4'>Contact Details</h2>
+              <h2 className='mt-2'>Contact Details</h2>
                 <div className='row form-container border'>
+                  <div className='mt-4'></div>
                   <div className='col-md-1'></div>
                   <div className='col-md-4'>
                       <div className="form-group" align="left">
