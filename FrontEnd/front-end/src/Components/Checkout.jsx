@@ -141,7 +141,7 @@ function Checkout(props) {
 
               
               <h2 className='mt-2'>Contact Details</h2>
-                <div className='row form-container border'>
+                <div className='row form-container border mt-4'>
                   <div className='mt-4'></div>
                   <div className='col-md-1'></div>
                   <div className='col-md-4'>
@@ -190,8 +190,8 @@ function Checkout(props) {
                       </div>
                   </div>
                   <div className='col-md-1'></div>
-                
-                
+                  <div className='mt-4'></div>
+              
                 </div>
                 </div>
                 <div className='col-md-2'></div>
