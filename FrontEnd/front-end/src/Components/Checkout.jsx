@@ -7,6 +7,8 @@ function Checkout(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const { propertyid } = useParams()
     const [profile, setProfile] = useState({})
+    const [Images, setImages] = useState([])
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     const session = useCallback(async ()=>{
       await axios.get('http://localhost:8000/api/session')
@@ -24,7 +26,14 @@ function Checkout(props) {
     const property_id = useCallback(async ()=>{
       await axios.get(`http://localhost:8000/api/${propertyid}`)
       .then(res => {
-          setProfile(res.data.records[0])
+          const doc = res.data.records[0]
+          setProfile(doc)
+
+          let images = []
+          for (let i = 0; i < doc.images.length; i++) {
+             images.push(doc.images[i])
+          }
+          setImages(images)
       })
     },[propertyid])    
 
@@ -90,6 +99,46 @@ function Checkout(props) {
                   </tr>
                   </tbody>
               </table>
+
+
+
+
+
+              <div className ="table-responsive-md">
+      <table className ="table">
+        <thead>
+          <tr>
+            <th scope="col" colSpan={3} >Images</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td colSpan={3} align="center">
+                  <img className="img-fluid" src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
+            </td>
+          </tr>
+          <tr>
+              <td align="center"><button onClick={()=>{
+                        if (currentPhotoIndex > 0) {
+                          setCurrentPhotoIndex(currentPhotoIndex - 1);
+                        }
+              }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
+              <td align="center"><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
+              <td align="center"><button onClick={()=>{
+                        if (currentPhotoIndex < Images.length - 1) {
+                          setCurrentPhotoIndex(currentPhotoIndex + 1);
+                        }
+              }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>              
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+
+
+
+
+              
               <h2 className='mt-2'>Contact Details</h2>
                 <div className='row form-container border'>
                   <div className='mt-4'></div>
