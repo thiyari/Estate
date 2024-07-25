@@ -3,12 +3,114 @@ import '../App.css';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
+
+const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
+const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
+
 function Checkout(props) {
+
+  const initialState = {
+    fname:"",
+    lname:"",
+    email:"",
+    phone:"",
+    fname_status: "",
+    lname_status: "", 
+    email_status: "",
+    phone_status: ""
+  }
+
+
     const [loggedIn, setLoggedIn] = useState(false)
     const { propertyid } = useParams()
     const [profile, setProfile] = useState({})
     const [Images, setImages] = useState([])
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
+    const [formError, setFormError] = useState({...initialState})
+
+    const handleUserInput = (name, value) => {
+      setFormInput({
+        ...formInput,
+        [name]: value,
+      });
+    };
+
+    async function submitHandler(event) {
+      event.preventDefault();
+
+        // Initialize an object to track input errors
+        let inputError = {...initialState};
+
+          // Check if first name is empty
+          if(!formInput.fname){
+            setFormError({
+              ...inputError,
+              fname: "First name should not be empty",
+              fname_status: "error"
+            })
+            return;
+          }
+
+          // Check if last name is empty
+          if(!formInput.lname){
+            setFormError({
+              ...inputError,
+              lname: "Last name should not be empty",
+              lname_status: "error"
+            })
+            return;
+          }
+
+
+          // Check if email is empty
+          if(!formInput.email){
+            setFormError({
+              ...inputError,
+              email: "Email should not be empty",
+              email_status: "error"
+            })
+            return;
+          }
+
+
+          const email_pattern = EMAIL_REGEX.test(formInput.email);
+          if (!email_pattern) {
+              setFormError({
+                ...inputError,
+                email: "Email format is incorrect",
+                email_status: "error"
+              });
+              return;
+          }
+          // Check if phone is empty
+          if(!formInput.phone){
+            setFormError({
+              ...inputError,
+              phone: "Phone number should not be empty",
+              phone_status: "error"
+            })
+            return;
+          }
+
+          const phone_pattern = PHONE_REGEX.test(formInput.phone);
+          if (!phone_pattern){
+            setFormError({
+              ...inputError,
+              phone: "Invalid phone number",
+              phone_status: "error"
+            })
+            return;
+          }
+
+          // Clear any previous errors and show success message
+          setFormError(inputError);
+          setFormInput((prevState)=>({
+            ...prevState,
+            successMsg: "Verification Successful, Saving the details",
+          }));
+
+    }
 
     const session = useCallback(async ()=>{
       await axios.get('http://localhost:8000/api/session')
@@ -139,7 +241,7 @@ function Checkout(props) {
 
 
 
-              
+              <form onSubmit={submitHandler}>
               <h2 className='mt-2'>Contact Details</h2>
                 <div className='row form-container border mt-4'>
                   <div className='mt-4'></div>
@@ -153,8 +255,16 @@ function Checkout(props) {
                             id="fname" 
                             placeholder="Your First Name"
                             name="fname"
+                            value={formInput.fname}
+                            onChange={({target})=>{
+                              handleUserInput(target.name, target.value)
+                            }}
+                            style={{borderColor: formError.fname_status !== "error" ?"":"red"}}
                             />
                       </div>
+                      <p className="error-message">{formError.fname}</p>
+
+
                       <div className="form-group" align="left">
                           <label className="form-label">Email</label>
                           <input 
@@ -163,8 +273,15 @@ function Checkout(props) {
                             id="email" 
                             placeholder="Your Email"
                             name="email"
+                            value={formInput.email}
+                            onChange={({target})=>{
+                              handleUserInput(target.name, target.value)
+                            }}
+                            style={{borderColor: formError.email_status !== "error" ?"":"red"}}
                             />
-                      </div>
+                            </div>
+                          <p className="error-message">{formError.email}</p>
+
                   </div>
                   <div className='col-md-2'></div>
                   <div className='col-md-4'>
@@ -176,26 +293,42 @@ function Checkout(props) {
                             id="lname" 
                             placeholder="Your Last Name"
                             name="lname"
+                            onChange={({target})=>{
+                              handleUserInput(target.name, target.value)
+                            }}
+                            style={{borderColor: formError.lname_status !== "error" ?"":"red"}}
                             />
-                      </div>
+                          </div>
+                          <p className="error-message">{formError.lname}</p>
+
                       <div className="form-group" align="left">
                           <label className="form-label">Phone</label>
                           <input 
                             type="text"  
                             className="form-control mb-3" 
-                            id="pho9ne" 
+                            id="phone" 
                             placeholder="Your Phone"
                             name="phone"
+                            value={formInput.phone}
+                            onChange={({target})=>{            
+                              handleUserInput(target.name, target.value)
+                            }} 
+                            style={{borderColor: formError.phone_status !== "error" ?"":"red"}}
                             />
-                      </div>
+                          </div>
+                          <p className="error-message">{formError.phone}</p>
+                          
                   </div>
                   <div className='col-md-1'></div>
                   <div className='mt-4'></div>
               
                 </div>
+                <p align="center" className="success-message mt-4">{formInput.successMsg}</p>
+
+                <button type="submit" className="btn btn-primary mb-4">send</button>
+                </form>
                 </div>
                 <div className='col-md-2'></div>
-                <button type="submit" className="btn btn-primary mt-4">send</button>
               </div>
           </div>
         </div>
