@@ -89,7 +89,7 @@ function Checkout(props) {
                 <div className='row form-container border'>
                   <div className='col-md-1'></div>
                   <div className='col-md-4'>
-                      <div className="form-group">
+                      <div className="form-group" align="left">
                           <label className="form-label">First Name</label>
                           <input 
                             type="text"  
@@ -99,7 +99,7 @@ function Checkout(props) {
                             name="fname"
                             />
                       </div>
-                      <div className="form-group">
+                      <div className="form-group" align="left">
                           <label className="form-label">Email</label>
                           <input 
                             type="email"  
@@ -112,7 +112,7 @@ function Checkout(props) {
                   </div>
                   <div className='col-md-2'></div>
                   <div className='col-md-4'>
-                  <div className="form-group">
+                  <div className="form-group" align="left">
                         <label className="form-label">Last Name</label>
                         <input 
                             type="text"  
@@ -122,7 +122,7 @@ function Checkout(props) {
                             name="lname"
                             />
                       </div>
-                      <div className="form-group">
+                      <div className="form-group" align="left">
                           <label className="form-label">Phone</label>
                           <input 
                             type="text"  
