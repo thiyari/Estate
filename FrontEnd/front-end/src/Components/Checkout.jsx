@@ -46,8 +46,8 @@ function Checkout(props) {
     return(
       <div className="container">
       <div className="row">
-      <div className="col-md-2"></div>
-          <div className="col-md-8">
+      <div className="col-md-1"></div>
+          <div className="col-md-10">
           <div className="card form-container mt-4">
               <h1 className="card-header">
                   <center>
@@ -199,7 +199,7 @@ function Checkout(props) {
               </div>
           </div>
         </div>
-      <div className="col-md-2"></div>
+      <div className="col-md-1"></div>
   </div>
   </div>
     )
