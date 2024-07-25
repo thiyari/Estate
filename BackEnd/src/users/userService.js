@@ -71,7 +71,7 @@ module.exports.fetchProfilesDBService = () => {
 
 module.exports.fetchProfilesPropertyidDBService = (propertyid) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.find({propertyid: propertyid, requests: "Approved"}).sort({_id:-1});
+                result = await userModel.find({propertyid: propertyid, requests: "Approved"});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
