@@ -97,7 +97,7 @@ function Checkout(props) {
                     <td>Price</td>
                     <td>{profile.currency}{" "}{profile.price}</td>
                   </tr>
-                  </tbody>
+                </tbody>
               </table>
 
 
@@ -105,34 +105,34 @@ function Checkout(props) {
 
 
               <div className ="table-responsive-md">
-      <table className ="table">
-        <thead>
-          <tr>
-            <th scope="col" colSpan={3} >Images</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td colSpan={3} align="center">
-                  <img className="img-fluid" src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
-            </td>
-          </tr>
-          <tr>
-              <td align="center"><button onClick={()=>{
-                        if (currentPhotoIndex > 0) {
-                          setCurrentPhotoIndex(currentPhotoIndex - 1);
-                        }
-              }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
-              <td align="center"><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
-              <td align="center"><button onClick={()=>{
-                        if (currentPhotoIndex < Images.length - 1) {
-                          setCurrentPhotoIndex(currentPhotoIndex + 1);
-                        }
-              }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>              
-          </tr>
-        </tbody>
-      </table>
-      </div>
+                  <table className ="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" colSpan={3} >Images</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colSpan={3} align="center">
+                              <img className="img-fluid" src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td align="center"><button onClick={()=>{
+                                    if (currentPhotoIndex > 0) {
+                                      setCurrentPhotoIndex(currentPhotoIndex - 1);
+                                    }
+                          }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
+                          <td align="center"><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
+                          <td align="center"><button onClick={()=>{
+                                    if (currentPhotoIndex < Images.length - 1) {
+                                      setCurrentPhotoIndex(currentPhotoIndex + 1);
+                                    }
+                          }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>              
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
 
 
 
