@@ -44,8 +44,9 @@ function Checkout(props) {
                     <div className="header-font">Confirmation</div>
                   </center>
               </h1>
-              <div className="card-body">
-                
+              <div className="card-body" align="center">
+              <div className='col-md-2'></div>
+              <div className='col-md-8'>
               <table className="table table-striped border">
                 <thead>
                   <tr>
@@ -84,7 +85,8 @@ function Checkout(props) {
                   </tr>
                   </tbody>
               </table>
-                <div className='row container border'>
+
+                <div className='row form-container border'>
                   <div className='col-md-1'></div>
                   <div className='col-md-4'>
                       <div className="form-group">
@@ -133,7 +135,10 @@ function Checkout(props) {
                   </div>
                   <div className='col-md-1'></div>
                 
+                
                 </div>
+                </div>
+                <div className='col-md-2'></div>
               </div>
           </div>
         </div>
