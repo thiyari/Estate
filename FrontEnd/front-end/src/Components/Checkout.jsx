@@ -44,6 +44,7 @@ function Checkout(props) {
     },[session, property_id])
 
     return(
+      <div className="container">
       <div className="row">
       <div className="col-md-2"></div>
           <div className="col-md-8">
@@ -194,10 +195,12 @@ function Checkout(props) {
                 </div>
                 </div>
                 <div className='col-md-2'></div>
+                <button type="submit" className="btn btn-primary mt-4">send</button>
               </div>
           </div>
         </div>
       <div className="col-md-2"></div>
+  </div>
   </div>
     )
 }
