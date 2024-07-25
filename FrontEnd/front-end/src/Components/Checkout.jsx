@@ -61,6 +61,10 @@ function Checkout(props) {
                     <td>{propertyid}</td>
                   </tr>
                   <tr>
+                    <td>Type of Property</td>
+                    <td>{profile.property}</td>
+                  </tr>
+                  <tr>
                     <td>Area</td>
                     <td>{profile.area}</td>
                   </tr>
@@ -107,7 +111,7 @@ function Checkout(props) {
                             type="email"  
                             className="form-control mb-3" 
                             id="email" 
-                            placeholder="You Email"
+                            placeholder="Your Email"
                             name="email"
                             />
                       </div>
@@ -130,7 +134,7 @@ function Checkout(props) {
                             type="text"  
                             className="form-control mb-3" 
                             id="pho9ne" 
-                            placeholder="You Phone"
+                            placeholder="Your Phone"
                             name="phone"
                             />
                       </div>
