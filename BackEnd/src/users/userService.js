@@ -1,4 +1,4 @@
-var userModel = require('./userModel')
+var dataModel = require('./userModel')
 var key = '123456789asdflkj';
 var encryptor = require('simple-encryptor')(key);
 
@@ -6,7 +6,7 @@ module.exports.createUserDBService = (userDetails) => {
         return new Promise(function myFn(resolve,reject){
                 var encrypted = encryptor.encrypt(userDetails.password);
                 async function insert(){
-                        await userModel.users.create({
+                        await dataModel.users.create({
                                 firstname: userDetails.firstname,
                                 lastname: userDetails.lastname,
                                 username: userDetails.username,
@@ -44,12 +44,12 @@ module.exports.createUserDBService = (userDetails) => {
 module.exports.createContactsDBService = (userDetails) => {
         return new Promise(function myFn(resolve,reject){
                 async function insert(){
-                        await userModel.contacts.create({
+                        await dataModel.contacts.create({
                                 firstname: userDetails.firstname,
                                 lastname: userDetails.lastname,
                                 email: userDetails.email,
                                 phone: userDetails.phone,
-                                propertyid: userDetails.propertyid
+                                requests: userDetails.requests
                         });
                         
                 }
@@ -67,7 +67,7 @@ module.exports.createContactsDBService = (userDetails) => {
 
 module.exports.loginuserDBService = (userDetails) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.findOne({username:userDetails.user});
+                result = await dataModel.users.findOne({username:userDetails.user});
                 if(result != undefined && result != null){
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){
@@ -83,7 +83,7 @@ module.exports.loginuserDBService = (userDetails) => {
 
 module.exports.fetchProfilesDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.find({requests: "Approved"}).sort({_id:-1}).limit(10);
+                result = await dataModel.users.find({requests: "Approved"}).sort({_id:-1}).limit(10);
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
@@ -94,7 +94,7 @@ module.exports.fetchProfilesDBService = () => {
 
 module.exports.fetchProfilesPropertyidDBService = (propertyid) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.find({propertyid: propertyid, requests: "Approved"});
+                result = await dataModel.users.find({propertyid: propertyid, requests: "Approved"});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
@@ -106,7 +106,7 @@ module.exports.fetchProfilesPropertyidDBService = (propertyid) => {
 
 module.exports.fetchProfilesPlotsDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.find({property: "Open Plot",requests: "Approved"}).sort({_id:-1});
+                result = await dataModel.users.find({property: "Open Plot",requests: "Approved"}).sort({_id:-1});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
@@ -117,7 +117,7 @@ module.exports.fetchProfilesPlotsDBService = () => {
 
 module.exports.fetchProfilesHousesDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.find({$or:
+                result = await dataModel.users.find({$or:
                         [
                                 {property: "Flat", requests: "Approved"},
                                 {property: "Independent House", requests: "Approved"},
@@ -133,7 +133,7 @@ module.exports.fetchProfilesHousesDBService = () => {
 
 module.exports.fetchProfilesCommercialDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.find({property: "Commercial",requests: "Approved"}).sort({_id:-1});
+                result = await dataModel.users.find({property: "Commercial",requests: "Approved"}).sort({_id:-1});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
@@ -145,7 +145,7 @@ module.exports.fetchProfilesCommercialDBService = () => {
 
 module.exports.changepassworduserDBService = (userDetails) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.updateOne(
+                result = await dataModel.users.updateOne(
                                 { username: userDetails.username }, 
                                 { $set: { password: encryptor.encrypt(userDetails.password) }})
                 .catch( error => {
@@ -164,7 +164,7 @@ module.exports.changepassworduserDBService = (userDetails) => {
 
 module.exports.fetchUsersDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.find({}).select({_id: 0, username: 1});
+                result = await dataModel.users.find({}).select({_id: 0, username: 1});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
@@ -176,7 +176,7 @@ module.exports.fetchUsersDBService = () => {
 
 module.exports.fetchProfileDBService = (Id) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await userModel.users.find({_id:Id});
+                result = await dataModel.users.find({_id:Id});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
@@ -189,7 +189,7 @@ module.exports.fetchProfileDBService = (Id) => {
 
 module.exports.profileFnameUserDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{firstname:data.firstname},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{firstname:data.firstname},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"First name changed"});
@@ -205,7 +205,7 @@ module.exports.profileFnameUserDBService = async (id,data) => {
 
 module.exports.profileLnameUserDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{lastname:data.lastname},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{lastname:data.lastname},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Last name changed"});
@@ -221,7 +221,7 @@ module.exports.profileLnameUserDBService = async (id,data) => {
 
 module.exports.profileUnameUserDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{username:data.username},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{username:data.username},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"User name changed"});
@@ -237,7 +237,7 @@ module.exports.profileUnameUserDBService = async (id,data) => {
 
 module.exports.profileEmailUserDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{email:data.email},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{email:data.email},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Email changed"});
@@ -253,7 +253,7 @@ module.exports.profileEmailUserDBService = async (id,data) => {
 
 module.exports.profilePhoneUserDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{phone:data.phone},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{phone:data.phone},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Phone name changed"});
@@ -269,7 +269,7 @@ module.exports.profilePhoneUserDBService = async (id,data) => {
 
 module.exports.profileUploadImageDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findOneAndUpdate({_id: id},{$push:{images:data.images}},{upsert:true})
+        await dataModel.users.findOneAndUpdate({_id: id},{$push:{images:data.images}},{upsert:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Images uploaded successfully"});
@@ -284,7 +284,7 @@ module.exports.profileUploadImageDBService = async (id,data) => {
 
 module.exports.profileDeleteImageDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findOneAndUpdate({_id: id},{$pull:{images: data.image}})
+        await dataModel.users.findOneAndUpdate({_id: id},{$pull:{images: data.image}})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Image Deleted successfully"});
@@ -300,7 +300,7 @@ module.exports.profileDeleteImageDBService = async (id,data) => {
 
 module.exports.profilePropertyLocationDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{location:data.location},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{location:data.location},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Property Location updated successfully"});
@@ -315,7 +315,7 @@ module.exports.profilePropertyLocationDBService = async (id,data) => {
 
 module.exports.profilePropertyAreaDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{area:data.area},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{area:data.area},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Property Area updated successfully"});
@@ -331,7 +331,7 @@ module.exports.profilePropertyAreaDBService = async (id,data) => {
 
 module.exports.profilePropertyTypeDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{property:data.property},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{property:data.property},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Property Type updated successfully"});
@@ -347,7 +347,7 @@ module.exports.profilePropertyTypeDBService = async (id,data) => {
 
 module.exports.profilePhaseDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{phase:data.phase},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{phase:data.phase},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Phase updated successfully"});
@@ -363,7 +363,7 @@ module.exports.profilePhaseDBService = async (id,data) => {
 
 module.exports.profileRoomsDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{rooms:data.rooms},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{rooms:data.rooms},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Phase updated successfully"});
@@ -379,7 +379,7 @@ module.exports.profileRoomsDBService = async (id,data) => {
 
 module.exports.profileFloorDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{floor:data.floor},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{floor:data.floor},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Floor updated successfully"});
@@ -395,7 +395,7 @@ module.exports.profileFloorDBService = async (id,data) => {
 
 module.exports.profileCurrencyDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{currency:data.currency},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{currency:data.currency},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Currency updated successfully"});
@@ -411,7 +411,7 @@ module.exports.profileCurrencyDBService = async (id,data) => {
 
 module.exports.profileZipDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{zip:data.zip},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{zip:data.zip},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Zip code updated successfully"});
@@ -427,7 +427,7 @@ module.exports.profileZipDBService = async (id,data) => {
 
 module.exports.profilePropertyAddressDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await userModel.users.findByIdAndUpdate(id,{address:data.address},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{address:data.address},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Property Address updated successfully"});

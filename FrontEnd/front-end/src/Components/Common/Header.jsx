@@ -68,7 +68,7 @@ const logoutHandler = () => {
           <a className="nav-link" href="../Register">Register</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#c">Contact us</a>
+          <a className="nav-link" href="../ContactUs">Contact us</a>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="#a">About us</a>

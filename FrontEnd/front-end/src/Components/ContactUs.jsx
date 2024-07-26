@@ -1,13 +1,13 @@
 import {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from "axios";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
 
-function Checkout(props) {
+function ContactUs(props) {
 
   const initialState = {
     fname:"",
@@ -22,10 +22,6 @@ function Checkout(props) {
 
 
     const [loggedIn, setLoggedIn] = useState(false)
-    const { propertyid } = useParams()
-    const [profile, setProfile] = useState({})
-    const [Images, setImages] = useState([])
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
     const [formError, setFormError] = useState({...initialState})
     const navigate = useNavigate();
@@ -118,7 +114,7 @@ function Checkout(props) {
             lastname: formInput.lname,
             email: formInput.email,
             phone: formInput.phone,
-            requests: propertyid
+            requests: "general"
             }),
             {
               headers:{
@@ -132,8 +128,6 @@ function Checkout(props) {
               email: "",
               phone: ""
             })
-            setImages('')
-            setProfile('')
             navigate('/');
           } catch (err) {
             alert(err);
@@ -154,25 +148,10 @@ function Checkout(props) {
       .catch(err => console.log(err))
     },[props, loggedIn])
 
-    const property_id = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/${propertyid}`)
-      .then(res => {
-          const doc = res.data.records[0]
-          setProfile(doc)
-
-          let images = []
-          for (let i = 0; i < doc.images.length; i++) {
-             images.push(doc.images[i])
-          }
-          setImages(images)
-      })
-    },[propertyid])    
-
     axios.defaults.withCredentials = true;
     useEffect(()=>{
       session();
-      property_id();
-    },[session, property_id])
+    },[session])
 
     return(
       <div className="container">
@@ -182,97 +161,14 @@ function Checkout(props) {
           <div className="card form-container mt-4">
               <h1 className="card-header">
                   <center>
-                    <div className="header-font">Request Submission</div>
+                    <div className="header-font">Contact Us</div>
                   </center>
               </h1>
               <div className="card-body" align="center">
-              <div className='col-md-2'></div>
-              <div className='col-md-8'>
-              <h2 className='mb-2'>Details of Confirmation</h2>
-              <table className="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Particulars</th>
-                    <th scope="col">Details</th>
-                  </tr>
-                </thead>
-                <tbody className="table-group-divider">
-                  <tr>
-                    <td>Property Id</td>
-                    <td>{propertyid}</td>
-                  </tr>
-                  <tr>
-                    <td>Type of Property</td>
-                    <td>{profile.property}</td>
-                  </tr>
-                  <tr>
-                    <td>Area</td>
-                    <td>{profile.area}</td>
-                  </tr>
-                  <tr>
-                    <td>Phase</td>
-                    <td>{profile.phase}</td>
-                  </tr>
-                  <tr>
-                    <td>Rooms</td>
-                    <td>{profile.rooms}</td>
-                  </tr>
-                  <tr>
-                    <td>Floor</td>
-                    <td>{profile.floor}</td>
-                  </tr>
-                  <tr>
-                    <td>Locality</td>
-                    <td>{profile.location}</td>
-                  </tr>
-                  <tr>
-                    <td>Price</td>
-                    <td>{profile.currency}{" "}{profile.price}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-
-
-
-
-              <div className ="table-responsive-md">
-                  <table className ="table">
-                    <thead>
-                      <tr>
-                        <th scope="col" colSpan={3} >Images</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td colSpan={3} align="center">
-                              <img className="img-fluid" src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
-                        </td>
-                      </tr>
-                      <tr>
-                          <td align="center"><button onClick={()=>{
-                                    if (currentPhotoIndex > 0) {
-                                      setCurrentPhotoIndex(currentPhotoIndex - 1);
-                                    }
-                          }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
-                          <td align="center"><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
-                          <td align="center"><button onClick={()=>{
-                                    if (currentPhotoIndex < Images.length - 1) {
-                                      setCurrentPhotoIndex(currentPhotoIndex + 1);
-                                    }
-                          }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>              
-                      </tr>
-                    </tbody>
-                  </table>
-              </div>
-
-
-
-
+              
 
               <form onSubmit={submitHandler}>
-              <h2 className='mt-2'>Contact Details</h2>
-                <div className='row form-container border mt-4'>
+                <div className='row form-container mt-4'>
                   <div className='mt-4'></div>
                   <div className='col-md-1'></div>
                   <div className='col-md-4'>
@@ -356,8 +252,6 @@ function Checkout(props) {
 
                 <button type="submit" className="btn btn-primary mb-4">send</button>
                 </form>
-                </div>
-                <div className='col-md-2'></div>
               </div>
           </div>
         </div>
@@ -367,4 +261,4 @@ function Checkout(props) {
     )
 }
 
-export default Checkout;
+export default ContactUs;

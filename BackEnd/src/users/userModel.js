@@ -97,7 +97,7 @@ var contactSchema = new Schema({
         type: Number,
         required: true
     },
-    propertyid: {
+    requests: {
         type: String
     }
 });
