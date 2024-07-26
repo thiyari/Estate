@@ -40,7 +40,6 @@ function ImageSlider(props) {
         if (currentPhotoIndex < Images.length - 1) {
           setCurrentPhotoIndex(currentPhotoIndex + 1);
         }
-        console.log(currentPhotoIndex)
       };
 
     const imagebased64 = async (file)=>{

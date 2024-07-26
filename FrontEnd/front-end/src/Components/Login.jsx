@@ -68,7 +68,6 @@ function Login() {
             password: password,
             }).then((res) => 
             {
-             console.log(res)
              const data = res.data;
              
              if (data.status === true) 

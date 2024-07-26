@@ -621,7 +621,6 @@ function Register(props) {
             "Content-Type":"application/json"
             }
           });
-          console.log(img)
           alert("User Registation Successful");
           setFormInput({
             fname: "",

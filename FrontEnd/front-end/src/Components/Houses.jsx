@@ -27,7 +27,6 @@ function Houses(props) {
         await axios.get("http://localhost:8000/api/houses")
         .then(res => {
             let profiles_doc = res.data.records
-            console.log(profiles_doc)
             if (!Object.keys(profiles_doc).length) { // Check for empty data in the response
                 setDataExists(false)
             } else {
