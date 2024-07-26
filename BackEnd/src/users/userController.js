@@ -20,6 +20,26 @@ var createUserControllerFn = async(req,res)=>
     }
 }
 
+
+var createContactsControllerFn = async(req,res)=>
+    {
+        try
+        {
+            console.log(req.body);
+            var status = await userService.createContactsDBService(req.body)
+            console.log(status)
+            if(status){
+                res.send({"status":true,"message":"Contact created successfully"});
+            }
+            else {
+                res.send({"status":false,"message":"Error creating a contact"});
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
 var loginUserControllerFn = async(req,res)=>
 {
     var result = null;
@@ -520,4 +540,5 @@ module.exports = {
     fetchProfilesHousesControllerFn,
     fetchProfilesCommercialControllerFn,
     fetchProfilesPropertyidControllerFn,
+    createContactsControllerFn
 }

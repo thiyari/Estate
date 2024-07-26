@@ -80,4 +80,28 @@ var userSchema = new Schema({
     }
 });
 
-module.exports = mongoose.model('users', userSchema);
+var contactSchema = new Schema({
+    firstname: {
+        type: String,
+        required: true
+    },
+    lastname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    requests: {
+        type: String
+    }
+});
+
+const users = mongoose.model('users', userSchema);
+const contacts = mongoose.model('contacts', contactSchema);
+
+module.exports = { 
+    users,
+    contacts
+}

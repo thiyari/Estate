@@ -1,7 +1,7 @@
 import {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -28,6 +28,7 @@ function Checkout(props) {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
     const [formError, setFormError] = useState({...initialState})
+    const navigate = useNavigate();
 
     const handleUserInput = (name, value) => {
       setFormInput({
@@ -110,6 +111,33 @@ function Checkout(props) {
             successMsg: "Verification Successful, Saving the details",
           }));
 
+
+          try {
+            await axios.post("http://localhost:8000/api/contacts/create", JSON.stringify({
+            firstname: formInput.fname,
+            lastname: formInput.lname,
+            email: formInput.email,
+            phone: formInput.phone,
+            }),
+            {
+              headers:{
+              "Content-Type":"application/json"
+              }
+            });
+            alert("Your request was sent Successfully");
+            setFormInput({
+              fname: "",
+              lname: "",
+              email: "",
+              phone: ""
+            })
+            setImages('')
+            setProfile('')
+            navigate('/');
+          } catch (err) {
+            alert(err);
+          }
+
     }
 
     const session = useCallback(async ()=>{
@@ -160,7 +188,7 @@ function Checkout(props) {
               <div className='col-md-2'></div>
               <div className='col-md-8'>
               <h2 className='mb-2'>Details of Confirmation</h2>
-              <table className="table table-striped border">
+              <table className="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Particulars</th>
