@@ -71,7 +71,6 @@ module.exports.loginuserDBService = (userDetails) => {
                 if(result != undefined && result != null){
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){
-                                console.log(true)
                                 resolve({status: true, msg: "user validated successfully", id: result._id});
                         } else {
                                 reject({status: false, msg: "user validation failed"});
@@ -153,7 +152,6 @@ module.exports.changepassworduserDBService = (userDetails) => {
                            console.log(error);
                          }
                       );
-                console.log('user updated');
 
                 if(result != undefined && result != null){
                         resolve({status: true, msg:"password changed"});

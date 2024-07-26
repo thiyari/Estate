@@ -5,9 +5,7 @@ var createUserControllerFn = async(req,res)=>
 {
     try
     {
-        console.log(req.body);
         var status = await userService.createUserDBService(req.body)
-        console.log(status)
         if(status){
             res.send({"status":true,"message":"User created successfully"});
         }
@@ -25,9 +23,7 @@ var createContactsControllerFn = async(req,res)=>
     {
         try
         {
-            console.log(req.body);
             var status = await userService.createContactsDBService(req.body)
-            console.log(status)
             if(status){
                 res.send({"status":true,"message":"Contact created successfully"});
             }
@@ -145,9 +141,7 @@ var changepasswordUserControllerFn = async(req,res)=>
             var result = null;
             try
             {
-                console.log(req.body)
                 var result = await userService.changepassworduserDBService(req.body)
-                console.log(result)
                 if(result.status){
                     return res.send({"status": true, "message": result.msg});
                 }
