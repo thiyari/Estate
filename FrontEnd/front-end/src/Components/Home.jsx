@@ -61,6 +61,7 @@ function Home(props) {
                                 <div className="card mt-3">
                                 <div className="card-body">
                                     <div className='slider'>
+                                        {profile.images.length === 0? <></>: 
                                     <SimpleImageSlider
                                         width={500}
                                         height={300}
@@ -72,7 +73,7 @@ function Home(props) {
                                         showNavs={false}
                                         autoPlay={true}
                                         loop={true}
-                                        />
+                                        />}
                                         </div>
                                     <h5 className="card-title mt-3">{profile.property}</h5>
                                     <ul className="list-group list-group-flush">

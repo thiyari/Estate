@@ -62,6 +62,7 @@ function Commercial(props) {
                                     <div className="row g-0">
                                         <div className="col-md-8">
                                         <div className='slider'>
+                                        {profile.images.length === 0? <div>No Images to display</div>:
                                             <SimpleImageSlider
                                                 width={610}
                                                 height={400}
@@ -73,7 +74,7 @@ function Commercial(props) {
                                                 showNavs={true}
                                                 autoPlay={false}
                                                 loop={true}
-                                                />
+                                                />}
                                         </div>
                                         </div>
                                         <div className="col-md-4">
