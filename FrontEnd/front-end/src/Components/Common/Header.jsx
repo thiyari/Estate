@@ -10,7 +10,7 @@ const [isLoggedIn,setIsLoggedIn] = useState(false)
 const navigate = useNavigate()
 
 const session = useCallback(async () => {
-  await axios.get('http://localhost:8000/api/session')
+  await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
   .then(res => {
     if(res.data.valid){
       setIsLoggedIn(props.LoginStatus);
@@ -26,7 +26,7 @@ useEffect(()=>{
 
 
 const logoutHandler = () => {
-  axios.post('http://localhost:8000/api/logout')
+  axios.post(`${process.env.REACT_APP_SERVER_URI}/api/logout`)
   .then(res => {
     if(res.data.valid){
       alert("Logout Successful")

@@ -245,7 +245,7 @@ function Register(props) {
 
     
     const session = useCallback(async ()=>{
-      await axios.get('http://localhost:8000/api/session')
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -259,7 +259,7 @@ function Register(props) {
 
 
     const users = useCallback(async ()=>{
-      await axios.get('http://localhost:8000/api/users')
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/users`)
       .then(res => {
         if(res.data.status){
           const doc_users = res.data.users          
@@ -595,7 +595,7 @@ function Register(props) {
         var pid = Math.floor(1000000000 + Math.random() * 9000000000);
         try {
           setLoading(true);
-          await axios.post("http://localhost:8000/api/create", JSON.stringify({
+          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/create`, JSON.stringify({
           firstname: formInput.fname,
           lastname: formInput.lname,
           username: formInput.user,

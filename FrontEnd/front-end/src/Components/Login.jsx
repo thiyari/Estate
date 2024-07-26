@@ -20,7 +20,7 @@ function Login() {
     let inputError = {...initialState};
 
     const session = useCallback(async () => {
-      await axios.get('http://localhost:8000/api/session')
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
       .then(res => {
         if(res.data.valid){
           setUser(res.data.user);
@@ -63,7 +63,7 @@ function Login() {
 
 
         try {
-          await axios.post("http://localhost:8000/api/login", {
+          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/login`, {
             user: user,
             password: password,
             }).then((res) => 

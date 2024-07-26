@@ -113,7 +113,7 @@ function Checkout(props) {
 
 
           try {
-            await axios.post("http://localhost:8000/api/contacts/create", JSON.stringify({
+            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/contacts/create`, JSON.stringify({
             firstname: formInput.fname,
             lastname: formInput.lname,
             email: formInput.email,
@@ -142,7 +142,7 @@ function Checkout(props) {
     }
 
     const session = useCallback(async ()=>{
-      await axios.get('http://localhost:8000/api/session')
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -155,7 +155,7 @@ function Checkout(props) {
     },[props, loggedIn])
 
     const property_id = useCallback(async ()=>{
-      await axios.get(`http://localhost:8000/api/${propertyid}`)
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/${propertyid}`)
       .then(res => {
           const doc = res.data.records[0]
           setProfile(doc)

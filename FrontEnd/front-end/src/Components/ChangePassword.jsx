@@ -34,7 +34,7 @@ function ChangePassword(props){
 
 
   const session = useCallback(async ()=>{
-    await axios.get('http://localhost:8000/api/session')
+    await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
@@ -147,7 +147,7 @@ function ChangePassword(props){
 
 
           try{
-            await axios.put(`http://localhost:8000/api/changepassword/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/changepassword/${Id}`, 
               JSON.stringify({
               username: user,
               password: formInput.new_password,
@@ -166,7 +166,7 @@ function ChangePassword(props){
               setUser('');
               setPassword('');
 
-              axios.post('http://localhost:8000/api/logout')
+              axios.post(`${process.env.REACT_APP_SERVER_URI}/api/logout`)
               .then(res => {
                 if(res.data.valid){
                   alert("Please Login Again")

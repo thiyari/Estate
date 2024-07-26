@@ -10,7 +10,7 @@ function Plots(props) {
     const [profiles, setProfiles] = useState([{}])
 
     const session = useCallback(async ()=>{
-        await axios.get('http://localhost:8000/api/session')
+        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -24,7 +24,7 @@ function Plots(props) {
 
 
     const records = useCallback(async () =>{
-        await axios.get("http://localhost:8000/api/plots")
+        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/plots`)
         .then(res => {
             let profiles_doc = res.data.records
             if (!Object.keys(profiles_doc).length) { // Check for empty data in the response

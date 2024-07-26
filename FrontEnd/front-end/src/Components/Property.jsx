@@ -217,7 +217,7 @@ function Properties(props){
 
 
     const session = useCallback( async () => {
-      await axios.get('http://localhost:8000/api/session')
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
       .then(res => {
         if(res.data.valid){
           setId(res.data.id);
@@ -233,7 +233,7 @@ function Properties(props){
 
 
     const profile = useCallback(async () => {
-      await axios.get(`http://localhost:8000/api/profile/${Id}`)
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile      
@@ -291,7 +291,7 @@ function Properties(props){
           }
         
     try{
-      await axios.put(`http://localhost:8000/api/profile/propertylocation/${Id}`, 
+      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertylocation/${Id}`, 
         JSON.stringify({
         location: propertyLocation,
         }),
@@ -345,7 +345,7 @@ function Properties(props){
           }
 
           try{
-            await axios.put(`http://localhost:8000/api/profile/propertyarea/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyarea/${Id}`, 
               JSON.stringify({
               area: propertyArea,
               }),
@@ -388,7 +388,7 @@ function Properties(props){
           }   
 
           try{
-            await axios.put(`http://localhost:8000/api/profile/propertytype/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertytype/${Id}`, 
               JSON.stringify({
               property: propertyType,
               }),
@@ -430,7 +430,7 @@ function Properties(props){
           } 
 
           try{
-            await axios.put(`http://localhost:8000/api/profile/propertyphase/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyphase/${Id}`, 
               JSON.stringify({
               phase: phase,
               }),
@@ -496,7 +496,7 @@ function Properties(props){
 
 
           try{
-            await axios.put(`http://localhost:8000/api/profile/rooms/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/rooms/${Id}`, 
               JSON.stringify({
               rooms: selected_room,
               }),
@@ -538,7 +538,7 @@ function Properties(props){
           }
 
           try{
-            await axios.put(`http://localhost:8000/api/profile/floor/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/floor/${Id}`, 
               JSON.stringify({
               floor: floor,
               }),
@@ -578,7 +578,7 @@ function Properties(props){
             return;
           }
           try{
-            await axios.put(`http://localhost:8000/api/profile/currency/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/currency/${Id}`, 
               JSON.stringify({
               currency: currency,
               }),
@@ -664,7 +664,7 @@ function Properties(props){
           }
 
           try{
-            await axios.put(`http://localhost:8000/api/profile/zip/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/zip/${Id}`, 
               JSON.stringify({
               zip: zip,
               }),
@@ -704,7 +704,7 @@ function Properties(props){
             return;
           }
           try{
-            await axios.put(`http://localhost:8000/api/profile/propertyaddress/${Id}`, 
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyaddress/${Id}`, 
               JSON.stringify({
               address: propertyAddress,
               }),

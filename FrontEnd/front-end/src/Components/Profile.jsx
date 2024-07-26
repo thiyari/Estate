@@ -37,7 +37,7 @@ function Profile(props){
   const navigate = useNavigate()
 
   const session = useCallback(async () =>{
-    await axios.get('http://localhost:8000/api/session')
+    await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
@@ -54,7 +54,7 @@ function Profile(props){
 
 
   const users = useCallback(async () => {
-    await axios.get('http://localhost:8000/api/users')
+    await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/users`)
     .then(res => {
       if(res.data.status){
         const doc_users = res.data.users          
@@ -69,7 +69,7 @@ function Profile(props){
   },[])
 
   const profile = useCallback(async ()=>{
-    await axios.get(`http://localhost:8000/api/profile/${Id}`)
+    await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile          
@@ -117,7 +117,7 @@ function Profile(props){
           }
     
     try{
-      await axios.put(`http://localhost:8000/api/profile/fname/${Id}`, 
+      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/fname/${Id}`, 
         JSON.stringify({
         firstname: fname,
         }),
@@ -159,7 +159,7 @@ function Profile(props){
           }
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/lname/${Id}`,
+      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/lname/${Id}`,
        JSON.stringify({
         lastname: lname,
         }),
@@ -224,7 +224,7 @@ function Profile(props){
 
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/user/${Id}`,
+      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/user/${Id}`,
         JSON.stringify({
         username: user,
         }),
@@ -241,7 +241,7 @@ function Profile(props){
       setFormError(inputError);
 
 
-        axios.post('http://localhost:8000/api/logout')
+        axios.post(`${process.env.REACT_APP_SERVER_URI}/api/logout`)
         .then(res => {
           if(res.data.valid){
             alert("Please Login Again")
@@ -290,7 +290,7 @@ function Profile(props){
 
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/email/${Id}`,
+      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/email/${Id}`,
         JSON.stringify({
         email: email,
         }),
@@ -343,7 +343,7 @@ function Profile(props){
           }
 
     try{
-      await axios.put(`http://localhost:8000/api/profile/phone/${Id}`, 
+      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/phone/${Id}`, 
         JSON.stringify({
         phone: phone,
         }),
