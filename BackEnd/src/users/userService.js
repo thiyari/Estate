@@ -49,7 +49,7 @@ module.exports.createContactsDBService = (userDetails) => {
                                 lastname: userDetails.lastname,
                                 email: userDetails.email,
                                 phone: userDetails.phone,
-                                requests: ""
+                                propertyid: userDetails.propertyid
                         });
                         
                 }
