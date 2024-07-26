@@ -14,7 +14,6 @@ function Checkout(props) {
     lname:"",
     email:"",
     phone:"",
-    propertyid: "",
     fname_status: "",
     lname_status: "", 
     email_status: "",
@@ -40,7 +39,7 @@ function Checkout(props) {
 
     async function submitHandler(event) {
       event.preventDefault();
-
+      
         // Initialize an object to track input errors
         let inputError = {...initialState};
 
@@ -111,6 +110,7 @@ function Checkout(props) {
             ...prevState,
             successMsg: "Verification Successful, Saving the details",
           }));
+
 
           try {
             await axios.post("http://localhost:8000/api/contacts/create", JSON.stringify({
@@ -272,15 +272,6 @@ function Checkout(props) {
 
               <form onSubmit={submitHandler}>
               <h2 className='mt-2'>Contact Details</h2>
-              <input 
-                  type="text"  
-                  id="propertyid" 
-                  name="propertyid"
-                  value={propertyid}
-                  onChange={({target})=>{
-                    handleUserInput(target.name, target.value)
-                  }}
-                />
                 <div className='row form-container border mt-4'>
                   <div className='mt-4'></div>
                   <div className='col-md-1'></div>
