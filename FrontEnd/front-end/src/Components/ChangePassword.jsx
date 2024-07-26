@@ -281,14 +281,6 @@ return (
       </div>
       </div>
 
-      <div className="card-footer text-muted">
-            <p>
-              Already registered?<br />
-              <span className="line">
-              <a href="/Login">Sign In</a>
-              </span>
-            </p>      
-      </div>
       </div>
       </div>
     </div>

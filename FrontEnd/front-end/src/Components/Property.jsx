@@ -1257,14 +1257,6 @@ function Properties(props){
   </div>
 </div>
 
-      <div className="card-footer text-muted">
-            <div>
-              Already registered?<br />
-              <span className="line">
-              <a href="/Login">Sign In</a>
-              </span>
-            </div>      
-      </div>
       </div>
       </div> 
      
