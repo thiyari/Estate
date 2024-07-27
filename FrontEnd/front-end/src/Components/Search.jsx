@@ -1,9 +1,12 @@
 import {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from 'axios'
+import Form from 'react-bootstrap/form';
+import InputGroup from 'react-bootstrap/InputGroup';
 
 function Search(props) {
 
+    const [search, setSearch] = useState('')
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
@@ -53,8 +56,16 @@ return(
       <div className="row">
       <div className="col-md-1"></div>
           <div className="col-md-10">
+            <form>
+                <InputGroup  className='my-3'>
+                <Form.Control 
+                    onChange={(e) => setSearch(e.target.value)}
+                    placeholder="Search"
+                />
+                </InputGroup>
+            </form>
               <div className ="table-responsive-md">
-                  <table className ="table table-striped">
+                  <table className ="table table-striped border">
                     <thead align="center">
                       <tr>
                         <th>Property ID</th>
@@ -69,9 +80,11 @@ return(
                       </tr>
                     </thead>
                     <tbody className="table-group-divider" align="center">
-                    {profiles.map((profile, index)=>{ 
+                    {profiles.filter((item)=>{
+                        return search.toLowerCase() === ''? item : item.property.toLowerCase().includes(search);
+                    }).map((profile, index)=>{ 
                             return (<>
-                      <tr>
+                      <tr key={index}>
                         <td>{profile.propertyid}</td>
                         <td>{profile.property}</td>
                         <td>{profile.area}</td>
