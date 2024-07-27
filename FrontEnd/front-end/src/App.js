@@ -12,6 +12,7 @@ import Houses from './Components/Houses';
 import Commercial from './Components/Commercial';
 import Checkout from './Components/Checkout';
 import ContactUs from './Components/ContactUs';
+import Search from './Components/Search';
 import { useState } from 'react';
 
 function App() {
@@ -36,6 +37,7 @@ const handleLogin = (status) => {
           <Route path="/ChangePassword" element = {<ChangePassword LoginStatus={handleLogin}/>} />
           <Route path="/Property" element = {<Property LoginStatus={handleLogin}/>} />
           <Route path="/ContactUs" element = {<ContactUs LoginStatus={handleLogin}/>} />
+          <Route path="/Search" element = {<Search LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>

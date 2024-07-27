@@ -59,7 +59,7 @@ const logoutHandler = () => {
           <a className="nav-link" href="../Commercial">Commercial</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#s">Search</a>
+          <a className="nav-link" href="../Search">Search</a>
         </li>
         <li className="nav-item">
           <a className="nav-link" href="../Profile">My Account</a>
