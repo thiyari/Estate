@@ -3,6 +3,7 @@ import '../App.css';
 import axios from 'axios'
 import Form from 'react-bootstrap/form';
 import InputGroup from 'react-bootstrap/InputGroup';
+import Table from 'react-bootstrap/Table';
 
 function Search(props) {
 
@@ -65,7 +66,7 @@ return(
                 </InputGroup>
             </form>
               <div className ="table-responsive-md">
-                  <table className ="table table-striped border">
+                  <Table striped bordered hover>
                     <thead align="center">
                       <tr>
                         <th>Property ID</th>
@@ -98,7 +99,7 @@ return(
                             </>)}
                     )}
                     </tbody>
-                  </table>
+                  </Table>
               </div>                       
               </div>
               <div className='col-md-1'></div>
