@@ -228,6 +228,7 @@ const FilterControls = () => {
     return (
       <form>
         <table>
+          <tbody>
           <tr>
             <td>
                 <select 
@@ -294,6 +295,7 @@ const FilterControls = () => {
                 </select>
             </td>
           </tr>
+          </tbody>
       </table>
       </form>
     )
