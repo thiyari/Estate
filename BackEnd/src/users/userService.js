@@ -83,7 +83,7 @@ module.exports.loginuserDBService = (userDetails) => {
 
 module.exports.fetchProfilesDBService = () => {
         return new Promise(async function myFn(resolve,reject){
-                result = await dataModel.users.find({requests: "Approved"}).sort({_id:-1}).limit(10);
+                result = await dataModel.users.find({requests: "Approved"}).sort({_id:-1});
                 if(result != undefined && result != null){
                         resolve({status: true, data: result});
                 } else {
