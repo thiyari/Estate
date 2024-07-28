@@ -84,31 +84,36 @@ const FilterControls = () => {
     const { filters, handleFilterChange } = useContext(FilterContext);
     return (
       <form>
-      <select 
-      className="form-select" 
-      title="phase"
-      name="phase"
-      value={filters.phase}
-      onChange={handleFilterChange}
-        >
-        {phaseList.map((option,index) => (
-          <option value={option.value} key={index}>{option.label}</option>
-        ))}
-      </select>
-      
-      <select 
-      className="form-select" 
-      title="currency"
-      name="currency"
-      value={filters.currency}
-      onChange={handleFilterChange}
-        >
-        {currencyList.map((option,index) => (
-          <option value={option.value} key={index}>{option.label}</option>
-        ))}
-      </select>
+        <table>
+          <tr>
+            <td>
+                <select className="form-select" 
+                  title="phase"
+                  name="phase"
+                  value={filters.phase}
+                  onChange={handleFilterChange}
+                    >
+                    {phaseList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                </select>
+            </td>
+            <td>
+                <select 
+                  className="form-select" 
+                  title="currency"
+                  name="currency"
+                  value={filters.currency}
+                  onChange={handleFilterChange}
+                    >
+                    {currencyList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                </select>
+            </td>
+          </tr>
+      </table>
       </form>
-
     )
 }
 return(
