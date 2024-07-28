@@ -1,16 +1,41 @@
-import {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useContext, createContext} from 'react';
+
 import '../App.css';
 import axios from 'axios'
-import Form from 'react-bootstrap/form';
-import InputGroup from 'react-bootstrap/InputGroup';
+//import Form from 'react-bootstrap/form';
+//import InputGroup from 'react-bootstrap/InputGroup';
 import Table from 'react-bootstrap/Table';
 
-function Search(props) {
+const currencyList = [
+  { value: '', label: 'Select Currency'},
+  { value: 'INR', label: 'INR'},
+  { value: 'USD', label: 'USD'},
+]
 
-    const [search, setSearch] = useState('')
+
+const phaseList = [
+  { value: '', label: 'Select Phase'},
+  { value: 'east', label: 'East' },
+  { value: 'west', label: 'West' },
+  { value: 'north', label: 'North' },
+  { value: 'south', label: 'South' }
+];
+
+
+function Search(props) {
+    const FilterContext = createContext();
+    const [filters, setFilters] = useState({phase:"",currency:""});
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
+
+    const handleFilterChange = (e) => {
+      const { name, value } = e.target;
+      setFilters((prevFilters) => ({
+          ...prevFilters,
+          [name]: value,
+      }));
+    };
 
     const session = useCallback(async ()=>{
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
@@ -49,7 +74,47 @@ function Search(props) {
       records();
     },[session, records]);
 
+
+    const filteredProfiles = profiles.filter((profile) => {
+      return (
+          (filters.phase === "" || profile.phase === filters.phase) &&
+          (filters.currency === "" || profile.currency === filters.currency)
+      );
+    });
+
+const FilterControls = () => {
+    const { filters, handleFilterChange } = useContext(FilterContext);
+    return (
+      <form>
+      <select 
+      className="form-select" 
+      title="phase"
+      name="phase"
+      value={filters.phase}
+      onChange={handleFilterChange}
+        >
+        {phaseList.map((option,index) => (
+          <option value={option.value} key={index}>{option.label}</option>
+        ))}
+      </select>
+      
+      <select 
+      className="form-select" 
+      title="currency"
+      name="currency"
+      value={filters.currency}
+      onChange={handleFilterChange}
+        >
+        {currencyList.map((option,index) => (
+          <option value={option.value} key={index}>{option.label}</option>
+        ))}
+      </select>
+      </form>
+
+    )
+}
 return(
+  
     <>
 {dataExists && (
     
@@ -57,15 +122,10 @@ return(
       <div className="row">
       <div className="col-md-1"></div>
           <div className="col-md-10">
-            <form>
-                <InputGroup  className='my-3'>
-                <Form.Control 
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search"
-                />
-                </InputGroup>
-            </form>
+            <FilterContext.Provider value={{filters, handleFilterChange}}>
               <div className ="table-responsive-md">
+              <FilterControls />
+
                   <Table striped bordered hover>
                     <thead align="center">
                       <tr>
@@ -81,9 +141,7 @@ return(
                       </tr>
                     </thead>
                     <tbody className="table-group-divider" align="center">
-                    {profiles.filter((item)=>{
-                        return search.toLowerCase() === ''? item : item.property.toLowerCase().includes(search);
-                    }).map((profile, index)=>{ 
+                    {filteredProfiles.map((profile, index)=>{ 
                             return (<>
                       <tr key={index}>
                         <td>{profile.propertyid}</td>
@@ -100,7 +158,8 @@ return(
                     )}
                     </tbody>
                   </Table>
-              </div>                       
+              </div>
+              </FilterContext.Provider>                       
               </div>
               <div className='col-md-1'></div>
               </div>
