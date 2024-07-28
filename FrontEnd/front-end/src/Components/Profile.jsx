@@ -389,7 +389,7 @@ function Profile(props){
         <h2 align="center">Welcome {fname} {lname}</h2>
   
   
-        <table className="table table-striped ">
+        <table className="table table-striped table-hover">
           <thead>
             <tr>
               <th scope="col">#</th>

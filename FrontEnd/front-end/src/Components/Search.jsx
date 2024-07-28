@@ -1,10 +1,8 @@
 import React, {useState, useEffect, useCallback, useContext, createContext} from 'react';
-
+import { NavLink } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios'
-//import Form from 'react-bootstrap/form';
-//import InputGroup from 'react-bootstrap/InputGroup';
-import Table from 'react-bootstrap/Table';
+
 
 const currencyList = [
   { value: '', label: 'Select Currency'},
@@ -122,11 +120,16 @@ return(
       <div className="row">
       <div className="col-md-1"></div>
           <div className="col-md-10">
+            <div className="card">
+            <h1 className="card-header mb-4"><center><div className="header-font">Search by Filters</div></center></h1>
+            <div className="row">
+              <div className='col-md-1'></div>
+              <div className='col-md-10'>
             <FilterContext.Provider value={{filters, handleFilterChange}}>
               <div className ="table-responsive-md">
               <FilterControls />
 
-                  <Table striped bordered hover>
+                  <table className="table table-striped table-hover mt-4">
                     <thead align="center">
                       <tr>
                         <th>Property ID</th>
@@ -138,6 +141,7 @@ return(
                         <th>Location</th>
                         <th>Currency</th>
                         <th>Price</th>
+                        <th>Page</th>
                       </tr>
                     </thead>
                     <tbody className="table-group-divider" align="center">
@@ -153,15 +157,21 @@ return(
                         <td>{profile.location}</td>
                         <td>{profile.currency}</td>
                         <td>{profile.price}</td>
+                        <td><NavLink exact="true" to={`/Checkout/${profile.propertyid}`} target={'_blank'}>View
+                        </NavLink></td>
                       </tr>
                             </>)}
                     )}
                     </tbody>
-                  </Table>
+                  </table>
               </div>
-              </FilterContext.Provider>                       
+              </FilterContext.Provider>             
+                    </div>
+                    <div className='col-md-1'></div>
+                    </div>
               </div>
               <div className='col-md-1'></div>
+              </div>
               </div>
               </div>
             
