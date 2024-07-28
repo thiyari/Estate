@@ -189,7 +189,7 @@ function Checkout(props) {
               <div className='col-md-2'></div>
               <div className='col-md-8'>
               <h2 className='mb-2'>Details of Confirmation</h2>
-              <table className="table table-striped">
+              <table className="table table-striped table-hover">
                 <thead>
                   <tr>
                     <th scope="col">Particulars</th>
