@@ -234,11 +234,11 @@ function Search(props) {
 const FilterControls = () => {
     const { filters, handleFilterChange } = useContext(FilterContext);
     return (
-              <div className='row'>
-              <div className='col-md-12'>
-                <div className='row container'>
-                <div className='col-md-2'>
-                <select 
+      <div className ="table-responsive-md">                  
+        <table className='table'>
+            <tbody>
+              <tr>
+                <td><select 
                   className="form-select" 
                   title="property"
                   name="property"
@@ -248,10 +248,9 @@ const FilterControls = () => {
                     {propertyList.map((option,index) => (
                       <option value={option.value} key={index}>{option.label}</option>
                     ))}
-                </select></div>
+                </select></td>
                 
-                <div className='col-md-2'>
-                <select className="form-select" 
+                <td><select className="form-select" 
                   title="phase"
                   name="phase"
                   value={filters.phase}
@@ -260,10 +259,9 @@ const FilterControls = () => {
                     {phaseList.map((option,index) => (
                       <option value={option.value} key={index}>{option.label}</option>
                     ))}
-                </select></div>
+                </select></td>
 
-                <div className='col-md-2'>
-                <select 
+                <td><select 
                     className="form-select" 
                     title="rooms"
                     name="rooms"
@@ -273,10 +271,9 @@ const FilterControls = () => {
                       {roomsList.map((option,index) => (
                         <option value={option.value} key={index}>{option.label}</option>
                       ))}
-                </select></div>
+                </select></td>
 
-                <div className='col-md-2'>
-                <select 
+                <td><select 
                     className="form-select" 
                     title="floor"
                     name="floor"
@@ -286,10 +283,9 @@ const FilterControls = () => {
                       {floorList.map((option, index) => (
                         <option value={option.value} key={index}>{option.label}</option>
                       ))}
-                </select></div>
+                </select></td>
 
-                <div className='col-md-2'>
-                <select 
+                <td><select 
                   className="form-select" 
                   title="currency"
                   name="currency"
@@ -299,10 +295,11 @@ const FilterControls = () => {
                     {currencyList.map((option,index) => (
                       <option value={option.value} key={index}>{option.label}</option>
                     ))}
-                </select></div>
-                </div>
-                </div>
-                </div>
+                </select></td>
+                </tr>
+                </tbody>
+                </table>
+</div>
     )
 }
 return(
@@ -330,7 +327,7 @@ return(
                   value={filters.propertyid}
                   onChange={handleFilterChange}
                 /> </div>
-                <div className='col-md-3'>
+                <div className='col-md-2'>
                 <input id="area"
                   className="form-control mb-3" 
                   name="area"
@@ -348,7 +345,7 @@ return(
                   value={filters.location}
                   onChange={handleFilterChange}
                 /></div>
-                <div className='col-md-3'>
+                <div className='col-md-2'>
                 <input id="price"
                   className="form-control mb-3" 
                   name="price"
@@ -357,11 +354,14 @@ return(
                   value={filters.price}
                   onChange={handleFilterChange}
                 /></div>
+                <div className='col-md-2'>
+                <button type="submit" className="btn btn-primary" style={{width:70}} onClick={()=>{
+                  setFilters('')}}>Reset</button>
+                </div>
                 </div>
             <FilterContext.Provider value={{filters, handleFilterChange}}>
-              <div className ="table-responsive-md">
               <FilterControls />
-
+              <div className ="table-responsive-md">
                   <table className="table table-striped table-hover mt-4">
                     <thead align="center">
                       <tr>
