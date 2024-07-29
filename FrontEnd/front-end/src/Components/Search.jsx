@@ -385,7 +385,7 @@ return(
                         <td>{profile.location}</td>
                         <td>{profile.currency}</td>
                         <td>{profile.price}</td>
-                        <td><NavLink exact="true" to={`/Checkout/${profile.propertyid}`} target={'_blank'}><i class="fa-solid fa-eye"></i>
+                        <td><NavLink exact="true" to={`/Checkout/${profile.propertyid}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
                         </NavLink></td>
                       </tr>
                             </>)}
