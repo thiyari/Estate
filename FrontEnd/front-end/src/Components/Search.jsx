@@ -355,7 +355,7 @@ return(
                   onChange={handleFilterChange}
                 /></div>
                 <div className='col-md-2'>
-                <button type="submit" className="btn btn-primary" style={{width:70}} onClick={()=>{
+                <button type="submit" className="btn btn-primary" style={{width:120}} onClick={()=>{
                   setFilters('')}}>Reset</button>
                 </div>
                 </div>
