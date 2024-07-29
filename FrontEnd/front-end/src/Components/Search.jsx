@@ -161,7 +161,8 @@ function Search(props) {
       phase:"",
       rooms:"",
       floor: "",
-      currency:""
+      currency:"",
+      location: ""
     });
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
@@ -219,14 +220,14 @@ function Search(props) {
           (filters.phase === "" || profile.phase === filters.phase) &&
           (filters.rooms === "" || profile.rooms === filters.rooms) &&
           (filters.floor === "" || profile.floor === filters.floor) &&
-          (filters.currency === "" || profile.currency === filters.currency)
+          (filters.currency === "" || profile.currency === filters.currency) &&
+          (filters.location === "" || profile.location.toLowerCase().includes(filters.location))
       );
     });
 
 const FilterControls = () => {
     const { filters, handleFilterChange } = useContext(FilterContext);
     return (
-      <form>
         <table>
           <tbody>
           <tr>
@@ -297,7 +298,6 @@ const FilterControls = () => {
           </tr>
           </tbody>
       </table>
-      </form>
     )
 }
 return(
@@ -314,6 +314,15 @@ return(
             <div className="row">
               <div className='col-md-1'></div>
               <div className='col-md-10'>
+              <form>
+                <input id="location"
+                className="form-control mb-3" 
+                name="location"
+                type="text"
+                placeholder="Search by Location"
+                value={filters.location}
+                onChange={handleFilterChange}
+              />
             <FilterContext.Provider value={{filters, handleFilterChange}}>
               <div className ="table-responsive-md">
               <FilterControls />
@@ -354,7 +363,8 @@ return(
                     </tbody>
                   </table>
               </div>
-              </FilterContext.Provider>             
+              </FilterContext.Provider>    
+              </form>         
                     </div>
                     <div className='col-md-1'></div>
                     </div>
