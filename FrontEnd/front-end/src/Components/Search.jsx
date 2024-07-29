@@ -227,7 +227,7 @@ function Search(props) {
           (filters.propertyid === "" || profile.propertyid.includes(filters.propertyid)) &&
           (filters.area === "" || profile.area.toString().includes(filters.area)) &&
           (filters.location.toLowerCase() === "" || profile.location.toLowerCase().includes(filters.location)) &&
-          (filters.price === "" || profile.price.toString().includes(filters.price))
+          (filters.price === "" || profile.price.toString().includes(filters.price) >= filters.price)
       );
     });
 
@@ -369,7 +369,7 @@ return(
                         <th>Location</th>
                         <th>Currency</th>
                         <th>Price</th>
-                        <th>Page</th>
+                        <th>View</th>
                       </tr>
                     </thead>
                     <tbody className="table-group-divider" align="center">
@@ -385,7 +385,7 @@ return(
                         <td>{profile.location}</td>
                         <td>{profile.currency}</td>
                         <td>{profile.price}</td>
-                        <td><NavLink exact="true" to={`/Checkout/${profile.propertyid}`} target={'_blank'}>View
+                        <td><NavLink exact="true" to={`/Checkout/${profile.propertyid}`} target={'_blank'}><i class="fa-solid fa-eye"></i>
                         </NavLink></td>
                       </tr>
                             </>)}
