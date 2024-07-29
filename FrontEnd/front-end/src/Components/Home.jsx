@@ -49,10 +49,21 @@ function Home(props) {
 
     return(
         <>
-        {dataExists && (
-            <div className="row">
+        {dataExists && (<>
+        <div className="banner">
+                    <div>
+                        <h2 className="banner-title">Don't Miss Out On Our Next Webinar</h2>
+                        <p className="banner-desc">Sign Up Now and Choose an Ebook for Free</p>
+                    </div>
+                    <button className="btn-signup" type="button">
+                        Register »
+                    </button>
+        </div>
+        <div className="row">
             <div className="col-md-1"></div>
                 <div className="col-md-10">
+                <div className="row">  
+            <article className="article">
                     <div className='container mt-2'>
                         <div className="row">  
                             {profiles.map((profile, index)=>{ 
@@ -90,9 +101,13 @@ function Home(props) {
                             
                         </div>
                     </div>
+                    </article>
                 </div>
             <div className="col-md-1"></div>
-            </div> )}
+            </div>
+            </div>  
+</>
+)}
         </>
     )
 }

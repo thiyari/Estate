@@ -112,3 +112,52 @@ input[type="text"], input[type="email"], h2, th, td {
 .card, .navbar, .border {
   box-shadow: 5px 5px 5px rgba(0,0,0,0.3);
 }
+
+
+.banner {
+	/* for positioning */
+	width: 100%;
+	height: 300px;
+	position: absolute;
+	top: 60px;
+	background: linear-gradient(45deg, #98cbff, #98ffcb);
+
+	/* for content alignment */
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.banner-title {
+	font-size: 32px;
+	margin-bottom: 10px;
+	text-align: center;
+}
+.banner-desc {
+	font-size: 22px;
+	text-align: center;
+}
+.btn-signup {
+	color: white;
+	background-color: #0056ab;
+	border: 0;
+	padding: 15px 25px;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+.article {
+	width: 100%;
+	position: relative;
+	top: 320px; 
+	background: transparent;
+	height: 100%; 
+	padding: 30px 10%;
+}
+
+footer {
+  top: 320px;
+  position: relative; 
+  font-size: small;
+}
