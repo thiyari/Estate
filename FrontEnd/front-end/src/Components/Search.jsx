@@ -162,7 +162,10 @@ function Search(props) {
       rooms:"",
       floor: "",
       currency:"",
-      location: ""
+      propertyid: "",
+      area: "",
+      location: "",
+      price: ""
     });
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
@@ -221,7 +224,10 @@ function Search(props) {
           (filters.rooms === "" || profile.rooms === filters.rooms) &&
           (filters.floor === "" || profile.floor === filters.floor) &&
           (filters.currency === "" || profile.currency === filters.currency) &&
-          (filters.location === "" || profile.location.toLowerCase().includes(filters.location))
+          (filters.propertyid === "" || profile.propertyid.includes(filters.propertyid)) &&
+          (filters.area === "" || profile.area.toString().includes(filters.area)) &&
+          (filters.location.toLowerCase() === "" || profile.location.toLowerCase().includes(filters.location)) &&
+          (filters.price === "" || profile.price.toString().includes(filters.price))
       );
     });
 
@@ -315,14 +321,38 @@ return(
               <div className='col-md-1'></div>
               <div className='col-md-10'>
               <form>
+                <input id="propertyid"
+                  className="form-control mb-3" 
+                  name="propertyid"
+                  type="text"
+                  placeholder="Search by Property Id"
+                  value={filters.propertyid}
+                  onChange={handleFilterChange}
+                />
+                <input id="area"
+                  className="form-control mb-3" 
+                  name="area"
+                  type="text"
+                  placeholder="Search by Area"
+                  value={filters.area}
+                  onChange={handleFilterChange}
+                />
                 <input id="location"
-                className="form-control mb-3" 
-                name="location"
-                type="text"
-                placeholder="Search by Location"
-                value={filters.location}
-                onChange={handleFilterChange}
-              />
+                  className="form-control mb-3" 
+                  name="location"
+                  type="text"
+                  placeholder="Search by Location"
+                  value={filters.location}
+                  onChange={handleFilterChange}
+                />
+                <input id="price"
+                  className="form-control mb-3" 
+                  name="price"
+                  type="text"
+                  placeholder="Search by Price"
+                  value={filters.price}
+                  onChange={handleFilterChange}
+                />
             <FilterContext.Provider value={{filters, handleFilterChange}}>
               <div className ="table-responsive-md">
               <FilterControls />
