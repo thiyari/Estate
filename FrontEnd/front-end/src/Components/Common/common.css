@@ -3,16 +3,12 @@
 }
 .nav-link:hover{
     border-top: 3px solid #9b9b9b;
-    border-left: 1px solid #9b9b9b;
-    border-right: 1px solid #9b9b9b;
     font-size: 18px;
     color: #333;
 }
 
 .nav-link:active{
     border-top: 3px solid #9b9b9b;
-    border-left: 1px solid #9b9b9b;
-    border-right: 1px solid #9b9b9b;
     font-size: 18px;
     color: #333;
 }
