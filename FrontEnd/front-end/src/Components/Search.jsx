@@ -227,7 +227,7 @@ function Search(props) {
           (filters.propertyid === "" || profile.propertyid.includes(filters.propertyid)) &&
           (filters.area === "" || profile.area.toString().includes(filters.area)) &&
           (filters.location.toLowerCase() === "" || profile.location.toLowerCase().includes(filters.location)) &&
-          (filters.price === "" || profile.price.toString().includes(filters.price) >= filters.price)
+          (filters.price === "" || profile.price.toString().includes(filters.price))
       );
     });
 
