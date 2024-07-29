@@ -234,10 +234,10 @@ function Search(props) {
 const FilterControls = () => {
     const { filters, handleFilterChange } = useContext(FilterContext);
     return (
-        <table>
-          <tbody>
-          <tr>
-            <td>
+              <div className='row'>
+              <div className='col-md-12'>
+                <div className='row container'>
+                <div className='col-md-2'>
                 <select 
                   className="form-select" 
                   title="property"
@@ -248,9 +248,9 @@ const FilterControls = () => {
                     {propertyList.map((option,index) => (
                       <option value={option.value} key={index}>{option.label}</option>
                     ))}
-                </select>
-            </td>
-            <td>
+                </select></div>
+                
+                <div className='col-md-2'>
                 <select className="form-select" 
                   title="phase"
                   name="phase"
@@ -260,9 +260,9 @@ const FilterControls = () => {
                     {phaseList.map((option,index) => (
                       <option value={option.value} key={index}>{option.label}</option>
                     ))}
-                </select>
-            </td>
-            <td>
+                </select></div>
+
+                <div className='col-md-2'>
                 <select 
                     className="form-select" 
                     title="rooms"
@@ -273,9 +273,9 @@ const FilterControls = () => {
                       {roomsList.map((option,index) => (
                         <option value={option.value} key={index}>{option.label}</option>
                       ))}
-                </select>
-            </td>
-            <td>
+                </select></div>
+
+                <div className='col-md-2'>
                 <select 
                     className="form-select" 
                     title="floor"
@@ -286,9 +286,9 @@ const FilterControls = () => {
                       {floorList.map((option, index) => (
                         <option value={option.value} key={index}>{option.label}</option>
                       ))}
-                </select>
-            </td>
-            <td>
+                </select></div>
+
+                <div className='col-md-2'>
                 <select 
                   className="form-select" 
                   title="currency"
@@ -299,11 +299,10 @@ const FilterControls = () => {
                     {currencyList.map((option,index) => (
                       <option value={option.value} key={index}>{option.label}</option>
                     ))}
-                </select>
-            </td>
-          </tr>
-          </tbody>
-      </table>
+                </select></div>
+                </div>
+                </div>
+                </div>
     )
 }
 return(
@@ -321,6 +320,8 @@ return(
               <div className='col-md-1'></div>
               <div className='col-md-10'>
               <form>
+                <div className='row container'>
+                  <div className='col-md-3'>
                 <input id="propertyid"
                   className="form-control mb-3" 
                   name="propertyid"
@@ -328,7 +329,8 @@ return(
                   placeholder="Search by Property Id"
                   value={filters.propertyid}
                   onChange={handleFilterChange}
-                />
+                /> </div>
+                <div className='col-md-3'>
                 <input id="area"
                   className="form-control mb-3" 
                   name="area"
@@ -336,7 +338,8 @@ return(
                   placeholder="Search by Area"
                   value={filters.area}
                   onChange={handleFilterChange}
-                />
+                /></div>
+                <div className='col-md-3'>
                 <input id="location"
                   className="form-control mb-3" 
                   name="location"
@@ -344,7 +347,8 @@ return(
                   placeholder="Search by Location"
                   value={filters.location}
                   onChange={handleFilterChange}
-                />
+                /></div>
+                <div className='col-md-3'>
                 <input id="price"
                   className="form-control mb-3" 
                   name="price"
@@ -352,7 +356,8 @@ return(
                   placeholder="Search by Price"
                   value={filters.price}
                   onChange={handleFilterChange}
-                />
+                /></div>
+                </div>
             <FilterContext.Provider value={{filters, handleFilterChange}}>
               <div className ="table-responsive-md">
               <FilterControls />
