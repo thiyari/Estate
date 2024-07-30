@@ -10,7 +10,7 @@ const initialState = {
   password_status: "",
 };
 
-function Login() {
+function Login(props) {
 
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
@@ -71,10 +71,12 @@ function Login() {
              const data = res.data;
              if (data.status === true && data.logstatus === "user") 
              {
-                alert("Login Successful"); 
+                alert("User Login Successful"); 
+                props.Logstatus(data.logstatus)
                 navigate('/Profile');
              } else if (data.status === true && data.logstatus === "admin") {
-                alert("Login as Admin Successful"); 
+                alert("Admin Login Successful"); 
+                props.Logstatus(data.logstatus)
                 navigate('/AdminProfile');
              }
              else 
