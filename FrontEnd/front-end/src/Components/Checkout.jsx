@@ -352,7 +352,6 @@ function Checkout(props) {
                           
                   </div>
                   <div className='col-md-1'></div>
-                  <div className='mt-4'></div>
               
 
                   <div className='col-md-1'></div>
@@ -373,6 +372,7 @@ function Checkout(props) {
                     </div>
                     </div>
                     <div className='col-md-1'></div>
+                    <div className='mt-4'></div>
 
 
 

@@ -172,7 +172,7 @@ function ContactUs(props) {
 
               <form onSubmit={submitHandler}>
                 <div className='row form-container mt-4'>
-                  <div className='mt-4'></div>
+                  <div className='mt-2'></div>
                   <div className='col-md-1'></div>
                   <div className='col-md-4'>
                       <div className="form-group" align="left">
@@ -248,7 +248,6 @@ function ContactUs(props) {
                           
                   </div>
                   <div className='col-md-1'></div>
-                  <div className='mt-4'></div>
               
                   <div className='col-md-1'></div>
                   <div className='col-md-10'>
@@ -268,6 +267,7 @@ function ContactUs(props) {
                     </div>
                     </div>
                     <div className='col-md-1'></div>
+                    <div className='mt-2'></div>
 
 
                 </div>
