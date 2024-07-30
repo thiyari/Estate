@@ -52,12 +52,13 @@ function Home(props) {
         {dataExists && (<>
         <div className="banner">
                     <div>
-                        <h2 className="banner-title">Don't Miss Out On Our Next Webinar</h2>
-                        <p className="banner-desc">Sign Up Now and Choose an Ebook for Free</p>
+                        <h2 className="banner-title">Welcome to Online Portal</h2>
+                        <p className="banner-desc">Sign Up Now and upload your property details</p>
                     </div>
-                    <button className="btn-signup" type="button">
-                        Register »
-                    </button>
+                    <form className="d-flex" action='/Register'>
+                    <button className="btn-signup" type="submmit">Sign Up
+                    </button></form>
+
         </div>
         <div className="row">
             <div className="col-md-1"></div>

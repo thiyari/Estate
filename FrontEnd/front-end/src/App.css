@@ -120,7 +120,7 @@ input[type="text"], input[type="email"], h2, th, td {
 	height: 300px;
 	position: absolute;
 	top: 60px;
-	background: linear-gradient(45deg, #98cbff, #98ffcb);
+	background: linear-gradient(45deg, #a1a3a5, #ccd1ce);
 
 	/* for content alignment */
 	display: flex;
@@ -139,14 +139,20 @@ input[type="text"], input[type="email"], h2, th, td {
 	text-align: center;
 }
 .btn-signup {
-	color: white;
-	background-color: #0056ab;
+	background-color: grey;
+  width: 150px;
+  height: 60px;
 	border: 0;
 	padding: 15px 25px;
 	font-size: 16px;
 	cursor: pointer;
+  border-radius: 10%;
 }
-
+.btn-signup:hover {
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	background-color: #fff;
+  color: grey;
+}
 .article {
 	width: 100%;
 	position: relative;
