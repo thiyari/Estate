@@ -49,17 +49,18 @@ function Home(props) {
 
     return(
         <>
-        {dataExists && (<>
         <div className="banner">
                     <div>
-                        <h2 className="banner-title">Welcome to Online Portal</h2>
-                        <p className="banner-desc">Sign Up Now and upload your property details</p>
+                        <h2 className="banner-title">Welcome to Online Services</h2>
+                        <p className="banner-desc">Sign Up now and sell your properties online</p>
                     </div>
                     <form className="d-flex" action='/Register'>
                     <button className="btn-signup" type="submmit">Sign Up
                     </button></form>
 
         </div>
+        {dataExists && (<>
+
         <div className="row">
             <div className="col-md-1"></div>
                 <div className="col-md-10">
