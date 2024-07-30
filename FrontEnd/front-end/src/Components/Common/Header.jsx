@@ -64,7 +64,7 @@ const logoutHandler = () => {
         <li className="nav-item">
           { props.LoginStatus === "admin" ?
           (<a className="nav-link" href="../AdminProfile">My Account</a>)  :      
-          (<a className="nav-link" href="../AdminProfile">My Account</a>)  }      
+          (<a className="nav-link" href="../Profile">My Account</a>)  }      
         </li>
         <li className="nav-item">
           <a className="nav-link" href="../Register">Register</a>
