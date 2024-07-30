@@ -52,7 +52,7 @@ function Home(props) {
         <div className="banner">
                     <div>
                         <h2 className="banner-title">Welcome to Online Services</h2>
-                        <p className="banner-desc">Sign Up now and sell your properties online</p>
+                        <p className="banner-desc">Sign Up now and get connected with us to Sell/Lease your properties</p>
                     </div>
                     <form className="d-flex" action='/Register'>
                     <button className="btn-signup" type="submmit">Sign Up

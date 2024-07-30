@@ -207,7 +207,7 @@ function Checkout(props) {
                   </tr>
                   <tr>
                     <td>Area</td>
-                    <td>{profile.area}</td>
+                    <td>{profile.area} Sq. Ft</td>
                   </tr>
                   <tr>
                     <td>Phase</td>
