@@ -614,7 +614,8 @@ function Register(props) {
           address: formInput.address,
           images: img,
           requests: "Approved",
-          propertyid: pid
+          propertyid: pid,
+          logstatus: "user"
           }),
           {
             headers:{

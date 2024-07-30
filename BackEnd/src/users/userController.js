@@ -48,7 +48,7 @@ var loginUserControllerFn = async(req,res)=>
         session.id = result.id
         req.session.save()
         if(result.status){
-            res.send({"status":true,"message":result.msg});
+            res.send({"status":true,"message":result.msg,"logstatus":result.logstatus});
         }
         else {
             res.send({"status":false,"message":result.msg});

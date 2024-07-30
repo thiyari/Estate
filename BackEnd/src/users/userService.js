@@ -25,7 +25,8 @@ module.exports.createUserDBService = (userDetails) => {
                                 property: userDetails.property,
                                 address: userDetails.address,
                                 requests: userDetails.requests,
-                                propertyid: userDetails.propertyid
+                                propertyid: userDetails.propertyid,
+                                logstatus: userDetails.logstatus
                         });
                         
                 }
@@ -72,7 +73,7 @@ module.exports.loginuserDBService = (userDetails) => {
                 if(result != undefined && result != null){
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){
-                                resolve({status: true, msg: "user validated successfully", id: result._id});
+                                resolve({status: true, msg: "user validated successfully", id: result._id, logstatus: result.logstatus});
                         } else {
                                 reject({status: false, msg: "user validation failed"});
                         }

@@ -77,6 +77,10 @@ var userSchema = new Schema({
     propertyid: {
         type: String,
         required: true
+    },
+    logstatus: {
+        type: String,
+        required: true
     }
 });
 

@@ -69,12 +69,14 @@ function Login() {
             }).then((res) => 
             {
              const data = res.data;
-             
-             if (data.status === true) 
+             if (data.status === true && data.logstatus === "user") 
              {
                 alert("Login Successful"); 
                 navigate('/Profile');
-             } 
+             } else if (data.status === true && data.logstatus === "admin") {
+                alert("Login as Admin Successful"); 
+                navigate('/AdminProfile');
+             }
              else 
              {
                 alert("Login Failed")
