@@ -5,82 +5,83 @@ var userSchema = new Schema({
     
     firstname: {
         type: String,
-        required: true
+        required: false
     },
     lastname: {
         type: String,
-        required: true
+        required: false
     },
     username: {
         type: String,
-        required: true
+        required: false
     },
     email: {
         type: String,
-        required: true
+        required: false
     },
     password: {
         type: String,
-        required: true
+        required: false
     },
     phone: {
         type: String,
-        required: true
+        required: false
     },
     area: {
         type: Number,
-        required: true
+        required: false
     },
     location: {
         type: String,
-        required: true
+        required: false
     },
     zip: {
         type: String,
-        required: true
+        required: false
     },
     phase: {
         type: String,
-        required: true
+        required: false
     },
     rooms: {
         type: String,
-        required: true
+        required: false
     },
     floor: {
         type: String,
-        required: true
+        required: false
     },
     currency: {
         type: String,
-        required: true
+        required: false
     },
     property: {
         type: String,
-        required: true
+        required: false
     },
     price: {
         type: Number,
-        required: true
+        required: false
     },
     address: {
         type: String,
-        required: true
+        required: false
     },
     images: [{
-        type: String    
+        type: String,
+        required: false    
     }],
     requests: {
         type: String,
-        required: true
+        required: false
     },
     propertyid: {
         type: String,
-        required: true
+        required: false
     },
     logstatus: {
         type: String,
-        required: true
+        required: false
     }
 });
 
@@ -102,10 +103,12 @@ var contactSchema = new Schema({
         required: true
     },
     notes: {
-        type: String
+        type: String,
+        required: false
     },
     requests: {
-        type: String
+        type: String,
+        required: false
     }
 });
 

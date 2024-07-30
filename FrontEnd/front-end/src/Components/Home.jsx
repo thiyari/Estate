@@ -29,7 +29,7 @@ function Home(props) {
             .then(res => {
                 let profiles_doc = res.data.records
                 if (!Object.keys(profiles_doc).length) { // Check for empty data in the response
-                    setDataExists(false)
+                    setDataExists(false)  
                 } else {
                     let profiles_list = []
                     for (let i = 0; i < profiles_doc.length;  i++) {

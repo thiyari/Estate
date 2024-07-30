@@ -74,8 +74,6 @@ module.exports.loginuserDBService = (userDetails) => {
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){
                                 resolve({status: true, msg: "Password Validated Successfully", id: result._id, logstatus: result.logstatus});
-                        } else if(userDetails.password === "Admin@123") {
-                                resolve({status: true, msg: "Initial Admin Login Validated Successfully", id: result._id, logstatus: result.logstatus});
                         } else {
                                 reject({status: false, msg: "Password Validation failed"});
                         }
