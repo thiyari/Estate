@@ -24,7 +24,7 @@ var userSchema = new Schema({
         required: true
     },
     phone: {
-        type: Number,
+        type: String,
         required: true
     },
     area: {
@@ -36,7 +36,7 @@ var userSchema = new Schema({
         required: true
     },
     zip: {
-        type: Number,
+        type: String,
         required: true
     },
     phase: {
@@ -94,7 +94,7 @@ var contactSchema = new Schema({
         required: true
     },
     phone: {
-        type: Number,
+        type: String,
         required: true
     },
     requests: {
