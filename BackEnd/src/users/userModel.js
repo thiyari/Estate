@@ -13,7 +13,7 @@ var userSchema = new Schema({
     },
     username: {
         type: String,
-        required: false
+        required: true
     },
     email: {
         type: String,
@@ -21,7 +21,7 @@ var userSchema = new Schema({
     },
     password: {
         type: String,
-        required: false
+        required: true
     },
     phone: {
         type: String,
@@ -81,7 +81,7 @@ var userSchema = new Schema({
     },
     logstatus: {
         type: String,
-        required: false
+        required: true
     }
 });
 
