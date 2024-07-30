@@ -14,6 +14,7 @@ function ContactUs(props) {
     lname:"",
     email:"",
     phone:"",
+    notes:"",
     fname_status: "",
     lname_status: "", 
     email_status: "",
@@ -114,6 +115,7 @@ function ContactUs(props) {
             lastname: formInput.lname,
             email: formInput.email,
             phone: formInput.phone,
+            notes: formInput.notes,
             requests: "general"
             }),
             {
@@ -126,7 +128,8 @@ function ContactUs(props) {
               fname: "",
               lname: "",
               email: "",
-              phone: ""
+              phone: "",
+              notes: ""
             })
             navigate('/');
           } catch (err) {
@@ -247,6 +250,26 @@ function ContactUs(props) {
                   <div className='col-md-1'></div>
                   <div className='mt-4'></div>
               
+                  <div className='col-md-1'></div>
+                  <div className='col-md-10'>
+                  <div className="form-group">
+                    <div className="mb-3" align="left">
+                      <label htmlFor="notes" className="form-label">Notes</label>
+                      <textarea 
+                      className="form-control" 
+                      id="notes" 
+                      name="notes"
+                      rows="3"
+                      onChange={({target})=>{            
+                        handleUserInput(target.name, target.value)
+                      }} 
+                      ></textarea>
+                    </div>
+                    </div>
+                    </div>
+                    <div className='col-md-1'></div>
+
+
                 </div>
                 <p align="center" className="success-message mt-4">{formInput.successMsg}</p>
 
