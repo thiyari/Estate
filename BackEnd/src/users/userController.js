@@ -18,6 +18,22 @@ var createUserControllerFn = async(req,res)=>
     }
 }
 
+var adminKeyControllerFn = async(req,res)=>
+    {
+        try
+        {
+            var status = await (userService.adminKeyDBService(req.params.key))
+            if(status){
+                res.send({"status":true,"message":"Admin credentials created successfully"});
+            }
+            else {
+                res.send({"status":false,"message":"Error creating credentials"});
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
 
 var createContactsControllerFn = async(req,res)=>
     {
@@ -35,6 +51,7 @@ var createContactsControllerFn = async(req,res)=>
             console.log(err);
         }
     }
+
 
 var loginUserControllerFn = async(req,res)=>
 {
@@ -534,5 +551,6 @@ module.exports = {
     fetchProfilesHousesControllerFn,
     fetchProfilesCommercialControllerFn,
     fetchProfilesPropertyidControllerFn,
-    createContactsControllerFn
+    createContactsControllerFn,
+    adminKeyControllerFn
 }

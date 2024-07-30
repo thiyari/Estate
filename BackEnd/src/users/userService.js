@@ -2,6 +2,31 @@ var dataModel = require('./userModel')
 var key = '123456789asdflkj';
 var encryptor = require('simple-encryptor')(key);
 
+
+module.exports.adminKeyDBService = (userData) => {
+        return new Promise(function myFn(resolve,reject){
+                if (userData === "Admin31072024") {
+                        var encrypted = encryptor.encrypt("Admin@123");
+                        async function insert(){
+                                await dataModel.users.create({
+                                        username: "Admin",
+                                        password: encrypted,
+                                        logstatus: "admin"
+                                });
+                                
+                        }
+                        insert().then(function (err){
+                                if(err){
+                                        reject(false)
+                                } else {
+                                        resolve(true)
+                                }
+                        });
+                } 
+        });
+
+}
+
 module.exports.createUserDBService = (userDetails) => {
         return new Promise(function myFn(resolve,reject){
                 var encrypted = encryptor.encrypt(userDetails.password);

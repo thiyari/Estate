@@ -15,6 +15,7 @@ router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);
 router.route('/api/contacts/create').post(userController.createContactsControllerFn);
 router.route('/api/:propertyid').get(userController.fetchProfilesPropertyidControllerFn);
+router.route('/api/admin/:key').get(userController.adminKeyControllerFn)
 router.route('/api/changepassword/:id').put(userController.changepasswordUserControllerFn);
 router.route('/api/profile/:id').get(userController.profileControllerFn);
 router.route('/api/profile/fname/:id').put(userController.profileFnameControllerFn);
