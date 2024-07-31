@@ -30,19 +30,6 @@ form button{
   cursor: pointer;
 }
 
-.allimage {
-  padding-left: 15px;
-  margin-top: 100px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.allimage img {
-  border-radius: 5px;
-  box-shadow: 3px 3px 7px rgba(0,0,0,0.3);
-}
-
 .header-font {
   font-family: "Rajdhani", sans-serif;
   font-weight: 500;
