@@ -2,18 +2,17 @@ import axios from 'axios'
 import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
+import AdminSidebar from './Sidebar/AdminSidebar'
 
 function AdminProfile(props){
     const [loggedIn, setLoggedIn] = useState(false)
     const [Id, setId] = useState('')
-    const [user, setUser] = useState('')
     const navigate = useNavigate()
 
     const session = useCallback(async () =>{
       await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
       .then(res => {
         if(res.data.valid){
-          setUser(res.data.username);
           setId(res.data.id);
           setLoggedIn(res.data.isLoggedIn);
           props.LoginStatus(loggedIn);
@@ -32,7 +31,32 @@ function AdminProfile(props){
     },[session])
 
     return(
-        <>Welcome to Admin Page {user} and id: {Id}</>
+      <React.Fragment>
+      <div className="row">
+      <div className="col-md-2">        
+        <AdminSidebar/>
+      </div>
+      <div className="col-md-10">
+    
+    
+      <div className="container mt-4" >
+        <div className="card">
+        <h1 className="card-header">
+          <center>
+            <div className="header-font">Admin Profile</div>
+          </center>
+        </h1>
+          <div className="form-container">
+            <div className="card-body">
+              {Id}
+
+            </div>
+        </div>
+        </div>
+        </div>
+      </div>
+  </div>   
+  </React.Fragment>           
     )
 }
 
