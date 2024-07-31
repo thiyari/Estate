@@ -31,7 +31,7 @@ const AdminSidebar = () => {
             <NavLink exact="true" to="/ChangePassword" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-gear">Change Password</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink reloadDocument exact="true" to="/AddAdmin" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+            <NavLink reloadDocument exact="true" to="/ManageAdmin" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-address-card">Manage Admins</CDBSidebarMenuItem>
             </NavLink>
             <NavLink reloadDocument exact="true" to="/Requests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
