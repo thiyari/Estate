@@ -18,24 +18,20 @@ import { useState } from 'react';
 
 function App() {
 const [isLoggedIn, setIsLoggedIn] = useState(false);
-const [logstatus, setLogstatus] = useState('');
 
 const handleLogin = (status) => {
   setIsLoggedIn(status)
 }
 
-const handleLogstatus = (logstatus) => {
-  setLogstatus(logstatus)
-}
   return (
     <div>
       <Router>
-      <Header LoginStatus={isLoggedIn} LogStatus={logstatus}/>
+      <Header LoginStatus={isLoggedIn} />
         <Routes>
           <Route path="/" element = {<Home LoginStatus={handleLogin}/>} />
           <Route path="/Profile" element = {<Profile LoginStatus={handleLogin}/>} />
           <Route path="/Register" element = {<Register LoginStatus={handleLogin}/>} />
-          <Route path="/Login" element = {<Login Logstatus={handleLogstatus}/>} />
+          <Route path="/Login" element = {<Login />} />
           <Route path="/Plots" element = {<Plots LoginStatus={handleLogin}/>} />
           <Route path="/Houses" element = {<Houses LoginStatus={handleLogin}/>} />
           <Route path="/Commercial" element = {<Commercial LoginStatus={handleLogin}/>} />

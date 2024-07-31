@@ -22,9 +22,12 @@ function Login(props) {
     const session = useCallback(async () => {
       await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
       .then(res => {
-        if(res.data.valid){
+        if(res.data.valid && res.data.logstatus === "user"){
           setUser(res.data.user);
           navigate('/Profile')
+        } else if (res.data.valid && res.data.logstatus === "admin") {
+          setUser(res.data.user);
+          navigate('/AdminProfile')
         } else {
           navigate('/Login')
         }
@@ -72,11 +75,9 @@ function Login(props) {
              if (data.status === true && data.logstatus === "user") 
              {
                 alert("User Login Successful"); 
-                props.Logstatus(data.logstatus)
                 navigate('/Profile');
              } else if (data.status === true && data.logstatus === "admin") {
                 alert("Admin Login Successful"); 
-                props.Logstatus(data.logstatus)
                 navigate('/AdminProfile');
              }
              else 

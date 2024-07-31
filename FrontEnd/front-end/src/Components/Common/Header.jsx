@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 function Header(props){
 
 const [isLoggedIn,setIsLoggedIn] = useState(false)
-const [logstatus, setLogstatus] = useState('')
+const [logStatus, setLogStatus] = useState(false)
 const navigate = useNavigate()
 
 const session = useCallback(async () => {
@@ -15,7 +15,7 @@ const session = useCallback(async () => {
   .then(res => {
     if(res.data.valid){
       setIsLoggedIn(props.LoginStatus);
-      setLogstatus(props.LoginStatus)
+      setLogStatus(res.data.logstatus)
     } 
   })
   .catch(err => console.log(err))
@@ -63,7 +63,7 @@ const logoutHandler = () => {
           <a className="nav-link" href="../Search">Search</a>
         </li>
         <li className="nav-item">
-          { logstatus === "admin" ?
+          { logStatus === "admin" ?
           (<a className="nav-link" href="../AdminProfile">My Account</a>)  :      
           (<a className="nav-link" href="../Profile">My Account</a>)  }      
         </li>

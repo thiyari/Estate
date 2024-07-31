@@ -63,6 +63,7 @@ var loginUserControllerFn = async(req,res)=>
         req.session.password = req.body.password
         req.session.isLoggedIn = true;
         session.id = result.id
+        session.logstatus = result.logstatus
         req.session.save()
         if(result.status){
             res.send({"status":true,"message":result.msg,"logstatus":result.logstatus});
@@ -94,7 +95,8 @@ var sessionControllerFn = async(req,res)=>{
                 username: req.session.username, 
                 password: req.session.password, 
                 id: session.id,
-                isLoggedIn: req.session.isLoggedIn
+                isLoggedIn: req.session.isLoggedIn,
+                logstatus: session.logstatus
             })
         } else {
             return res.json({valid: false})
