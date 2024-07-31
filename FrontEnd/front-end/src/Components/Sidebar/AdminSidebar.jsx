@@ -34,11 +34,17 @@ const AdminSidebar = () => {
             <NavLink reloadDocument exact="true" to="/ManageAdmin" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-address-card">Manage Admins</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink reloadDocument exact="true" to="/ManageUsers" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+              <CDBSidebarMenuItem icon="fa-solid fa-address-card">Manage Users</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink reloadDocument exact="true" to="/UserRequests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-envelope">User Requests</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink reloadDocument exact="true" to="/ClientRequests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
-              <CDBSidebarMenuItem icon="fa-solid fa-envelope">Client Requests</CDBSidebarMenuItem>
+            <NavLink reloadDocument exact="true" to="/ServiceRequests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+              <CDBSidebarMenuItem icon="fa-solid fa-envelope">Service Requests</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink reloadDocument exact="true" to="/Contacts" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+              <CDBSidebarMenuItem icon="fa-solid fa-address-book">Contacts</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
