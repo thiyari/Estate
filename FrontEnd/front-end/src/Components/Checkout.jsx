@@ -253,13 +253,15 @@ function Checkout(props) {
                         </td>
                       </tr>
                       <tr>
-                          <td align="center"><button onClick={()=>{
+                          <td align="center"><button onClick={(e)=>{
+                                    e.preventDefault();
                                     if (currentPhotoIndex > 0) {
                                       setCurrentPhotoIndex(currentPhotoIndex - 1);
                                     }
                           }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
                           <td align="center"><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
-                          <td align="center"><button onClick={()=>{
+                          <td align="center"><button onClick={(e)=>{
+                                    e.preventDefault();
                                     if (currentPhotoIndex < Images.length - 1) {
                                       setCurrentPhotoIndex(currentPhotoIndex + 1);
                                     }
