@@ -63,11 +63,6 @@ const logoutHandler = () => {
           <a className="nav-link" href="../Search">Search</a>
         </li>
         <li className="nav-item">
-          { logStatus === "admin" ?
-          (<a className="nav-link" href="../AdminProfile">My Account</a>)  :      
-          (<a className="nav-link" href="../Profile">My Account</a>)  }      
-        </li>
-        <li className="nav-item">
           <a className="nav-link" href="../Register">Register</a>
         </li>
         <li className="nav-item">
@@ -75,6 +70,11 @@ const logoutHandler = () => {
         </li>
         <li className="nav-item">
           <a className="nav-link" href="#a">About us</a>
+        </li>
+        <li className="nav-item">
+          { logStatus === "admin" ?
+          (<a className="nav-link" href="../AdminProfile">My Account</a>)  :      
+          (<a className="nav-link" href="../Profile">My Account</a>)  }      
         </li>
         <li className="nav-item">
           {  isLoggedIn ?
