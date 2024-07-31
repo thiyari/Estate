@@ -1,6 +1,7 @@
 import Sidebar from './Sidebar/Sidebar'
 import React, {useState, useEffect, useCallback} from 'react'
 import { useNavigate } from 'react-router-dom';
+import AdminSidebar from './Sidebar/AdminSidebar';
 import axios from "axios";
 
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -10,6 +11,7 @@ function ChangePassword(props){
   const [Id, setId] = useState('')
   const [user, setUser] = useState('')
   const [password, setPassword] = useState('')
+  const [logStatus, setLogStatus] = useState('')
 
   const navigate = useNavigate();
   const initialState = {
@@ -42,6 +44,7 @@ function ChangePassword(props){
         setId(res.data.id);
         setLoggedIn(res.data.isLoggedIn);
         props.LoginStatus(loggedIn);
+        setLogStatus(res.data.logstatus);
       } else {
         props.LoginStatus(!loggedIn);
         navigate('/Login')
@@ -187,7 +190,7 @@ return (
   <React.Fragment>
   <div className="row">
   <div className="col-md-2">        
-    <Sidebar/>
+    {logStatus === "admin"?<AdminSidebar/>:<Sidebar/>}
   </div>
   <div className="col-md-10">
 
