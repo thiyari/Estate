@@ -92,7 +92,7 @@ function ManageUsers(props){
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th colSpan={2}>Operations</th>
+                <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
               </tr>
             </thead>
             <tbody className="table-group-divider">
@@ -102,7 +102,7 @@ function ManageUsers(props){
                         <td>{profile.lastname}</td>
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
-                        <td><NavLink><FaEdit /></NavLink></td>
+                        <td align='right'><NavLink><FaEdit /></NavLink></td>
                         <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()
                           handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>
