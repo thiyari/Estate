@@ -15,6 +15,7 @@ import ContactUs from './Components/ContactUs';
 import Search from './Components/Search';
 import AdminProfile from './Components/AdminProfile';
 import ManageAdmins from './Components/ManageAdmins';
+import ManageUsers from './Components/ManageUsers';
 import { useState } from 'react';
 
 function App() {
@@ -42,6 +43,7 @@ const handleLogin = (status) => {
           <Route path="/Search" element = {<Search LoginStatus={handleLogin}/>} />
           <Route path="/AdminProfile" element = {<AdminProfile LoginStatus={handleLogin}/>} />
           <Route path="/ManageAdmins" element = {<ManageAdmins LoginStatus={handleLogin}/>} />
+          <Route path="/ManageUsers" element = {<ManageUsers LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>
