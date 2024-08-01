@@ -337,6 +337,22 @@ module.exports.profileDeleteImageDBService = async (id,data) => {
 }
 
 
+module.exports.profileDeleteDBService = async (id) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.users.findByIdAndDelete(id)
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Profile Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting profile failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
 module.exports.profilePropertyLocationDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
         await dataModel.users.findByIdAndUpdate(id,{location:data.location},{new:true})

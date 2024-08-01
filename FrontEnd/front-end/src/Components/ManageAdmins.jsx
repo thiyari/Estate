@@ -51,7 +51,7 @@ function ManageAdmins(props){
       console.log(Id)
       if(window.confirm('Are you sure deleting this current Admin User!')){
       try{
-        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}}`, 
+        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}`, 
           { headers: { "Content-Type":"application/json" } })
           alert("Admin User Deleted Successfully");
           window.location.reload();

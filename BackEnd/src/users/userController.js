@@ -332,7 +332,7 @@ var profileUploadImagesControllerFn = async(req,res)=>
             var result = null;
             try
             {
-                var result = await userService.profileDeleteImageDBService(req.params.id,req.body)
+                var result = await userService.profileDeleteImageDBService(req.params.id)
                 if(result.status){
                     return res.send({"status": true, "message": result.msg});
                 }
@@ -346,7 +346,26 @@ var profileUploadImagesControllerFn = async(req,res)=>
             }
     
         }
-    
+
+        var profileDeleteControllerFn = async(req,res)=>
+            {
+                var result = null;
+                try
+                {
+                    var result = await userService.profileDeleteDBService(req.params.id)
+                    if(result.status){
+                        return res.send({"status": true, "message": result.msg});
+                    }
+                    else {
+                        return res.send({"status": false, "message": result.msg});
+                    }
+                }
+                catch(err){
+                    console.log(err);
+                    res.send({"status":false,"message":err.msg});
+                }
+        
+            }        
 
 
     var profilePropertyLocationControllerFn = async(req,res)=>
@@ -564,5 +583,6 @@ module.exports = {
     fetchProfilesPropertyidControllerFn,
     createContactsControllerFn,
     adminKeyControllerFn,
-    adminProfilesControllerFn
+    adminProfilesControllerFn,
+    profileDeleteControllerFn
 }
