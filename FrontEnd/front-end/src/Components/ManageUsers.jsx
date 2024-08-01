@@ -73,7 +73,7 @@ function ManageUsers(props){
           <div className="col-sm-1"></div>
           <div className="col-sm-10">
   
-    
+          <div className ="table-responsive-md">  
           <table className="table table-striped table-hover">
             <thead>
               <tr>
@@ -100,6 +100,7 @@ function ManageUsers(props){
             )}
             </tbody>
             </table>
+            </div>
             </div>
             <div className='col-md-1'></div>
             </div>

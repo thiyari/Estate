@@ -47,6 +47,19 @@ function ManageAdmins(props){
       records();
     },[session,records])
 
+    const handleDelete = async (Id) => {
+      console.log(Id)
+      if(window.confirm('Are you sure deleting this current Admin User!')){
+      try{
+        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}}`, 
+          { headers: { "Content-Type":"application/json" } })
+          alert("Admin User Deleted Successfully");
+          window.location.reload();
+        } catch (err) {
+          alert(err);
+        }
+      }
+    };
 
     return(
         <React.Fragment>
@@ -73,7 +86,7 @@ function ManageAdmins(props){
           <div className="col-sm-1"></div>
           <div className="col-sm-10">
   
-    
+          <div className ="table-responsive-md">  
           <table className="table table-striped table-hover">
             <thead>
               <tr>
@@ -96,12 +109,15 @@ function ManageAdmins(props){
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
                         <td><NavLink><FaEdit /></NavLink></td>
-                        <td><RiDeleteBin6Fill /></td>
+                        <td><button style={{width: 25}} onClick={(e)=>{
+                          e.preventDefault()
+                          handleDelete(profile._id)}}><RiDeleteBin6Fill /></button></td>
                     </tr>
               )}
             )}
             </tbody>
             </table>
+            </div>
             </div>
             <div className='col-md-1'></div>
             </div>
