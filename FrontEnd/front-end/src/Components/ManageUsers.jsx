@@ -4,7 +4,6 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import '../App.css'
 import axios from 'axios'
 import { FaEdit } from "react-icons/fa";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 
 function ManageUsers(props){
 
@@ -47,12 +46,12 @@ function ManageUsers(props){
       records();
     },[session,records])
 
-    const handleDelete = async (user, Id) => {
-      if(window.confirm(`Are you sure deleting this current ${user}!`)){
+    const handleDelete = async (fname, lname, Id) => {
+      if(window.confirm(`Are you sure deleting this current ${fname} ${lname}!`)){
       try{
         await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}`, 
           { headers: { "Content-Type":"application/json" } })
-          alert(`${user} Deleted Successfully`);
+          alert(`${fname} ${lname} Deleted Successfully`);
           window.location.reload();
         } catch (err) {
           alert(err);
@@ -91,7 +90,6 @@ function ManageUsers(props){
               <tr>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
                 <th colSpan={2}>Operations</th>
@@ -102,13 +100,12 @@ function ManageUsers(props){
                     <tr key={index}>
                         <td>{profile.firstname}</td>
                         <td>{profile.lastname}</td>
-                        <td>{profile.username}</td>
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
                         <td><NavLink><FaEdit /></NavLink></td>
-                        <td><button style={{width: 25}} onClick={(e)=>{
+                        <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()
-                          handleDelete(profile.username, profile._id)}}><RiDeleteBin6Fill /></button></td>
+                          handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>
                     </tr>
               )}
             )}

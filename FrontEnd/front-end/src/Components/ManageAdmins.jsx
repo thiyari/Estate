@@ -1,10 +1,8 @@
 import AdminSidebar from './Sidebar/AdminSidebar'
 import React, { useState, useEffect, useCallback } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import axios from 'axios'
-import { FaEdit } from "react-icons/fa";
-import { RiDeleteBin6Fill } from "react-icons/ri";
 
 function ManageAdmins(props){
 
@@ -47,12 +45,12 @@ function ManageAdmins(props){
       records();
     },[session,records])
 
-    const handleDelete = async (user,Id) => {
-      if(window.confirm(`Are you sure deleting this current Admin ${user}!`)){
+    const handleDelete = async (fname, lname, Id) => {
+      if(window.confirm(`Are you sure deleting this current Admin ${fname} ${lname}!`)){
       try{
         await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}`, 
           { headers: { "Content-Type":"application/json" } })
-          alert(`Admin ${user} Deleted Successfully`);
+          alert(`Admin ${fname} ${lname} Deleted Successfully`);
           window.location.reload();
         } catch (err) {
           alert(err);
@@ -91,11 +89,10 @@ function ManageAdmins(props){
               <tr>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
-                <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th colSpan={2}>
-                        <button type="submit" className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
+                <th style={{textAlign: "center"}}>
+                    <button type="submit" className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
                 </th>
               </tr>
             </thead>
@@ -104,13 +101,11 @@ function ManageAdmins(props){
                     <tr key={index}>
                         <td>{profile.firstname}</td>
                         <td>{profile.lastname}</td>
-                        <td>{profile.username}</td>
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
-                        <td><NavLink><FaEdit /></NavLink></td>
-                        <td><button style={{width: 25}} onClick={(e)=>{
+                        <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()
-                          handleDelete(profile.username, profile._id)}}><RiDeleteBin6Fill /></button></td>
+                          handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>
                     </tr>
               )}
             )}
