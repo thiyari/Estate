@@ -53,7 +53,7 @@ const handleLogin = (status) => {
           <Route path="/UsersRequests" element = {<UsersRequests LoginStatus={handleLogin}/>} />
           <Route path="/ServiceRequests" element = {<ServiceRequests LoginStatus={handleLogin}/>} />
           <Route path="/Contacts" element = {<Contacts LoginStatus={handleLogin}/>} />
-          <Route path="/EditUsers" element = {<EditUsers LoginStatus={handleLogin}/>} />
+          <Route path="/EditUsers/:propertyid" element = {<EditUsers LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>

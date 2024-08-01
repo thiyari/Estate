@@ -102,7 +102,7 @@ function ManageUsers(props){
                         <td>{profile.lastname}</td>
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
-                        <td align='right'><NavLink exact="true" to="/EditUsers" ><FaEdit /></NavLink></td>
+                        <td align='right'><NavLink exact="true" to={`/EditUsers/${profile.propertyid}`} ><FaEdit /></NavLink></td>
                         <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()
                           handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>
