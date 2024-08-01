@@ -30,7 +30,6 @@ function ManageUsers(props){
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api`)
             .then(res => {
                 let profiles_doc = res.data.records
-                console.log(profiles_doc)
                     let profiles_list = []
                     for (let i = 0; i < profiles_doc.length;  i++) {
                         profiles_list.push(profiles_doc[i])
