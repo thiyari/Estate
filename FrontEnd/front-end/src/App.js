@@ -17,6 +17,10 @@ import AdminProfile from './Components/AdminProfile';
 import ManageAdmins from './Components/ManageAdmins';
 import ManageUsers from './Components/ManageUsers';
 import AddNewAdmin from './Components/AddNewAdmin';
+import UsersRequests from './Components/UsersRequests';
+import ServiceRequests from './Components/ServiceRequests';
+import Contacts from './Components/Contacts';
+import EditAdminUsers from './Components/EditAdminUsers';
 import { useState } from 'react';
 
 function App() {
@@ -46,6 +50,10 @@ const handleLogin = (status) => {
           <Route path="/AdminProfile" element = {<AdminProfile LoginStatus={handleLogin}/>} />
           <Route path="/ManageAdmins" element = {<ManageAdmins LoginStatus={handleLogin}/>} />
           <Route path="/ManageUsers" element = {<ManageUsers LoginStatus={handleLogin}/>} />
+          <Route path="/UsersRequests" element = {<UsersRequests LoginStatus={handleLogin}/>} />
+          <Route path="/ServiceRequests" element = {<ServiceRequests LoginStatus={handleLogin}/>} />
+          <Route path="/Contacts" element = {<Contacts LoginStatus={handleLogin}/>} />
+          <Route path="/EditAdminUsers" element = {<EditAdminUsers LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>

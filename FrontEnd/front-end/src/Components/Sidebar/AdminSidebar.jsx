@@ -37,8 +37,8 @@ const AdminSidebar = () => {
             <NavLink reloadDocument exact="true" to="/ManageUsers" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-address-card">Manage Users</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink reloadDocument exact="true" to="/UserRequests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
-              <CDBSidebarMenuItem icon="fa-solid fa-envelope">User Requests</CDBSidebarMenuItem>
+            <NavLink reloadDocument exact="true" to="/UsersRequests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+              <CDBSidebarMenuItem icon="fa-solid fa-envelope">Users Requests</CDBSidebarMenuItem>
             </NavLink>
             <NavLink reloadDocument exact="true" to="/ServiceRequests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
               <CDBSidebarMenuItem icon="fa-solid fa-envelope">Service Requests</CDBSidebarMenuItem>
