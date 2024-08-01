@@ -82,7 +82,11 @@ function ManageAdmins(props){
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th colSpan={2}><button className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button></th>
+                <th colSpan={2}>
+                    <form className="d-flex" action='/EditAdmin'>
+                        <button type="submit" className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
+                    </form>
+                </th>
               </tr>
             </thead>
             <tbody className="table-group-divider">

@@ -55,7 +55,7 @@ function Home(props) {
                         <p className="banner-desc">Sign Up now and get connected with us to Sell/Lease your properties</p>
                     </div>
                     <form className="d-flex" action='/Register'>
-                    <button className="btn-signup" type="submmit">Sign Up
+                    <button className="btn-signup" type="submit">Sign Up
                     </button></form>
 
         </div>
