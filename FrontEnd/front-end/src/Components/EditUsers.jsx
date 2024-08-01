@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
 
-function EditAdminUsers(props) {
+function EditUsers(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const navigate = useNavigate()
     const session = useCallback(async () =>{
@@ -39,7 +39,7 @@ function EditAdminUsers(props) {
           <div className="card">
           <h1 className="card-header">
             <center>
-              <div className="header-font">Edit Admin Users</div>
+              <div className="header-font">Edit Users Profile</div>
             </center>
           </h1>
             <div className="form-container">
@@ -54,5 +54,5 @@ function EditAdminUsers(props) {
     )
 }
 
-export default EditAdminUsers;
+export default EditUsers;
 
