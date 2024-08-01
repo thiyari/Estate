@@ -113,6 +113,15 @@ var fetchProfilesControllerFn = async(req,res)=>{
     }
 }
 
+var adminProfilesControllerFn = async(req,res)=>{
+    const result = await (userService.fetchAdminProfilesDBService())
+    if(result.status){
+       return res.send({message:"All Images",records:result.data});
+    }
+    else {
+        return res.send({message:'No Images',records:result.data});
+    }
+}
 
 var fetchProfilesPropertyidControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesPropertyidDBService(req.params.propertyid))
@@ -554,5 +563,6 @@ module.exports = {
     fetchProfilesCommercialControllerFn,
     fetchProfilesPropertyidControllerFn,
     createContactsControllerFn,
-    adminKeyControllerFn
+    adminKeyControllerFn,
+    adminProfilesControllerFn
 }

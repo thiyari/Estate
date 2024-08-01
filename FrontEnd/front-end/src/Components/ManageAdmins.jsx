@@ -3,20 +3,19 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import axios from 'axios'
+import { FaEdit } from "react-icons/fa";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 function ManageAdmins(props){
 
     const navigate = useNavigate()
     const [loggedIn, setLoggedIn] = useState(false)
-    const [Id, setId] = useState('')
-    const [user, setUser] = useState('')
+    const [profiles, setProfiles] = useState([{}])
 
     const session = useCallback(async () =>{
       await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
       .then(res => {
         if(res.data.valid){
-          setUser(res.data.username);
-          setId(res.data.id);
           setLoggedIn(res.data.isLoggedIn);
           props.LoginStatus(loggedIn);
         } else {
@@ -28,10 +27,25 @@ function ManageAdmins(props){
     },[props, loggedIn, navigate])
 
 
+    const records = useCallback(async()=>{
+        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/admin/profiles`)
+            .then(res => {
+                let profiles_doc = res.data.records
+                console.log(profiles_doc)
+                    let profiles_list = []
+                    for (let i = 0; i < profiles_doc.length;  i++) {
+                        profiles_list.push(profiles_doc[i])
+                    }
+                    setProfiles(profiles_list)
+            })
+    },[]);
+
+
     axios.defaults.withCredentials = true;
     useEffect(()=>{
       session();
-    },[session])
+      records();
+    },[session,records])
 
 
     return(
@@ -56,8 +70,8 @@ function ManageAdmins(props){
           <div className="row">
           <div className="col-md-12">
           <div className='row'>
-          <div className="col-sm-3"></div>
-          <div className="col-sm-6">
+          <div className="col-sm-1"></div>
+          <div className="col-sm-10">
   
     
           <table className="table table-striped table-hover">
@@ -68,24 +82,26 @@ function ManageAdmins(props){
                 <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th colSpan={2}>Operations</th>
+                <th colSpan={2}><button className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button></th>
               </tr>
             </thead>
             <tbody className="table-group-divider">
-              
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
+              {profiles.map((profile, index)=>{return(
+                    <tr key={index}>
+                        <td>{profile.firstname}</td>
+                        <td>{profile.lastname}</td>
+                        <td>{profile.username}</td>
+                        <td>{profile.email}</td>
+                        <td>{profile.phone}</td>
+                        <td><FaEdit /></td>
+                        <td><RiDeleteBin6Fill /></td>
+                    </tr>
+              )}
+            )}
             </tbody>
             </table>
             </div>
-            <div className='col-md-3'></div>
+            <div className='col-md-1'></div>
             </div>
             </div>
             </div>
