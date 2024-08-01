@@ -283,9 +283,9 @@ function AddNewAdmin(props) {
 
     <form onSubmit={submitHandler}>
       <div className="row">
-      <div className="col-md-4"></div>
+      <div className="col-md-1"></div>
       <div className="col-md-4">
-
+        
                 <div className="form-group">
           <label className="form-label">First name</label>
           <input 
@@ -358,11 +358,12 @@ function AddNewAdmin(props) {
           />
           </div>
         <p className="error-message">{formError.email}</p>
+        </div>
 
+        <div className="col-md-2"></div>
+        <div className="col-md-4">
 
-
-
-
+        
         <div className="form-group">
           <label className="form-label">Password</label>
           <input 
@@ -421,7 +422,7 @@ function AddNewAdmin(props) {
         <p className="error-message">{formError.phone}</p>
 
         </div>
-        <div className="col-md-4"></div>
+        <div className="col-md-1"></div>
 
         <p align="center" className="success-message mt-4">{formInput.successMsg}</p>
         <div align="center">
