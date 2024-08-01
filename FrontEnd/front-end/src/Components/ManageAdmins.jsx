@@ -66,7 +66,7 @@ function ManageAdmins(props){
           </h1>
             <div className="form-container">
                 <div className="card-body">
-                <form action='/EditAdmin'>
+                <form action='/AddNewAdmin'>
           <div className="row">
           <div className="col-md-12">
           <div className='row'>

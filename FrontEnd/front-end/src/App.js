@@ -16,6 +16,7 @@ import Search from './Components/Search';
 import AdminProfile from './Components/AdminProfile';
 import ManageAdmins from './Components/ManageAdmins';
 import ManageUsers from './Components/ManageUsers';
+import AddNewAdmin from './Components/AddNewAdmin';
 import { useState } from 'react';
 
 function App() {
@@ -41,6 +42,7 @@ const handleLogin = (status) => {
           <Route path="/Property" element = {<Property LoginStatus={handleLogin}/>} />
           <Route path="/ContactUs" element = {<ContactUs LoginStatus={handleLogin}/>} />
           <Route path="/Search" element = {<Search LoginStatus={handleLogin}/>} />
+          <Route path="/AddNewAdmin" element = {<AddNewAdmin LoginStatus={handleLogin}/>} />
           <Route path="/AdminProfile" element = {<AdminProfile LoginStatus={handleLogin}/>} />
           <Route path="/ManageAdmins" element = {<ManageAdmins LoginStatus={handleLogin}/>} />
           <Route path="/ManageUsers" element = {<ManageUsers LoginStatus={handleLogin}/>} />
