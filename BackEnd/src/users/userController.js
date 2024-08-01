@@ -332,7 +332,7 @@ var profileUploadImagesControllerFn = async(req,res)=>
             var result = null;
             try
             {
-                var result = await userService.profileDeleteImageDBService(req.params.id)
+                var result = await userService.profileDeleteImageDBService(req.params.id, req.body)
                 if(result.status){
                     return res.send({"status": true, "message": result.msg});
                 }
