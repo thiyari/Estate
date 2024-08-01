@@ -47,6 +47,19 @@ function ManageUsers(props){
       records();
     },[session,records])
 
+    const handleDelete = async (Id) => {
+      console.log(Id)
+      if(window.confirm('Are you sure deleting this current User!')){
+      try{
+        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}`, 
+          { headers: { "Content-Type":"application/json" } })
+          alert("User Deleted Successfully");
+          window.location.reload();
+        } catch (err) {
+          alert(err);
+        }
+      }
+    };
 
     return(
         <React.Fragment>
@@ -94,7 +107,9 @@ function ManageUsers(props){
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
                         <td><NavLink><FaEdit /></NavLink></td>
-                        <td><RiDeleteBin6Fill /></td>
+                        <td><button style={{width: 25}} onClick={(e)=>{
+                          e.preventDefault()
+                          handleDelete(profile._id)}}><RiDeleteBin6Fill /></button></td>
                     </tr>
               )}
             )}
