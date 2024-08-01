@@ -1,6 +1,6 @@
 import AdminSidebar from './Sidebar/AdminSidebar'
 import React, { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import '../App.css'
 import axios from 'axios'
 import { FaEdit } from "react-icons/fa";
@@ -93,7 +93,7 @@ function ManageUsers(props){
                         <td>{profile.username}</td>
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
-                        <td><FaEdit /></td>
+                        <td><NavLink><FaEdit /></NavLink></td>
                         <td><RiDeleteBin6Fill /></td>
                     </tr>
               )}
