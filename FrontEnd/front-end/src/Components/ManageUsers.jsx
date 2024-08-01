@@ -4,12 +4,16 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import '../App.css'
 import axios from 'axios'
 import { FaEdit } from "react-icons/fa";
+import Form from 'react-bootstrap/Form';
+import InputGroup from 'react-bootstrap/InputGroup';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function ManageUsers(props){
 
     const navigate = useNavigate()
     const [loggedIn, setLoggedIn] = useState(false)
     const [profiles, setProfiles] = useState([{}])
+    const [search, setSearch] = useState('');
 
     const session = useCallback(async () =>{
       await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
@@ -76,17 +80,28 @@ function ManageUsers(props){
           </h1>
             <div className="form-container">
                 <div className="card-body">
+
                 <form>
           <div className="row">
           <div className="col-md-12">
           <div className='row'>
           <div className="col-sm-1"></div>
           <div className="col-sm-10">
-  
+          <Form>
+            <InputGroup className='my-3'>
+
+              {/* onChange for search */}
+              <Form.Control
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder='Search using Property ID'
+              />
+            </InputGroup>
+          </Form>
           <div className ="table-responsive-md">  
           <table className="table table-striped table-hover">
             <thead>
               <tr>
+                <th scope="col">Property ID</th>
                 <th scope="col">First Name</th>
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
@@ -95,8 +110,14 @@ function ManageUsers(props){
               </tr>
             </thead>
             <tbody className="table-group-divider">
-              {profiles.map((profile, index)=>{return(
+              {profiles
+                .filter((doc) => {
+                  return (search === ''
+                  ? doc
+                  : doc.propertyid.includes(search))
+                }).map((profile, index)=>{ return(
                     <tr key={index}>
+                        <td>{profile.propertyid}</td>
                         <td>{profile.firstname}</td>
                         <td>{profile.lastname}</td>
                         <td>{profile.email}</td>
