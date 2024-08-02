@@ -35,6 +35,18 @@ function UsersRequests(props) {
             })
       },[]);
 
+      const handleDelete = async (fname, lname, Id) => {
+        if(window.confirm(`Are you sure deleting this current ${fname} ${lname}!`)){
+        try{
+          await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}`, 
+            { headers: { "Content-Type":"application/json" } })
+            alert(`${fname} ${lname} Deleted Successfully`);
+            window.location.reload();
+          } catch (err) {
+            alert(err);
+          }
+        }
+      };
 
       axios.defaults.withCredentials = true;
       useEffect(()=>{
@@ -84,8 +96,8 @@ function UsersRequests(props) {
                     <td>{profile.phone}</td>
                     <td align='right'><NavLink exact="true" to={`/EditUsers/${profile.propertyid}`} ><FaEdit /></NavLink></td>
                     <td align='center'><button style={{width: 25}} onClick={(e)=>{
-                      e.preventDefault()
-                      }}><i className="fas fa-trash-alt"></i></button></td>
+                          e.preventDefault()
+                          handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>
                 </tr>
                       )}
                     )}
