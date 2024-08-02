@@ -68,7 +68,7 @@ function UsersRequests(props) {
           <div className="card">
           <h1 className="card-header">
             <center>
-              <div className="header-font">Managing Users Requests</div>
+              <div className="header-font">Manage Users Requests</div>
             </center>
           </h1>
             <div className="form-container">
