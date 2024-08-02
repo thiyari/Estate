@@ -24,7 +24,7 @@ function UsersRequests(props) {
 
 
       const records = useCallback(async()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api`)
+        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/approvals`)
             .then(res => {
                 let profiles_doc = res.data.records
                     let profiles_list = []

@@ -119,6 +119,18 @@ module.exports.fetchProfilesDBService = () => {
         })
 }
 
+
+module.exports.fetchProfilesApprovalsDBService = () => {
+        return new Promise(async function myFn(resolve,reject){
+                result = await dataModel.users.find({requests: "Registered"}).sort({_id:-1});
+                if(result != undefined && result != null){
+                        resolve({status: true, data: result});
+                } else {
+                        reject({satus: false, data: result})
+                }
+        })
+}
+
 module.exports.fetchAdminProfilesDBService = () => {
         return new Promise(async function myFn(resolve,reject){
                 result = await dataModel.users.find({logstatus: "admin"}).sort({_id:-1});
