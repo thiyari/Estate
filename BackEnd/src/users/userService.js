@@ -51,7 +51,8 @@ module.exports.createUserDBService = (userDetails) => {
                                 address: userDetails.address,
                                 requests: userDetails.requests,
                                 propertyid: userDetails.propertyid,
-                                logstatus: userDetails.logstatus
+                                logstatus: userDetails.logstatus,
+                                commission: userDetails.commission
                         });
                         
                 }
@@ -239,7 +240,7 @@ module.exports.fetchProfileDBService = (Id) => {
 
 module.exports.ApprovalSanctionDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
-        await dataModel.users.findByIdAndUpdate(id,{requests:data.requests},{new:true})
+        await dataModel.users.findByIdAndUpdate(id,{requests:data.requests, commission:data.commission},{new:true})
                 .then((docs)=>{
                         if(docs) {
                            resolve({success:true,msg:"Requests Status Updated as Approved"});

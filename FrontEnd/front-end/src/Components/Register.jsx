@@ -615,7 +615,8 @@ function Register(props) {
           images: img,
           requests: "Pending",
           propertyid: pid,
-          logstatus: "user"
+          logstatus: "user",
+          commission: 0
           }),
           {
             headers:{

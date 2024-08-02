@@ -82,6 +82,10 @@ var userSchema = new Schema({
     logstatus: {
         type: String,
         required: true
+    },
+    commission: {
+        type: Number,
+        required: false
     }
 });
 

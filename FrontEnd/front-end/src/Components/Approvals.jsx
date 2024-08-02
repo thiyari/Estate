@@ -19,6 +19,8 @@ function Approvals(props) {
     const [propertyAddress, setPropertyAddress] = useState('')
     const [Images, setImages] = useState([])
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+    const [commission, setCommission] = useState(0)
+    const [formError, setFormError] = useState({commission: "", commission_status: ""})
 
     const navigate = useNavigate()
     const session = useCallback(async () =>{
@@ -70,13 +72,30 @@ function Approvals(props) {
         .catch(err => console.log(err))
       },[Id])
 
+      let inputError = {commission: "", commission_status: ""};
+      const handleUserInput = (event) => {
+        event.preventDefault()
+        setCommission(event.target.value);
+      };
 
       async function submitHandler(event) {
         event.preventDefault();
+
+          // Check if commission has numbers
+          if(/\D/.test(commission)){
+            setFormError({
+              ...inputError,
+              commission: "Provide only the numerals",
+              commission_status: "error"
+            })
+            return;
+          }
+
         try{
             await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/approvals/${Id}`, 
               JSON.stringify({
               requests: "Approved",
+              commission: commission
               }),
               {
                 headers:{
@@ -88,6 +107,8 @@ function Approvals(props) {
             } catch (err) {
               alert(err);
             }      
+
+            setFormError(inputError);
       }
 
 
@@ -173,6 +194,25 @@ function Approvals(props) {
                         <tr>
                             <td>Property Address</td>
                             <td>{propertyAddress}</td>
+                        </tr>
+                        <tr>
+                            <td>Commission</td>
+                            <td>
+                            <div className="form-group">
+                                <input 
+                                type="text"  
+                                className="form-control mb-3" 
+                                id="area" 
+                                placeholder="Enter commission amount" 
+                                name="area"
+                                value={commission}
+                                onChange={handleUserInput} 
+                                style={{borderColor: formError.commission_status !== "error" ?"":"red"}}
+                                />
+                                </div>
+                                <p className="error-message">{formError.commission}</p>
+
+                            </td>
                         </tr>
                         </tbody>
                     </table>
