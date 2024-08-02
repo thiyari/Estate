@@ -46,7 +46,7 @@ function Approvals(props) {
         .then(res => {
           if(res.data.status){
             const profile_doc = res.data.profile      
-            if (profile_doc.data[0].requests === 'Registered'){
+            if (profile_doc.data[0].requests === 'Pending'){
               setPropertyLocation(profile_doc.data[0].location)
               setPropertyArea(profile_doc.data[0].area)
               setPropertyType(profile_doc.data[0].property)
@@ -84,7 +84,7 @@ function Approvals(props) {
           <div className="card">
           <h1 className="card-header">
             <center>
-              <div className="header-font">Managing Approvals</div>
+              <div className="header-font">Pending Approvals</div>
             </center>
           </h1>
             <div className="form-container">
@@ -102,7 +102,10 @@ function Approvals(props) {
                         </tr>
                         </thead>
                         <tbody className="table-group-divider">
-                        
+                        <tr>
+                            <td>Property ID</td>
+                            <td>{propertyId}</td>
+                        </tr>                        
                         <tr>
                             <td>Property Location</td>
                             <td>{propertyLocation}</td>

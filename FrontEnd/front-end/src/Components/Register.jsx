@@ -613,7 +613,7 @@ function Register(props) {
           price: formInput.price,
           address: formInput.address,
           images: img,
-          requests: "Registered",
+          requests: "Pending",
           propertyid: pid,
           logstatus: "user"
           }),

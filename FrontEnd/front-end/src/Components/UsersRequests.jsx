@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
-import { FaEdit } from "react-icons/fa";
+import { MdPendingActions } from "react-icons/md";
 
 function UsersRequests(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -94,7 +94,8 @@ function UsersRequests(props) {
                     <td>{profile.lastname}</td>
                     <td>{profile.email}</td>
                     <td>{profile.phone}</td>
-                    <td align='right'><NavLink exact="true" to={`/Approvals/${profile.propertyid}`} ><FaEdit /></NavLink></td>
+                    <td align='right'><NavLink exact="true" to={`/Approvals/${profile.propertyid}`} ><MdPendingActions size={20}/>
+                    </NavLink></td>
                     <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()
                           handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>
