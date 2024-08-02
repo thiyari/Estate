@@ -237,7 +237,7 @@ function Checkout(props) {
 
 
 
-
+              <form>
               {Images.length === 0? <></>:
               <div className ="table-responsive-md">
                   <table className ="table">
@@ -271,6 +271,7 @@ function Checkout(props) {
                   </table>
               </div>
               }
+              </form>
 
 
 
