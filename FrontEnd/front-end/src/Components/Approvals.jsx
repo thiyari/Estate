@@ -3,7 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
 
-function Contacts(props) {
+function Approvals(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const navigate = useNavigate()
     const session = useCallback(async () =>{
@@ -39,16 +39,17 @@ function Contacts(props) {
           <div className="card">
           <h1 className="card-header">
             <center>
-              <div className="header-font">Managing Contacts</div>
+              <div className="header-font">Managing Approvals</div>
             </center>
           </h1>
             <div className="form-container">
-              <form>
+                <form>
                 <div className="card-body">
-                
-                
+                    
+                    
+                    
                 </div>       
-              </form>
+                </form>
             </div>
             </div>
         </div>
@@ -58,5 +59,5 @@ function Contacts(props) {
     )
 }
 
-export default Contacts;
+export default Approvals;
 

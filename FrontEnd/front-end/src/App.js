@@ -21,6 +21,7 @@ import UsersRequests from './Components/UsersRequests';
 import ServiceRequests from './Components/ServiceRequests';
 import Contacts from './Components/Contacts';
 import EditUsers from './Components/EditUsers';
+import Approvals from './Components/Approvals';
 import { useState } from 'react';
 
 function App() {
@@ -55,6 +56,7 @@ const handleLogin = (status) => {
           <Route path="/Contacts" element = {<Contacts LoginStatus={handleLogin}/>} />
           <Route path="/EditUsers/:propertyId" element = {<EditUsers LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
+          <Route path="/Approvals/:propertyId" element = {<Approvals LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>
       </Router>
