@@ -87,7 +87,7 @@ function Commercial(props) {
                                                 <li className="list-group-item">Rooms: {profile.rooms}</li>
                                                 <li className="list-group-item">Floor: {profile.floor}</li>
                                                 <li className="list-group-item">Locality: {profile.location}</li>
-                                                <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
+                                                <li className="list-group-item">Price: {profile.currency}{" "}{profile.price+profile.commission}</li>
                                             </ul>
                                             <NavLink exact="true" to={`/Checkout/${profile.propertyid}`} className="btn btn-primary mt-2">Check Out
                                             </NavLink>                                        

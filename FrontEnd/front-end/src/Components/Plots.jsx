@@ -85,7 +85,7 @@ function Plots(props) {
                                                 <li className="list-group-item">Area: {profile.area} Sq. ft</li>
                                                 <li className="list-group-item">Phase: {profile.phase}</li>
                                                 <li className="list-group-item">Locality: {profile.location}</li>
-                                                <li className="list-group-item">Price: {profile.currency}{" "}{profile.price}</li>
+                                                <li className="list-group-item">Price: {profile.currency}{" "}{profile.price+profile.commission}</li>
                                             </ul>
                                             <NavLink exact="true" to={`/Checkout/${profile.propertyid}`} className="btn btn-primary mt-3">Check Out
                                             </NavLink>
