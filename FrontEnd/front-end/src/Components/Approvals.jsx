@@ -91,7 +91,7 @@ function Approvals(props) {
           <div className="card">
           <h1 className="card-header">
             <center>
-              <div className="header-font">Pending Approvals</div>
+              <div className="header-font">Pending Approval</div>
             </center>
           </h1>
             <div className="form-container">
@@ -157,7 +157,6 @@ function Approvals(props) {
                     </table>
 
 
-                    <form>
               {Images.length === 0? <></>:
               <div className ="table-responsive-md">
                   <table className ="table">
@@ -191,7 +190,6 @@ function Approvals(props) {
                   </table>
               </div>
               }
-              </form>
 
 
 
