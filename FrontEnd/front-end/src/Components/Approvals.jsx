@@ -17,6 +17,8 @@ function Approvals(props) {
     const [price, setPrice] = useState('')
     const [zip, setZip] = useState('')
     const [propertyAddress, setPropertyAddress] = useState('')
+    const [Images, setImages] = useState([])
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     const navigate = useNavigate()
     const session = useCallback(async () =>{
@@ -38,6 +40,11 @@ function Approvals(props) {
         .then(res => {
             const record = res.data.records.filter((doc)=>(doc.propertyid === propertyId))
             setId(record[0]._id)
+            let images = []
+            for (let i = 0; i < record[0].images.length; i++) {
+               images.push(record[0].images[i])
+            }
+            setImages(images)
         })
       },[propertyId]) 
 
@@ -92,8 +99,8 @@ function Approvals(props) {
                 <div className="card-body">
                 <div className="col-md-12">
                 <div className='row'>
-                <div className="col-sm-2"></div>
-                <div className="col-sm-8">
+                <div className="col-sm-3"></div>
+                <div className="col-sm-6">
                     <table className="table table-striped table-hover">
                         <thead>
                         <tr>
@@ -148,8 +155,48 @@ function Approvals(props) {
                         </tr>
                         </tbody>
                     </table>
+
+
+                    <form>
+              {Images.length === 0? <></>:
+              <div className ="table-responsive-md">
+                  <table className ="table">
+                    <thead>
+                      <tr>
+                        <th scope="col" colSpan={3} >Images</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td colSpan={3} align="center">
+                              <img className="img-fluid" src={Images[currentPhotoIndex]} alt="Current images" width="500px" height="300px"/>
+                        </td>
+                      </tr>
+                      <tr>
+                          <td align="center"><button onClick={(e)=>{
+                                    e.preventDefault();
+                                    if (currentPhotoIndex > 0) {
+                                      setCurrentPhotoIndex(currentPhotoIndex - 1);
+                                    }
+                          }}><i className="fa fa-angle-double-left" style={{fontSize:"18px"}}></i></button></td>
+                          <td align="center"><p style={{fontWeight:"lighter"}}>[{currentPhotoIndex+1}/{Images.length}]</p></td>
+                          <td align="center"><button onClick={(e)=>{
+                                    e.preventDefault();
+                                    if (currentPhotoIndex < Images.length - 1) {
+                                      setCurrentPhotoIndex(currentPhotoIndex + 1);
+                                    }
+                          }}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>              
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+              }
+              </form>
+
+
+
                 </div>
-                <div className="col-md-2"></div>
+                <div className="col-md-3"></div>
                 </div>  
                 </div>
                 </div>     
