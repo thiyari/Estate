@@ -81,6 +81,17 @@ function Approvals(props) {
       async function submitHandler(event) {
         event.preventDefault();
 
+
+          // Check if commission is empty
+          if(commission === "" || commission === null){
+            setFormError({
+              ...inputError,
+              commission: "Commission should not be empty else enter numeric zero",
+              commission_status: "error"
+            })
+            return;
+          }
+
           // Check if commission has numbers
           if(/\D/.test(commission)){
             setFormError({
