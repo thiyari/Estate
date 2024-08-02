@@ -237,6 +237,21 @@ module.exports.fetchProfileDBService = (Id) => {
 }
 
 
+module.exports.ApprovalSanctionDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.users.findByIdAndUpdate(id,{requests:data.requests},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Requests Status Updated as Approved"});
+                        } else {
+                           reject({success:false,msg:"updating approval status failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
 
 module.exports.profileFnameUserDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){

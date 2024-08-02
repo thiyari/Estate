@@ -70,6 +70,27 @@ function Approvals(props) {
         .catch(err => console.log(err))
       },[Id])
 
+
+      async function submitHandler(event) {
+        event.preventDefault();
+        try{
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/approvals/${Id}`, 
+              JSON.stringify({
+              requests: "Approved",
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Profile is Approved");
+              navigate('/UsersRequests');
+            } catch (err) {
+              alert(err);
+            }      
+      }
+
+
       axios.defaults.withCredentials = true;
       useEffect(()=>{
         session();
@@ -95,7 +116,7 @@ function Approvals(props) {
             </center>
           </h1>
             <div className="form-container">
-                <form>
+                <form onSubmit={submitHandler}>
                 <div className="card-body">
                 <div className="col-md-12">
                 <div className='row'>
@@ -198,6 +219,9 @@ function Approvals(props) {
                 </div>  
                 </div>
                 </div>     
+                <div align="center">
+                    <button type="submit" className="btn btn-primary mb-5">Approve</button>
+                </div>
                 </form>
             </div>
             </div>

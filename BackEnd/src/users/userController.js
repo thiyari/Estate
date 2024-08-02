@@ -106,20 +106,20 @@ var sessionControllerFn = async(req,res)=>{
 var fetchProfilesControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesDBService())
     if(result.status){
-       return res.send({message:"All Images",records:result.data});
+       return res.send({message:"Success",records:result.data});
     }
     else {
-        return res.send({message:'No Images',records:result.data});
+        return res.send({message:'Failed',records:result.data});
     }
 }
 
 var fetchProfilesApprovalsControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesApprovalsDBService())
     if(result.status){
-       return res.send({message:"All Images",records:result.data});
+       return res.send({message:"Success",records:result.data});
     }
     else {
-        return res.send({message:'No Images',records:result.data});
+        return res.send({message:'Failed',records:result.data});
     }
 }
 
@@ -127,20 +127,20 @@ var fetchProfilesApprovalsControllerFn = async(req,res)=>{
 var adminProfilesControllerFn = async(req,res)=>{
     const result = await (userService.fetchAdminProfilesDBService())
     if(result.status){
-       return res.send({message:"All Images",records:result.data});
+       return res.send({message:"Success",records:result.data});
     }
     else {
-        return res.send({message:'No Images',records:result.data});
+        return res.send({message:'Failed',records:result.data});
     }
 }
 
 var fetchProfilesPropertyidControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesPropertyidDBService(req.params.propertyid))
     if(result.status){
-       return res.send({message:"All Images",records:result.data});
+       return res.send({message:"Success",records:result.data});
     }
     else {
-        return res.send({message:'No Images',records:result.data});
+        return res.send({message:'Failed',records:result.data});
     }
 }
 
@@ -148,30 +148,30 @@ var fetchProfilesPropertyidControllerFn = async(req,res)=>{
 var fetchProfilesPlotsControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesPlotsDBService())
     if(result.status){
-       return res.send({message:"All Images",records:result.data});
+       return res.send({message:"Success",records:result.data});
     }
     else {
-        return res.send({message:'No Images',records:result.data});
+        return res.send({message:'Failed',records:result.data});
     }
 }
 
 var fetchProfilesHousesControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesHousesDBService())
     if(result.status){
-       return res.send({message:"All Images",records:result.data});
+       return res.send({message:"Success",records:result.data});
     }
     else {
-        return res.send({message:'No Images',records:result.data});
+        return res.send({message:'Failed',records:result.data});
     }
 }
 
 var fetchProfilesCommercialControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesCommercialDBService())
     if(result.status){
-       return res.send({message:"All Images",records:result.data});
+       return res.send({message:"Success",records:result.data});
     }
     else {
-        return res.send({message:'No Images',records:result.data});
+        return res.send({message:'Failed',records:result.data});
     }
 }
 
@@ -214,14 +214,32 @@ var profileControllerFn = async(req,res)=>{
             }
         }         
 
-        
-
  var profileFnameControllerFn = async(req,res)=>
             {
                 var result = null;
                 try
                 {
                     var result = await userService.profileFnameUserDBService(req.params.id,req.body)
+                    if(result.status){
+                        return res.send({"status": true, "message": result.msg});
+                    }
+                    else {
+                        return res.send({"status": false, "message": result.msg});
+                    }
+                }
+                catch(err){
+                    console.log(err);
+                    res.send({"status":false,"message":err.msg});
+                }
+            }  
+        
+
+ var ApprovalSanctionControllerFn = async(req,res)=>
+            {
+                var result = null;
+                try
+                {
+                    var result = await userService.ApprovalSanctionDBService(req.params.id,req.body)
                     if(result.status){
                         return res.send({"status": true, "message": result.msg});
                     }
@@ -596,5 +614,6 @@ module.exports = {
     adminKeyControllerFn,
     adminProfilesControllerFn,
     profileDeleteControllerFn,
-    fetchProfilesApprovalsControllerFn
+    fetchProfilesApprovalsControllerFn,
+    ApprovalSanctionControllerFn
 }
