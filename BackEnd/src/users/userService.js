@@ -1,15 +1,17 @@
 var dataModel = require('./userModel')
 var key = '123456789asdflkj';
+var admin_key = 'Admin31072024';
 var encryptor = require('simple-encryptor')(key);
+const dotenv = require("dotenv");
 
 
 module.exports.adminKeyDBService = (userData) => {
         return new Promise(function myFn(resolve,reject){
-                if (userData === "Admin31072024") {
-                        var encrypted = encryptor.encrypt("Admin@123");
+                if (userData === admin_key) {
+                        var encrypted = encryptor.encrypt(process.env.DEFAULT_ADMIN_PWD);
                         async function insert(){
                                 await dataModel.users.create({
-                                        username: "Admin",
+                                        username: process.env.DEFAULT_ADMIN_USER,
                                         password: encrypted,
                                         logstatus: "admin"
                                 });

@@ -20,7 +20,7 @@ function Approvals(props) {
     const [Images, setImages] = useState([])
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
     const [commission, setCommission] = useState(0)
-    const [formError, setFormError] = useState({commission: "", commission_status: ""})
+    const [formError, setFormError] = useState({commission: ""})
 
     const navigate = useNavigate()
     const session = useCallback(async () =>{
