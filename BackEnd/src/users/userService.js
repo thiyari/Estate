@@ -76,7 +76,7 @@ module.exports.createContactsDBService = (userDetails) => {
                                 lastname: userDetails.lastname,
                                 email: userDetails.email,
                                 phone: userDetails.phone,
-                                notes: userDetails.notes,
+                                comments: userDetails.comments,
                                 requests: userDetails.requests
                         });
                         

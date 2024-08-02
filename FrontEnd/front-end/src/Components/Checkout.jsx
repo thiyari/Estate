@@ -14,7 +14,7 @@ function Checkout(props) {
     lname:"",
     email:"",
     phone:"",
-    notes: "",
+    comments: "",
     fname_status: "",
     lname_status: "", 
     email_status: "",
@@ -119,7 +119,7 @@ function Checkout(props) {
             lastname: formInput.lname,
             email: formInput.email,
             phone: formInput.phone,
-            notes: formInput.notes,
+            comments: formInput.comments,
             requests: propertyid
             }),
             {
@@ -133,7 +133,7 @@ function Checkout(props) {
               lname: "",
               email: "",
               phone: "",
-              nots: ""
+              comments: ""
             })
             setImages('')
             setProfile('')
@@ -301,6 +301,27 @@ function Checkout(props) {
 
 
                       <div className="form-group" align="left">
+                        <label className="form-label">Last Name</label>
+                        <input 
+                            type="text"  
+                            className="form-control mb-3" 
+                            id="lname" 
+                            placeholder="Your Last Name"
+                            name="lname"
+                            onChange={({target})=>{
+                              handleUserInput(target.name, target.value)
+                            }}
+                            style={{borderColor: formError.lname_status !== "error" ?"":"red"}}
+                            />
+                          </div>
+                          <p className="error-message">{formError.lname}</p>
+
+
+                  </div>
+                  <div className='col-md-2'></div>
+                  <div className='col-md-4'>
+
+                  <div className="form-group" align="left">
                           <label className="form-label">Email</label>
                           <input 
                             type="email"  
@@ -317,24 +338,6 @@ function Checkout(props) {
                             </div>
                           <p className="error-message">{formError.email}</p>
 
-                  </div>
-                  <div className='col-md-2'></div>
-                  <div className='col-md-4'>
-                  <div className="form-group" align="left">
-                        <label className="form-label">Last Name</label>
-                        <input 
-                            type="text"  
-                            className="form-control mb-3" 
-                            id="lname" 
-                            placeholder="Your Last Name"
-                            name="lname"
-                            onChange={({target})=>{
-                              handleUserInput(target.name, target.value)
-                            }}
-                            style={{borderColor: formError.lname_status !== "error" ?"":"red"}}
-                            />
-                          </div>
-                          <p className="error-message">{formError.lname}</p>
 
                       <div className="form-group" align="left">
                           <label className="form-label">Phone</label>
@@ -361,11 +364,11 @@ function Checkout(props) {
                   <div className='col-md-10'>
                   <div className="form-group">
                     <div className="mb-3" align="left">
-                      <label htmlFor="notes" className="form-label">Notes</label>
+                      <label htmlFor="comments" className="form-label">Comments</label>
                       <textarea 
                       className="form-control" 
-                      id="notes" 
-                      name="notes"
+                      id="comments" 
+                      name="comments"
                       rows="3"
                       onChange={({target})=>{            
                         handleUserInput(target.name, target.value)

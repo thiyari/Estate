@@ -14,7 +14,7 @@ function ContactUs(props) {
     lname:"",
     email:"",
     phone:"",
-    notes:"",
+    comments:"",
     fname_status: "",
     lname_status: "", 
     email_status: "",
@@ -115,7 +115,7 @@ function ContactUs(props) {
             lastname: formInput.lname,
             email: formInput.email,
             phone: formInput.phone,
-            notes: formInput.notes,
+            comments: formInput.comments,
             requests: "general"
             }),
             {
@@ -129,7 +129,7 @@ function ContactUs(props) {
               lname: "",
               email: "",
               phone: "",
-              notes: ""
+              comments: ""
             })
             navigate('/');
           } catch (err) {
@@ -253,11 +253,11 @@ function ContactUs(props) {
                   <div className='col-md-10'>
                   <div className="form-group">
                     <div className="mb-3" align="left">
-                      <label htmlFor="notes" className="form-label">Notes</label>
+                      <label htmlFor="comments" className="form-label">Comments</label>
                       <textarea 
                       className="form-control" 
-                      id="notes" 
-                      name="notes"
+                      id="comments" 
+                      name="comments"
                       rows="3"
                       onChange={({target})=>{            
                         handleUserInput(target.name, target.value)

@@ -106,7 +106,7 @@ var contactSchema = new Schema({
         type: String,
         required: true
     },
-    notes: {
+    comments: {
         type: String,
         required: false
     },
