@@ -44,7 +44,10 @@ const AdminSidebar = () => {
               <CDBSidebarMenuItem icon="fa-solid fa-envelope">Service Requests</CDBSidebarMenuItem>
             </NavLink>
             <NavLink reloadDocument exact="true" to="/ContactsRequests" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
-              <CDBSidebarMenuItem icon="fa-solid fa-address-book">Contacts Requests</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="fa-solid fa-envelope">Contacts Requests</CDBSidebarMenuItem>
+            </NavLink>
+            <NavLink reloadDocument exact="true" to="/Contacts" className={(navData) => (navData.isActive ? "active-style" : 'none')}>
+              <CDBSidebarMenuItem icon="fa-solid fa-address-book">All Contacts</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
         </CDBSidebarContent>
