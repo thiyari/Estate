@@ -7,6 +7,10 @@ function Approvals(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const { propertyId } = useParams()
     const [Id, setId] = useState('')
+    const [fname, setFname] = useState('')
+    const [lname, setLname] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
     const [propertyLocation, setPropertyLocation] = useState('')
     const [propertyArea, setPropertyArea] = useState('')
     const [propertyType, setPropertyType] = useState('')
@@ -56,6 +60,10 @@ function Approvals(props) {
           if(res.data.status){
             const profile_doc = res.data.profile      
             if (profile_doc.data[0].requests === 'Pending'){
+              setFname(profile_doc.data[0].firstname)
+              setLname(profile_doc.data[0].lastname)
+              setEmail(profile_doc.data[0].email)
+              setPhone(profile_doc.data[0].phone)
               setPropertyLocation(profile_doc.data[0].location)
               setPropertyArea(profile_doc.data[0].area)
               setPropertyType(profile_doc.data[0].property)
@@ -165,7 +173,23 @@ function Approvals(props) {
                         <tr>
                             <td>Property ID</td>
                             <td>{propertyId}</td>
-                        </tr>                        
+                        </tr> 
+                        <tr>
+                            <td>First Name</td>
+                            <td>{fname}</td>
+                        </tr> 
+                        <tr>
+                            <td>Last Name</td>
+                            <td>{lname}</td>
+                        </tr> 
+                        <tr>
+                            <td>Email</td>
+                            <td>{email}</td>
+                        </tr>  
+                        <tr>
+                            <td>Phone</td>
+                            <td>{phone}</td>
+                        </tr>                           
                         <tr>
                             <td>Property Location</td>
                             <td>{propertyLocation}</td>
@@ -191,12 +215,8 @@ function Approvals(props) {
                             <td>{floor}</td>
                         </tr>
                         <tr>
-                            <td>Currency</td>
-                            <td>{currency}</td>
-                        </tr>
-                        <tr>
                             <td>Price</td>
-                            <td>{price}</td>
+                            <td>{currency}{' '}{price}</td>
                         </tr>
                         <tr>
                             <td>Zip</td>

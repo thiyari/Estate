@@ -194,26 +194,6 @@ function ContactUs(props) {
 
 
                       <div className="form-group" align="left">
-                          <label className="form-label">Email</label>
-                          <input 
-                            type="email"  
-                            className="form-control mb-3" 
-                            id="email" 
-                            placeholder="Your Email"
-                            name="email"
-                            value={formInput.email}
-                            onChange={({target})=>{
-                              handleUserInput(target.name, target.value)
-                            }}
-                            style={{borderColor: formError.email_status !== "error" ?"":"red"}}
-                            />
-                            </div>
-                          <p className="error-message">{formError.email}</p>
-
-                  </div>
-                  <div className='col-md-2'></div>
-                  <div className='col-md-4'>
-                  <div className="form-group" align="left">
                         <label className="form-label">Last Name</label>
                         <input 
                             type="text"  
@@ -228,6 +208,28 @@ function ContactUs(props) {
                             />
                           </div>
                           <p className="error-message">{formError.lname}</p>
+
+                      
+                  </div>
+                  <div className='col-md-2'></div>
+                  <div className='col-md-4'>
+                  <div className="form-group" align="left">
+                          <label className="form-label">Email</label>
+                          <input 
+                            type="email"  
+                            className="form-control mb-3" 
+                            id="email" 
+                            placeholder="Your Email"
+                            name="email"
+                            value={formInput.email}
+                            onChange={({target})=>{
+                              handleUserInput(target.name, target.value)
+                            }}
+                            style={{borderColor: formError.email_status !== "error" ?"":"red"}}
+                            />
+                    </div>
+                    <p className="error-message">{formError.email}</p>
+
 
                       <div className="form-group" align="left">
                           <label className="form-label">Phone</label>
