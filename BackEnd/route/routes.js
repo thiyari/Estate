@@ -11,7 +11,8 @@ router.route('/api/houses').get(userController.fetchProfilesHousesControllerFn)
 router.route('/api/commercial').get(userController.fetchProfilesCommercialControllerFn)
 router.route('/api/session').get(userController.sessionControllerFn);
 router.route('/api/users').get(userController.usersControllerFn);
-router.route('/api/contacts').get(userController.contactsUserControllerFn);
+router.route('/api/contacts').get(userController.contactsControllerFn);
+router.route('/api/services').get(userController.servicesControllerFn);
 router.route('/api/login').post(userController.loginUserControllerFn);
 router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);

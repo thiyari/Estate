@@ -134,7 +134,7 @@ var fetchProfilesControllerFn = async(req,res)=>{
     }
 }
 
-var contactsUserControllerFn = async(req,res)=>{
+var contactsControllerFn = async(req,res)=>{
     const result = await (userService.fetchContactsDBService())
     if(result.status){
        return res.send({message:"Success",records:result.data});
@@ -143,6 +143,18 @@ var contactsUserControllerFn = async(req,res)=>{
         return res.send({message:'Failed',records:result.data});
     }
 }
+
+
+var servicesControllerFn = async(req,res)=>{
+    const result = await (userService.fetchServicesDBService())
+    if(result.status){
+       return res.send({message:"Success",records:result.data});
+    }
+    else {
+        return res.send({message:'Failed',records:result.data});
+    }
+}
+
 
 var fetchProfilesApprovalsControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesApprovalsDBService())
@@ -647,6 +659,7 @@ module.exports = {
     profileDeleteControllerFn,
     fetchProfilesApprovalsControllerFn,
     ApprovalSanctionControllerFn,
-    contactsUserControllerFn,
-    createServicesControllerFn
+    contactsControllerFn,
+    createServicesControllerFn,
+    servicesControllerFn
 }
