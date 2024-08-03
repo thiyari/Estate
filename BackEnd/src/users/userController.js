@@ -35,6 +35,27 @@ var adminKeyControllerFn = async(req,res)=>
         }
     }
 
+
+var createServicesControllerFn = async(req,res)=>
+    {
+        try
+        {
+            var status = await userService.createServicesDBService(req.body)
+            if(status){
+                res.send({"status":true,"message":"Service request created successfully"});
+            }
+            else {
+                res.send({"status":false,"message":"Error creating a service request"});
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
+
+
+    
+
 var createContactsControllerFn = async(req,res)=>
     {
         try
@@ -626,5 +647,6 @@ module.exports = {
     profileDeleteControllerFn,
     fetchProfilesApprovalsControllerFn,
     ApprovalSanctionControllerFn,
-    contactsUserControllerFn
+    contactsUserControllerFn,
+    createServicesControllerFn
 }

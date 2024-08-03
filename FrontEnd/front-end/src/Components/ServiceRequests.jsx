@@ -23,7 +23,7 @@ function ServiceRequests(props) {
 
 
       const records = useCallback(async()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/contacts`)
+        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/services`)
             .then(res => {
                 const records = res.data.records.filter((doc)=>(doc.requests !== "general"))
                 let profiles_list = []

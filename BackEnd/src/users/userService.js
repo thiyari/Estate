@@ -70,6 +70,29 @@ module.exports.createUserDBService = (userDetails) => {
 }
 
 
+module.exports.createServicesDBService = (userDetails) => {
+        return new Promise(function myFn(resolve,reject){
+                async function insert(){
+                        await dataModel.services.create({
+                                firstname: userDetails.firstname,
+                                lastname: userDetails.lastname,
+                                email: userDetails.email,
+                                phone: userDetails.phone,
+                                requests: userDetails.requests,
+                        });
+                        
+                }
+                insert().then(function (err){
+                        if(err){
+                                reject(false)
+                        } else {
+                                resolve(true)
+                        }
+                });
+        });
+
+}
+
 module.exports.createContactsDBService = (userDetails) => {
         return new Promise(function myFn(resolve,reject){
                 async function insert(){

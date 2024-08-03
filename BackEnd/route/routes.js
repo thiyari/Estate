@@ -16,6 +16,7 @@ router.route('/api/login').post(userController.loginUserControllerFn);
 router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);
 router.route('/api/contacts/create').post(userController.createContactsControllerFn);
+router.route('/api/services/create').post(userController.createServicesControllerFn);
 router.route('/api/admin/profiles').get(userController.adminProfilesControllerFn);
 router.route('/api/:propertyid').get(userController.fetchProfilesPropertyidControllerFn);
 router.route('/api/approvals/:id').put(userController.ApprovalSanctionControllerFn);
