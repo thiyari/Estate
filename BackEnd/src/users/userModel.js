@@ -109,7 +109,11 @@ var serviceSchema = new Schema({
     requests: {
         type: String,
         required: false
-    }
+    },
+    comments: {
+        type: String,
+        required: false
+    },
 });
 
 

@@ -82,6 +82,7 @@ function ServiceRequests(props) {
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
+                      <th scope="col">Message</th>
                       <th scope="col">Requested ID</th>
                       <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
                     </tr>
@@ -93,9 +94,10 @@ function ServiceRequests(props) {
                                               <td>{profile.lastname}</td>
                                               <td>{profile.email}</td>
                                               <td>{profile.phone}</td>
+                                              <td>{profile.comments}</td>
                                               <td>{profile.requests}</td>
-                                              <td align='right'><td><NavLink exact="true" to={`/Checkout/${profile.requests}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
-                                              </NavLink></td></td>
+                                              <td align='right'><NavLink exact="true" to={`/Checkout/${profile.requests}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
+                                              </NavLink></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
                                                 e.preventDefault()
                                                 handleDelete(profile.firstname, profile.lastname, profile._id)

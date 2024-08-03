@@ -79,6 +79,7 @@ module.exports.createServicesDBService = (userDetails) => {
                                 email: userDetails.email,
                                 phone: userDetails.phone,
                                 requests: userDetails.requests,
+                                comments: userDetails.comments
                         });
                         
                 }
