@@ -34,6 +34,20 @@ function ServiceRequests(props) {
             })
     },[]);
 
+
+    const handleDelete = async (fname, lname, Id) => {
+      if(window.confirm(`Are you sure deleting this current ${fname} ${lname}!`)){
+      try{
+        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/services/delete/${Id}`, 
+          { headers: { "Content-Type":"application/json" } })
+          alert(`${fname} ${lname} Deleted Successfully`);
+          window.location.reload();
+        } catch (err) {
+          alert(err);
+        }
+      }
+    };
+
       axios.defaults.withCredentials = true;
       useEffect(()=>{
         session();
@@ -84,6 +98,7 @@ function ServiceRequests(props) {
                                               </NavLink></td></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
                                                 e.preventDefault()
+                                                handleDelete(profile.firstname, profile.lastname, profile._id)
                                                 }}><i className="fas fa-trash-alt"></i></button></td>
 
                                             </tr>

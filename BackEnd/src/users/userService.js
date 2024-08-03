@@ -411,6 +411,24 @@ module.exports.profileDeleteImageDBService = async (id,data) => {
 }
 
 
+
+module.exports.deleteServicesDBService = async (id) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.services.findByIdAndDelete(id)
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Service Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting service failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+
 module.exports.profileDeleteDBService = async (id) => {
         return new Promise(async function myFn(resolve,reject){
         await dataModel.users.findByIdAndDelete(id)

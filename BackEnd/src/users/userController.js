@@ -440,6 +440,29 @@ var profileUploadImagesControllerFn = async(req,res)=>
             }        
 
 
+        var deleteServicesControllerFn = async(req,res)=>
+            {
+                var result = null;
+                try
+                {
+                    var result = await userService.deleteServicesDBService(req.params.id)
+                    if(result.status){
+                        return res.send({"status": true, "message": result.msg});
+                    }
+                    else {
+                        return res.send({"status": false, "message": result.msg});
+                    }
+                }
+                catch(err){
+                    console.log(err);
+                    res.send({"status":false,"message":err.msg});
+                }
+        
+            }        
+
+
+
+
     var profilePropertyLocationControllerFn = async(req,res)=>
         {
             var result = null;
@@ -661,5 +684,6 @@ module.exports = {
     ApprovalSanctionControllerFn,
     contactsControllerFn,
     createServicesControllerFn,
-    servicesControllerFn
+    servicesControllerFn,
+    deleteServicesControllerFn
 }
