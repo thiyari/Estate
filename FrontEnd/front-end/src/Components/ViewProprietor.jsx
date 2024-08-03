@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 function ViewProprietor(props) {
 
     const [loggedIn, setLoggedIn] = useState(false)
-    const { propertyid } = useParams()
+    const { propertyid, fname, lname } = useParams()
     const [profile, setProfile] = useState({})
     const [Images, setImages] = useState([])
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -59,7 +59,7 @@ function ViewProprietor(props) {
               <div className="card-body" align="center">
               <div className='col-md-2'></div>
               <div className='col-md-8'>
-              <h2 className='mb-2'>Request made by </h2>
+              <h2 className='mb-2'>Requested by {fname} {lname} </h2>
               <table className="table table-striped table-hover">
                 <thead>
                   <tr>
@@ -71,6 +71,18 @@ function ViewProprietor(props) {
                   <tr>
                     <td>Property Id</td>
                     <td>{propertyid}</td>
+                  </tr>
+                  <tr>
+                    <td>Owner</td>
+                    <td>{profile.firstname}{' '}{profile.lastname}</td>
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>{profile.email}</td>
+                  </tr>
+                  <tr>
+                    <td>Phone</td>
+                    <td>{profile.phone}</td>
                   </tr>
                   <tr>
                     <td>Type of Property</td>
@@ -99,6 +111,14 @@ function ViewProprietor(props) {
                   <tr>
                     <td>Price</td>
                     <td>{profile.currency}{" "}{profile.price}</td>
+                  </tr>
+                  <tr>
+                    <td>Property Address</td>
+                    <td>{profile.address}</td>
+                  </tr>
+                  <tr>
+                    <td>Zip Code</td>
+                    <td>{profile.zip}</td>
                   </tr>
                 </tbody>
               </table>

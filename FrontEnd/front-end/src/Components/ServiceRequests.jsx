@@ -96,7 +96,7 @@ function ServiceRequests(props) {
                                               <td>{profile.phone}</td>
                                               <td>{profile.comments}</td>
                                               <td>{profile.requests}</td>
-                                              <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
+                                              <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}/${profile.firstname}/${profile.lastname}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
                                               </NavLink></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
                                                 e.preventDefault()
