@@ -116,7 +116,6 @@ function ContactUs(props) {
             email: formInput.email,
             phone: formInput.phone,
             comments: formInput.comments,
-            requests: "general"
             }),
             {
               headers:{

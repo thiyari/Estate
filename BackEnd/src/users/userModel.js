@@ -89,7 +89,7 @@ var userSchema = new Schema({
     }
 });
 
-var contactSchema = new Schema({
+var serviceSchema = new Schema({
     firstname: {
         type: String,
         required: true
@@ -116,10 +116,36 @@ var contactSchema = new Schema({
     }
 });
 
+
+var contactsSchema = new Schema({
+    firstname: {
+        type: String,
+        required: true
+    },
+    lastname: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    phone: {
+        type: String,
+        required: true
+    },
+    comments: {
+        type: String,
+        required: false
+    },
+});
+
 const users = mongoose.model('users', userSchema);
-const contacts = mongoose.model('contacts', contactSchema);
+const services = mongoose.model('services', serviceSchema);
+const contacts = mongoose.model('contacts', contactsSchema);
 
 module.exports = { 
     users,
+    services,
     contacts
 }
