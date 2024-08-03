@@ -113,6 +113,16 @@ var fetchProfilesControllerFn = async(req,res)=>{
     }
 }
 
+var contactsUserControllerFn = async(req,res)=>{
+    const result = await (userService.fetchContactsDBService())
+    if(result.status){
+       return res.send({message:"Success",records:result.data});
+    }
+    else {
+        return res.send({message:'Failed',records:result.data});
+    }
+}
+
 var fetchProfilesApprovalsControllerFn = async(req,res)=>{
     const result = await (userService.fetchProfilesApprovalsDBService())
     if(result.status){
@@ -615,5 +625,6 @@ module.exports = {
     adminProfilesControllerFn,
     profileDeleteControllerFn,
     fetchProfilesApprovalsControllerFn,
-    ApprovalSanctionControllerFn
+    ApprovalSanctionControllerFn,
+    contactsUserControllerFn
 }
