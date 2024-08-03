@@ -23,6 +23,7 @@ import ContactsRequests from './Components/ContactsRequests';
 import Contacts from './Components/Contacts';
 import EditUsers from './Components/EditUsers';
 import Approvals from './Components/Approvals';
+import ViewProprietor from './Components/ViewProprietor';
 import { useState } from 'react';
 
 function App() {
@@ -59,6 +60,7 @@ const handleLogin = (status) => {
           <Route path="/EditUsers/:propertyId" element = {<EditUsers LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
           <Route path="/Approvals/:propertyId" element = {<Approvals LoginStatus={handleLogin}/>} />
+          <Route path="/ViewProprietor/:propertyid" element = {<ViewProprietor LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>
       </Router>
