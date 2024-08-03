@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
 
 function ServiceRequests(props) {
     const [loggedIn, setLoggedIn] = useState(false)
-
+    const [profiles, setProfiles] = useState([])
     const navigate = useNavigate()
     const session = useCallback(async () =>{
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
@@ -26,7 +26,11 @@ function ServiceRequests(props) {
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/contacts`)
             .then(res => {
                 const records = res.data.records.filter((doc)=>(doc.requests !== "general"))
-                console.log(records)
+                let profiles_list = []
+                for (let i = 0; i < records.length;  i++) {
+                    profiles_list.push(records[i])
+                }
+                setProfiles(profiles_list)
             })
     },[]);
 
@@ -50,7 +54,7 @@ function ServiceRequests(props) {
           <div className="card">
           <h1 className="card-header">
             <center>
-              <div className="header-font">Manage Service Requests</div>
+              <div className="header-font">List of Service Requests</div>
             </center>
           </h1>
             <div className="form-container">
@@ -64,11 +68,27 @@ function ServiceRequests(props) {
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
-                      <th scope="col">Property ID</th>
+                      <th scope="col">Requested ID</th>
+                      <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
                     </tr>
                     </thead>
                     <tbody className="table-group-divider">
+                        {profiles.map((profile, index)=>{return(
+                                            <tr key={index}>
+                                              <td>{profile.firstname}</td>
+                                              <td>{profile.lastname}</td>
+                                              <td>{profile.email}</td>
+                                              <td>{profile.phone}</td>
+                                              <td>{profile.requests}</td>
+                                              <td align='right'><td><NavLink exact="true" to={`/Checkout/${profile.requests}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
+                                              </NavLink></td></td>
+                                              <td align='center'><button style={{width: 25}} onClick={(e)=>{
+                                                e.preventDefault()
+                                                }}><i className="fas fa-trash-alt"></i></button></td>
 
+                                            </tr>
+                                              )}
+                                            )}
                     </tbody>
                     </table>
                     </div>
