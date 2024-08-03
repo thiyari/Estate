@@ -19,7 +19,7 @@ import ManageUsers from './Components/ManageUsers';
 import AddNewAdmin from './Components/AddNewAdmin';
 import UsersRequests from './Components/UsersRequests';
 import ServiceRequests from './Components/ServiceRequests';
-import Contacts from './Components/Contacts';
+import ContactsRequests from './Components/ContactsRequests';
 import EditUsers from './Components/EditUsers';
 import Approvals from './Components/Approvals';
 import { useState } from 'react';
@@ -53,7 +53,7 @@ const handleLogin = (status) => {
           <Route path="/ManageUsers" element = {<ManageUsers LoginStatus={handleLogin}/>} />
           <Route path="/UsersRequests" element = {<UsersRequests LoginStatus={handleLogin}/>} />
           <Route path="/ServiceRequests" element = {<ServiceRequests LoginStatus={handleLogin}/>} />
-          <Route path="/Contacts" element = {<Contacts LoginStatus={handleLogin}/>} />
+          <Route path="/ContactsRequests" element = {<ContactsRequests LoginStatus={handleLogin}/>} />
           <Route path="/EditUsers/:propertyId" element = {<EditUsers LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
           <Route path="/Approvals/:propertyId" element = {<Approvals LoginStatus={handleLogin}/>} />

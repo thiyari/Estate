@@ -25,7 +25,7 @@ function ServiceRequests(props) {
       const records = useCallback(async()=>{
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/services`)
             .then(res => {
-                const records = res.data.records.filter((doc)=>(doc.requests !== "general"))
+                const records = res.data.records
                 let profiles_list = []
                 for (let i = 0; i < records.length;  i++) {
                     profiles_list.push(records[i])
