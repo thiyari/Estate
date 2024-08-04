@@ -24,6 +24,7 @@ import Contacts from './Components/Contacts';
 import EditUsers from './Components/EditUsers';
 import Approvals from './Components/Approvals';
 import ViewProprietor from './Components/ViewProprietor';
+import AddNewContact from './Components/AddNewContact';
 import { useState } from 'react';
 
 function App() {
@@ -50,6 +51,7 @@ const handleLogin = (status) => {
           <Route path="/ContactUs" element = {<ContactUs LoginStatus={handleLogin}/>} />
           <Route path="/Search" element = {<Search LoginStatus={handleLogin}/>} />
           <Route path="/AddNewAdmin" element = {<AddNewAdmin LoginStatus={handleLogin}/>} />
+          <Route path="/AddNewContact" element = {<AddNewContact LoginStatus={handleLogin}/>} />
           <Route path="/AdminProfile" element = {<AdminProfile LoginStatus={handleLogin}/>} />
           <Route path="/ManageAdmins" element = {<ManageAdmins LoginStatus={handleLogin}/>} />
           <Route path="/ManageUsers" element = {<ManageUsers LoginStatus={handleLogin}/>} />
