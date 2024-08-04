@@ -39,6 +39,7 @@ router.route('/api/profile/floor/:id').put(userController.profileFloorController
 router.route('/api/profile/currency/:id').put(userController.profileCurrencyControllerFn)
 router.route('/api/profile/zip/:id').put(userController.profileZipControllerFn)
 router.route('/api/profile/propertyaddress/:id').put(userController.profilePropertyAddressControllerFn)
+router.route('/api/contacts/delete/:id').delete(userController.deleteContactsControllerFn);
 router.route('/api/services/delete/:id').delete(userController.deleteServicesControllerFn);
 router.route('/api/profile/deleteimage/:id').delete(userController.profileDeleteImageControllerFn);
 router.route('/api/profile/delete/:id').delete(userController.profileDeleteControllerFn);

@@ -429,6 +429,20 @@ module.exports.deleteServicesDBService = async (id) => {
 }
 
 
+module.exports.deleteContactsDBService = async (id) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.contacts.findByIdAndDelete(id)
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Contact Deleted successfully"});
+                        } else {
+                           reject({success:false,msg:"Deleting contact failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
 
 module.exports.profileDeleteDBService = async (id) => {
         return new Promise(async function myFn(resolve,reject){

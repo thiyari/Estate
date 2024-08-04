@@ -438,7 +438,7 @@ var profileUploadImagesControllerFn = async(req,res)=>
                 }
         
             }        
-
+            
 
         var deleteServicesControllerFn = async(req,res)=>
             {
@@ -460,6 +460,25 @@ var profileUploadImagesControllerFn = async(req,res)=>
         
             }        
 
+        var deleteContactsControllerFn = async(req,res)=>
+            {
+                var result = null;
+                try
+                {
+                    var result = await userService.deleteContactsDBService(req.params.id)
+                    if(result.status){
+                        return res.send({"status": true, "message": result.msg});
+                    }
+                    else {
+                        return res.send({"status": false, "message": result.msg});
+                    }
+                }
+                catch(err){
+                    console.log(err);
+                    res.send({"status":false,"message":err.msg});
+                }
+        
+            }        
 
 
 
@@ -685,5 +704,6 @@ module.exports = {
     contactsControllerFn,
     createServicesControllerFn,
     servicesControllerFn,
-    deleteServicesControllerFn
+    deleteServicesControllerFn,
+    deleteContactsControllerFn
 }
