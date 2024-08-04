@@ -74,7 +74,7 @@ function Contacts(props) {
             <div className="form-container">
                 <div className="card-body">
                 
-                <form>
+                <form action='/AddNewContact'>
                 <div className ="table-responsive-md">  
                   <table className="table table-striped table-hover">
                     <thead>
@@ -83,7 +83,9 @@ function Contacts(props) {
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
-                      <th></th>
+                      <th style={{textAlign: "center"}}>
+                        <button type="submit" className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
+                      </th>
                     </tr>
                     </thead>
                     <tbody className="table-group-divider">

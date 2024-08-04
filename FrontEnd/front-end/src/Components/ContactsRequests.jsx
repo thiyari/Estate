@@ -70,7 +70,7 @@ function ContactsRequests(props) {
           <div className="card">
           <h1 className="card-header">
             <center>
-              <div className="header-font">List of Contacts Requests</div>
+              <div className="header-font">List of Contact Us Requests</div>
             </center>
           </h1>
             <div className="form-container">
