@@ -591,7 +591,25 @@ function Register(props) {
             ...prevState,
             successMsg: "Verification Successful, Saving the details",
           }));
-        
+
+          
+          try {
+            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/contacts/create`, JSON.stringify({
+            firstname: formInput.fname,
+            lastname: formInput.lname,
+            email: formInput.email,
+            phone: formInput.phone,
+            requests: false
+            }),
+            {
+              headers:{
+              "Content-Type":"application/json"
+              }
+            });
+          } catch (err) {
+            alert(err);
+          }
+
         var pid = Math.floor(1000000000 + Math.random() * 9000000000);
         try {
           setLoading(true);
@@ -651,6 +669,7 @@ function Register(props) {
         } catch (err) {
           alert(err);
         }
+
       }
     
     return (

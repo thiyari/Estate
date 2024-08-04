@@ -114,6 +114,24 @@ function Checkout(props) {
 
 
           try {
+            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/contacts/create`, JSON.stringify({
+            firstname: formInput.fname,
+            lastname: formInput.lname,
+            email: formInput.email,
+            phone: formInput.phone,
+            requests: false
+            }),
+            {
+              headers:{
+              "Content-Type":"application/json"
+              }
+            });
+          } catch (err) {
+            alert(err);
+          }
+
+
+          try {
             await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/services/create`, JSON.stringify({
             firstname: formInput.fname,
             lastname: formInput.lname,
