@@ -138,6 +138,10 @@ var contactsSchema = new Schema({
         type: String,
         required: false
     },
+    requests: {
+        type: Boolean,
+        required: false
+    }
 });
 
 const users = mongoose.model('users', userSchema);

@@ -74,7 +74,6 @@ function ContactsRequests(props) {
             </center>
           </h1>
             <div className="form-container">
-              <form>
                 <div className="card-body">
                 
                 <form>
@@ -91,7 +90,8 @@ function ContactsRequests(props) {
                     </tr>
                     </thead>
                     <tbody className="table-group-divider">
-                        {contacts.map((contact, index)=>{return(
+                        {contacts.filter((doc)=>(doc.requests === true))
+                        .map((contact, index)=>{return(
                                             <tr key={index}>
                                               <td>{contact.firstname}</td>
                                               <td>{contact.lastname}</td>
@@ -110,7 +110,6 @@ function ContactsRequests(props) {
                     </div>
                 </form>                
                 </div>       
-              </form>
             </div>
             </div>
         </div>

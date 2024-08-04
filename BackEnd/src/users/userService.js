@@ -103,6 +103,7 @@ module.exports.createContactsDBService = (userDetails) => {
                                 email: userDetails.email,
                                 phone: userDetails.phone,
                                 comments: userDetails.comments,
+                                requests: userDetails.requests
                         });
                         
                 }
