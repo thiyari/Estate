@@ -610,7 +610,11 @@ function Register(props) {
             alert(err);
           }
 
-        var pid = Math.floor(1000000000 + Math.random() * 9000000000);
+        const currDate = new Date().toLocaleDateString();
+        const currTime = new Date().toLocaleTimeString();
+        const datetime = currDate+currTime
+        const random_digits = datetime.replace(/[^0-9]/g, "")
+        const pid = Math.floor(1000 + Math.random() * 9000)+random_digits;
         try {
           setLoading(true);
           await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/create`, JSON.stringify({
