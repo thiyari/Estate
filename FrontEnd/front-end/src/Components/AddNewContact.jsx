@@ -161,7 +161,7 @@ function AddNewContact(props) {
         <div className="col-md-2">        
           <AdminSidebar/>
         </div>
-        <div className="col-md-10">
+        <div className="col-md-10" style={{paddingLeft: 30}}>
       
       
         <div className="container mt-4" >

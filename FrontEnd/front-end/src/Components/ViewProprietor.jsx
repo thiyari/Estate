@@ -49,7 +49,7 @@ function ViewProprietor(props) {
       <div className="container">
       <div className="row">
       <div className="col-md-1"></div>
-          <div className="col-md-10">
+          <div className="col-md-10" style={{paddingLeft: 30}}>
           <div className="card form-container mt-4">
               <h1 className="card-header">
                   <center>
