@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Sidebar from './Sidebar/Sidebar'
+import UserSidebar from './Sidebar/UserSidebar'
 import '../App.css'
 import ImageSlider from './ImageSlider/ImageSlider'
 import { FaEdit, FaCheck } from "react-icons/fa";
@@ -725,7 +725,7 @@ function Properties(props){
 <React.Fragment>
   <div className="row">
   <div className="col-md-2">        
-    <Sidebar/>
+    <UserSidebar/>
   </div>
   <div className="col-md-10" style={{paddingLeft: 30}}>
 

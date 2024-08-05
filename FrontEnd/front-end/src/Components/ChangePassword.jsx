@@ -1,4 +1,4 @@
-import Sidebar from './Sidebar/Sidebar'
+import UserSidebar from './Sidebar/UserSidebar'
 import React, {useState, useEffect, useCallback} from 'react'
 import { useNavigate } from 'react-router-dom';
 import AdminSidebar from './Sidebar/AdminSidebar';
@@ -190,7 +190,7 @@ return (
   <React.Fragment>
   <div className="row">
   <div className="col-md-2">        
-    {logStatus === "admin"?<AdminSidebar/>:<Sidebar/>}
+    {logStatus === "admin"?<AdminSidebar/>:<UserSidebar/>}
   </div>
   <div className="col-md-10" style={{paddingLeft: 30}}>
 
