@@ -54,8 +54,8 @@ const AdminSidebar = () => {
       <div style={{ padding: '16px 24px', color: '#44596e' }}>
         <div style={{ marginBottom: '16px' }}>
           {broken && (
-            <button className="sb-button" onClick={() => setToggled(!toggled)}>
-              Toggle
+            <button className="btn" onClick={() => setToggled(!toggled)}>
+              <i className="fa fa-bars" />
             </button>
           )}
         </div>
