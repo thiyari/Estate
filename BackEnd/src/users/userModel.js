@@ -87,6 +87,9 @@ var userSchema = new Schema({
         type: Number,
         required: false
     }
+},
+{
+    timestamps: true
 });
 
 var serviceSchema = new Schema({
@@ -114,6 +117,9 @@ var serviceSchema = new Schema({
         type: String,
         required: false
     },
+},
+{
+    timestamps: true
 });
 
 
@@ -144,7 +150,7 @@ var contactsSchema = new Schema({
     } 
 },
 {
-timestamps: true
+    timestamps: true
 });
 
 const users = mongoose.model('users', userSchema);

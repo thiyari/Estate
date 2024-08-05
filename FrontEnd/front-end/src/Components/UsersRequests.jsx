@@ -48,6 +48,17 @@ function UsersRequests(props) {
         }
       };
 
+      const formatedDate = (savedTime) => {
+        const date = new Date(savedTime).toLocaleString(
+          "en-US",
+          {
+            timeStyle: "medium",
+            dateStyle: "short",
+          }
+        );
+        return date
+      }
+
       axios.defaults.withCredentials = true;
       useEffect(()=>{
         session();
@@ -83,6 +94,7 @@ function UsersRequests(props) {
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
+                      <th scope="col">Date</th>
                       <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
                     </tr>
                     </thead>
@@ -94,6 +106,7 @@ function UsersRequests(props) {
                     <td>{profile.lastname}</td>
                     <td>{profile.email}</td>
                     <td>{profile.phone}</td>
+                    <td>{formatedDate(profile.createdAt)}</td>
                     <td align='right'><NavLink exact="true" to={`/Approvals/${profile.propertyid}`} ><MdPendingActions size={20}/>
                     </NavLink></td>
                     <td align='center'><button style={{width: 25}} onClick={(e)=>{

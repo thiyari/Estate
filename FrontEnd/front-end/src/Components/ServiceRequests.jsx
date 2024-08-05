@@ -48,6 +48,18 @@ function ServiceRequests(props) {
       }
     };
 
+
+    const formatedDate = (savedTime) => {
+      const date = new Date(savedTime).toLocaleString(
+        "en-US",
+        {
+          timeStyle: "medium",
+          dateStyle: "short",
+        }
+      );
+      return date
+    }
+
       axios.defaults.withCredentials = true;
       useEffect(()=>{
         session();
@@ -84,6 +96,7 @@ function ServiceRequests(props) {
                       <th scope="col">Phone</th>
                       <th scope="col">Message</th>
                       <th scope="col">Requested ID</th>
+                      <th scope="col">Date</th>
                       <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
                     </tr>
                     </thead>
@@ -96,6 +109,7 @@ function ServiceRequests(props) {
                                               <td>{profile.phone}</td>
                                               <td>{profile.comments}</td>
                                               <td>{profile.requests}</td>
+                                              <td>{formatedDate(profile.createdAt)}</td>
                                               <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}/${profile.firstname}/${profile.lastname}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
                                               </NavLink></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
