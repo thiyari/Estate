@@ -30,9 +30,9 @@ const AdminSidebar = () => {
       breakPoint="md"
     className='border'>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#fff' }}>
-        <div align="center"><button className="btn" style={{width:50}} onClick={() => setCollapsed(!collapsed)}><i className="fa fa-bars" /></button></div>
         <div style={{ flex: 1, marginBottom: '32px' }}>
           <Menu >
+            <MenuItem icon={<button className="btn" style={{width:50}} onClick={() => setCollapsed(!collapsed)}><i className="fa fa-bars" /></button>}>Estate ™</MenuItem>
               <MenuItem icon={<FaUser />} component={<Link to="/AdminProfile" />}>Admin Profile</MenuItem>
               <MenuItem icon={<RiLockPasswordFill />} component={<Link to="/ChangePassword" />}>Change Password</MenuItem>
               <SubMenu icon={<FaGear />} label="Settings">
