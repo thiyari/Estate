@@ -6,6 +6,11 @@ import { FaGear } from "react-icons/fa6";
 import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
 import { RiContactsBookFill } from "react-icons/ri";
+import { MdAdminPanelSettings } from "react-icons/md";
+import { BiSolidContact } from "react-icons/bi";
+import { MdHomeRepairService } from "react-icons/md";
+import { RiShieldUserFill } from "react-icons/ri";
+import { BiSolidUserRectangle } from "react-icons/bi";
 
 const AdminSidebar = () => {
   const [toggled, setToggled] = React.useState(false);
@@ -31,13 +36,13 @@ const AdminSidebar = () => {
               <MenuItem icon={<FaUser />} component={<Link to="/AdminProfile" />}>Admin Profile</MenuItem>
               <MenuItem icon={<RiLockPasswordFill />} component={<Link to="/ChangePassword" />}>Change Password</MenuItem>
               <SubMenu icon={<FaGear />} label="Settings">
-                <MenuItem component={<Link to="/ManageAdmins" />}>Manage Admins</MenuItem>
-                <MenuItem component={<Link to="/ManageUsers" />}>Manage Users</MenuItem>
+                <MenuItem icon={<MdAdminPanelSettings />} component={<Link to="/ManageAdmins" />}>Manage Admins</MenuItem>
+                <MenuItem icon={<RiShieldUserFill />} component={<Link to="/ManageUsers" />}>Manage Users</MenuItem>
               </SubMenu>
               <SubMenu icon={<MdEmail />} label="Requests">
-                <MenuItem component={<Link to="/UsersRequests" />}>Users Requests</MenuItem>
-                <MenuItem component={<Link to="/ServiceRequests" />}>Service Requests</MenuItem>
-                <MenuItem component={<Link to="/ContactsRequests" />}>Contact Us</MenuItem>
+                <MenuItem icon={<BiSolidUserRectangle />} component={<Link to="/UsersRequests" />}>Users Requests</MenuItem>
+                <MenuItem icon={<MdHomeRepairService />} component={<Link to="/ServiceRequests" />}>Service Requests</MenuItem>
+                <MenuItem icon={<BiSolidContact />} component={<Link to="/ContactsRequests" />}>Contact Us</MenuItem>
               </SubMenu>
               <MenuItem icon={<RiContactsBookFill />} component={<Link to="/Contacts" />}>All Contacts</MenuItem>
           </Menu>          
