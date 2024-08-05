@@ -49,6 +49,17 @@ function ContactsRequests(props) {
       }
     };
 
+    const formatedDate = (savedTime) => {
+      const date = new Date(savedTime).toLocaleString(
+        "en-US",
+        {
+          timeStyle: "medium",
+          dateStyle: "short",
+        }
+      );
+      return date
+    }
+
 
       axios.defaults.withCredentials = true;
       useEffect(()=>{
@@ -86,6 +97,7 @@ function ContactsRequests(props) {
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th scope="col">Message</th>
+                      <th scope="col">Date</th>
                       <th></th>
                     </tr>
                     </thead>
@@ -98,6 +110,7 @@ function ContactsRequests(props) {
                                               <td>{contact.email}</td>
                                               <td>{contact.phone}</td>
                                               <td>{contact.comments}</td>
+                                              <td>{formatedDate(contact.createdAt)}</td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
                                                 e.preventDefault()
                                                 handleDelete(contact.firstname, contact.lastname, contact._id)

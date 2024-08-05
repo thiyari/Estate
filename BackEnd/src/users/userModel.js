@@ -141,7 +141,10 @@ var contactsSchema = new Schema({
     requests: {
         type: Boolean,
         required: false
-    }
+    } 
+},
+{
+timestamps: true
 });
 
 const users = mongoose.model('users', userSchema);
