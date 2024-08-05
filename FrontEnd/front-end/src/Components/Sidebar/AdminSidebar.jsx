@@ -24,15 +24,15 @@ const AdminSidebar = () => {
     <div style={{ display: 'flex', height: '100%'}}>
     <Sidebar 
       collapsed={collapsed}
-      onChange={() => setCollapsed(!collapsed)}
       toggled={toggled}
       onBackdropClick={() => setToggled(false)}
       onBreakPoint={setBroken}
       breakPoint="md"
     className='border'>
       <div style={{ display: 'flex', flexDirection: 'column', height: '100%', backgroundColor: '#fff' }}>
+        <div align="center"><button className="btn" style={{width:50}} onClick={() => setCollapsed(!collapsed)}><i className="fa fa-bars" /></button></div>
         <div style={{ flex: 1, marginBottom: '32px' }}>
-          <Menu className='mt-5'>
+          <Menu >
               <MenuItem icon={<FaUser />} component={<Link to="/AdminProfile" />}>Admin Profile</MenuItem>
               <MenuItem icon={<RiLockPasswordFill />} component={<Link to="/ChangePassword" />}>Change Password</MenuItem>
               <SubMenu icon={<FaGear />} label="Settings">
