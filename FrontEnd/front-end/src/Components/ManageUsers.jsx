@@ -81,7 +81,6 @@ function ManageUsers(props){
             <div className="form-container">
                 <div className="card-body">
 
-                <form>
           <div className="row">
           <div className="col-md-12">
           <div className='row'>
@@ -98,6 +97,7 @@ function ManageUsers(props){
             </InputGroup>
           </Form>
           <div className ="table-responsive-md">  
+          <form>
           <table className="table table-striped table-hover">
             <thead>
               <tr>
@@ -131,13 +131,13 @@ function ManageUsers(props){
             )}
             </tbody>
             </table>
+            </form>
             </div>
             </div>
             <div className='col-md-1'></div>
             </div>
             </div>
             </div>
-            </form>
                 </div>
             </div>
            </div>
