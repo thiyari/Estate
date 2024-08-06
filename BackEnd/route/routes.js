@@ -16,6 +16,7 @@ router.route('/api/services').get(userController.servicesControllerFn);
 router.route('/api/login').post(userController.loginUserControllerFn);
 router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);
+router.route('/api/forgot-password').post(userController.forgotPasswordControllerFn);
 router.route('/api/contacts/create').post(userController.createContactsControllerFn);
 router.route('/api/services/create').post(userController.createServicesControllerFn);
 router.route('/api/admin/profiles').get(userController.adminProfilesControllerFn);
@@ -43,5 +44,7 @@ router.route('/api/contacts/delete/:id').delete(userController.deleteContactsCon
 router.route('/api/services/delete/:id').delete(userController.deleteServicesControllerFn);
 router.route('/api/profile/deleteimage/:id').delete(userController.profileDeleteImageControllerFn);
 router.route('/api/profile/delete/:id').delete(userController.profileDeleteControllerFn);
+router.route('/api/reset-password/:id/:token').get(userController.verifyPasswordControllerFn)
+router.route('/api/reset-password/:id/:token').post(userController.resetPasswordControllerFn)
 
 module.exports = router;

@@ -156,7 +156,7 @@ function Login(props) {
                     Not yet registered?<br />
                       <div className="row">
                         <div className="col-md-6"><a href="/Register">Register</a></div>
-                        <div align="right" className="col-md-6"><a href="/ForgetPassword">Forget Password</a></div>
+                        <div align="right" className="col-md-6"><a href="/ForgotPassword">Forgot Password?</a></div>
                     </div>
                   </p>  
             </div>

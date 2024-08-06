@@ -1,5 +1,5 @@
 import axios from "axios";
-import {  useState, useEffect, useCallback } from "react";
+import {  useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -9,9 +9,8 @@ const initialState = {
   email_status: "",
 };
 
-function ForgetPassword(props) {
+function ForgotPassword(props) {
 
-    const [email, setEmail] = useState("");
     const navigate = useNavigate();
     const [formInput, setFormInput] = useState({...initialState,successMsg: ""});
     const [formError, setFormError] = useState({...initialState})
@@ -56,6 +55,26 @@ function ForgetPassword(props) {
             ...prevState,
             successMsg: "Verification Successful, Saving the details",
           }));
+
+          try {
+            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/forgot-password`, JSON.stringify({
+            email: formInput.email,
+            }),
+            {
+              headers:{
+              "Content-Type":"application/json"
+              }
+            });
+            alert("Your request was sent Successfully");
+            setFormInput({
+              email: "",
+            })
+            navigate('/');
+          } catch (err) {
+            alert(err);
+          }
+
+          
     }
 
     return (
@@ -111,4 +130,4 @@ function ForgetPassword(props) {
     );
   }
   
-  export default ForgetPassword;
+  export default ForgotPassword;

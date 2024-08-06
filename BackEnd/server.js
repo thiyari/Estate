@@ -30,7 +30,8 @@ app.use(session({
 }
 ))
 
-
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
 const PORT = process.env.PORT||8080

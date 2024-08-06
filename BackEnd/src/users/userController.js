@@ -1,5 +1,13 @@
 const session = require('express-session');
 var userService = require('./userService');
+const jwt = require("jsonwebtoken");
+var nodemailer = require("nodemailer");
+var dataModel = require('./userModel')
+var key = '123456789asdflkj';
+var encryptor = require('simple-encryptor')(key);
+
+
+const JWT_SECRET = "d3993d6f826dbf4affdaddaa0ec65a52b38c608dab94088471c77c3148a8bc1c"
 
 var createUserControllerFn = async(req,res)=>
 {
@@ -666,6 +674,96 @@ var profileUploadImagesControllerFn = async(req,res)=>
     
         }
 
+    var forgotPasswordControllerFn = async (req, res) => {
+            const { email } = req.body;
+            try {
+              const oldUser = await dataModel.users.findOne({ email });
+              if (!oldUser) {
+                return res.json({ status: "User Not Exists!!" });
+              }
+              const secret = JWT_SECRET + oldUser.password;
+              const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
+                expiresIn: "5m",
+              });
+              const link = `http://localhost:8000/api/reset-password/${oldUser._id}/${token}`;
+              var transporter = nodemailer.createTransport({
+                service: "gmail",
+                auth: {
+                  user: "ts.manikanth@gmail.com",
+                  pass: "lkyblvjtrxjhccmk",
+                },
+              });
+          
+              var mailOptions = {
+                from: "ts.manikanth@gmail.com",
+                to: email,
+                subject: "Password Reset",
+                text: link,
+              };
+          
+              transporter.sendMail(mailOptions, function (error, info) {
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log("Email sent: " + info.response);
+                }
+              });
+              console.log(link);
+            } catch (error) {}
+          };
+
+
+var verifyPasswordControllerFn = async(req, res) => {
+            const { id, token } = req.params;
+            console.log(req.params);
+            const oldUser = await dataModel.users.findOne({ _id: id });
+            if (!oldUser) {
+              return res.json({ status: "User Not Exists!!" });
+            }
+            const secret = JWT_SECRET + oldUser.password;
+            try {
+              const verify = jwt.verify(token, secret);
+              res.render("index", { email: verify.email, status: "Not Verified" });
+            } catch (error) {
+              console.log(error);
+              res.send("Not Verified");
+            }
+          };
+
+
+
+var resetPasswordControllerFn = async(req,res) => {
+            const { id, token } = req.params;
+            const { password } = req.body;
+          
+            const oldUser = await dataModel.users.findOne({ _id: id });
+            if (!oldUser) {
+              return res.json({ status: "User Not Exists!!" });
+            }
+            const secret = JWT_SECRET + oldUser.password;
+            try {
+              const verify = jwt.verify(token, secret);
+              const encryptedPassword = encryptor.encrypt(password);
+              await dataModel.users.updateOne(
+                {
+                  _id: id,
+                },
+                {
+                  $set: {
+                    password: encryptedPassword,
+                  },
+                }
+              );
+          
+              res.render("index", { email: verify.email, status: "verified" });
+            } catch (error) {
+              console.log(error);
+              res.json({ status: "Something Went Wrong" });
+            }
+          };
+          
+
+
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
@@ -705,5 +803,8 @@ module.exports = {
     createServicesControllerFn,
     servicesControllerFn,
     deleteServicesControllerFn,
-    deleteContactsControllerFn
+    deleteContactsControllerFn,
+    forgotPasswordControllerFn,
+    verifyPasswordControllerFn,
+    resetPasswordControllerFn
 }
