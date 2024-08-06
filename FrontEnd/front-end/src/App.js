@@ -25,6 +25,7 @@ import EditUsers from './Components/EditUsers';
 import Approvals from './Components/Approvals';
 import ViewProprietor from './Components/ViewProprietor';
 import AddNewContact from './Components/AddNewContact';
+import ForgetPassword from './Components/ForgetPassword';
 import { useState } from 'react';
 
 function App() {
@@ -43,6 +44,7 @@ const handleLogin = (status) => {
           <Route path="/Profile" element = {<Profile LoginStatus={handleLogin}/>} />
           <Route path="/Register" element = {<Register LoginStatus={handleLogin}/>} />
           <Route path="/Login" element = {<Login />} />
+          <Route path="/ForgetPassword" element = {<ForgetPassword />} />
           <Route path="/Plots" element = {<Plots LoginStatus={handleLogin}/>} />
           <Route path="/Houses" element = {<Houses LoginStatus={handleLogin}/>} />
           <Route path="/Commercial" element = {<Commercial LoginStatus={handleLogin}/>} />

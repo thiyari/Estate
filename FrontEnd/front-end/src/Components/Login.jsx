@@ -154,9 +154,10 @@ function Login(props) {
             <div className="card-footer text-muted">
                   <p>
                     Not yet registered?<br />
-                    <span className="line">
-                    <a href="/Register">Register</a>
-                    </span>
+                      <div className="row">
+                        <div className="col-md-6"><a href="/Register">Register</a></div>
+                        <div align="right" className="col-md-6"><a href="/ForgetPassword">Forget Password</a></div>
+                    </div>
                   </p>  
             </div>
             </div>
