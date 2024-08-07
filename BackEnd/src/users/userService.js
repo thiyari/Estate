@@ -123,7 +123,11 @@ module.exports.createContactsDBService = (userDetails) => {
 
 module.exports.loginuserDBService = (userDetails) => {
         return new Promise(async function myFn(resolve,reject){
-                result = await dataModel.users.findOne({username:userDetails.user});
+                result = await dataModel.users.findOne({$or:
+                        [
+                                {username: userDetails.user},
+                                {email: userDetails.user},
+                        ]});
                 if(result != undefined && result != null){
                         var decrypted = encryptor.decrypt(result.password);
                         if(decrypted == userDetails.password){

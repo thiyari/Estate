@@ -111,7 +111,7 @@ function Login(props) {
              <div className="card-body">
              <form>
              <div className="form-group">
-                  <label className="form-label">Username</label>
+                  <label className="form-label">Username or Email</label>
                   <input type="text"  
                   className="form-control mb-3" 
                   id="user" 
