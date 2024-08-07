@@ -648,3 +648,21 @@ module.exports.forgotPasswordDBService = async (emailbody) => {
               }
         })
 }
+
+module.exports.verifyPasswordDBService = async (reqbody) => {
+        return new Promise(async function myFn(resolve,reject){
+        const { id, token } = reqbody;
+        const oldUser = await dataModel.users.findOne({ _id: id });
+        if (!oldUser) {
+                reject({success:false, msg:"User does not exists!"})
+        }
+        const secret = JWT_SECRET + oldUser.password;
+        try {
+          const verify = jwt.verify(token, secret);
+          resolve({success:true, email: verify.email, msg: "Not Verified"})
+        } catch (error) {
+          console.log(error);
+          reject({success:false, msg: "Not Verified"})
+        }
+        })
+}

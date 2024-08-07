@@ -695,20 +695,23 @@ var profileUploadImagesControllerFn = async(req,res)=>
 
 
 var verifyPasswordControllerFn = async(req, res) => {
-            const { id, token } = req.params;
-            console.log(req.params);
-            const oldUser = await dataModel.users.findOne({ _id: id });
-            if (!oldUser) {
-              return res.json({ status: "User Not Exists!!" });
+
+            var result = null;
+            try
+            {
+                var result = await userService.verifyPasswordDBService(req.params)
+                if(result.success){
+                    return res.render("index",{email: result.email, status: result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
             }
-            const secret = JWT_SECRET + oldUser.password;
-            try {
-              const verify = jwt.verify(token, secret);
-              res.render("index", { email: verify.email, status: "Not Verified" });
-            } catch (error) {
-              console.log(error);
-              res.send("Not Verified");
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
             }
+
           };
 
 
