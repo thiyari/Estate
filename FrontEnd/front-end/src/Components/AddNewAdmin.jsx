@@ -31,6 +31,7 @@ function AddNewAdmin(props) {
     const [formError, setFormError] = useState({...initialState})
     const [loggedIn, setLoggedIn] = useState(false)
     const [usernames, setUsernames] = useState([]);
+    const [emails, setEmails] = useState([]);
 
     const navigate = useNavigate()
 
@@ -47,10 +48,13 @@ function AddNewAdmin(props) {
         if(res.data.status){
           const doc_users = res.data.users          
           let users_list = []
+          let emails_list = [] 
           for (let i = 0; i < doc_users.data.length; i++) {
              users_list.push(doc_users.data[i].username)
+             emails_list.push(doc_users.data[i].email)
           }
           setUsernames(users_list)
+          setEmails(emails_list)
         }     
       })
       .catch(err => console.log(err))
@@ -158,6 +162,19 @@ function AddNewAdmin(props) {
               });
               return;
           }
+
+
+          // Check if email already exists
+          for (let i = 0; i < emails.length; i++) {
+            if(formInput.email === emails[i]){
+                setFormError({
+                  ...inputError,
+                  email: "This email already exists, please provide another",
+                  email_status: "error"
+                })
+              return;
+            }
+        }
 
           // Check if password is empty
           if(!formInput.password){
