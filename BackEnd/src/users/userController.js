@@ -693,7 +693,7 @@ var verifyPasswordControllerFn = async(req, res) => {
             {
                 var result = await userService.verifyPasswordDBService(req.params)
                 if(result.success){
-                    return res.render("index",{email: result.email, status: result.msg});
+                    return res.render("reset",{email: result.email, status: result.msg});
                 }
                 else {
                     return res.send({"status": false, "message": result.msg});
@@ -715,7 +715,7 @@ var resetPasswordControllerFn = async(req,res) => {
         {
             var result = await userService.resetPasswordDBService(req.params, req.body)
             if(result.success){
-                return res.render("index",{email: result.email, status: result.msg});
+                return res.render("reset",{email: result.email, status: result.msg});
             }
             else {
                 return res.send({"status": false, "message": result.msg});
