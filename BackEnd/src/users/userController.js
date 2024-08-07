@@ -1,13 +1,5 @@
 const session = require('express-session');
 var userService = require('./userService');
-const jwt = require("jsonwebtoken");
-var nodemailer = require("nodemailer");
-var dataModel = require('./userModel')
-var key = '123456789asdflkj';
-var encryptor = require('simple-encryptor')(key);
-
-
-const JWT_SECRET = "d3993d6f826dbf4affdaddaa0ec65a52b38c608dab94088471c77c3148a8bc1c"
 
 var createUserControllerFn = async(req,res)=>
 {
@@ -717,34 +709,24 @@ var verifyPasswordControllerFn = async(req, res) => {
 
 
 var resetPasswordControllerFn = async(req,res) => {
-            const { id, token } = req.params;
-            const { password } = req.body;
-          
-            const oldUser = await dataModel.users.findOne({ _id: id });
-            if (!oldUser) {
-              return res.json({ status: "User Not Exists!!" });
+
+        var result = null;
+        try
+        {
+            var result = await userService.resetPasswordDBService(req.params, req.body)
+            if(result.success){
+                return res.render("index",{email: result.email, status: result.msg});
             }
-            const secret = JWT_SECRET + oldUser.password;
-            try {
-              const verify = jwt.verify(token, secret);
-              const encryptedPassword = encryptor.encrypt(password);
-              await dataModel.users.updateOne(
-                {
-                  _id: id,
-                },
-                {
-                  $set: {
-                    password: encryptedPassword,
-                  },
-                }
-              );
-          
-              res.render("index", { email: verify.email, status: "verified" });
-            } catch (error) {
-              console.log(error);
-              res.json({ status: "Something Went Wrong" });
+            else {
+                return res.send({"status": false, "message": result.msg});
             }
-          };
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+
+    };
           
 
 
