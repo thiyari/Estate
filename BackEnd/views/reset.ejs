@@ -19,7 +19,7 @@
     </script>
   </head>
   <body>
-    <h1 class="mt-4" align="center" style='font-family: "Rajdhani", sans-serif;'>Welcome <%= email%></h1>
+    <h1 class="mt-4" align="center" style='font-family: "Rajdhani", sans-serif; color: #999999;'>Welcome <%= email%></h1>
   <div class="row">
   <div class="col-md-12">
 
@@ -28,7 +28,7 @@
     <div class="card">
     <h1 class="card-header">
       <center>
-        <div class="header-font" style='font-family: "Rajdhani", sans-serif;'>Reset Password</div>
+        <div class="header-font" style='font-family: "Rajdhani", sans-serif; color: #999999;'>Reset Password</div>
       </center>
     </h1>
 			<div class="form-container">
@@ -103,20 +103,20 @@
         var PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
         var returnval = true;
         clearErrors();
-        var password = document.forms['ResetForm']['password'].value;
-        var password_pattern = PWD_REGEX.test(password);
+        var password = document.forms['ResetForm']['password'];
+        var password_pattern = PWD_REGEX.test(password.value);
         if (!password_pattern) {
               setErrorMessage('formPassword',
 "Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
               );
-              document.forms['ResetForm']['password'].style.borderColor = 'red';
+              password.style.borderColor = 'red';
               returnval = false;
           }
 
-        var confirm_password = document.forms['ResetForm']['confirm-password'].value;
-        if(confirm_password != password){
+        var confirm_password = document.forms['ResetForm']['confirm-password'];
+        if(confirm_password.value != password.value){
             setErrorMessage('formConfirmPassword',"New Password and Confirm password should be the same");
-            document.forms['ResetForm']['confirm-password'].style.borderColor = 'red';
+            confirm_password.style.borderColor = 'red';
             returnval = false;
           }
         return returnval;    

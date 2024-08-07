@@ -623,16 +623,16 @@ module.exports.forgotPasswordDBService = async (emailbody) => {
                 var transporter = nodemailer.createTransport({
                   service: "gmail",
                   auth: {
-                    user: "ts.manikanth@gmail.com",
-                    pass: "lkyblvjtrxjhccmk",
+                    user: process.env.AUTH_GMAIL_APP_USER,
+                    pass: process.env.AUTH_GMAIL_APP_PASSWORD,
                   },
                 });
             
                 var mailOptions = {
-                  from: "ts.manikanth@gmail.com",
+                  from: process.env.AUTH_GMAIL_APP_USER,
                   to: email,
                   subject: "Password Reset",
-                  text: link,
+                  text: "\nPlease click on the below link to reset your password\n\n"+link,
                 };
             
                 transporter.sendMail((mailOptions), function (error, info) {
