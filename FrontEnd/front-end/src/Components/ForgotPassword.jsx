@@ -64,12 +64,14 @@ function ForgotPassword(props) {
               headers:{
               "Content-Type":"application/json"
               }
-            });
-            alert("Your request was sent Successfully");
-            setFormInput({
-              email: "",
+            }).then((res)=>{
+              console.log(res)
+              alert(res.data.output)
+              setFormInput({
+                email: "",
+              })
+              navigate('/');
             })
-            navigate('/');
           } catch (err) {
             alert(err);
           }

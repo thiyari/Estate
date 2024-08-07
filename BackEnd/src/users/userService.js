@@ -3,7 +3,10 @@ var key = '123456789asdflkj';
 var admin_key = 'Admin31072024';
 var encryptor = require('simple-encryptor')(key);
 const dotenv = require("dotenv");
+const jwt = require("jsonwebtoken");
+var nodemailer = require("nodemailer");
 
+const JWT_SECRET = "d3993d6f826dbf4affdaddaa0ec65a52b38c608dab94088471c77c3148a8bc1c"
 
 module.exports.adminKeyDBService = (userData) => {
         return new Promise(function myFn(resolve,reject){
@@ -600,5 +603,48 @@ module.exports.profilePropertyAddressDBService = async (id,data) => {
                     }).catch((err)=>{
                        reject(err);
                     });               
+        })
+}
+
+module.exports.forgotPasswordDBService = async (emailbody) => {
+        return new Promise(async function myFn(resolve,reject){
+                const { email } = emailbody
+        try {
+
+                const oldUser = await dataModel.users.findOne({ email });
+                if (!oldUser) {
+                        reject({success:false,msg:"User does not exists!"})
+                }
+                const secret = JWT_SECRET + oldUser.password;
+                const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
+                  expiresIn: "5m",
+                });
+                const link = `http://localhost:8000/api/reset-password/${oldUser._id}/${token}`;
+                var transporter = nodemailer.createTransport({
+                  service: "gmail",
+                  auth: {
+                    user: "ts.manikanth@gmail.com",
+                    pass: "lkyblvjtrxjhccmk",
+                  },
+                });
+            
+                var mailOptions = {
+                  from: "ts.manikanth@gmail.com",
+                  to: email,
+                  subject: "Password Reset",
+                  text: link,
+                };
+            
+                transporter.sendMail((mailOptions), function (error, info) {
+                        if (error) {
+                                reject({success:false,msg:error})
+                        } else {
+                                resolve({success:true,msg:"Email sent: "+info.response, output: "An email was sent to your "+email})
+                        }
+                }) 
+                console.log(link);
+              } catch (error) {
+                console.log(error)
+              }
         })
 }

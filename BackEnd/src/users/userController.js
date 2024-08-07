@@ -675,41 +675,22 @@ var profileUploadImagesControllerFn = async(req,res)=>
         }
 
     var forgotPasswordControllerFn = async (req, res) => {
-            const { email } = req.body;
-            try {
-              const oldUser = await dataModel.users.findOne({ email });
-              if (!oldUser) {
-                return res.json({ status: "User Not Exists!!" });
-              }
-              const secret = JWT_SECRET + oldUser.password;
-              const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
-                expiresIn: "5m",
-              });
-              const link = `http://localhost:8000/api/reset-password/${oldUser._id}/${token}`;
-              var transporter = nodemailer.createTransport({
-                service: "gmail",
-                auth: {
-                  user: "ts.manikanth@gmail.com",
-                  pass: "lkyblvjtrxjhccmk",
-                },
-              });
-          
-              var mailOptions = {
-                from: "ts.manikanth@gmail.com",
-                to: email,
-                subject: "Password Reset",
-                text: link,
-              };
-          
-              transporter.sendMail(mailOptions, function (error, info) {
-                if (error) {
-                  console.log(error);
-                } else {
-                  console.log("Email sent: " + info.response);
-                }
-              });
-              console.log(link);
-            } catch (error) {}
+
+        var result = null;
+        try
+        {
+            var result = await userService.forgotPasswordDBService(req.body)
+            if(result.success){
+                return res.send({"status": true, "message": result.msg, "output": result.output});
+            }
+            else {
+                return res.send({"status": false, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
           };
 
 

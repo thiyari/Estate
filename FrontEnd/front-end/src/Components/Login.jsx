@@ -152,13 +152,13 @@ function Login(props) {
             <div className="col-sm-4"></div>
             </div>
             <div className="card-footer text-muted">
-                  <p>
+                  <div>
                     Not yet registered?<br />
                       <div className="row">
                         <div className="col-md-6"><a href="/Register">Register</a></div>
                         <div align="right" className="col-md-6"><a href="/ForgotPassword">Forgot Password?</a></div>
                     </div>
-                  </p>  
+                  </div>  
             </div>
             </div>
             </div>
