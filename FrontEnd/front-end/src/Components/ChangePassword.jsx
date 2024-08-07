@@ -174,6 +174,7 @@ function ChangePassword(props){
                 if(res.data.valid){
                   alert("Please Login Again")
                   navigate('/Login')
+                  window.location.reload();
                 } else {
                   alert("Logout Failed")
                 }
