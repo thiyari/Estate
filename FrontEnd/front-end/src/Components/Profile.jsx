@@ -33,6 +33,7 @@ function Profile(props){
   const [phonetoggle,setPhonetoggle] = useState(false)
   const [formError, setFormError] = useState({...initialState})
   const [usernames, setUsernames] = useState([]);
+  const [emails, setEmails] = useState([]);
 
   const navigate = useNavigate()
 
@@ -40,7 +41,6 @@ function Profile(props){
     await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
     .then(res => {
       if(res.data.valid){
-        setUser(res.data.username);
         setId(res.data.id);
         setLoggedIn(res.data.isLoggedIn);
         props.LoginStatus(loggedIn);
@@ -59,10 +59,13 @@ function Profile(props){
       if(res.data.status){
         const doc_users = res.data.users          
         let users_list = []
+        let emails_list = [] 
         for (let i = 0; i < doc_users.data.length; i++) {
            users_list.push(doc_users.data[i].username)
+           emails_list.push(doc_users.data[i].email)
         }
         setUsernames(users_list)
+        setEmails(emails_list)
       }     
     })
     .catch(err => console.log(err))
@@ -75,6 +78,7 @@ function Profile(props){
           const profile_doc = res.data.profile          
           setFname(profile_doc.data[0].firstname)
           setLname(profile_doc.data[0].lastname)
+          setUser(profile_doc.data[0].username)
           setEmail(profile_doc.data[0].email)
           setPhone(profile_doc.data[0].phone)
         } 
@@ -288,6 +292,18 @@ function Profile(props){
               return;
           }
 
+
+          // Check if email already exists
+          for (let i = 0; i < emails.length; i++) {
+            if(email === emails[i]){
+                setFormError({
+                  ...inputError,
+                  email: "This email already exists, please provide another",
+                  email_status: "error"
+                })
+              return;
+            }
+          }
 
     try{
       await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/email/${Id}`,
