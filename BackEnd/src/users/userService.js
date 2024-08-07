@@ -617,7 +617,7 @@ module.exports.forgotPasswordDBService = async (emailbody) => {
                 }
                 const secret = JWT_SECRET + oldUser.password;
                 const token = jwt.sign({ email: oldUser.email, id: oldUser._id }, secret, {
-                  expiresIn: "60m",
+                  expiresIn: "5m",
                 });
                 const link = `http://localhost:8000/api/reset-password/${oldUser._id}/${token}`;
                 var transporter = nodemailer.createTransport({
