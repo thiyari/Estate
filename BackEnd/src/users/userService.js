@@ -2,7 +2,6 @@ var dataModel = require('./userModel')
 var key = '123456789asdflkj';
 var admin_key = 'Admin31072024';
 var encryptor = require('simple-encryptor')(key);
-const dotenv = require("dotenv");
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
 
