@@ -30,12 +30,12 @@
     <div class="card">
     <h1 class="card-header">
       <center>
-        <div class="header-font" style='font-family: "Rajdhani", sans-serif;'>Change Password</div>
+        <div class="header-font" style='font-family: "Rajdhani", sans-serif;'>Reset Password</div>
       </center>
     </h1>
 			<div class="form-container">
         <div class="card-body">
-    <form action="" method="post">
+    <form action="" name="ResetForm" method="post" onsubmit="return formValidation()">
       <div class="row">
       <div class="col-md-12">
       <div class='row'>
@@ -43,6 +43,7 @@
       <div class="col-sm-4">
       
       <div class="form-group">
+        <div id="formPassword">
           <label class="form-label" style='font-family: "Rajdhani", sans-serif;'>New Password</label>
           <input 
           type="password"  
@@ -50,22 +51,23 @@
           id="password" 
           placeholder="Enter New Password"
           name="password"
-          required/>
-          </div>
-
+          required/><span class="error" style="color:red"></span>
+        </div>
+      </div>
 
 
         <div class="form-group">
-          <label class="form-label" style='font-family: "Rajdhani", sans-serif;'>Confirm Password</label>
-          <input 
-          type="password"  
-          class="form-control mb-3" 
-          id="confirm_password" 
-          placeholder="Confirm New Password"
-          name="confirm-password" 
-          required
-          />
+          <div id="formConfirmPassword">
+            <label class="form-label" style='font-family: "Rajdhani", sans-serif;'>Confirm Password</label>
+            <input 
+            type="password"  
+            class="form-control mb-3" 
+            id="confirm-password" 
+            placeholder="Confirm New Password"
+            name="confirm-password" 
+            required/><span class="error" style="color:red"></span>
           </div>
+        </div>
 
         <div align="center">
           <button type="submit" class="btn btn-primary mt-4" value="submit">Submit</button>
@@ -86,4 +88,39 @@
     </div>
 </div>
   </body>
+  <script>
+    function clearErrors() {
+        error = document.getElementsByClassName('error');
+        for (let item of error){
+            item.innerHTML = '';
+        }
+    }
+
+    function setErrorMessage(id, ErrorMessage){
+        element = document.getElementById(id);
+        element.getElementsByClassName("error")[0].innerHTML = ErrorMessage;
+    }
+
+    function formValidation(){
+        var PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
+        var returnval = true;
+        clearErrors();
+        var password = document.forms['ResetForm']['password'].value;
+        var password_pattern = PWD_REGEX.test(password);
+        if (!password_pattern) {
+              setErrorMessage('formPassword',
+"Must contain at least one  number and one uppercase and lowercase letter, and at least 8 or more characters"
+              );
+              returnval = false;
+          }
+
+        var confirm_password = document.forms['ResetForm']['confirm-password'].value;
+        if(confirm_password != password){
+            setErrorMessage('formConfirmPassword',"New Password and Confirm password should be the same");
+            returnval = false;
+          }
+        return returnval;    
+      }
+
+  </script>
 </html>
