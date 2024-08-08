@@ -98,7 +98,7 @@ function ServiceRequests(props) {
                       <th scope="col">Message</th>
                       <th scope="col">Requested ID</th>
                       <th scope="col">Date</th>
-                      <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
+                      <th colSpan={3} style={{textAlign: "center"}}>Operations</th>
                     </tr>
                     </thead>
                     <tbody className="table-group-divider">
