@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
 import { MdPendingActions } from "react-icons/md";
+import { IoIosMail } from "react-icons/io";
 
 function UsersRequests(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -95,7 +96,7 @@ function UsersRequests(props) {
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th scope="col">Date</th>
-                      <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
+                      <th colSpan={3} style={{textAlign: "center"}}>Operations</th>
                     </tr>
                     </thead>
                     <tbody className="table-group-divider">
@@ -108,6 +109,8 @@ function UsersRequests(props) {
                     <td>{profile.phone}</td>
                     <td>{formatedDate(profile.createdAt)}</td>
                     <td align='right'><NavLink exact="true" to={`/Approvals/${profile.propertyid}`} ><MdPendingActions size={20}/>
+                    </NavLink></td>
+                    <td align='right'><NavLink exact="true" to={`/EmailForm/${profile.email}`} ><IoIosMail size={20}/>
                     </NavLink></td>
                     <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()

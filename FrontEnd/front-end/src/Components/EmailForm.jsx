@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import AdminSidebar from './Sidebar/AdminSidebar'
-import { useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function EmailForm(props){
     const [loggedIn, setLoggedIn] = useState(false)
-    const [to, setTo] = useState("");  
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const { email } = useParams()
 
     const navigate = useNavigate()
 
@@ -61,8 +61,7 @@ function EmailForm(props){
             className="form-control mb-3" 
             type="email"
             placeholder="To"
-            value={to}
-            onChange={(e) => setTo(e.target.value)}  
+            value={email}
           />
           </div>
           <div className="form-group">
