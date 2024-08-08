@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
+import { IoIosMail } from "react-icons/io";
 
 function ContactsRequests(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -98,7 +99,7 @@ function ContactsRequests(props) {
                       <th scope="col">Phone</th>
                       <th scope="col">Message</th>
                       <th scope="col">Date</th>
-                      <th></th>
+                      <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
                     </tr>
                     </thead>
                     <tbody className="table-group-divider">
@@ -111,6 +112,8 @@ function ContactsRequests(props) {
                                               <td>{contact.phone}</td>
                                               <td>{contact.comments}</td>
                                               <td>{formatedDate(contact.createdAt)}</td>
+                                              <td align='right'><NavLink exact="true" to={`/EmailForm/${contact.email}`} ><IoIosMail size={20}/>
+                                              </NavLink></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
                                                 e.preventDefault()
                                                 handleDelete(contact.firstname, contact.lastname, contact._id)

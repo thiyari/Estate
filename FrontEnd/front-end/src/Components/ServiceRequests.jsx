@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
+import { IoIosMail } from "react-icons/io";
 
 function ServiceRequests(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -111,6 +112,8 @@ function ServiceRequests(props) {
                                               <td>{profile.requests}</td>
                                               <td>{formatedDate(profile.createdAt)}</td>
                                               <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}/${profile.firstname}/${profile.lastname}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
+                                              </NavLink></td>
+                                              <td align='right'><NavLink exact="true" to={`/EmailForm/${profile.email}`} ><IoIosMail size={20}/>
                                               </NavLink></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
                                                 e.preventDefault()

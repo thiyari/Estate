@@ -1,7 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
+import { IoIosMail } from "react-icons/io";
 
 function Contacts(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -83,7 +84,7 @@ function Contacts(props) {
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
-                      <th style={{textAlign: "center"}}>
+                      <th colSpan={2} style={{textAlign: "center"}}>
                         <button type="submit" className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
                       </th>
                     </tr>
@@ -95,6 +96,8 @@ function Contacts(props) {
                                               <td>{contact.lastname}</td>
                                               <td>{contact.email}</td>
                                               <td>{contact.phone}</td>
+                                              <td align='right'><NavLink exact="true" to={`/EmailForm/${contact.email}`} ><IoIosMail size={20}/>
+                                              </NavLink></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
                                                 e.preventDefault()
                                                 handleDelete(contact.firstname, contact.lastname, contact._id)

@@ -7,6 +7,7 @@ import { FaEdit } from "react-icons/fa";
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { IoIosMail } from "react-icons/io";
 
 function ManageUsers(props){
 
@@ -106,7 +107,7 @@ function ManageUsers(props){
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
+                <th colSpan={3} style={{textAlign: "center"}}>Operations</th>
               </tr>
             </thead>
             <tbody className="table-group-divider">
@@ -123,6 +124,8 @@ function ManageUsers(props){
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
                         <td align='right'><NavLink exact="true" to={`/EditUsers/${profile.propertyid}`} ><FaEdit /></NavLink></td>
+                        <td align='right'><NavLink exact="true" to={`/EmailForm/${profile.email}`} ><IoIosMail size={20}/>
+                        </NavLink></td>
                         <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()
                           handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>

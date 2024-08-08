@@ -1,8 +1,9 @@
 import AdminSidebar from './Sidebar/AdminSidebar'
 import React, { useState, useEffect, useCallback } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import '../App.css'
 import axios from 'axios'
+import { IoIosMail } from "react-icons/io";
 
 function ManageAdmins(props){
 
@@ -90,7 +91,7 @@ function ManageAdmins(props){
                 <th scope="col">Last Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th style={{textAlign: "center"}}>
+                <th colSpan={2} style={{textAlign: "center"}}>
                     <button type="submit" className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
                 </th>
               </tr>
@@ -102,6 +103,8 @@ function ManageAdmins(props){
                         <td>{profile.lastname}</td>
                         <td>{profile.email}</td>
                         <td>{profile.phone}</td>
+                        <td align='right'><NavLink exact="true" to={`/EmailForm/${profile.email}`} ><IoIosMail size={20}/>
+                        </NavLink></td>
                         <td align='center'><button style={{width: 25}} onClick={(e)=>{
                           e.preventDefault()
                           handleDelete(profile.firstname, profile.lastname, profile._id)}}><i className="fas fa-trash-alt"></i></button></td>
