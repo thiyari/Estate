@@ -50,6 +50,9 @@ function EmailForm(props){
             </center>
           </h1>
             <div className="form-container">
+            <div className="row">
+             <div className="col-sm-4"></div>
+             <div className="col-sm-4">
                 <div className="card-body">        
         <form onSubmit={handleSubmit}>
         <div className="form-group">
@@ -85,8 +88,13 @@ function EmailForm(props){
           </textarea>
           </div>
           </div>
-          <button type="submit" className='btn btn-primary'>Send Email</button>
+          <div align="center">
+          <button type="submit" className='btn btn-primary' style={{width: 150}}>Send Email</button>
+          </div>
         </form>
+        </div>
+        </div>
+        <div className="col-sm-4"></div>
         </div>
         </div>
         </div>
