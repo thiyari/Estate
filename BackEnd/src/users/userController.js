@@ -730,6 +730,26 @@ var resetPasswordControllerFn = async(req,res) => {
           
 
 
+    var emailControllerFn = async (req, res) => {
+
+        var result = null;
+        try
+        {
+            var result = await userService.emailDBService(req.body)
+            console.log(result)
+            if(result.success){
+                return res.send({"status": true, "message": result.msg, "output": result.output});
+            }
+            else {
+                return res.send({"status": false, "message": result.msg});
+            }
+        }
+        catch(err){
+            console.log(err);
+            res.send({"status":false,"message":err.msg});
+        }
+    };
+
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
@@ -772,5 +792,6 @@ module.exports = {
     deleteContactsControllerFn,
     forgotPasswordControllerFn,
     verifyPasswordControllerFn,
-    resetPasswordControllerFn
+    resetPasswordControllerFn,
+    emailControllerFn
 }

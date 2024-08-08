@@ -16,6 +16,7 @@ router.route('/api/services').get(userController.servicesControllerFn);
 router.route('/api/login').post(userController.loginUserControllerFn);
 router.route('/api/logout').post(userController.logoutUserControllerFn);
 router.route('/api/create').post(userController.createUserControllerFn);
+router.route('/api/send-email').post(userController.emailControllerFn);
 router.route('/api/forgot-password').post(userController.forgotPasswordControllerFn);
 router.route('/api/contacts/create').post(userController.createContactsControllerFn);
 router.route('/api/services/create').post(userController.createServicesControllerFn);

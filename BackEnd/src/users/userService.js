@@ -702,3 +702,37 @@ module.exports.resetPasswordDBService = async (idtoken, pass) => {
                 }    
         })
 }
+
+
+
+
+module.exports.emailDBService = async (userData) => {
+        return new Promise(async function myFn(resolve,reject){
+        try {
+                var transporter = nodemailer.createTransport({
+                  service: "gmail",
+                  auth: {
+                    user: process.env.AUTH_GMAIL_APP_USER,
+                    pass: process.env.AUTH_GMAIL_APP_PASSWORD,
+                  },
+                });
+            
+                var mailOptions = {
+                  from: process.env.AUTH_GMAIL_APP_USER,
+                  to: userData.to,
+                  subject: userData.subject,
+                  html: userData.message,
+                };
+            
+                transporter.sendMail((mailOptions), function (error, info) {
+                        if (error) {
+                                reject({success:false,msg:error})
+                        } else {
+                                resolve({success:true,msg:"Email sent: "+info.response, output: "Email sent to "+userData.to})
+                        }
+                }) 
+              } catch (error) {
+                console.log(error)
+              }
+        })
+}

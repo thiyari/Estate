@@ -30,8 +30,29 @@ function EmailForm(props){
         session();
       },[session])
 
-    const handleSubmit = (e) => {
-    };
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+            to: email,
+            subject: subject,
+            message: message
+          }),
+          {
+            headers:{
+              "Content-Type":"application/json"
+              }
+          }).then((res) => {
+            console.log(res)
+            alert(res.data.output);
+          });
+          setSubject('')
+          setMessage('')
+          navigate('/AdminProfile')
+        } catch(err) {
+          alert(err);
+        }
+      };
 
     return(
         <React.Fragment>
@@ -62,6 +83,7 @@ function EmailForm(props){
             type="email"
             placeholder="To"
             value={email}
+            readOnly
           />
           </div>
           <div className="form-group">
