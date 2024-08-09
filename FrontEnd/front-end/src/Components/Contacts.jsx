@@ -11,7 +11,6 @@ function Contacts(props) {
     const navigate = useNavigate()
     const [isCheckAll, setIsCheckAll] = useState(false);
     const [isCheck, setIsCheck] = useState([]);
-    const [allEmails, setAllEmails] = useState([])
     const [userinfo, setUserInfo] = useState({
       emails: [],
       response: [],
@@ -37,13 +36,10 @@ function Contacts(props) {
             .then(res => {
                 const records = res.data.records
                 let contacts_list = []
-                let all_emails = []
                 for (let i = 0; i < records.length;  i++) {
                     contacts_list.push(records[i])
-                    all_emails.push(records[i].email)
                 }
                 setContacts(contacts_list)
-                setAllEmails(all_emails)
             })
     },[]);
 
@@ -160,7 +156,7 @@ function Contacts(props) {
                           id="selectAll"
                           handleClick={handleSelectAll}
                           isChecked={isCheckAll}
-                          value={allEmails}
+                          value={contacts.map((contact) => contact.email)}
                           /> Select All  
                       </th>
                       <th scope="col">First Name</th>
