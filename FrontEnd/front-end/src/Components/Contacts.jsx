@@ -71,6 +71,7 @@ function Contacts(props) {
         const {value} = e.target
         const { emails } = userinfo;
 
+        setIsCheckAll(!isCheckAll);
         setIsCheck(contacts.map((contact) => contact._id));
 
         // Case 1 : The user unchecks the box
@@ -100,7 +101,6 @@ function Contacts(props) {
       const handleClick = (e) => {
         const { id, checked, value } = e.target;
         const { emails } = userinfo;
-        setIsCheckAll(false)
 
         setIsCheck([...isCheck, id]);
         
