@@ -209,7 +209,7 @@ function Contacts(props) {
                                 className="form-control text"
                                 name="response"
                                 value={userinfo.response}
-                                placeholder="The checkbox values will be displayed here "
+                                placeholder="Selected emails will be displayed here "
                                 id="floatingTextarea2"
                                 style={{ height: "150px" }}
                                 onChange={ !isCheckAll? handleSelectAll: handleClick }
