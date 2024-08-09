@@ -11,6 +11,7 @@ function Contacts(props) {
     const navigate = useNavigate()
     const [isCheckAll, setIsCheckAll] = useState(false);
     const [isCheck, setIsCheck] = useState([]);
+    const [allEmails, setAllEmails] = useState([])
     const [userinfo, setUserInfo] = useState({
       emails: [],
       response: [],
@@ -36,10 +37,13 @@ function Contacts(props) {
             .then(res => {
                 const records = res.data.records
                 let contacts_list = []
+                let all_emails = []
                 for (let i = 0; i < records.length;  i++) {
                     contacts_list.push(records[i])
+                    all_emails.push(records[i].email)
                 }
                 setContacts(contacts_list)
+                setAllEmails(all_emails)
             })
     },[]);
 
@@ -64,10 +68,26 @@ function Contacts(props) {
       },[session, records])
 
       const handleSelectAll = (e) => {
+        const {value} = e.target
+        const { emails } = userinfo;
+
         setIsCheckAll(!isCheckAll);
         setIsCheck(contacts.map((contact) => contact._id));
         if (isCheckAll) {
           setIsCheck([]);
+          setUserInfo({
+            emails: emails.filter(
+                (e) => e !== value
+            ),
+            response: emails.filter(
+                (e) => e !== value
+            ),
+        });
+        } else {
+          setUserInfo({
+            emails: [...emails, value],
+            response: [...emails, value],
+        });
         }
       };
 
@@ -75,7 +95,7 @@ function Contacts(props) {
         const { id, checked, value } = e.target;
         const { emails } = userinfo;
 
-        console.log(`${value} is ${checked}`);
+        //console.log(`${value} is ${checked}`);
 
         setIsCheck([...isCheck, id]);
         
@@ -105,7 +125,7 @@ function Contacts(props) {
       };
     
       //console.log(isCheck);
-
+      console.log(userinfo.emails)
     return(
         <React.Fragment>
         <div className="row">
@@ -138,6 +158,7 @@ function Contacts(props) {
                           id="selectAll"
                           handleClick={handleSelectAll}
                           isChecked={isCheckAll}
+                          value={allEmails}
                           /> Select All  
                         </div>                        
                       </th>
@@ -190,7 +211,7 @@ function Contacts(props) {
                                 placeholder="The checkbox values will be displayed here "
                                 id="floatingTextarea2"
                                 style={{ height: "150px" }}
-                                onChange={handleClick}
+                                onChange={isCheckAll?handleClick:handleSelectAll}
                             ></textarea>
                         </div>
                 </form>        
