@@ -113,7 +113,17 @@ function Contacts(props) {
                   <table className="table table-striped table-hover">
                     <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
-                      <th scope="col">Select All</th>
+                      <th scope="col">  
+                        <div className="form-check">
+                          <input
+                            className="form-check-input"
+                            type="checkbox"
+                            name="emails"
+                            id="flexCheckDefault"
+                            onChange={handleChange}
+                          /> Select All  
+                        </div>                        
+                      </th>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
@@ -156,7 +166,7 @@ function Contacts(props) {
                     </div>
                     <div className="form-control mt-3 mb-3 text-center">
                             <label htmlFor="exampleFormControlTextarea1">
-                                Receipents address for sending emails:{" "}
+                                Receipents address for email campaigning:{" "}
                             </label>
                             <textarea
                                 className="form-control text"
