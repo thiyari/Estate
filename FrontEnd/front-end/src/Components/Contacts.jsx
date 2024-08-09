@@ -3,16 +3,18 @@ import React, { useState, useEffect, useCallback } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
 import { IoIosMail } from "react-icons/io";
+import Checkbox from "./Checkbox/Checkbox";
 
 function Contacts(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [contacts, setContacts] = useState([])
     const navigate = useNavigate()
+    const [isCheckAll, setIsCheckAll] = useState(false);
+    const [isCheck, setIsCheck] = useState([]);
     const [userinfo, setUserInfo] = useState({
       emails: [],
       response: [],
     });
-
 
     const session = useCallback(async () =>{
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
@@ -61,33 +63,48 @@ function Contacts(props) {
         records();
       },[session, records])
 
-    const handleChange = (e) => {
-        // Destructuring
-        const { value, checked } = e.target;
+      const handleSelectAll = (e) => {
+        setIsCheckAll(!isCheckAll);
+        setIsCheck(contacts.map((contact) => contact._id));
+        if (isCheckAll) {
+          setIsCheck([]);
+        }
+      };
+
+      const handleClick = (e) => {
+        const { id, checked, value } = e.target;
         const { emails } = userinfo;
 
         console.log(`${value} is ${checked}`);
 
+        setIsCheck([...isCheck, id]);
+        
+        
         // Case 1 : The user checks the box
-        if (checked) {
-            setUserInfo({
-                emails: [...emails, value],
-                response: [...emails, value],
-            });
+        if (!checked) {
+          setIsCheck(isCheck.filter(item => item !== id));
+          setUserInfo({
+            emails: emails.filter(
+                (e) => e !== value
+            ),
+            response: emails.filter(
+                (e) => e !== value
+            ),
+        });
         }
 
         // Case 2  : The user unchecks the box
         else {
-            setUserInfo({
-                emails: emails.filter(
-                    (e) => e !== value
-                ),
-                response: emails.filter(
-                    (e) => e !== value
-                ),
-            });
-        }
-    };
+
+          setUserInfo({
+            emails: [...emails, value],
+            response: [...emails, value],
+        });
+      }
+
+      };
+    
+      //console.log(isCheck);
 
     return(
         <React.Fragment>
@@ -115,12 +132,12 @@ function Contacts(props) {
                     <tr>
                       <th scope="col">  
                         <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            name="emails"
-                            id="flexCheckDefault"
-                            onChange={handleChange}
+                        <Checkbox
+                          type="checkbox"
+                          name="selectAll"
+                          id="selectAll"
+                          handleClick={handleSelectAll}
+                          isChecked={isCheckAll}
                           /> Select All  
                         </div>                        
                       </th>
@@ -137,16 +154,14 @@ function Contacts(props) {
                         {contacts.map((contact, index)=>{return(
                                             <tr key={index}>
                                               <td>
-                                              <div className="form-check">
-                                                <input
-                                                    className="form-check-input"
-                                                    type="checkbox"
-                                                    name="emails"
-                                                    value={contact.email}
-                                                    id="flexCheckDefault"
-                                                    onChange={handleChange}
+                                                <Checkbox
+                                                  type="checkbox"
+                                                  name="emails"
+                                                  id={contact._id}
+                                                  value={contact.email}
+                                                  handleClick={handleClick}
+                                                  isChecked={isCheck.includes(contact._id)}
                                                 />
-                                                </div>
                                               </td>
                                               <td>{contact.firstname}</td>
                                               <td>{contact.lastname}</td>
@@ -166,7 +181,7 @@ function Contacts(props) {
                     </div>
                     <div className="form-control mt-3 mb-3 text-center">
                             <label htmlFor="exampleFormControlTextarea1">
-                                Receipents address for email campaigning:{" "}
+                                Receipents Address for Email Campaigning:{" "}
                             </label>
                             <textarea
                                 className="form-control text"
@@ -175,7 +190,7 @@ function Contacts(props) {
                                 placeholder="The checkbox values will be displayed here "
                                 id="floatingTextarea2"
                                 style={{ height: "150px" }}
-                                onChange={handleChange}
+                                onChange={handleClick}
                             ></textarea>
                         </div>
                 </form>        
