@@ -8,6 +8,12 @@ function Contacts(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [contacts, setContacts] = useState([])
     const navigate = useNavigate()
+    const [userinfo, setUserInfo] = useState({
+      emails: [],
+      response: [],
+    });
+
+
     const session = useCallback(async () =>{
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
         .then(res => {
@@ -55,6 +61,33 @@ function Contacts(props) {
         records();
       },[session, records])
 
+    const handleChange = (e) => {
+        // Destructuring
+        const { value, checked } = e.target;
+        const { emails } = userinfo;
+
+        console.log(`${value} is ${checked}`);
+
+        // Case 1 : The user checks the box
+        if (checked) {
+            setUserInfo({
+                emails: [...emails, value],
+                response: [...emails, value],
+            });
+        }
+
+        // Case 2  : The user unchecks the box
+        else {
+            setUserInfo({
+                emails: emails.filter(
+                    (e) => e !== value
+                ),
+                response: emails.filter(
+                    (e) => e !== value
+                ),
+            });
+        }
+    };
 
     return(
         <React.Fragment>
@@ -80,6 +113,9 @@ function Contacts(props) {
                   <table className="table table-striped table-hover">
                     <thead>
                     <tr>
+                      <th>
+                        Select All
+                      </th>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
@@ -92,6 +128,18 @@ function Contacts(props) {
                     <tbody className="table-group-divider">
                         {contacts.map((contact, index)=>{return(
                                             <tr key={index}>
+                                              <td>
+                                              <div className="form-check">
+                                                <input
+                                                    className="form-check-input"
+                                                    type="checkbox"
+                                                    name="emails"
+                                                    value={contact.email}
+                                                    id="flexCheckDefault"
+                                                    onChange={handleChange}
+                                                />
+                                                </div>
+                                              </td>
                                               <td>{contact.firstname}</td>
                                               <td>{contact.lastname}</td>
                                               <td>{contact.email}</td>
@@ -108,6 +156,20 @@ function Contacts(props) {
                     </tbody>
                     </table>
                     </div>
+                    <div className="form-control mt-3 mb-3 text-center">
+                            <label htmlFor="exampleFormControlTextarea1">
+                                Receipents address for sending emails:{" "}
+                            </label>
+                            <textarea
+                                className="form-control text"
+                                name="response"
+                                value={userinfo.response}
+                                placeholder="The checkbox values will be displayed here "
+                                id="floatingTextarea2"
+                                style={{ height: "150px" }}
+                                onChange={handleChange}
+                            ></textarea>
+                        </div>
                 </form>        
                 
                 </div>       
