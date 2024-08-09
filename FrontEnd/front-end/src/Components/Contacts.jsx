@@ -214,7 +214,7 @@ function Contacts(props) {
                                 placeholder="The checkbox values will be displayed here "
                                 id="floatingTextarea2"
                                 style={{ height: "150px" }}
-                                onChange={isCheckAll?handleClick:handleSelectAll}
+                                onChange={ !isCheckAll? handleSelectAll: handleClick }
                             ></textarea>
                         </div>
                 </form>        
