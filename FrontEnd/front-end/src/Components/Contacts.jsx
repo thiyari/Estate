@@ -73,6 +73,9 @@ function Contacts(props) {
 
         setIsCheckAll(!isCheckAll);
         setIsCheck(contacts.map((contact) => contact._id));
+
+        // Case 1 : The user checks the box
+
         if (isCheckAll) {
           setIsCheck([]);
           setUserInfo({
@@ -83,7 +86,11 @@ function Contacts(props) {
                 (e) => e !== value
             ),
         });
-        } else {
+        } 
+
+        // Case 2  : The user unchecks the box
+
+        else {
           setUserInfo({
             emails: [...emails, value],
             response: [...emails, value],
@@ -94,8 +101,6 @@ function Contacts(props) {
       const handleClick = (e) => {
         const { id, checked, value } = e.target;
         const { emails } = userinfo;
-
-        //console.log(`${value} is ${checked}`);
 
         setIsCheck([...isCheck, id]);
         
@@ -124,8 +129,6 @@ function Contacts(props) {
 
       };
     
-      //console.log(isCheck);
-      console.log(userinfo.emails)
     return(
         <React.Fragment>
         <div className="row">
