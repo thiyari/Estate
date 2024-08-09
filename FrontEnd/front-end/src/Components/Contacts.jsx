@@ -113,9 +113,7 @@ function Contacts(props) {
                   <table className="table table-striped table-hover">
                     <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
-                      <th>
-                        Select All
-                      </th>
+                      <th scope="col">Select All</th>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
                       <th scope="col">Email</th>
