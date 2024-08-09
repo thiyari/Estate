@@ -74,7 +74,7 @@ function Contacts(props) {
         setIsCheckAll(!isCheckAll);
         setIsCheck(contacts.map((contact) => contact._id));
 
-        // Case 1 : The user checks the box
+        // Case 1 : The user unchecks the box
 
         if (isCheckAll) {
           setIsCheck([]);
@@ -88,7 +88,7 @@ function Contacts(props) {
         });
         } 
 
-        // Case 2  : The user unchecks the box
+        // Case 2  : The user checks the box
 
         else {
           setUserInfo({
@@ -101,11 +101,12 @@ function Contacts(props) {
       const handleClick = (e) => {
         const { id, checked, value } = e.target;
         const { emails } = userinfo;
+        setIsCheckAll(false)
 
         setIsCheck([...isCheck, id]);
         
         
-        // Case 1 : The user checks the box
+        // Case 1 : The user unchecks the box
         if (!checked) {
           setIsCheck(isCheck.filter(item => item !== id));
           setUserInfo({
@@ -118,7 +119,7 @@ function Contacts(props) {
         });
         }
 
-        // Case 2  : The user unchecks the box
+        // Case 2  : The user checks the box
         else {
 
           setUserInfo({
@@ -154,7 +155,6 @@ function Contacts(props) {
                     <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
                       <th scope="col">  
-                        <div className="form-check">
                         <Checkbox
                           type="checkbox"
                           name="selectAll"
@@ -163,7 +163,6 @@ function Contacts(props) {
                           isChecked={isCheckAll}
                           value={allEmails}
                           /> Select All  
-                        </div>                        
                       </th>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
