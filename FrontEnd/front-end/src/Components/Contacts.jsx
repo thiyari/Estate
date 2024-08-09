@@ -109,9 +109,9 @@ function Contacts(props) {
                 <div className="card-body">
                 
                 <form action='/AddNewContact'>
-                <div className ="table-responsive-md">  
+                <div className ="table-responsive-md" style={{ maxHeight: "300px", overflowY: "auto" }}>  
                   <table className="table table-striped table-hover">
-                    <thead>
+                    <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
                       <th>
                         Select All
