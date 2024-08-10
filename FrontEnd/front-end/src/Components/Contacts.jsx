@@ -181,6 +181,7 @@ function Contacts(props) {
                                 placeholder="Selected emails will be displayed here "
                                 id="floatingTextarea2"
                                 style={{ height: "150px" }}
+                                readOnly
                             ></textarea>
                         </div>
                 </form>        
