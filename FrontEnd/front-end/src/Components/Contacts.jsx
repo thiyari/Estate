@@ -193,6 +193,10 @@ function Contacts(props) {
                           </div>
                         </div>
 
+                        
+                        <div align="center">
+                          <input className="btn btn-primary mt-5" type="submit" value="Send Emails" /> 
+                        </div>
                 </form>        
                 
                 </div>       
