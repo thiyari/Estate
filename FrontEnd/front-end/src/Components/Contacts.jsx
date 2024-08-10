@@ -186,14 +186,15 @@ function Contacts(props) {
 
 
                         <div className="form-group">
-                          <label className="form-label">Attachments</label>
-                          <div style={{cursor: 'pointer'}}>
-                            <input type='file' name="file" multiple accept="image/*" id='uploadImage'/>
-                            <PiUploadSimpleBold/>
-                          </div>
+                          <label htmlFor='uploadImage' className="form-label">Attachments
+                            <div style={{cursor: 'pointer', width: 50}}>
+                              <input type='file' name="file" multiple accept="image/*" id='uploadImage'/>
+                              <PiUploadSimpleBold/>
+                            </div>
+                          </label>
                         </div>
 
-                        
+
                         <div align="center">
                           <input className="btn btn-primary mt-5" type="submit" value="Send Emails" /> 
                         </div>
