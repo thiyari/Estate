@@ -173,12 +173,12 @@ function Contacts(props) {
 
                         <div className="form-group">
                             <div className="mb-3">
-                              <label htmlFor="address" className="form-label">Body</label>
+                              <label htmlFor="address" className="form-label">Message</label>
                               <textarea 
                               className="form-control" 
-                              id="body" 
-                              placeholder="Enter your text"
-                              name="body"
+                              id="message" 
+                              placeholder="Type your message"
+                              name="message"
                               rows="5"
                               ></textarea>
                             </div>
@@ -188,7 +188,7 @@ function Contacts(props) {
                         <div className="form-group">
                           <label className="form-label">Attachments</label>
                           <div style={{cursor: 'pointer'}}>
-                            <input type='file' multiple accept="image/*" id='uploadImage'/>
+                            <input type='file' name="file" multiple accept="image/*" id='uploadImage'/>
                             <PiUploadSimpleBold/>
                           </div>
                         </div>
