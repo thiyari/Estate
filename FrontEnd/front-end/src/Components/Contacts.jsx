@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
 import { IoIosMail } from "react-icons/io";
 import Checkbox from "./Checkbox/Checkbox";
+import { PiUploadSimpleBold } from "react-icons/pi";
 
 function Contacts(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -142,7 +143,7 @@ function Contacts(props) {
                     </tbody>
                     </table>
                     </div>
-                    <div className="form-control mt-3 mb-3 text-center">
+                          <div className="form-control mt-3 mb-3 text-center">
                             <label htmlFor="exampleFormControlTextarea1">
                                 Receipents Address for Email Campaigning:{" "}
                             </label>
@@ -156,6 +157,42 @@ function Contacts(props) {
                                 readOnly
                             ></textarea>
                         </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Subject</label>
+                            <input 
+                            type="text"  
+                            className="form-control mb-3" 
+                            id="subject" 
+                            placeholder="Enter Subject"
+                            name="subject"
+                            value=""
+                            />
+                        </div>
+
+
+                        <div className="form-group">
+                            <div className="mb-3">
+                              <label htmlFor="address" className="form-label">Body</label>
+                              <textarea 
+                              className="form-control" 
+                              id="body" 
+                              placeholder="Enter your text"
+                              name="body"
+                              rows="5"
+                              ></textarea>
+                            </div>
+                        </div>
+
+
+                        <div className="form-group">
+                          <label className="form-label">Attachments</label>
+                          <div style={{cursor: 'pointer'}}>
+                            <input type='file' multiple accept="image/*" id='uploadImage'/>
+                            <PiUploadSimpleBold/>
+                          </div>
+                        </div>
+
                 </form>        
                 
                 </div>       
