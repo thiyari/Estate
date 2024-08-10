@@ -97,10 +97,10 @@ function ManageUsers(props){
               />
             </InputGroup>
           </Form>
-          <div className ="table-responsive-md">  
+          <div className ="table-responsive-md" style={{ maxHeight: "410px", overflowY: "auto" }}>  
           <form>
           <table className="table table-striped table-hover">
-            <thead>
+            <thead style={{ position: "sticky", top: "0" }}>
               <tr>
                 <th scope="col">Property ID</th>
                 <th scope="col">First Name</th>
@@ -110,7 +110,7 @@ function ManageUsers(props){
                 <th colSpan={3} style={{textAlign: "center"}}>Operations</th>
               </tr>
             </thead>
-            <tbody className="table-group-divider">
+            <tbody className="table-group-divider" >
               {profiles
                 .filter((doc) => {
                   return (search === ''

@@ -89,9 +89,9 @@ function ContactsRequests(props) {
                 <div className="card-body">
                 
                 <form>
-                <div className ="table-responsive-md">  
+                <div className ="table-responsive-md" style={{ maxHeight: "410px", overflowY: "auto" }}>  
                   <table className="table table-striped table-hover">
-                    <thead>
+                    <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
