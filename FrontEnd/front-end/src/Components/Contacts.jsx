@@ -85,20 +85,21 @@ function Contacts(props) {
         }
       };
       
-      function selectAll(value,name) {
+      function selectAll(value) {
         const { emails } = userinfo;
 
         if (value) { // if true
          setSelected(contacts.map((contact)=>contact.email)); // select all
          setUserInfo({
-              emails: [...emails, name],
-              response: [...emails, name],
+              emails: [...emails, contacts.map((contact)=>contact.email)],
+              response: [...emails, contacts.map((contact)=>contact.email)],
           });
         } else { // if false
           setSelected([]); // unselect all
           setUserInfo({
             emails: [],
-            response: []})
+            response: []
+        });
         }
       };
 
