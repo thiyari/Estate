@@ -9,8 +9,6 @@ function Contacts(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [contacts, setContacts] = useState([])
     const navigate = useNavigate()
-    const [isCheckAll, setIsCheckAll] = useState(false);
-    const [isCheck, setIsCheck] = useState([]);
     const [userinfo, setUserInfo] = useState({
       emails: [],
       response: [],
@@ -63,67 +61,48 @@ function Contacts(props) {
         records();
       },[session, records])
 
-      const handleSelectAll = (e) => {
-        const {value} = e.target
+
+      const [selected, setSelected] = React.useState([]);
+      function handleSelect(value, name) {
         const { emails } = userinfo;
 
-        setIsCheckAll(!isCheckAll);
-        setIsCheck(contacts.map((contact) => contact._id));
-
-        // Case 1 : The user unchecks the box
-
-        if (isCheckAll) {
-          setIsCheck([]);
+        if (value) {
+          setSelected([...selected, name]);
+          setUserInfo({
+            emails: [...emails, name],
+            response: [...emails, name],
+        });
+        } else {
+          setSelected(selected.filter((contact) => contact !== name));
           setUserInfo({
             emails: emails.filter(
-                (e) => e !== value
+                (e) => e !== name
             ),
             response: emails.filter(
-                (e) => e !== value
+                (e) => e !== name
             ),
-        });
-        } 
-
-        // Case 2  : The user checks the box
-
-        else {
-          setUserInfo({
-            emails: [...emails, value],
-            response: [...emails, value],
         });
         }
       };
-
-      const handleClick = (e) => {
-        const { id, checked, value } = e.target;
+      
+      function selectAll(value,name) {
         const { emails } = userinfo;
 
-        setIsCheck([...isCheck, id]);
-        
-        
-        // Case 1 : The user unchecks the box
-        if (!checked) {
-          setIsCheck(isCheck.filter(item => item !== id));
+        if (value) { // if true
+         setSelected(contacts.map((contact)=>contact.email)); // select all
+         setUserInfo({
+              emails: [...emails, name],
+              response: [...emails, name],
+          });
+        } else { // if false
+          setSelected([]); // unselect all
           setUserInfo({
-            emails: emails.filter(
-                (e) => e !== value
-            ),
-            response: emails.filter(
-                (e) => e !== value
-            ),
-        });
+            emails: [],
+            response: []})
         }
-
-        // Case 2  : The user checks the box
-        else {
-
-          setUserInfo({
-            emails: [...emails, value],
-            response: [...emails, value],
-        });
-      }
-
       };
+
+      
     
     return(
         <React.Fragment>
@@ -150,14 +129,11 @@ function Contacts(props) {
                     <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
                       <th scope="col">  
-                        <Checkbox
-                          type="checkbox"
-                          name="selectAll"
-                          id="selectAll"
-                          handleClick={handleSelectAll}
-                          isChecked={isCheckAll}
-                          value={contacts.map((contact) => contact.email)}
-                          /> Select All  
+                      <Checkbox name={contacts.map((contact)=>contact.email)} 
+                      value={selected.length === contacts.length} 
+                      updateValue={selectAll}>
+                        Select All
+                        </Checkbox> 
                       </th>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
@@ -172,14 +148,10 @@ function Contacts(props) {
                         {contacts.map((contact, index)=>{return(
                                             <tr key={index}>
                                               <td>
-                                                <Checkbox
-                                                  type="checkbox"
-                                                  name="emails"
-                                                  id={contact._id}
-                                                  value={contact.email}
-                                                  handleClick={handleClick}
-                                                  isChecked={isCheck.includes(contact._id)}
-                                                />
+                                              <Checkbox name={contact.email} 
+                                              value={selected.includes(contact.email)} 
+                                              updateValue={handleSelect}>{contact.email}
+                                              </Checkbox>
                                               </td>
                                               <td>{contact.firstname}</td>
                                               <td>{contact.lastname}</td>
@@ -208,7 +180,6 @@ function Contacts(props) {
                                 placeholder="Selected emails will be displayed here "
                                 id="floatingTextarea2"
                                 style={{ height: "150px" }}
-                                onChange={ !isCheckAll? handleSelectAll: handleClick }
                             ></textarea>
                         </div>
                 </form>        
