@@ -8,11 +8,9 @@ import Checkbox from "./Checkbox/Checkbox";
 function Contacts(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [contacts, setContacts] = useState([])
+    const [selected, setSelected] = React.useState([]);
+
     const navigate = useNavigate()
-    const [userinfo, setUserInfo] = useState({
-      emails: [],
-      response: [],
-    });
 
     const session = useCallback(async () =>{
         await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
@@ -62,48 +60,24 @@ function Contacts(props) {
       },[session, records])
 
 
-      const [selected, setSelected] = React.useState([]);
       function handleSelect(value, name) {
-        const { emails } = userinfo;
 
         if (value) {
           setSelected([...selected, name]);
-          setUserInfo({
-            emails: [...emails, name],
-            response: [...emails, name],
-        });
         } else {
           setSelected(selected.filter((contact) => contact !== name));
-          setUserInfo({
-            emails: emails.filter(
-                (e) => e !== name
-            ),
-            response: emails.filter(
-                (e) => e !== name
-            ),
-        });
         }
       };
       
       function selectAll(value) {
-        const { emails } = userinfo;
 
         if (value) { // if true
          setSelected(contacts.map((contact)=>contact.email)); // select all
-         setUserInfo({
-              emails: [...emails, contacts.map((contact)=>contact.email)],
-              response: [...emails, contacts.map((contact)=>contact.email)],
-          });
         } else { // if false
           setSelected([]); // unselect all
-          setUserInfo({
-            emails: [],
-            response: []
-        });
         }
       };
 
-      
     
     return(
         <React.Fragment>
@@ -175,7 +149,7 @@ function Contacts(props) {
                             <textarea
                                 className="form-control text"
                                 name="response"
-                                value={userinfo.response}
+                                value={selected}
                                 placeholder="Selected emails will be displayed here "
                                 id="floatingTextarea2"
                                 style={{ height: "150px" }}
