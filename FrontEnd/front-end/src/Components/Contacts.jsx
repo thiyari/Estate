@@ -132,9 +132,7 @@ function Contacts(props) {
                       <th scope="col">  
                       <Checkbox name="All" 
                       value={selected.length === contacts.length} 
-                      updateValue={selectAll}>
-                        Select All
-                        </Checkbox> 
+                      updateValue={selectAll}/>Select All
                       </th>
                       <th scope="col">First Name</th>
                       <th scope="col">Last Name</th>
