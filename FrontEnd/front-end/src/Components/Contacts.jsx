@@ -130,7 +130,7 @@ function Contacts(props) {
                     <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
                       <th scope="col">  
-                      <Checkbox name={contacts.map((contact)=>contact.email)} 
+                      <Checkbox name="All" 
                       value={selected.length === contacts.length} 
                       updateValue={selectAll}>
                         Select All
