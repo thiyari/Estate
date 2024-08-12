@@ -9,8 +9,9 @@ import { PiUploadSimpleBold } from "react-icons/pi";
 function Contacts(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [contacts, setContacts] = useState([])
-    const [selected, setSelected] = React.useState([]);
-
+    const [selected, setSelected] = useState([]);
+    const [subject, setSubject] = useState("");
+    const [message, setMessage] = useState("");
     const navigate = useNavigate()
 
     const session = useCallback(async () =>{
@@ -79,6 +80,31 @@ function Contacts(props) {
         }
       };
 
+      const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+            to: selected,
+            subject: subject,
+            message: message
+          }),
+          {
+            headers:{
+              "Content-Type":"application/json"
+              }
+          }).then((res) => {
+            console.log(res)
+            alert(res.data.output);
+          });
+          setSelected([])
+          setSubject('')
+          setMessage('')
+          navigate('/Contacts')
+        } catch(err) {
+          alert(err);
+        }
+
+      }
     
     return(
         <React.Fragment>
@@ -99,7 +125,7 @@ function Contacts(props) {
             <div className="form-container">
                 <div className="card-body">
                 
-                <form action='/AddNewContact'>
+                <form onSubmit={handleSubmit}>
                 <div className ="table-responsive-md" style={{ maxHeight: "300px", overflowY: "auto" }}>  
                   <table className="table table-striped table-hover">
                     <thead style={{ position: "sticky", top: "0" }}>
@@ -114,7 +140,7 @@ function Contacts(props) {
                       <th scope="col">Email</th>
                       <th scope="col">Phone</th>
                       <th colSpan={2} style={{textAlign: "center"}}>
-                        <button type="submit" className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
+                        <button type="submit" onClick={()=>{navigate('/AddNewContact')}} className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
                       </th>
                     </tr>
                     </thead>
@@ -166,7 +192,8 @@ function Contacts(props) {
                             id="subject" 
                             placeholder="Enter Subject"
                             name="subject"
-                            value=""
+                            value={subject}
+                            onChange={(e) => setSubject(e.target.value)}  
                             />
                         </div>
 
@@ -180,6 +207,8 @@ function Contacts(props) {
                               placeholder="Type your message"
                               name="message"
                               rows="5"
+                              value={message}
+                              onChange={(e) => setMessage(e.target.value)}  
                               ></textarea>
                             </div>
                         </div>
