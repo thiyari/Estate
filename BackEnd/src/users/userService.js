@@ -722,6 +722,7 @@ module.exports.emailDBService = async (userData) => {
                   to: userData.to,
                   subject: userData.subject,
                   html: userData.message,
+                  attachments: userData.attachments
                 };
             
                 transporter.sendMail((mailOptions), function (error, info) {
