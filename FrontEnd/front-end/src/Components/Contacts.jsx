@@ -6,12 +6,24 @@ import { IoIosMail } from "react-icons/io";
 import Checkbox from "./Checkbox/Checkbox";
 import { PiUploadSimpleBold } from "react-icons/pi";
 
+
 function Contacts(props) {
+
+  const initialState = {
+    to: "",
+    subject: "",
+    message: "",
+    to_status: "",
+    subject_status: "",
+    messsage_status: ""
+  }
+
     const [loggedIn, setLoggedIn] = useState(false)
     const [contacts, setContacts] = useState([])
     const [selected, setSelected] = useState([]);
     const [subject, setSubject] = useState("");
     const [message, setMessage] = useState("");
+    const [formError, setFormError] = useState({...initialState})
     const navigate = useNavigate()
 
     const session = useCallback(async () =>{
@@ -61,6 +73,8 @@ function Contacts(props) {
         records();
       },[session, records])
 
+      // Initialize an object to track input errors
+      let inputError = {...initialState};
 
       function handleSelect(value, name) {
 
@@ -82,6 +96,44 @@ function Contacts(props) {
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+
+          // Check if to address is empty
+          console.log(selected)
+          if(selected.length === 0){
+            setFormError({
+              ...inputError,
+              to: "Please select the receipents address",
+              to_status: "error"
+            })
+            return;
+          }
+
+          // Check if subject is empty
+          if(!subject){
+            setFormError({
+              ...inputError,
+              subject: "Please enter the Subject",
+              subject_status: "error"
+            })
+            return;
+          }
+
+          // Check if message is empty
+          if(!message){
+            setFormError({
+              ...inputError,
+              message: "Please type your message",
+              message_status: "error"
+            })
+            return;
+          }          
+
+          // Clear any previous errors
+          setFormError(inputError);
+
+
+
+
         try {
           await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
             to: selected,
@@ -175,14 +227,16 @@ function Contacts(props) {
                             </label>
                             <textarea
                                 className="form-control text"
-                                name="response"
+                                name="to"
                                 value={selected}
                                 placeholder="Selected emails will be displayed here "
-                                id="floatingTextarea2"
-                                style={{ height: "150px" }}
+                                id="to"
+                                style={{ height: "150px", borderColor: formError.to_status !== "error" ?"":"red" }}
                                 readOnly
                             ></textarea>
                         </div>
+                        <p className="error-message">{formError.to}</p>
+
 
                         <div className="form-group">
                             <label className="form-label">Subject</label>
@@ -194,8 +248,10 @@ function Contacts(props) {
                             name="subject"
                             value={subject}
                             onChange={(e) => setSubject(e.target.value)}  
+                            style={{borderColor: formError.subject_status !== "error" ?"":"red"}}
                             />
                         </div>
+                        <p className="error-message">{formError.subject}</p>
 
 
                         <div className="form-group">
@@ -209,9 +265,11 @@ function Contacts(props) {
                               rows="5"
                               value={message}
                               onChange={(e) => setMessage(e.target.value)}  
+                              style={{borderColor: formError.message_status !== "error" ?"":"red"}}
                               ></textarea>
                             </div>
                         </div>
+                        <p className="error-message">{formError.message}</p>
 
 
                         <div className="form-group">
