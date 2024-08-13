@@ -23,8 +23,7 @@ function Contacts(props) {
 		const [subject, setSubject] = useState("");
 		const [message, setMessage] = useState("");
 		const [formError, setFormError] = useState({...initialState})
-		const [attachments, setAttachments] = useState([{filename:"",path:""}])
-
+		const [file, setFile] = useState("")
 		const navigate = useNavigate()
 
 		const session = useCallback(async () =>{
@@ -95,20 +94,10 @@ function Contacts(props) {
 				}
 			};
 
-			const handleUpload = async(e)=>{
-				let files = []
-
-				for (let i = 0; i < e.target.files.length; i++) {
-					 files.push({filename: e.target.files[i].name, path: 'C:\\Users\\Manikanth\\Documents\\'+e.target.files[i].name})
-				}
-				setAttachments(files);
-			}
-			console.log(attachments)
 			const handleSubmit = async (e) => {
 				e.preventDefault();
 
 					// Check if to address is empty
-					console.log(selected)
 					if(selected.length === 0){
 						setFormError({
 							...inputError,
@@ -141,21 +130,25 @@ function Contacts(props) {
 					// Clear any previous errors
 					setFormError(inputError);
 
+					const formData = new FormData();
+					formData.append("to",selected)
+					formData.append("subject",subject)
+					formData.append("message",message)
+					formData.append("file",file)
+
 				try {
-					await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
-						to: selected,
-						subject: subject,
-						message: message,
-						attachments: attachments
-					}),
-					{
-						headers:{
-							"Content-Type":"application/json"
-							}
-					}).then((res) => {
-						console.log(res)
-						alert(res.data.output);
-					});
+					for (var pair of formData.entries()) {
+						console.log(pair[0]+ ', ' + pair[1]); 
+					}
+					const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/sendmail`,{
+						method: "POST",
+						body: formData
+					})
+					if (response.ok){
+						console.log("Email sent succcessfully")
+					} else {
+						console.log("Email sending failed")
+					}
 					setSelected([])
 					setSubject('')
 					setMessage('')
@@ -283,7 +276,11 @@ function Contacts(props) {
 												<div className="form-group">
 													<label htmlFor='uploadImage' className="form-label">Attachments
 														<div style={{cursor: 'pointer', width: 50}}>
-															<input type='file' name="file" multiple accept="image/*" id='uploadImage' onChange={handleUpload}/>
+															<input type='file' 
+															name="file" 
+															multiple accept="image/*, .pdf, .xslx, .txt" 
+															id='uploadImage' 
+															onChange={(e) => setFile(e.target.files[0])}/>
 															<PiUploadSimpleBold/>
 														</div>
 													</label>

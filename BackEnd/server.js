@@ -8,6 +8,8 @@ const dotenv = require("dotenv");
 const path = require("path");
 var routes = require('./route/routes');
 const cors = require('cors');
+const multer = require("multer")
+const nodemailer = require("nodemailer");
 
 app.use(cors(
     {   origin: ['http://localhost:3000', 'https://estateclient.onrender.com'],
@@ -57,7 +59,30 @@ const connectDB = async()=>{
     }
 }
 
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.AUTH_GMAIL_APP_USER,
+        pass: process.env.AUTH_GMAIL_APP_PASSWORD,
+    }
+})
+const upload = multer()
+app.post("/sendmail",upload.single("file"),async(req,res)=>{
+    const {to, subject, message} = req.body;
+    const file = req.file
 
+    const mailOptions = {
+        from: process.env.AUTH_GMAIL_APP_USER,
+        to: to,
+        subject: subject,
+        html: message,
+        attachments: file
+        ? [{ filename: file.originalname, content: file.buffer}]
+        : [],
+    }
+
+    await transporter.sendMail(mailOptions)
+})
 // mongo connecction
 connectDB();
 
