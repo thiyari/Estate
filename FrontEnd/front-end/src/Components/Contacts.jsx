@@ -24,6 +24,8 @@ function Contacts(props) {
 		const [message, setMessage] = useState("");
 		const [formError, setFormError] = useState({...initialState})
 		const [files, setFiles] = useState([])
+		const [loading,setLoading] = useState(false);
+
 		const navigate = useNavigate()
 
 		const session = useCallback(async () =>{
@@ -140,6 +142,7 @@ function Contacts(props) {
 
 				try 
 					{
+					setLoading(true);
 					await fetch(`${process.env.REACT_APP_SERVER_URI}/send-bulk-emails`,{
 						method: "POST",
 						body: formData,
@@ -150,6 +153,7 @@ function Contacts(props) {
 							alert("Sending emails failed")
 						}
 					})
+					setLoading(false);
 					setSelected([])
 					setSubject('')
 					setMessage('')
@@ -290,7 +294,10 @@ function Contacts(props) {
 
 
 												<div align="center">
-													<input className="btn btn-primary mt-5" type="submit" value="Send Emails" /> 
+													{!loading && <input className="btn btn-primary mt-5" type="submit" value="Send Emails" /> }
+												</div>
+												<div align="center">
+													{loading && <img src={require("./loading.gif")} width="50" height="50" alt="...Loading"/>}
 												</div>
 								</form>        
 								
