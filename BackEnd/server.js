@@ -69,7 +69,7 @@ const transporter = nodemailer.createTransport({
 
 // Create multer upload instance
 const upload = multer();
-app.post("/sendmail",upload.array("files"),async(req,res)=>{
+app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
     const {to, subject, message} = req.body;
     const files = req.files
     const attachments = 
@@ -81,7 +81,6 @@ app.post("/sendmail",upload.array("files"),async(req,res)=>{
                 })
             })
     
-    console.log(attachments)
     const mailOptions = {
         from: process.env.AUTH_GMAIL_APP_USER,
         to: to,
@@ -90,7 +89,13 @@ app.post("/sendmail",upload.array("files"),async(req,res)=>{
         attachments: attachments
     }
 
-    await transporter.sendMail(mailOptions)
+    await transporter.sendMail(mailOptions).then((error, info)=>{
+        if(error){
+            return res.send({success:false,msg: error});
+        } else {
+            return res.send({success:true,msg:"Email sent: "+info.response});
+        }
+    })
 })
 
 // mongo connecction

@@ -140,18 +140,20 @@ function Contacts(props) {
 
 				try 
 					{
-					const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/sendmail`,{
+					await fetch(`${process.env.REACT_APP_SERVER_URI}/send-bulk-emails`,{
 						method: "POST",
 						body: formData,
+					}).then((res)=>{
+						if(res.ok){
+							alert("Emails sent succcessfully")
+						} else {
+							alert("Sending emails failed")
+						}
 					})
-					if (response.ok){
-						console.log("Email sent succcessfully")
-					} else {
-						console.log("Email sending failed")
-					}
 					setSelected([])
 					setSubject('')
 					setMessage('')
+					setFiles([])
 					navigate('/Contacts')
 				} catch(err) {
 					alert(err);

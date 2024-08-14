@@ -736,7 +736,6 @@ var resetPasswordControllerFn = async(req,res) => {
         try
         {
             var result = await userService.emailDBService(req.body)
-            console.log(result)
             if(result.success){
                 return res.send({"status": true, "message": result.msg, "output": result.output});
             }
