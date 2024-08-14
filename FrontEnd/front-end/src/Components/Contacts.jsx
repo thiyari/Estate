@@ -23,7 +23,7 @@ function Contacts(props) {
 		const [subject, setSubject] = useState("");
 		const [message, setMessage] = useState("");
 		const [formError, setFormError] = useState({...initialState})
-		const [file, setFile] = useState("")
+		const [files, setFiles] = useState([])
 		const navigate = useNavigate()
 
 		const session = useCallback(async () =>{
@@ -134,15 +134,16 @@ function Contacts(props) {
 					formData.append("to",selected)
 					formData.append("subject",subject)
 					formData.append("message",message)
-					formData.append("file",file)
-
+					for(let i =0; i < files.length; i++) {
+						formData.append("files", files[i]);
+					}
 				try {
 					for (var pair of formData.entries()) {
 						console.log(pair[0]+ ', ' + pair[1]); 
 					}
 					const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/sendmail`,{
 						method: "POST",
-						body: formData
+						body: formData,
 					})
 					if (response.ok){
 						console.log("Email sent succcessfully")
@@ -277,10 +278,10 @@ function Contacts(props) {
 													<label htmlFor='uploadImage' className="form-label">Attachments
 														<div style={{cursor: 'pointer', width: 50}}>
 															<input type='file' 
-															name="file" 
+															name="files" 
 															multiple accept="image/*, .pdf, .xslx, .txt" 
 															id='uploadImage' 
-															onChange={(e) => setFile(e.target.files[0])}/>
+															onChange={(e) => setFiles([...e.target.files])}/>
 															<PiUploadSimpleBold/>
 														</div>
 													</label>

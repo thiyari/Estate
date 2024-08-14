@@ -66,23 +66,49 @@ const transporter = nodemailer.createTransport({
         pass: process.env.AUTH_GMAIL_APP_PASSWORD,
     }
 })
-const upload = multer()
-app.post("/sendmail",upload.single("file"),async(req,res)=>{
-    const {to, subject, message} = req.body;
-    const file = req.file
 
+
+// Configure multer storage and file name
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, './uploads/');
+    },
+    filename: (req, file, cb) => {
+      cb(null, file.originalname);
+    }
+  });
+
+const fs = require('fs');
+// Create multer upload instance
+const upload = multer({ storage: storage });
+app.post("/sendmail",upload.array("files"),async(req,res)=>{
+    const {to, subject, message} = req.body;
+    const files = req.files
+    const attachments = 
+        files.map((file) => {
+            return(
+                { 
+                    filename: file.originalname, 
+                    path: file.path
+                })
+            })
+    
+    console.log(attachments)
     const mailOptions = {
         from: process.env.AUTH_GMAIL_APP_USER,
         to: to,
         subject: subject,
         html: message,
-        attachments: file
-        ? [{ filename: file.originalname, content: file.buffer}]
-        : [],
+        attachments: attachments
     }
 
     await transporter.sendMail(mailOptions)
+    // Remove uploaded files
+    files.forEach((file) => {
+        fs.unlinkSync(file.path);
+    });
 })
+
 // mongo connecction
 connectDB();
 
