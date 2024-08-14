@@ -67,20 +67,8 @@ const transporter = nodemailer.createTransport({
     }
 })
 
-
-// Configure multer storage and file name
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, './uploads/');
-    },
-    filename: (req, file, cb) => {
-      cb(null, file.originalname);
-    }
-  });
-
-const fs = require('fs');
 // Create multer upload instance
-const upload = multer({ storage: storage });
+const upload = multer();
 app.post("/sendmail",upload.array("files"),async(req,res)=>{
     const {to, subject, message} = req.body;
     const files = req.files
@@ -89,7 +77,7 @@ app.post("/sendmail",upload.array("files"),async(req,res)=>{
             return(
                 { 
                     filename: file.originalname, 
-                    path: file.path
+                    content: file.buffer
                 })
             })
     
@@ -103,10 +91,6 @@ app.post("/sendmail",upload.array("files"),async(req,res)=>{
     }
 
     await transporter.sendMail(mailOptions)
-    // Remove uploaded files
-    files.forEach((file) => {
-        fs.unlinkSync(file.path);
-    });
 })
 
 // mongo connecction

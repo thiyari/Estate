@@ -137,10 +137,9 @@ function Contacts(props) {
 					for(let i =0; i < files.length; i++) {
 						formData.append("files", files[i]);
 					}
-				try {
-					for (var pair of formData.entries()) {
-						console.log(pair[0]+ ', ' + pair[1]); 
-					}
+
+				try 
+					{
 					const response = await fetch(`${process.env.REACT_APP_SERVER_URI}/sendmail`,{
 						method: "POST",
 						body: formData,
