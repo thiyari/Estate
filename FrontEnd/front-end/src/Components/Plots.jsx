@@ -82,7 +82,7 @@ function Plots(props) {
                                             <h5 className="card-title">{profile.property}</h5>
                                             <ul className="list-group list-group-flush">
                                                 <li className="list-group-item">Property ID: {profile.propertyid}</li>
-                                                <li className="list-group-item">Area: {profile.area} Sq. ft</li>
+                                                <li className="list-group-item">Area: {profile.area}{" "}{profile.areatype}</li>
                                                 <li className="list-group-item">Phase: {profile.phase}</li>
                                                 <li className="list-group-item">Locality: {profile.location}</li>
                                                 <li className="list-group-item">Price: {profile.currency}{" "}{profile.price+profile.commission}</li>

@@ -90,7 +90,7 @@ function Home(props) {
                                         </div>
                                     <h5 className="card-title mt-3">{profile.property}</h5>
                                     <ul className="list-group list-group-flush">
-                                        <li className="list-group-item">Area: {profile.area} Sq. ft</li>
+                                        <li className="list-group-item">Area: {profile.area}{" "}{profile.areatype}</li>
                                         <li className="list-group-item">Rooms: {profile.rooms}</li>
                                         <li className="list-group-item">Locality: {profile.location}</li>
                                     </ul>
