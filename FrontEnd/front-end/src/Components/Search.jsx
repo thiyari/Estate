@@ -153,11 +153,19 @@ const phaseList = [
   { value: 'south', label: 'South' }
 ];
 
+const areatypeList = [
+  { value: '', label: 'Select Area Type'},
+  { value: 'Sq Feet', label: 'Sq Feet'},
+  { value: 'Sq Yards', label: 'Sq Yards'},
+  { value: 'Acres', label: 'Acres'},
+
+]
 
 function Search(props) {
     const FilterContext = createContext();
     const [filters, setFilters] = useState({
       property:"",
+      areatype:"",
       phase:"",
       rooms:"",
       floor: "",
@@ -220,6 +228,7 @@ function Search(props) {
     const filteredProfiles = profiles.filter((profile) => {
       return (
           (filters.property === "" || profile.property === filters.property) &&
+          (filters.areatype === "" || profile.areatype === filters.areatype) &&
           (filters.phase === "" || profile.phase === filters.phase) &&
           (filters.rooms === "" || profile.rooms === filters.rooms) &&
           (filters.floor === "" || profile.floor === filters.floor) &&
@@ -250,6 +259,19 @@ const FilterControls = () => {
                     ))}
                 </select></td>
                 
+                <td><select 
+                  className="form-select" 
+                  title="areatype"
+                  name="areatype"
+                  value={filters.areatype}
+                  onChange={handleFilterChange}
+                    >
+                    {areatypeList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                </select></td>
+
+
                 <td><select className="form-select" 
                   title="phase"
                   name="phase"
@@ -260,6 +282,7 @@ const FilterControls = () => {
                       <option value={option.value} key={index}>{option.label}</option>
                     ))}
                 </select></td>
+
 
                 <td><select 
                     className="form-select" 
