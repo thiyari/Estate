@@ -83,7 +83,7 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
     
     const mailOptions = {
         from: process.env.AUTH_GMAIL_APP_USER,
-        to: to,
+        bcc: to,
         subject: subject,
         html: message,
         attachments: attachments
