@@ -372,7 +372,6 @@ return(
                         <th>Rooms</th>
                         <th>Floor</th>
                         <th>Location</th>
-                        <th>Currency</th>
                         <th>Price</th>
                         <th>View</th>
                       </tr>
@@ -383,13 +382,12 @@ return(
                       <tr key={index}>
                         <td>{profile.propertyid}</td>
                         <td>{profile.property}</td>
-                        <td>{profile.area}</td>
+                        <td>{profile.area}{" "}{profile.areatype}</td>
                         <td>{profile.phase}</td>
                         <td>{profile.rooms}</td>
                         <td>{profile.floor}</td>
                         <td>{profile.location}</td>
-                        <td>{profile.currency}</td>
-                        <td>{profile.price}</td>
+                        <td>{profile.currency}{" "}{profile.price}</td>
                         <td><NavLink exact="true" to={`/Checkout/${profile.propertyid}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
                         </NavLink></td>
                       </tr>
