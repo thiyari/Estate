@@ -515,6 +515,21 @@ module.exports.profilePropertyTypeDBService = async (id,data) => {
 }
 
 
+module.exports.profileAreaTypeDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.users.findByIdAndUpdate(id,{areatype:data.areatype},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Area Type updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Area Type failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
 module.exports.profilePhaseDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
         await dataModel.users.findByIdAndUpdate(id,{phase:data.phase},{new:true})
