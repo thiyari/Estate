@@ -39,6 +39,10 @@ var userSchema = new Schema({
         type: String,
         required: false
     },
+    areatype: {
+        type: String,
+        required: false
+    },
     phase: {
         type: String,
         required: false

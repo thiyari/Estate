@@ -156,6 +156,14 @@ const propertyList = [
   { value: 'Commercial', label: 'Commerial'},
 ]
 
+const areatypeList = [
+  { value: '', label: 'Select Area Type'},
+  { value: 'Sq Feet', label: 'Sq Feet'},
+  { value: 'Sq Yards', label: 'Sq Yards'},
+  { value: 'Acres', label: 'Acres'},
+
+]
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -179,6 +187,7 @@ function Register(props) {
       rooms:"",
       other_room:"",
       property: "",
+      areatype: "",
       floor:"",
       currency:"",
       price: "",
@@ -197,6 +206,7 @@ function Register(props) {
       rooms_status: "",
       other_room_status: "",
       property_status: "",
+      areatype_status: "",
       floor_status: "",
       currency_status:"",
       price_status: "",
@@ -499,7 +509,15 @@ function Register(props) {
           }
 
 
-
+          // Check if area type is empty
+          if(!formInput.areatype){
+            setFormError({
+              ...inputError,
+              areatype: "Please select the area type",
+              areatype_status: "error"
+            })
+            return;
+          }
 
           // Check if phase is empty
           if(!formInput.phase){
@@ -644,6 +662,7 @@ function Register(props) {
           area: formInput.area,
           location:formInput.location,
           zip: formInput.zip,
+          areatype: formInput.areatype,
           phase: formInput.phase,
           rooms: selected_room,
           floor: formInput.floor,
@@ -674,6 +693,7 @@ function Register(props) {
             area: "",
             location: "",
             zip: "",
+            areatype: "",
             phase: "",
             rooms: "",
             floor: "",
@@ -929,7 +949,7 @@ function Register(props) {
           type="text"  
           className="form-control mb-3" 
           id="area" 
-          placeholder="Area in Sq.Feet"
+          placeholder="Enter the area in numerals"
           name="area"
           value={formInput.area}
           onChange={({target})=>{            
@@ -942,7 +962,26 @@ function Register(props) {
 
 
 
-
+        <div className="form-group">
+          <label className="form-label">Area Type</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="areatype"
+            name="areatype"
+            value={formInput.type}
+            onChange={({target})=>{            
+            handleUserInput(target.name, target.value)
+              }}
+            style={{borderColor: formError.areatype_status !== "error" ?"":"red"}}  
+              >
+              {areatypeList.map((option,index) => (
+                <option value={option.value} key={index}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p className="error-message">{formError.areatype}</p>
 
 
         <div className="form-group">
