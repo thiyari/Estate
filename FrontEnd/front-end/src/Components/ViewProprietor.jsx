@@ -90,7 +90,7 @@ function ViewProprietor(props) {
                   </tr>
                   <tr>
                     <td>Area</td>
-                    <td>{profile.area} Sq. Ft</td>
+                    <td>{profile.area}{" "}{profile.areatype}</td>
                   </tr>
                   <tr>
                     <td>Phase</td>
