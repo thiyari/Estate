@@ -332,8 +332,7 @@ return(
     
 <div className="container mt-4">
       <div className="row">
-      <div className="col-md-1"></div>
-          <div className="col-md-10">
+          <div className="col-md-12">
             <div className="card">
             <h1 className="card-header mb-4"><center><div className="header-font">Search by Filters</div></center></h1>
             <div className="row">
@@ -425,7 +424,6 @@ return(
                     <div className='col-md-1'></div>
                     </div>
               </div>
-              <div className='col-md-1'></div>
               </div>
               </div>
               </div>
