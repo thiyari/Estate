@@ -11,6 +11,7 @@ const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 const initialState = {
   propertylocation: "",
   propertyArea: "",
+  areaType: "",
   propertyType: "",
   phase: "",
   rooms: "",
@@ -22,6 +23,7 @@ const initialState = {
   propertyAddress: "",
   propertyLocation_status: "",
   propertyArea_status: "",
+  areaType_status: "",
   propertyType_status: "",
   phase_status: "",
   rooms_status: "",
@@ -183,6 +185,14 @@ const currencyList = [
   { value: 'USD', label: 'USD'},
 ]
 
+const areaTypeList = [
+  { value: '', label: 'Select Area Type'},
+  { value: 'Sq Feet', label: 'Sq Feet'},
+  { value: 'Sq Yards', label: 'Sq Yards'},
+  { value: 'Acres', label: 'Acres'},
+
+]
+
 function Properties(props){
     const [loggedIn, setLoggedIn] = useState(false)
     const [Id, setId] = useState('')
@@ -190,6 +200,7 @@ function Properties(props){
 
     const [propertyLocation, setPropertyLocation] = useState('')
     const [propertyArea, setPropertyArea] = useState('')
+    const [areaType, setAreaType] = useState('')
     const [propertyType, setPropertyType] = useState('')
     const [phase, setPhase] = useState('')
     const [rooms, setRooms] = useState('')
@@ -204,6 +215,7 @@ function Properties(props){
     const [showOtherOption, setShowOtherOption] = useState(false);
     const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
     const [propertyAreatoggle,setPropertyAreatoggle] = useState(false)
+    const [areaTypetoggle, setAreaTypetoggle] = useState(false)
     const [propertyTypetoggle, setPropertyTypetoggle] = useState(false)
     const [phasetoggle, setPhasetoggle] = useState(false)
     const [roomstoggle, setRoomstoggle] = useState(false)
@@ -240,6 +252,7 @@ function Properties(props){
           if (profile_doc.data[0].requests === 'Approved'){
           setPropertyLocation(profile_doc.data[0].location)
           setPropertyArea(profile_doc.data[0].area)
+          setAreaType(profile_doc.data[0].areatype)
           setPropertyType(profile_doc.data[0].property)
           setPhase(profile_doc.data[0].phase)
           setRooms(profile_doc.data[0].rooms)
@@ -361,6 +374,54 @@ function Properties(props){
             }
             setFormError(inputError);
     }
+
+
+
+
+
+    const handleAreaTypeInput = (event) => {
+      event.preventDefault()
+      setAreaType(event.target.value);
+    };
+  
+    const handleAreaTypeEdit = (event) => {
+      event.preventDefault()
+      setAreaTypetoggle(true)
+    };
+    
+    const handleAreaTypeSubmit = async (event) => {
+      event.preventDefault()
+
+          // Check if area type is empty
+          if(!areaType){
+            setFormError({
+              ...inputError,
+              areaType: "Please select the area type",
+              areaType_status: "error"
+            })
+            return;
+          } 
+
+          try{
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/areatype/${Id}`, 
+              JSON.stringify({
+              areatype: areaType,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Area Type Updated Successfully");
+              setAreaTypetoggle(false)
+            } catch (err) {
+              alert(err);
+            }         
+            setFormError(inputError); 
+    }
+
+
+
 
 
 
@@ -1048,6 +1109,61 @@ function Properties(props){
             </tbody>
           </table>
         </div>
+
+
+
+
+
+        <div className="form-group">
+          <table align='center'>
+            <tbody>
+            <tr>
+              <th><label className="form-label">Area Type</label></th>
+            </tr>
+            <tr>
+              { areaTypetoggle?
+              <>
+              <td><div className="d-flex justify-content-center mb-3">
+                  <select 
+                  className="form-select" 
+                  title="areatype"
+                  name="areatype"
+                  value={areaType}
+                  onChange={handleAreaTypeInput}
+                  style={{borderColor: formError.areaType_status !== "error" ?"":"red"}}  
+                    >
+                    {areaTypeList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                  </select>
+                  </div>
+              </td>
+              <td style={{verticalAlign: "top"}}><button onClick={handleAreaTypeSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>:
+              <>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="areatype" 
+              placeholder="Select Area Type"
+              name="areatype"
+              value={areaType}
+              readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handleAreaTypeEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>}
+            </tr>
+            <tr>
+            <td><p className="error-message">{formError.areaType}</p></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
 
         <div className="form-group">
           <table align='center'>
