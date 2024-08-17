@@ -409,7 +409,7 @@ return(
                         <td>{profile.rooms}</td>
                         <td>{profile.floor}</td>
                         <td>{profile.location}</td>
-                        <td>{profile.currency}{" "}{profile.price}</td>
+                        <td>{profile.currency}{" "}{profile.price+profile.commission}</td>
                         <td><NavLink exact="true" to={`/Checkout/${profile.propertyid}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
                         </NavLink></td>
                       </tr>

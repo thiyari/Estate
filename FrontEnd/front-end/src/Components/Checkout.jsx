@@ -248,7 +248,7 @@ function Checkout(props) {
                   </tr>
                   <tr>
                     <td>Price</td>
-                    <td>{profile.currency}{" "}{profile.price}</td>
+                    <td>{profile.currency}{" "}{profile.price+profile.commission}</td>
                   </tr>
                 </tbody>
               </table>
