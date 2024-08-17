@@ -4,7 +4,7 @@ import '../App.css';
 import axios from 'axios'
 
 const roomsList = [
-  { value: '', label: 'Select Rooms'},
+  { value: '', label: 'Rooms'},
   { value: '1 BHK', label: '1 BHK' },
   { value: '2 BHK', label: '2 BHK' },
   { value: '3 BHK', label: '3 BHK' },
@@ -17,8 +17,8 @@ const roomsList = [
 ];
 
 const floorList = [
-  { value: '', label: 'Select Floor'},
-  { value: '0', label: 'Not Available'},
+  { value: '', label: 'Floor'},
+  { value: '0', label: '0'},
   { value: '1', label: '1' },
   { value: '2', label: '2' },
   { value: '3', label: '3' },
@@ -130,7 +130,7 @@ const floorList = [
 ];
 
 const propertyList = [
-  { value: '', label: 'Select Property Type'},
+  { value: '', label: 'Property Type'},
   { value: 'Open Plot', label: 'Open Plot'},
   { value: 'Independent House', label: 'Independent House'},
   { value: 'Duplex Home', label: 'Duplex Home'},
@@ -139,14 +139,14 @@ const propertyList = [
 ]
 
 const currencyList = [
-  { value: '', label: 'Select Currency'},
+  { value: '', label: 'Currency'},
   { value: 'INR', label: 'INR'},
   { value: 'USD', label: 'USD'},
 ]
 
 
 const phaseList = [
-  { value: '', label: 'Select Phase'},
+  { value: '', label: 'Phase'},
   { value: 'east', label: 'East' },
   { value: 'west', label: 'West' },
   { value: 'north', label: 'North' },
@@ -154,11 +154,17 @@ const phaseList = [
 ];
 
 const areatypeList = [
-  { value: '', label: 'Select Area Type'},
+  { value: '', label: 'Area By'},
   { value: 'Sq Feet', label: 'Sq Feet'},
   { value: 'Sq Yards', label: 'Sq Yards'},
   { value: 'Acres', label: 'Acres'},
+]
 
+const propertyModeList = [
+  { value: '', label: 'Property'},
+  { value: 'Sale', label: 'Sale'},
+  { value: 'Rent', label: 'Rent'},
+  { value: 'Lease', label: 'Lease'},
 ]
 
 function Search(props) {
@@ -173,7 +179,8 @@ function Search(props) {
       propertyid: "",
       area: "",
       location: "",
-      price: ""
+      price: "",
+      propertymode: ""
     });
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
@@ -229,6 +236,7 @@ function Search(props) {
       return (
           (filters.property === "" || profile.property === filters.property) &&
           (filters.areatype === "" || profile.areatype === filters.areatype) &&
+          (filters.propertymode === "" || profile.propertymode === filters.propertymode) &&
           (filters.phase === "" || profile.phase === filters.phase) &&
           (filters.rooms === "" || profile.rooms === filters.rooms) &&
           (filters.floor === "" || profile.floor === filters.floor) &&
@@ -259,6 +267,20 @@ const FilterControls = () => {
                     ))}
                 </select></td>
                 
+
+                <td><select 
+                  className="form-select" 
+                  title="propertymode"
+                  name="propertymode"
+                  value={filters.propertymode}
+                  onChange={handleFilterChange}
+                    >
+                    {propertyModeList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                </select></td>
+
+
                 <td><select 
                   className="form-select" 
                   title="areatype"
