@@ -164,6 +164,13 @@ const areatypeList = [
 
 ]
 
+const propertyModeList = [
+  { value: '', label: 'Select Your Mode'},
+  { value: 'Sell', label: 'Sell'},
+  { value: 'Rent', label: 'Rent'},
+  { value: 'Lease', label: 'Lease'},
+]
+
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
@@ -185,6 +192,7 @@ function Register(props) {
       zip:"",
       phase:"",
       rooms:"",
+      propertyMode: "",
       other_room:"",
       property: "",
       areatype: "",
@@ -200,6 +208,7 @@ function Register(props) {
       confirmPassword_status: "",
       phone_status: "",
       area_status: "",
+      propertyMode_status: "",
       location_status: "",
       zip_status: "",
       phase_status: "",
@@ -487,6 +496,15 @@ function Register(props) {
             return;
           }
 
+          // Check if property mode is empty
+          if(!formInput.propertyMode){
+            setFormError({
+              ...inputError,
+              propertyMode: "Please select your mode",
+              propertyMode_status: "error"
+            })
+            return;
+          }
 
           // Check if area is empty
           if(!formInput.area){
@@ -665,6 +683,7 @@ function Register(props) {
           areatype: formInput.areatype,
           phase: formInput.phase,
           rooms: selected_room,
+          propertymode: formInput.propertyMode,
           floor: formInput.floor,
           currency: formInput.currency,
           property: formInput.property,
@@ -696,6 +715,7 @@ function Register(props) {
             areatype: "",
             phase: "",
             rooms: "",
+            propertyMode: "",
             floor: "",
             currency: "",
             property: "",
@@ -935,6 +955,27 @@ function Register(props) {
 
 
 
+        <div className="form-group">
+          <label className="form-label">Mode of Property</label>
+          <div className="d-flex justify-content-center mb-3">
+            <select 
+            className="form-select" 
+            title="propertyMode"
+            name="propertyMode"
+            value={formInput.propertyMode}
+            onChange={({target})=>{            
+              handleUserInput(target.name, target.value)
+              }}
+            style={{borderColor: formError.propertyMode_status !== "error" ?"":"red"}}  
+              >
+              {propertyModeList.map((option,index) => (
+                <option value={option.value} key={index}>{option.label}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+        <p className="error-message">{formError.propertyMode}</p>
+        
 
         </div>
         <div className="col-md-2"></div>

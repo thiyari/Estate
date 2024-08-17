@@ -35,6 +35,10 @@ var userSchema = new Schema({
         type: String,
         required: false
     },
+    propertymode: {
+        type: String,
+        required: false
+    },
     zip: {
         type: String,
         required: false

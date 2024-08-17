@@ -43,6 +43,7 @@ module.exports.createUserDBService = (userDetails) => {
                                 password: encrypted,
                                 phone: userDetails.phone,
                                 area: userDetails.area,
+                                propertymode: userDetails.propertymode,
                                 location: userDetails.location,
                                 zip: userDetails.zip,
                                 areatype: userDetails.areatype,
