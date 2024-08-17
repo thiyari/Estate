@@ -193,12 +193,20 @@ const areaTypeList = [
 
 ]
 
+const propertyModeList = [
+  { value: '', label: 'Select Your Mode'},
+  { value: 'Sell', label: 'Sell'},
+  { value: 'Rent', label: 'Rent'},
+  { value: 'Lease', label: 'Lease'},
+]
+
 function EditUsers(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [Id, setId] = useState('')
     const [propertyLocation, setPropertyLocation] = useState('')
     const [propertyArea, setPropertyArea] = useState('')
     const [areaType, setAreaType] = useState('')
+    const [propertyMode, setPropertyMode] = useState('')
     const [propertyType, setPropertyType] = useState('')
     const [phase, setPhase] = useState('')
     const [rooms, setRooms] = useState('')
@@ -214,6 +222,7 @@ function EditUsers(props) {
     const [propertyLocationtoggle,setPropertyLocationtoggle] = useState(false)
     const [areaTypetoggle, setAreaTypetoggle] = useState(false)
     const [propertyAreatoggle,setPropertyAreatoggle] = useState(false)
+    const [propertyModetoggle, setPropertyModetoggle] = useState(false)
     const [propertyTypetoggle, setPropertyTypetoggle] = useState(false)
     const [phasetoggle, setPhasetoggle] = useState(false)
     const [roomstoggle, setRoomstoggle] = useState(false)
@@ -250,6 +259,7 @@ function EditUsers(props) {
               setPropertyLocation(profile_doc.data[0].location)
               setPropertyArea(profile_doc.data[0].area)
               setAreaType(profile_doc.data[0].areatype)
+              setPropertyMode(profile_doc.data[0].propertymode)
               setPropertyType(profile_doc.data[0].property)
               setPhase(profile_doc.data[0].phase)
               setRooms(profile_doc.data[0].rooms)
@@ -661,6 +671,55 @@ function EditUsers(props) {
 
 
 
+
+
+    const handlePropertyModeInput = (event) => {
+      event.preventDefault()
+      setPropertyMode(event.target.value);
+    };
+  
+    const handlePropertyModeEdit = (event) => {
+      event.preventDefault()
+      setPropertyModetoggle(true)
+    };
+    
+    const handlePropertyModeSubmit = async (event) => {
+      event.preventDefault()
+
+          // Check if propertyMode is empty
+          if(!propertyMode){
+            setFormError({
+              ...inputError,
+              propertyMode: "Please select your mode",
+              propertyMode_status: "error"
+            })
+            return;
+          } 
+
+          try{
+            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertymode/${Id}`, 
+              JSON.stringify({
+              propertymode: propertyMode,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Property Mode Updated Successfully");
+              setPropertyModetoggle(false)
+            } catch (err) {
+              alert(err);
+            }         
+            setFormError(inputError); 
+    }
+
+
+
+
+
+
+
     const handlePriceInput = (event) => {
       event.preventDefault()
       setPrice(event.target.value);
@@ -1024,6 +1083,56 @@ function EditUsers(props) {
               </tbody>
           </table>
         </div>
+
+
+
+
+        <div className="form-group">
+          <table align='center'>
+            <tbody>
+            <tr>
+              <th><label className="form-label">Property Mode</label></th>
+            </tr>
+            <tr>
+              { propertyModetoggle?
+              <>
+              <td><div className="d-flex justify-content-center mb-3">
+                  <select 
+                  className="form-select" 
+                  title="propertyMode"
+                  name="propertyMode"
+                  value={propertyMode}
+                  onChange={handlePropertyModeInput}
+                  style={{borderColor: formError.propertyMode_status !== "error" ?"":"red"}}  
+                    >
+                    {propertyModeList.map((option,index) => (
+                      <option value={option.value} key={index}>{option.label}</option>
+                    ))}
+                  </select>
+                  </div>
+              </td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyModeSubmit} type="submit" style={{width:25}}><FaCheck /></button></td>
+              </>:
+              <>
+              <td><input 
+              type="text"  
+              className="form-control mb-3" 
+              id="propertyMode" 
+              placeholder="Select Your Mode"
+              name="propertyMode"
+              value={propertyMode}
+              readOnly
+              /></td>
+              <td style={{verticalAlign: "top"}}><button onClick={handlePropertyModeEdit} type="submit" style={{width:25}}><FaEdit /></button></td>
+              </>}
+            </tr>
+            <tr>
+            <td><p className="error-message">{formError.propertyMode}</p></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+
 
 
         <div className="form-group">

@@ -516,6 +516,23 @@ module.exports.profilePropertyTypeDBService = async (id,data) => {
 }
 
 
+module.exports.profilePropertyModeDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.users.findByIdAndUpdate(id,{propertymode:data.propertymode},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Property Mode updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Property Mode failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+
 module.exports.profileAreaTypeDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
         await dataModel.users.findByIdAndUpdate(id,{areatype:data.areatype},{new:true})
