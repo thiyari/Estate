@@ -195,7 +195,7 @@ const areaTypeList = [
 
 const propertyModeList = [
   { value: '', label: 'Select Your Mode'},
-  { value: 'Sell', label: 'Sell'},
+  { value: 'Sale', label: 'Sale'},
   { value: 'Rent', label: 'Rent'},
   { value: 'Lease', label: 'Lease'},
 ]
