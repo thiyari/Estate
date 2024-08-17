@@ -411,6 +411,7 @@ return(
                       <tr>
                         <th>Property ID</th>
                         <th>Property Type</th>
+                        <th>Property</th>
                         <th>Area</th>
                         <th>Phase</th>
                         <th>Rooms</th>
@@ -426,6 +427,7 @@ return(
                       <tr key={index}>
                         <td>{profile.propertyid}</td>
                         <td>{profile.property}</td>
+                        <td>{profile.propertymode}</td>
                         <td>{profile.area}{" "}{profile.areatype}</td>
                         <td>{profile.phase}</td>
                         <td>{profile.rooms}</td>
