@@ -14,6 +14,7 @@ function Approvals(props) {
     const [propertyLocation, setPropertyLocation] = useState('')
     const [propertyArea, setPropertyArea] = useState('')
     const [areaType, setAreaType] = useState("")
+    const [propertyMode, setPropertyMode] = useState("")
     const [propertyType, setPropertyType] = useState('')
     const [phase, setPhase] = useState('')
     const [rooms, setRooms] = useState('')
@@ -67,6 +68,7 @@ function Approvals(props) {
               setPhone(profile_doc.data[0].phone)
               setPropertyLocation(profile_doc.data[0].location)
               setPropertyArea(profile_doc.data[0].area)
+              setPropertyMode(profile_doc.data[0].propertymode)
               setAreaType(profile_doc.data[0].areatype)
               setPropertyType(profile_doc.data[0].property)
               setPhase(profile_doc.data[0].phase)
@@ -195,6 +197,10 @@ function Approvals(props) {
                         <tr>
                             <td>Property Location</td>
                             <td>{propertyLocation}</td>
+                        </tr>
+                        <tr>
+                            <td>Property Mode</td>
+                            <td>{propertyMode}</td>
                         </tr>
                         <tr>
                             <td>Property Area</td>

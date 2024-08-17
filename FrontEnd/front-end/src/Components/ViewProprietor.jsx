@@ -89,6 +89,10 @@ function ViewProprietor(props) {
                     <td>{profile.property}</td>
                   </tr>
                   <tr>
+                    <td>Property Mode</td>
+                    <td>{profile.propertymode}</td>
+                  </tr>
+                  <tr>
                     <td>Area</td>
                     <td>{profile.area}{" "}{profile.areatype}</td>
                   </tr>
