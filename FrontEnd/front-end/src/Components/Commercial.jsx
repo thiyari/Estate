@@ -79,7 +79,7 @@ function Commercial(props) {
                                         </div>
                                         <div className="col-md-4">
                                         <div className="card-body">
-                                            <h5 className="card-title">{profile.property}</h5>
+                                            <h5 className="card-title">{profile.property} for {profile.propertymode}</h5>
                                             <ul className="list-group list-group-flush">
                                                 <li className="list-group-item">Property ID: {profile.propertyid}</li>
                                                 <li className="list-group-item">Area: {profile.area}{" "}{profile.areatype}</li>
