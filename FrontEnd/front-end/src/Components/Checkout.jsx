@@ -209,7 +209,7 @@ function Checkout(props) {
               <div className="card-body" align="center">
               <div className='col-md-2'></div>
               <div className='col-md-8'>
-              <h2 className='mb-2'>Details of Confirmation</h2>
+              <h2 className='mb-2'>Details for Confirmation</h2>
               <table className="table table-striped table-hover">
                 <thead>
                   <tr>
