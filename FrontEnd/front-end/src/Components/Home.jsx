@@ -88,7 +88,7 @@ function Home(props) {
                                         loop={true}
                                         />}
                                         </div>
-                                    <h5 className="card-title mt-3">{profile.property}</h5>
+                                    <h5 className="card-title mt-3">{profile.property} for {profile.propertymode}</h5>
                                     <ul className="list-group list-group-flush">
                                         <li className="list-group-item">Area: {profile.area}{" "}{profile.areatype}</li>
                                         <li className="list-group-item">Rooms: {profile.rooms}</li>

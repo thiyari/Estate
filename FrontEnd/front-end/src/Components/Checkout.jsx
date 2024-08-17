@@ -227,6 +227,10 @@ function Checkout(props) {
                     <td>{profile.property}</td>
                   </tr>
                   <tr>
+                    <td>Property</td>
+                    <td>For {profile.propertymode}</td>
+                  </tr>
+                  <tr>
                     <td>Area</td>
                     <td>{profile.area}{" "}{profile.areatype}</td>
                   </tr>
