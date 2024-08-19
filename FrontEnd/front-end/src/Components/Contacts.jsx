@@ -5,6 +5,7 @@ import AdminSidebar from "./Sidebar/AdminSidebar";
 import { IoIosMail } from "react-icons/io";
 import Checkbox from "./Checkbox/Checkbox";
 import { PiUploadSimpleBold } from "react-icons/pi";
+import { FaEdit } from "react-icons/fa";
 
 function Contacts(props) {
 
@@ -198,7 +199,7 @@ function Contacts(props) {
 											<th scope="col">Last Name</th>
 											<th scope="col">Email</th>
 											<th scope="col">Phone</th>
-											<th colSpan={2} style={{textAlign: "center"}}>
+											<th colSpan={3} style={{textAlign: "center"}}>
 												<button type="submit" onClick={()=>{navigate('/AddNewContact')}} className="btn btn-primary" style={{width: 100, height: 35}}>Add New</button>
 											</th>
 										</tr>
@@ -216,6 +217,7 @@ function Contacts(props) {
 																							<td>{contact.lastname}</td>
 																							<td>{contact.email}</td>
 																							<td>{contact.phone}</td>
+																							<td align='right'><NavLink exact="true" to={`/EditContacts/${contact._id}`} ><FaEdit /></NavLink></td>
 																							<td align='right'><NavLink exact="true" to={`/EmailForm/${contact.email}`} ><IoIosMail size={20}/>
 																							</NavLink></td>
 																							<td align='center'><button style={{width: 25}} onClick={(e)=>{
