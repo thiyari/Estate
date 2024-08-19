@@ -157,7 +157,7 @@ function Checkout(props) {
               New Service Request for ID: ${propertyid}
               `,
               message: `
-              Dear ${formInput.fname} ${formInput.lname}
+              Dear ${formInput.fname} ${formInput.lname},
               <br><br>
               This is to confirm that we have received a new service request for <b>${propertyid}</b>. 
               Our supporting team will soon contact you for providing the best service.
