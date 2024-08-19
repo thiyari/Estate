@@ -51,15 +51,14 @@ function EditContacts(props){
 
 
     const contact = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/contacts/${Id}`)
+      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/contacts`)
         .then(res => {
-          if(res.data.status){
-            const contact_doc = res.data.records          
-            setFname(contact_doc.data[0].firstname)
-            setLname(contact_doc.data[0].lastname)
-            setEmail(contact_doc.data[0].email)
-            setPhone(contact_doc.data[0].phone)
-          } 
+          const records = res.data.records
+          const contact_doc = records.filter((doc) => (Id === doc._id))
+            setFname(contact_doc[0].firstname)
+            setLname(contact_doc[0].lastname)
+            setEmail(contact_doc[0].email)
+            setPhone(contact_doc[0].phone)
         })
         .catch(err => console.log(err))
     },[Id]) 
