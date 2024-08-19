@@ -60,10 +60,11 @@ const connectDB = async()=>{
 }
 
 const transporter = nodemailer.createTransport({
-    service: process.env.EMAIL_DOMAIN_APP_SERVICE,
+    host: process.env.EMAIL_SERVICE_HOST,
+    port: process.env.EMAIL_SERVICE_PORT,
     auth: {
-        user: process.env.AUTH_DOMAIN_APP_USER,
-        pass: process.env.AUTH_DOMAIN_APP_PASSWORD,
+        user: process.env.AUTH_SERVICE_USER,
+        pass: process.env.AUTH_SERVICE_PASSWORD,
     }
 })
 
@@ -82,7 +83,7 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
             })
     
     const mailOptions = {
-        from: process.env.AUTH_DOMAIN_APP_USER,
+        from: process.env.AUTH_SERVICE_USER,
         bcc: to,
         subject: subject,
         html: message,
