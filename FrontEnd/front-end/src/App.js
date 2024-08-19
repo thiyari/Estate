@@ -27,6 +27,7 @@ import ViewProprietor from './Components/ViewProprietor';
 import AddNewContact from './Components/AddNewContact';
 import ForgotPassword from './Components/ForgotPassword';
 import EmailForm from './Components/EmailForm';
+import EditContacts from './Components/EditContacts';
 import { useState } from 'react';
 
 function App() {
@@ -64,6 +65,7 @@ const handleLogin = (status) => {
           <Route path="/Contacts" element = {<Contacts LoginStatus={handleLogin}/>} />
           <Route path="/EmailForm/:email" element = {<EmailForm LoginStatus={handleLogin}/>} />
           <Route path="/EditUsers/:propertyId" element = {<EditUsers LoginStatus={handleLogin}/>} />
+          <Route path="/EditContacts/:Id" element = {<EditContacts LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
           <Route path="/Approvals/:propertyId" element = {<Approvals LoginStatus={handleLogin}/>} />
           <Route path="/ViewProprietor/:propertyid/:fname/:lname" element = {<ViewProprietor LoginStatus={handleLogin}/>} />
