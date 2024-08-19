@@ -158,11 +158,11 @@ function Checkout(props) {
               `,
               message: `
               Dear ${formInput.fname} ${formInput.lname}
-              ${"\n\n"}
+              <br><br>
               This is to confirm that we have received a new service request for ${propertyid}. 
               Our supporting team will soon contact you for providing the best service.
-              ${"\n\n"}
-              Regards,${"\n"} 
+              <br><br>
+              Regards,<br>
               Admin
               `
             }),

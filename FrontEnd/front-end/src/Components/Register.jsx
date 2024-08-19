@@ -717,11 +717,11 @@ function Register(props) {
             `,
             message: `
             Dear ${formInput.fname} ${formInput.lname},
-            ${"\n\n"}
+            <br><br>
             Your details are submitted successfully, your new property id is ${pid}. Soon we are going to display your property partculars over the site once our supporting team contacts you for confirmation
             You may please login using your user id ${formInput.user} or with your email ${formInput.email}.
-            ${"\n\n"}
-            Regards,${"\n"}
+            <br><br>
+            Regards,<br>
             Admin
             `
           }),
