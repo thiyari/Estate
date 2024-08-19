@@ -701,11 +701,43 @@ function Register(props) {
             }
           });
           alert("User Registation Successful");
+          setLoading(false);
+          setRoomSelect('')
+          setImg('')
+          setUsernames('')
+        } catch (err) {
+          alert(err);
+        }
+
+
+        try {
+          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+            to: formInput.email,
+            subject: `
+            Registration Completed
+            `,
+            message: `
+            Dear ${formInput.fname} ${formInput.lname},
+            \n\n
+            Your details are submitted successfully, soon we are going to display your property partculars over the site once our supporting team contacts you for confirmation
+            You may please login and view your profile.
+            \n\n
+            Regards,\n
+            Support Team.
+            `
+          }),
+          {
+            headers:{
+              "Content-Type":"application/json"
+              }
+          }).then((res) => {
+            console.log(res.data.output);
+          });
           setFormInput({
             fname: "",
             lname: "",
             user: "",
-            email: "",
+            email:  "",
             password: "",
             confirmPassword: "",
             phone: "",
@@ -722,14 +754,11 @@ function Register(props) {
             price: "",
             address: "",
           })
-          setLoading(false);
-          setRoomSelect('')
-          setImg('')
-          setUsernames('')
-          navigate('/Login');
-        } catch (err) {
+          navigate('/Login')
+        } catch(err) {
           alert(err);
         }
+
 
       }
     
