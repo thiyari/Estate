@@ -60,10 +60,10 @@ const connectDB = async()=>{
 }
 
 const transporter = nodemailer.createTransport({
-    service: "gmail",
+    service: process.env.EMAIL_DOMAIN_APP_SERVICE,
     auth: {
-        user: process.env.AUTH_GMAIL_APP_USER,
-        pass: process.env.AUTH_GMAIL_APP_PASSWORD,
+        user: process.env.AUTH_DOMAIN_APP_USER,
+        pass: process.env.AUTH_DOMAIN_APP_PASSWORD,
     }
 })
 
@@ -82,7 +82,7 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
             })
     
     const mailOptions = {
-        from: process.env.AUTH_GMAIL_APP_USER,
+        from: process.env.AUTH_DOMAIN_APP_USER,
         bcc: to,
         subject: subject,
         html: message,

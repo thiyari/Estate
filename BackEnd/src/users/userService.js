@@ -658,15 +658,15 @@ module.exports.forgotPasswordDBService = async (emailbody) => {
                 });
                 const link = `http://localhost:8000/api/reset-password/${oldUser._id}/${token}`;
                 var transporter = nodemailer.createTransport({
-                  service: "gmail",
+                  service: process.env.EMAIL_DOMAIN_APP_SERVICE,
                   auth: {
-                    user: process.env.AUTH_GMAIL_APP_USER,
-                    pass: process.env.AUTH_GMAIL_APP_PASSWORD,
+                    user: process.env.AUTH_DOMAIN_APP_USER,
+                    pass: process.env.AUTH_DOMAIN_APP_PASSWORD,
                   },
                 });
             
                 var mailOptions = {
-                  from: process.env.AUTH_GMAIL_APP_USER,
+                  from: process.env.AUTH_DOMAIN_APP_USER,
                   to: email,
                   subject: "Password Reset",
                   text: "\nPlease click on the below link to reset your password\n\n"+link,
@@ -744,15 +744,15 @@ module.exports.emailDBService = async (userData) => {
         return new Promise(async function myFn(resolve,reject){
         try {
                 var transporter = nodemailer.createTransport({
-                  service: "gmail",
+                  service: process.env.EMAIL_DOMAIN_APP_SERVICE,
                   auth: {
-                    user: process.env.AUTH_GMAIL_APP_USER,
-                    pass: process.env.AUTH_GMAIL_APP_PASSWORD,
+                    user: process.env.AUTH_DOMAIN_APP_USER,
+                    pass: process.env.AUTH_DOMAIN_APP_PASSWORD,
                   },
                 });
             
                 var mailOptions = {
-                  from: process.env.AUTH_GMAIL_APP_USER,
+                  from: process.env.AUTH_DOMAIN_APP_USER,
                   to: userData.to,
                   subject: userData.subject,
                   html: userData.message,
