@@ -718,8 +718,9 @@ function Register(props) {
             message: `
             Dear ${formInput.fname} ${formInput.lname},
             <br><br>
-            Your details are submitted successfully, your new property id is ${pid}. Soon we are going to display your property partculars over the site once our supporting team contacts you for confirmation
+            Your details are submitted successfully, your new property id is ${pid}. 
             You may please login using your user id ${formInput.user} or with your email ${formInput.email}.
+            Your property details will be displayed soon once our supporting team contacts you for confirmation.
             <br><br>
             Regards,<br>
             Admin
