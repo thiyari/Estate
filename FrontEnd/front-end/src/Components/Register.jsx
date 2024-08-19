@@ -700,7 +700,6 @@ function Register(props) {
             "Content-Type":"application/json"
             }
           });
-          alert("User Registation Successful");
           setLoading(false);
           setRoomSelect('')
           setImg('')
@@ -714,16 +713,16 @@ function Register(props) {
           await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
             to: formInput.email,
             subject: `
-            Registration Completed
+            New Registration ID: ${pid}
             `,
             message: `
             Dear ${formInput.fname} ${formInput.lname},
-            \n\n
-            Your details are submitted successfully, soon we are going to display your property partculars over the site once our supporting team contacts you for confirmation
+            ${"\n\n"}
+            Your details are submitted successfully, your new property id is ${pid}. Soon we are going to display your property partculars over the site once our supporting team contacts you for confirmation
             You may please login and view your profile.
-            \n\n
-            Regards,\n
-            Support Team.
+            ${"\n\n"}
+            Regards,${"\n"}
+            Admin
             `
           }),
           {
@@ -737,6 +736,7 @@ function Register(props) {
         } catch(err) {
           alert(err);
         }
+        alert("User Registation Successful");
         setFormInput({
           fname: "",
           lname: "",

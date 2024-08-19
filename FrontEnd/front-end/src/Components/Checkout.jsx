@@ -145,6 +145,34 @@ function Checkout(props) {
               "Content-Type":"application/json"
               }
             });
+          } catch (err) {
+            alert(err);
+          }
+
+
+          try {
+            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+              to: formInput.email,
+              subject: `
+              New Service Request for ID: ${propertyid}
+              `,
+              message: `
+              Dear ${formInput.fname} ${formInput.lname}
+              ${"\n\n"}
+              This is to confirm that we have received a new service request for ${propertyid}. 
+              Our supporting team will soon contact you for providing the best service.
+              ${"\n\n"}
+              Regards,${"\n"} 
+              Admin
+              `
+            }),
+            {
+              headers:{
+                "Content-Type":"application/json"
+                }
+            }).then((res) => {
+              console.log(res.data.output);
+            });
             alert("Your request was sent Successfully");
             setFormInput({
               fname: "",
@@ -155,11 +183,11 @@ function Checkout(props) {
             })
             setImages('')
             setProfile('')
-            navigate('/');
-          } catch (err) {
+            navigate('/')
+          } catch(err) {
             alert(err);
           }
-
+  
     }
 
     const session = useCallback(async ()=>{
