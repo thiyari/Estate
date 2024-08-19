@@ -733,33 +733,31 @@ function Register(props) {
           }).then((res) => {
             console.log(res.data.output);
           });
-          setFormInput({
-            fname: "",
-            lname: "",
-            user: "",
-            email:  "",
-            password: "",
-            confirmPassword: "",
-            phone: "",
-            area: "",
-            location: "",
-            zip: "",
-            areatype: "",
-            phase: "",
-            rooms: "",
-            propertyMode: "",
-            floor: "",
-            currency: "",
-            property: "",
-            price: "",
-            address: "",
-          })
           navigate('/Login')
         } catch(err) {
           alert(err);
         }
-
-
+        setFormInput({
+          fname: "",
+          lname: "",
+          user: "",
+          email:  "",
+          password: "",
+          confirmPassword: "",
+          phone: "",
+          area: "",
+          location: "",
+          zip: "",
+          areatype: "",
+          phase: "",
+          rooms: "",
+          propertyMode: "",
+          floor: "",
+          currency: "",
+          property: "",
+          price: "",
+          address: "",
+        })
       }
     
     return (
