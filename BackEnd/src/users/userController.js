@@ -799,6 +799,91 @@ var resetPasswordControllerFn = async(req,res) => {
         }
     };
 
+
+
+
+    var contactsFnameControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.contactsFnameUserDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+        }  
+
+
+
+    var contactsLnameControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.contactsLnameUserDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+        }  
+
+
+
+    var contactsEmailControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.contactsEmailUserDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+        }  
+
+
+
+    var contactsPhoneControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.contactsPhoneUserDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+        }  
+
 module.exports = { 
     createUserControllerFn, 
     loginUserControllerFn, 
@@ -844,5 +929,9 @@ module.exports = {
     resetPasswordControllerFn,
     emailControllerFn,
     profileAreaTypeControllerFn,
-    profilePropertyModeControllerFn
+    profilePropertyModeControllerFn,
+    contactsFnameControllerFn,
+    contactsLnameControllerFn,
+    contactsEmailControllerFn,
+    contactsPhoneControllerFn
 }

@@ -755,8 +755,7 @@ module.exports.emailDBService = async (userData) => {
                   from: process.env.AUTH_DOMAIN_APP_USER,
                   to: userData.to,
                   subject: userData.subject,
-                  html: userData.message,
-                  attachments: userData.attachments
+                  html: userData.message
                 };
             
                 transporter.sendMail((mailOptions), function (error, info) {
@@ -769,5 +768,76 @@ module.exports.emailDBService = async (userData) => {
               } catch (error) {
                 console.log(error)
               }
+        })
+}
+
+
+
+
+module.exports.contactsFnameUserDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.contacts.findByIdAndUpdate(id,{firstname:data.firstname},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"First name changed"});
+                        } else {
+                           reject({success:false,msg:"changing first name failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+
+
+module.exports.contactsLnameControllerFn = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.contacts.findByIdAndUpdate(id,{lastname:data.lastname},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Last name changed"});
+                        } else {
+                           reject({success:false,msg:"changing last name failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+
+
+module.exports.contactsEmailUserDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.contacts.findByIdAndUpdate(id,{email:data.email},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Email changed"});
+                        } else {
+                           reject({success:false,msg:"changing email failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
+
+
+
+module.exports.contactsPhoneUserDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.contacts.findByIdAndUpdate(id,{phone:data.phone},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Phone name changed"});
+                        } else {
+                           reject({success:false,msg:"changing phone number failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
         })
 }
