@@ -7,6 +7,7 @@ function ImageSlider(props) {
   const [Images,setImages] = useState([])
   const [uploadToggle,setUploadToggle] = useState(false)
   const [uploadImages, setUploadImages] = useState([])
+  const [uploadedFileNames, setUploadedFileNames] = useState([])
   const [approved, setApproved] = useState(false)
 
   const profile = useCallback(async ()=>{
@@ -54,6 +55,7 @@ function ImageSlider(props) {
 
     const handleUploadImage = async (e) => {
         e.preventDefault()
+        setUploadedFileNames([...e.target.files])
           let images = []
           for (let i = 0; i < e.target.files.length; i++) {
              images.push(await imagebased64(e.target.files[i]))
@@ -122,7 +124,7 @@ function ImageSlider(props) {
         <td><button onClick={handleNextClick}><i className="fa fa-angle-double-right" style={{fontSize:"18px"}}></i></button></td>        
         <td>{ uploadToggle ? 
           <>
-          <button type="submit" style={{paddingLeft: 80, paddingRight: 80, width: 25}} onClick={handleSubmit}><i class="fa fa-check" aria-hidden="true"></i></button>
+          <button type="submit" style={{paddingLeft: 80, paddingRight: 80, width: 25}} onClick={handleSubmit}><i className="fa fa-check" aria-hidden="true"></i></button>
           </>
         :
           <div>
@@ -139,6 +141,9 @@ function ImageSlider(props) {
     </tr>
   </tbody>
 </table>
+<div>{uploadedFileNames.map((file,index)=>(
+		<p className="success-message" key={index}>Uploaded {file.name}</p>
+	))}</div>
 </div>
   )}
   </>
