@@ -61,7 +61,8 @@ function ImageSlider(props) {
              images.push(await imagebased64(e.target.files[i]))
           }
         setUploadImages(images)
-        setUploadToggle(true)  
+        setUploadToggle(true)
+        alert("Click the below check mark displayed after to submit uploads")
       };
 
     const handleSubmit = async (e) => {
@@ -143,7 +144,8 @@ function ImageSlider(props) {
 </table>
 <div>{uploadedFileNames.map((file,index)=>(
 		<p className="success-message" key={index}>Uploaded {file.name}</p>
-	))}</div>
+	))
+  }</div>
 </div>
   )}
   </>
