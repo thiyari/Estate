@@ -293,7 +293,9 @@ function Contacts(props) {
 														</div>
 													</label>
 												</div>
-
+												<div>{files.map((file,index)=>(
+													<p className="success-message" key={index}>Attached {file.name}</p>
+												))}</div>
 
 												<div align="center">
 													{!loading && <input className="btn btn-primary mt-5" type="submit" value="Send Emails" /> }
