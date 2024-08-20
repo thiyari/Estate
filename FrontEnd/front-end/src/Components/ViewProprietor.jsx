@@ -1,13 +1,13 @@
-import {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from "axios";
 import { useParams } from "react-router-dom";
-
+import AdminSidebar from './Sidebar/AdminSidebar';
 
 function ViewProprietor(props) {
 
     const [loggedIn, setLoggedIn] = useState(false)
-    const { propertyid, fname, lname } = useParams()
+    const { propertyid } = useParams()
     const [profile, setProfile] = useState({})
     const [Images, setImages] = useState([])
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
@@ -46,6 +46,13 @@ function ViewProprietor(props) {
     },[session, property_id])
 
     return(
+      <React.Fragment>
+      <div className="row">
+      <div className="col-md-2">        
+        <AdminSidebar/>
+      </div>
+      <div className="col-md-10" style={{paddingLeft: 30}}>
+        
       <div className="container">
       <div className="row">
       <div className="col-md-1"></div>
@@ -59,7 +66,6 @@ function ViewProprietor(props) {
               <div className="card-body" align="center">
               <div className='col-md-2'></div>
               <div className='col-md-8'>
-              <h2 className='mb-2'>Requested by {fname} {lname} </h2>
               <table className="table table-striped table-hover">
                 <thead>
                   <tr>
@@ -177,6 +183,10 @@ function ViewProprietor(props) {
       <div className="col-md-1"></div>
   </div>
   </div>
+  
+  </div>
+  </div>
+  </React.Fragment>
     )
 }
 

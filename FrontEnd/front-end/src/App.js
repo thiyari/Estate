@@ -68,7 +68,7 @@ const handleLogin = (status) => {
           <Route path="/EditContacts/:Id" element = {<EditContacts LoginStatus={handleLogin}/>} />
           <Route path="/Checkout/:propertyid" element = {<Checkout LoginStatus={handleLogin}/>} />
           <Route path="/Approvals/:propertyId" element = {<Approvals LoginStatus={handleLogin}/>} />
-          <Route path="/ViewProprietor/:propertyid/:fname/:lname" element = {<ViewProprietor LoginStatus={handleLogin}/>} />
+          <Route path="/ViewProprietor/:propertyid" element = {<ViewProprietor LoginStatus={handleLogin}/>} />
         </Routes>
         <Footer/>
       </Router>

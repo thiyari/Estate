@@ -111,7 +111,7 @@ function ServiceRequests(props) {
                                               <td>{profile.comments}</td>
                                               <td>{profile.requests}</td>
                                               <td>{formatedDate(profile.createdAt)}</td>
-                                              <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}/${profile.firstname}/${profile.lastname}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
+                                              <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
                                               </NavLink></td>
                                               <td align='right'><NavLink exact="true" to={`/EmailForm/${profile.email}`} ><IoIosMail size={20}/>
                                               </NavLink></td>
