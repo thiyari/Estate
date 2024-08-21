@@ -86,6 +86,7 @@ var loginUserControllerFn = async(req,res)=>
         session.id = result.id
         session.logstatus = result.logstatus
         req.session.save()
+        console.log(req.session.username)
         if(result.status){
             res.send({"status":true,"message":result.msg,"logstatus":result.logstatus});
         }
