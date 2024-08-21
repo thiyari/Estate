@@ -51,7 +51,7 @@ function AboutUs(props) {
               <br></br>
               <br></br>
               <div align="center">
-              <img alt="images" width={500} height={300} src="https://www.mckissock.com/wp-content/uploads/2016/11/GettyImages-1151832961.jpg"/>
+              <img alt="images" className="img-fluid" width={500} height={300} src="https://www.mckissock.com/wp-content/uploads/2016/11/GettyImages-1151832961.jpg"/>
               </div>
               <br></br>
               <h5>OUR MISSION</h5>
