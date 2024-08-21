@@ -86,7 +86,6 @@ var loginUserControllerFn = async(req,res)=>
         session.id = result.id
         session.logstatus = result.logstatus
         req.session.save()
-        console.log(req.session.username)
         if(result.status){
             res.send({"status":true,"message":result.msg,"logstatus":result.logstatus});
         }
@@ -102,6 +101,7 @@ var loginUserControllerFn = async(req,res)=>
 
 var logoutUserControllerFn = async(req,res)=>
     {
+        console.log(req.session.username)
         if(req.session.username){
             req.session.destroy();
             res.clearCookie('connect.sid');
