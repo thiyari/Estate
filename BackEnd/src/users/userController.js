@@ -102,7 +102,7 @@ var loginUserControllerFn = async(req,res)=>
 var logoutUserControllerFn = async(req,res)=>
     {
         if(session.username){
-            session.destroy();
+            req.session.destroy();
             res.clearCookie('connect.sid');
             return res.json({valid: true})
         } else {
@@ -111,7 +111,6 @@ var logoutUserControllerFn = async(req,res)=>
     }
 
 var sessionControllerFn = async(req,res)=>{
-    console.log(session.username)
         if(session.username){
             return res.json({valid: true, 
                 username: session.username, 
