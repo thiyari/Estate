@@ -35,7 +35,10 @@ function AboutUs(props) {
                     <div className="header-font">About Us</div>
                   </center>
               </h1>
-              <div className="card-body" align="left">
+              <div className="card-body">
+              <div className='row'>
+              <div className='col-md-1'></div>
+              <div className='col-md-10'>
               Our Organization offers the comprehensive capabilities and deep industry knowledge necessary to help you in Real Estate. Our Consultancy is Hyderabad's leading service provider. 
               We believe that customer satisfaction is the ultimate. Hence we are always driven towards providing customer-oriented service specializing in Home Loans and Real Estate Sectors. 
               Our Organization is managed by a team of dynamic professionals who frequently take care of customer’s happiness, either giving the attention of customers towards business dealing or documentation of work.    
@@ -47,15 +50,22 @@ function AboutUs(props) {
               Give us a call today and let’s discuss what we can do for you.
               <br></br>
               <br></br>
-              <h3>OUR MISSION</h3>
+              <div align="center">
+              <img alt="images" width={500} height={300} src="https://www.mckissock.com/wp-content/uploads/2016/11/GettyImages-1151832961.jpg"/>
+              </div>
+              <br></br>
+              <h5>OUR MISSION</h5>
               <br></br>
               The Mission of this Organization is to provide excellent service and expertise in Home Loan and Real Estate in and around Telangana & Andhra Pradesh.
               <br></br>
               <br></br>
-              <h3>OUR VISION</h3>
+              <h5>OUR VISION</h5>
               <br></br>
               The Vision of this Organization is to reduce threats and improve the returns on Home Loan and real estate investments and providing the best services at the best location to our customers.
               </div>
+              </div>
+              <div className='col-md-1'></div>
+            </div>
           </div>
         </div>
       <div className="col-md-1"></div>
