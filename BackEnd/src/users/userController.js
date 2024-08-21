@@ -80,9 +80,9 @@ var loginUserControllerFn = async(req,res)=>
     try
     {
         var result = await userService.loginuserDBService(req.body)
-        req.session.username = req.body.user
-        req.session.password = req.body.password
-        req.session.isLoggedIn = true;
+        session.username = req.body.user
+        session.password = req.body.password
+        session.isLoggedIn = true;
         session.id = result.id
         session.logstatus = result.logstatus
         req.session.save()
@@ -101,8 +101,8 @@ var loginUserControllerFn = async(req,res)=>
 
 var logoutUserControllerFn = async(req,res)=>
     {
-        if(req.session.username){
-            req.session.destroy();
+        if(session.username){
+            session.destroy();
             res.clearCookie('connect.sid');
             return res.json({valid: true})
         } else {
@@ -111,13 +111,13 @@ var logoutUserControllerFn = async(req,res)=>
     }
 
 var sessionControllerFn = async(req,res)=>{
-    console.log(req.session.username)
-        if(req.session.username){
+    console.log(session.username)
+        if(session.username){
             return res.json({valid: true, 
-                username: req.session.username, 
-                password: req.session.password, 
+                username: session.username, 
+                password: session.password, 
                 id: session.id,
-                isLoggedIn: req.session.isLoggedIn,
+                isLoggedIn: session.isLoggedIn,
                 logstatus: session.logstatus
             })
         } else {
