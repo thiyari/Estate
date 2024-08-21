@@ -6,43 +6,43 @@ function Footer(){
     return(
         <React.Fragment>
             <footer className="bd-footer py-4 py-md-5 mt-5 bg-white">
-                <section className='d-flex justify-content-center'>
-                    <div className='me-5 d-none d-lg-block'>
-                        <span>Get connected with us on social media Network</span>
-                    </div>
-                    <div>
-                        <a href='#f'><FaFacebook/></a>
-                        <a href='#t'><FaTwitter/></a>
-                        <a href='#l'><FaLinkedin/></a>
-                        <a href='#y'><FaYoutube/></a>
-                    </div>
-                </section>
                 <div className='container p-4'>
                     <div className='row'>
                         <div className='col-sm-6'>
-                            <h5>About Us</h5>
+                            <h5>Our Motive</h5>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
                         </div>
                         <div className='col-sm-2'>
                             <h5>Navigation</h5>
-                            <p><a href="#h">Home</a></p>
-                            <p><a href='#a'>About Us</a></p>
-                            <p><a href='#c'>Contact Us</a></p>
+                            <p><a href="/">Home</a></p>
+                            <p><a href="/AboutUs">About Us</a></p>
+                            <p><a href="/ContactUs">Contact Us</a></p>
                         </div>
                         <div className='col-sm-2'>
                             <h5>Services</h5>
-                            <p><a href='#h'>Home</a></p>
-                            <p><a href='#a'>About Us</a></p>
-                            <p><a href='#c'>Contact Us</a></p>
+                            <p><a href="/Plots">Plots</a></p>
+                            <p><a href="/Houses">Houses</a></p>
+                            <p><a href="/Commercial">Commercial</a></p>
                         </div>
                         <div className='col-sm-2'>
                             <h5>Address</h5>
                             <p>India</p>
                             <p>Po box no-501505</p>
-                            <p>+91-9542204521</p>
+                            <p>+91-9896547813</p>
                         </div>
                     </div>
                 </div>
+                <section className='d-flex justify-content-center'>
+                    <div className='me-5 d-none d-lg-block'>
+                        <span>Get connected with us on social media Network</span>
+                    </div>
+                    <div>
+                        <a href='#f'><FaFacebook size={25}/></a>{" "}
+                        <a href='#t'><FaTwitter size={25}/></a>{" "}
+                        <a href='#l'><FaLinkedin size={25}/></a>{" "}
+                        <a href='#y'><FaYoutube size={25}/></a>
+                    </div>
+                </section>
             </footer>
         </React.Fragment>
     );
