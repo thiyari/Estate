@@ -39,7 +39,7 @@ app.use(session({
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-dotenv.config({path: path.resolve(__dirname, 'config.env')})
+dotenv.config({path: path.resolve(__dirname, '.env')})
 const PORT = process.env.PORT||8080
 
 app.listen(PORT, function check(err){
