@@ -10,6 +10,7 @@ var routes = require('./route/routes');
 const cors = require('cors');
 const multer = require("multer")
 const nodemailer = require("nodemailer");
+const MemoryStore = require('memorystore')(session)
 
 app.use(cors(
     {   origin: ['http://localhost:3000', 'https://estateclient.onrender.com'],
@@ -28,7 +29,10 @@ app.use(session({
     cookie: {
         secure: false,
         maxAge: 24 * 60 * 60 * 1000 // 24 hours
-    }
+    },
+    store: new MemoryStore({
+        checkPeriod: 86400000 // prune expired entries every 24h
+      }),
 }
 ))
 
