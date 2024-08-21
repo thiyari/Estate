@@ -28,6 +28,7 @@ import AddNewContact from './Components/AddNewContact';
 import ForgotPassword from './Components/ForgotPassword';
 import EmailForm from './Components/EmailForm';
 import EditContacts from './Components/EditContacts';
+import AboutUs from './Components/AboutUs';
 import { useState } from 'react';
 
 function App() {
@@ -63,6 +64,7 @@ const handleLogin = (status) => {
           <Route path="/ServiceRequests" element = {<ServiceRequests LoginStatus={handleLogin}/>} />
           <Route path="/ContactsRequests" element = {<ContactsRequests LoginStatus={handleLogin}/>} />
           <Route path="/Contacts" element = {<Contacts LoginStatus={handleLogin}/>} />
+          <Route path="/AboutUs" element = {<AboutUs LoginStatus={handleLogin}/>} />
           <Route path="/EmailForm/:email" element = {<EmailForm LoginStatus={handleLogin}/>} />
           <Route path="/EditUsers/:propertyId" element = {<EditUsers LoginStatus={handleLogin}/>} />
           <Route path="/EditContacts/:Id" element = {<EditContacts LoginStatus={handleLogin}/>} />

@@ -69,7 +69,7 @@ const logoutHandler = () => {
           <a className="nav-link" href="../ContactUs">Contact us</a>
         </li>
         <li className="nav-item">
-          <a className="nav-link" href="#a">About us</a>
+          <a className="nav-link" href="../AboutUs">About us</a>
         </li>
         <li className="nav-item">
           { logStatus === "admin" ?
