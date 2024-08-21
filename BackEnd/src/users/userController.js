@@ -108,7 +108,7 @@ var logoutUserControllerFn = async(req,res)=>
             session.id = ""
             session.logstatus = ""
             */
-            sessionStorage.clear();
+            store.clear();
             res.clearCookie('connect.sid');
             return res.json({valid: true})
         } else {
