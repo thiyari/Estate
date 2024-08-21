@@ -101,14 +101,11 @@ var loginUserControllerFn = async(req,res)=>
 var logoutUserControllerFn = async(req,res)=>
     {
         if(session.username){
-            /*
             session.username = ""
             session.password = ""
             session.isLoggedIn = false;
             session.id = ""
             session.logstatus = ""
-            */
-            store.clear();
             res.clearCookie('connect.sid');
             return res.json({valid: true})
         } else {
