@@ -12,8 +12,10 @@ const multer = require("multer")
 const nodemailer = require("nodemailer");
 const MemoryStore = require('memorystore')(session)
 
+dotenv.config({path: path.resolve(__dirname, '.env')})
+
 app.use(cors(
-    {   origin: ['http://localhost:3000', 'https://estate-psi-three.vercel.app'],
+    {   origin: [process.env.REACT_APP_CLIENT_LOCAL_URI, process.env.REACT_APP_CLIENT_URI],
         methods: ['POST','GET','PUT','DELETE'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
@@ -41,7 +43,6 @@ app.use(session({
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-dotenv.config({path: path.resolve(__dirname, '.env')})
 const PORT = process.env.PORT||8080
 
 app.listen(PORT, function check(err){
