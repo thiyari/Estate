@@ -85,7 +85,6 @@ var loginUserControllerFn = async(req,res)=>
         session.isLoggedIn = true;
         session.id = result.id
         session.logstatus = result.logstatus
-        req.session.save()
         if(result.status){
             res.send({"status":true,"message":result.msg,"logstatus":result.logstatus});
         }
@@ -102,7 +101,14 @@ var loginUserControllerFn = async(req,res)=>
 var logoutUserControllerFn = async(req,res)=>
     {
         if(session.username){
-            req.session.destroy();
+            req.session = null
+            /*
+            session.username = ""
+            session.password = ""
+            session.isLoggedIn = false;
+            session.id = ""
+            session.logstatus = ""
+            */
             res.clearCookie('connect.sid');
             return res.json({valid: true})
         } else {
