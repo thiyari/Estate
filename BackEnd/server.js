@@ -13,7 +13,7 @@ const nodemailer = require("nodemailer");
 const MemoryStore = require('memorystore')(session)
 
 app.use(cors(
-    {   origin: ['http://localhost:3000', 'https://estate-client-b4hf.onrender.com'],
+    {   origin: ['http://localhost:3000', 'https://estate-psi-three.vercel.app'],
         methods: ['POST','GET','PUT','DELETE'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
