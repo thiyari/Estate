@@ -15,7 +15,7 @@ const MemoryStore = require('memorystore')(session)
 dotenv.config({path: path.resolve(__dirname, '.env')})
 
 app.use(cors(
-    {   origin: ['http://localhost:3000', 'https://estate-psi-three.vercel.app'],
+    {   origin: [process.env.REACT_APP_CLIENT_LOCAL_URI, process.env.REACT_APP_CLIENT_URI],
         methods: ['POST','GET','PUT','DELETE'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
@@ -43,7 +43,7 @@ app.use(session({
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-const PORT = 8000||8080
+const PORT = process.env.PORT||8080
 
 app.listen(PORT, function check(err){
     if(err)
@@ -57,7 +57,7 @@ const connectDB = async()=>{
     try{
         // mongodb connection string
         // configure built-in role actions as "atlas admin" in cloud atlas mongoDB data access
-        const con = await mongoose.connect('mongodb+srv://admin:admin123@cluster0.yuot5wo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{
+        const con = await mongoose.connect(process.env.MONGO_URI,{
         })
         console.log(`MongoDB connected:${con.connection.host}`)
     } catch(err){
@@ -67,11 +67,11 @@ const connectDB = async()=>{
 }
 
 const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
+    host: process.env.EMAIL_SERVICE_HOST,
+    port: process.env.EMAIL_SERVICE_PORT,
     auth: {
-        user: 'ts.manikanth@gmail.com',
-        pass: 'lkyblvjtrxjhccmk',
+        user: process.env.AUTH_SERVICE_USER,
+        pass: process.env.AUTH_SERVICE_PASSWORD,
     }
 })
 
@@ -90,7 +90,7 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
             })
     
     const mailOptions = {
-        from: 'ts.manikanth@gmail.com',
+        from: process.env.AUTH_SERVICE_USER,
         bcc: to,
         subject: subject,
         html: message,
