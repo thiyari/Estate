@@ -12,7 +12,7 @@ const multer = require("multer")
 const nodemailer = require("nodemailer");
 const MemoryStore = require('memorystore')(session)
 
-dotenv.config({path: path.join(__dirname, '..','.env')})
+dotenv.config({path: path.join(__dirname, '../.env')})
 
 app.use(cors(
     {   origin: [process.env.REACT_APP_CLIENT_LOCAL_URI, process.env.REACT_APP_CLIENT_URI],
