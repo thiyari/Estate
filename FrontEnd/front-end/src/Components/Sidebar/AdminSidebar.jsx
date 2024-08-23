@@ -11,13 +11,25 @@ import { BiSolidContact } from "react-icons/bi";
 import { MdHomeRepairService } from "react-icons/md";
 import { RiShieldUserFill } from "react-icons/ri";
 import { BiSolidUserRectangle } from "react-icons/bi";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const AdminSidebar = () => {
   const [toggled, setToggled] = React.useState(false);
   const [broken, setBroken] = React.useState(false);
   const [collapsed, setCollapsed] = React.useState(false);
 
-
+  const logoutHandler = () => {
+    axios.post(`${process.env.REACT_APP_SERVER_URI}/api/logout`)
+    .then(res => {
+      if(res.data.valid){
+        alert("Logout Successful")
+        navigate('/Login')
+      } else {
+        alert("Logout Failed")
+      }
+    })
+    .catch(err => console.log(err))
+  };
  
 
   return (
@@ -45,6 +57,7 @@ const AdminSidebar = () => {
                 <MenuItem icon={<BiSolidContact />} component={<Link to="/ContactsRequests" />}>Contact Us</MenuItem>
               </SubMenu>
               <MenuItem icon={<RiContactsBookFill />} component={<Link to="/Contacts" />}>All Contacts</MenuItem>
+              <MenuItem icon={<FaSignOutAlt />} component={logoutHandler}>Logout</MenuItem>
           </Menu>          
         </div>
       </div>

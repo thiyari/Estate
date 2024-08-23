@@ -38,8 +38,8 @@ const logoutHandler = () => {
     }
   })
   .catch(err => console.log(err))
-
 };
+
   return(
         <React.Fragment>
   <nav className="navbar navbar-expand-lg bg-white border">
