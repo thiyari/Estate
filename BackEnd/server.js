@@ -17,7 +17,7 @@ var properties = PropertiesReader('cred.properties');
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
 
 app.use(cors(
-    {   origin: ['http://localhost:3000','http://estate-client-blond.vercel.app'],
+    {   origin: [properties.get("REACT_APP_CLIENT_LOCAL_URI"), properties.get('http://estate-client-blond.vercel.app')],
         methods: ['POST','GET','PUT','DELETE'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
