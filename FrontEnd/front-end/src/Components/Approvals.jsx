@@ -126,10 +126,39 @@ function Approvals(props) {
                 }
               });
               alert("Profile is Approved");
-              navigate('/UsersRequests');
             } catch (err) {
               alert(err);
             }      
+
+
+            try {
+              await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+                to: email,
+                subject: `Your Property: ${propertyId} is now live on our site`,
+                message: `
+                Dear ${fname} ${lname},
+                <br><br>
+                This is to confirm that your property details is now listed on our site. 
+                You may now please login and view your profile.
+                <br><br>
+                Regards,<br>
+                Admin
+                `
+              }),
+              {
+                headers:{
+                  "Content-Type":"application/json"
+                  }
+              }).then((res) => {
+                console.log(res.data.output);
+              });
+              alert("Approval Email was sent to the client");
+              navigate('/UsersRequests');
+            } catch(err) {
+              alert(err);
+            }
+              
+
 
             setFormError(inputError);
       }
