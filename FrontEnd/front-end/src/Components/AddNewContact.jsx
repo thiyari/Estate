@@ -172,7 +172,7 @@ function AddNewContact(props) {
             </center>
           </h1>
             <div className="form-container">
-                <div className="card-body"></div>       
+                <div className="card-body">       
 
     <form onSubmit={submitHandler}>
       <div className="row">
@@ -274,6 +274,7 @@ function AddNewContact(props) {
 
 
 
+            </div>
             </div>
             </div>
         </div>
