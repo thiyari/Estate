@@ -4,18 +4,16 @@ var admin_key = 'Admin31072024';
 var encryptor = require('simple-encryptor')(key);
 const jwt = require("jsonwebtoken");
 var nodemailer = require("nodemailer");
-var PropertiesReader = require('properties-reader');
-var properties = PropertiesReader('cred.properties');
 
 const JWT_SECRET = "d3993d6f826dbf4affdaddaa0ec65a52b38c608dab94088471c77c3148a8bc1c"
 
 module.exports.adminKeyDBService = (userData) => {
         return new Promise(function myFn(resolve,reject){
                 if (userData === admin_key) {
-                        var encrypted = encryptor.encrypt(properties.get("DEFAULT_ADMIN_PWD"));
+                        var encrypted = encryptor.encrypt(process.env.DEFAULT_ADMIN_PWD);
                         async function insert(){
                                 await dataModel.users.create({
-                                        username: properties.get("DEFAULT_ADMIN_USER"),
+                                        username: process.env.DEFAULT_ADMIN_USER,
                                         password: encrypted,
                                         logstatus: "admin"
                                 });
@@ -660,11 +658,11 @@ module.exports.forgotPasswordDBService = async (emailbody) => {
                 });
                 const link = `http://localhost:8000/api/reset-password/${oldUser._id}/${token}`;
                 var transporter = nodemailer.createTransport({
-                  host: properties.get("EMAIL_SERVICE_HOST"),
-                  port: properties.get("EMAIL_SERVICE_PORT"),
+                  host: process.env.EMAIL_SERVICE_HOST,
+                  port: process.env.EMAIL_SERVICE_PORT,
                   auth: {
-                    user: properties.get("AUTH_SERVICE_USER"),
-                    pass: properties.get("AUTH_SERVICE_PASSWORD"),
+                    user: process.env.AUTH_SERVICE_USER,
+                    pass: process.env.AUTH_SERVICE_PASSWORD,
                   },
                 });
             
@@ -747,16 +745,16 @@ module.exports.emailDBService = async (userData) => {
         return new Promise(async function myFn(resolve,reject){
         try {
                 var transporter = nodemailer.createTransport({
-                  host: properties.get("EMAIL_SERVICE_HOST"),
-                  port: properties.get("EMAIL_SERVICE_PORT"),
+                  host: process.env.EMAIL_SERVICE_HOST,
+                  port: process.env.EMAIL_SERVICE_PORT,
                   auth: {
-                    user: properties.get("AUTH_SERVICE_USER"),
-                    pass: properties.get("AUTH_SERVICE_PASSWORD"),
+                    user: process.env.AUTH_SERVICE_USER,
+                    pass: process.env.AUTH_SERVICE_PASSWORD,
                   },
                 });
             
                 var mailOptions = {
-                  from: properties.get("AUTH_SERVICE_USER"),
+                  from: process.env.AUTH_SERVICE_USER,
                   to: userData.to,
                   subject: userData.subject,
                   html: userData.message
