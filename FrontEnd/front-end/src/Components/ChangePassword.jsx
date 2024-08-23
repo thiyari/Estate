@@ -3,6 +3,7 @@ import React, {useState, useEffect, useCallback} from 'react'
 import { useNavigate } from 'react-router-dom';
 import AdminSidebar from './Sidebar/AdminSidebar';
 import axios from "axios";
+import { properties } from '../properties.js';
 
 const PWD_REGEX = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/;
 
@@ -36,7 +37,7 @@ function ChangePassword(props){
 
 
   const session = useCallback(async ()=>{
-    await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+    await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
     .then(res => {
       if(res.data.valid){
         setUser(res.data.username);
@@ -150,7 +151,7 @@ function ChangePassword(props){
 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/changepassword/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/changepassword/${Id}`, 
               JSON.stringify({
               username: user,
               password: formInput.new_password,
@@ -169,7 +170,7 @@ function ChangePassword(props){
               setUser('');
               setPassword('');
 
-              axios.post(`${process.env.REACT_APP_SERVER_URI}/api/logout`)
+              axios.post(properties.REACT_APP_SERVER_URI+'/api/logout')
               .then(res => {
                 if(res.data.valid){
                   alert("Please Login Again")

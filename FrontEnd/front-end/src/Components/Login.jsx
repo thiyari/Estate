@@ -1,7 +1,7 @@
 import axios from "axios";
 import {  useState, useEffect, useCallback } from "react";
 import { useNavigate } from 'react-router-dom';
-
+import {properties} from '../properties.js'
 
 const initialState = {
   user: "",
@@ -20,7 +20,7 @@ function Login() {
     let inputError = {...initialState};
 
     const session = useCallback(async () => {
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid && res.data.logstatus === "user"){
           setUser(res.data.user);
@@ -66,7 +66,7 @@ function Login() {
 
 
         try {
-          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/login`, {
+          await axios.post(properties.REACT_APP_SERVER_URI+'/api/login', {
             user: user,
             password: password,
             }).then((res) => 

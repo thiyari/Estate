@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import '../App.css'
 import AdminSidebar from './Sidebar/AdminSidebar'
 import { FaEdit,FaCheck } from "react-icons/fa";
-
+import { properties } from '../properties.js'
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -38,7 +38,7 @@ function AdminProfile(props){
     const navigate = useNavigate()
 
     const session = useCallback(async () =>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setId(res.data.id);
@@ -55,7 +55,7 @@ function AdminProfile(props){
 
 
     const users = useCallback(async () => {
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/users`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/users')
       .then(res => {
         if(res.data.status){
           const doc_users = res.data.users          
@@ -74,7 +74,7 @@ function AdminProfile(props){
 
 
     const profile = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/profile/${Id}`)
+      await axios.get(properties.REACT_APP_SERVER_URI+`/api/profile/${Id}`)
         .then(res => {
           if(res.data.status){
             const profile_doc = res.data.profile          
@@ -124,7 +124,7 @@ function AdminProfile(props){
           }
     
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/fname/${Id}`, 
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/fname/${Id}`, 
         JSON.stringify({
         firstname: fname,
         }),
@@ -166,7 +166,7 @@ function AdminProfile(props){
           }
 
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/lname/${Id}`,
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/lname/${Id}`,
        JSON.stringify({
         lastname: lname,
         }),
@@ -231,7 +231,7 @@ function AdminProfile(props){
 
 
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/user/${Id}`,
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/user/${Id}`,
         JSON.stringify({
         username: user,
         }),
@@ -248,7 +248,7 @@ function AdminProfile(props){
       setFormError(inputError);
 
 
-        axios.post(`${process.env.REACT_APP_SERVER_URI}/api/logout`)
+        axios.post(properties.REACT_APP_SERVER_URI+'/api/logout')
         .then(res => {
           if(res.data.valid){
             alert("Please Login Again")
@@ -310,7 +310,7 @@ function AdminProfile(props){
 
 
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/email/${Id}`,
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/email/${Id}`,
         JSON.stringify({
         email: email,
         }),
@@ -363,7 +363,7 @@ function AdminProfile(props){
           }
 
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/phone/${Id}`, 
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/phone/${Id}`, 
         JSON.stringify({
         phone: phone,
         }),

@@ -3,6 +3,7 @@ import '../App.css';
 import { useState, useEffect, useCallback } from 'react';
 import ImageUpload from './ImageUpload/ImageUpload';
 import { useNavigate } from 'react-router-dom';
+import {properties} from '../properties.js'
 
 const phaseList = [
   { value: '', label: 'Select Phase'},
@@ -265,7 +266,7 @@ function Register(props) {
 
     
     const session = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -279,7 +280,7 @@ function Register(props) {
 
 
     const users = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/users`)
+      await axios.get(`${properties.REACT_APP_SERVER_URI}/api/users`)
       .then(res => {
         if(res.data.status){
           const doc_users = res.data.users 
@@ -647,7 +648,7 @@ function Register(props) {
 
           
           try {
-            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/contacts/create`, JSON.stringify({
+            await axios.post(properties.REACT_APP_SERVER_URI+'/api/contacts/create', JSON.stringify({
             firstname: formInput.fname,
             lastname: formInput.lname,
             email: formInput.email,
@@ -670,7 +671,7 @@ function Register(props) {
         const pid = Math.floor(1000 + Math.random() * 9000)+random_digits;
         try {
           setLoading(true);
-          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/create`, JSON.stringify({
+          await axios.post(properties.REACT_APP_SERVER_URI+'/api/create', JSON.stringify({
           firstname: formInput.fname,
           lastname: formInput.lname,
           username: formInput.user,
@@ -710,7 +711,7 @@ function Register(props) {
 
 
         try {
-          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+          await axios.post(properties.REACT_APP_SERVER_URI+'/api/send-email', JSON.stringify({
             to: formInput.email,
             subject: `
             New Registration ID: ${pid}

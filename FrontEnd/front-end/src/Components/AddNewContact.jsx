@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
+import { properties } from "../properties";
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
@@ -34,7 +35,7 @@ function AddNewContact(props) {
 
     
     const session = useCallback(async () =>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -129,7 +130,7 @@ function AddNewContact(props) {
           }));
 
           try {
-            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/contacts/create`, JSON.stringify({
+            await axios.post(properties.REACT_APP_SERVER_URI+'/api/contacts/create', JSON.stringify({
             firstname: formInput.fname,
             lastname: formInput.lname,
             email: formInput.email,

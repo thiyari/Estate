@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
+import { properties } from "../properties.js";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
@@ -43,7 +44,7 @@ function AddNewAdmin(props) {
       };
 
     const users = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/users`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/users')
       .then(res => {
         if(res.data.status){
           const doc_users = res.data.users          
@@ -62,7 +63,7 @@ function AddNewAdmin(props) {
     
     
     const session = useCallback(async () =>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -248,7 +249,7 @@ function AddNewAdmin(props) {
           }));
 
         try {
-          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/create`, JSON.stringify({
+          await axios.post(properties.REACT_APP_SERVER_URI+'/api/create', JSON.stringify({
           firstname: formInput.fname,
           lastname: formInput.lname,
           username: formInput.user,

@@ -2,7 +2,7 @@ import {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
-
+import { properties } from '../properties.js'
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
@@ -114,7 +114,7 @@ function Checkout(props) {
 
 
           try {
-            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/contacts/create`, JSON.stringify({
+            await axios.post(properties.REACT_APP_SERVER_URI+'/api/contacts/create', JSON.stringify({
             firstname: formInput.fname,
             lastname: formInput.lname,
             email: formInput.email,
@@ -132,7 +132,7 @@ function Checkout(props) {
 
 
           try {
-            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/services/create`, JSON.stringify({
+            await axios.post(properties.REACT_APP_SERVER_URI+'/api/services/create', JSON.stringify({
             firstname: formInput.fname,
             lastname: formInput.lname,
             email: formInput.email,
@@ -151,7 +151,7 @@ function Checkout(props) {
 
 
           try {
-            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+            await axios.post(properties.REACT_APP_SERVER_URI+'/api/send-email', JSON.stringify({
               to: formInput.email,
               subject: `
               New Service Request for ID: ${propertyid}
@@ -191,7 +191,7 @@ function Checkout(props) {
     }
 
     const session = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -204,7 +204,7 @@ function Checkout(props) {
     },[props, loggedIn])
 
     const property_id = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/${propertyid}`)
+      await axios.get(properties.REACT_APP_SERVER_URI+`/api/${propertyid}`)
       .then(res => {
           const doc = res.data.records[0]
           setProfile(doc)

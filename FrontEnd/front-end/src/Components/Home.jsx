@@ -3,15 +3,15 @@ import '../App.css';
 import axios from "axios";
 import SimpleImageSlider from "react-simple-image-slider";
 import { NavLink } from 'react-router-dom';
+import { properties } from '../properties.js'
 
 function Home(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [dataExists, setDataExists] = useState(false)
     const [profiles, setProfiles] = useState([{}])
 
-    console.log(process.env.REACT_APP_SERVER_URI)
     const session = useCallback(async() =>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
         if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -25,7 +25,7 @@ function Home(props) {
     },[props, loggedIn]);
 
     const records = useCallback(async()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api')
             .then(res => {
                 let profiles_doc = res.data.records
                 if (!Object.keys(profiles_doc).length) { // Check for empty data in the response

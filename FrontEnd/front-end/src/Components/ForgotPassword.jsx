@@ -1,6 +1,7 @@
 import axios from "axios";
 import {  useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import {properties} from '../properties.js'
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 
@@ -57,7 +58,7 @@ function ForgotPassword(props) {
           }));
 
           try {
-            await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/forgot-password`, JSON.stringify({
+            await axios.post(properties.REACT_APP_SERVER_URI+'/api/forgot-password', JSON.stringify({
             email: formInput.email,
             }),
             {

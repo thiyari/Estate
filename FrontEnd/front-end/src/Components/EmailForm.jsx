@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import AdminSidebar from './Sidebar/AdminSidebar'
 import { useParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
+import {properties} from '../properties.js'
 
 function EmailForm(props){
 
@@ -21,7 +22,7 @@ function EmailForm(props){
     const navigate = useNavigate()
 
     const session = useCallback(async () =>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -69,7 +70,7 @@ function EmailForm(props){
           setFormError(inputError);
 
         try {
-          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+          await axios.post(properties.REACT_APP_SERVER_URI+'/api/send-email', JSON.stringify({
             to: email,
             subject: subject,
             message: message

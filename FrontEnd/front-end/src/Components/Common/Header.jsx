@@ -2,7 +2,7 @@ import './common.css'
 import axios from 'axios'
 import React, { useState, useEffect, useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
-
+import { properties } from '../../properties.js'
 
 function Header(props){
 
@@ -11,7 +11,7 @@ const [logStatus, setLogStatus] = useState(false)
 const navigate = useNavigate()
 
 const session = useCallback(async () => {
-  await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+  await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
   .then(res => {
     if(res.data.valid){
       setIsLoggedIn(props.LoginStatus);
@@ -28,7 +28,7 @@ useEffect(()=>{
 
 
 const logoutHandler = () => {
-  axios.post(`${process.env.REACT_APP_SERVER_URI}/api/logout`)
+  axios.post(properties.REACT_APP_SERVER_URI+'/api/logout')
   .then(res => {
     if(res.data.valid){
       alert("Logout Successful")

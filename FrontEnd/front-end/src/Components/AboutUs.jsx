@@ -1,13 +1,14 @@
 import {useState, useEffect, useCallback} from 'react';
 import '../App.css';
 import axios from "axios";
+import { properties } from '../properties.js';
 
 function AboutUs(props) {
 
     const [loggedIn, setLoggedIn] = useState(false)
 
     const session = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);

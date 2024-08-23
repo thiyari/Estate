@@ -3,13 +3,14 @@ import React, { useState, useEffect, useCallback } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
 import { IoIosMail } from "react-icons/io";
+import { properties } from '../properties.js'
 
 function ContactsRequests(props) {
     const [loggedIn, setLoggedIn] = useState(false)
     const [contacts, setContacts] = useState([])
     const navigate = useNavigate()
     const session = useCallback(async () =>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -25,7 +26,7 @@ function ContactsRequests(props) {
 
 
       const records = useCallback(async()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/contacts`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/contacts')
             .then(res => {
                 const records = res.data.records
                 let contacts_list = []
@@ -40,7 +41,7 @@ function ContactsRequests(props) {
     const handleDelete = async (fname, lname, Id) => {
       if(window.confirm(`Are you sure deleting this current contact ${fname} ${lname}!`)){
       try{
-        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/contacts/delete/${Id}`, 
+        await axios.delete(properties.REACT_APP_SERVER_URI+`/api/contacts/delete/${Id}`, 
           { headers: { "Content-Type":"application/json" } })
           alert(`${fname} ${lname} Deleted Successfully`);
           window.location.reload();

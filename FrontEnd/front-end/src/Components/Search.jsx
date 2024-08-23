@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback, useContext, createContext} from
 import { NavLink } from 'react-router-dom';
 import '../App.css';
 import axios from 'axios'
+import { properties } from '../properties.js'
 
 const roomsList = [
   { value: '', label: 'Rooms'},
@@ -195,7 +196,7 @@ function Search(props) {
     };
 
     const session = useCallback(async ()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -209,7 +210,7 @@ function Search(props) {
 
 
     const records = useCallback(async()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api')
             .then(res => {
                 let profiles_doc = res.data.records
                 if (!Object.keys(profiles_doc).length) { // Check for empty data in the response

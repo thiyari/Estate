@@ -4,6 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import '../App.css'
 import axios from 'axios'
 import { IoIosMail } from "react-icons/io";
+import { properties } from '../properties'
 
 function ManageAdmins(props){
 
@@ -12,7 +13,7 @@ function ManageAdmins(props){
     const [profiles, setProfiles] = useState([{}])
 
     const session = useCallback(async () =>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -27,7 +28,7 @@ function ManageAdmins(props){
 
 
     const records = useCallback(async()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/admin/profiles`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/admin/profiles')
             .then(res => {
                 let profiles_doc = res.data.records
                     let profiles_list = []
@@ -48,7 +49,7 @@ function ManageAdmins(props){
     const handleDelete = async (fname, lname, Id) => {
       if(window.confirm(`Are you sure deleting this current Admin ${fname} ${lname}!`)){
       try{
-        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}`, 
+        await axios.delete(properties.REACT_APP_SERVER_URI+`/api/profile/delete/${Id}`, 
           { headers: { "Content-Type":"application/json" } })
           alert(`Admin ${fname} ${lname} Deleted Successfully`);
           window.location.reload();

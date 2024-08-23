@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
+import { properties } from '../../properties.js';
 
 function ImageSlider(props) {
 
@@ -11,7 +12,7 @@ function ImageSlider(props) {
   const [approved, setApproved] = useState(false)
 
   const profile = useCallback(async ()=>{
-    await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/profile/${props.Id}`)
+    await axios.get(properties.REACT_APP_SERVER_URI+`/api/profile/${props.Id}`)
         .then(res => {
         if(res.data.status){
             const profile_doc = res.data.profile  
@@ -68,7 +69,7 @@ function ImageSlider(props) {
     const handleSubmit = async (e) => {
         e.preventDefault()
         try{
-          await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/profile/upload/${props.Id}`, JSON.stringify({
+          await axios.post(properties.REACT_APP_SERVER_URI+`/api/profile/upload/${props.Id}`, JSON.stringify({
             images: uploadImages,
             }),
             {
@@ -89,7 +90,7 @@ function ImageSlider(props) {
         e.preventDefault()
         if(window.confirm('Are you sure deleting this current image!')){
         try{
-          await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/deleteimage/${props.Id}`, 
+          await axios.delete(properties.REACT_APP_SERVER_URI+`/api/profile/deleteimage/${props.Id}`, 
             { data: JSON.stringify({
               image: Images[currentPhotoIndex],
               }), headers: { "Content-Type":"application/json" } }

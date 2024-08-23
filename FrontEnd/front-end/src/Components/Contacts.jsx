@@ -6,6 +6,7 @@ import { IoIosMail } from "react-icons/io";
 import Checkbox from "./Checkbox/Checkbox";
 import { PiUploadSimpleBold } from "react-icons/pi";
 import { FaEdit } from "react-icons/fa";
+import { properties } from '../properties.js'
 
 function Contacts(props) {
 
@@ -30,7 +31,7 @@ function Contacts(props) {
 		const navigate = useNavigate()
 
 		const session = useCallback(async () =>{
-				await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+				await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
 				.then(res => {
 					if(res.data.valid){
 						setLoggedIn(res.data.isLoggedIn);
@@ -45,7 +46,7 @@ function Contacts(props) {
 
 
 			const records = useCallback(async()=>{
-				await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/contacts`)
+				await axios.get(properties.REACT_APP_SERVER_URI+'/api/contacts')
 						.then(res => {
 								const records = res.data.records
 								let contacts_list = []
@@ -60,7 +61,7 @@ function Contacts(props) {
 		const handleDelete = async (fname, lname, Id) => {
 			if(window.confirm(`Are you sure deleting this current contact ${fname} ${lname}!`)){
 			try{
-				await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/contacts/delete/${Id}`, 
+				await axios.delete(properties.REACT_APP_SERVER_URI+`/api/contacts/delete/${Id}`, 
 					{ headers: { "Content-Type":"application/json" } })
 					alert(`${fname} ${lname} Deleted Successfully`);
 					window.location.reload();
@@ -144,7 +145,7 @@ function Contacts(props) {
 				try 
 					{
 					setLoading(true);
-					await fetch(`${process.env.REACT_APP_SERVER_URI}/send-bulk-emails`,{
+					await fetch(properties.REACT_APP_SERVER_URI+'/send-bulk-emails',{
 						method: "POST",
 						body: formData,
 					}).then((res)=>{

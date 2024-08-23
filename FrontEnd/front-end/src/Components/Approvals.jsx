@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import AdminSidebar from "./Sidebar/AdminSidebar";
+import { properties } from "../properties.js";
 
 function Approvals(props) {
     const [loggedIn, setLoggedIn] = useState(false)
@@ -30,7 +31,7 @@ function Approvals(props) {
 
     const navigate = useNavigate()
     const session = useCallback(async () =>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -44,7 +45,7 @@ function Approvals(props) {
       },[props, loggedIn, navigate])
 
       const property_id = useCallback(async ()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/approvals`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/approvals')
         .then(res => {
             const record = res.data.records.filter((doc)=>(doc.propertyid === propertyId))
             setId(record[0]._id)
@@ -57,7 +58,7 @@ function Approvals(props) {
       },[propertyId]) 
 
       const profile = useCallback(async () => {
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/profile/${Id}`)
+        await axios.get(properties.REACT_APP_SERVER_URI+`/api/profile/${Id}`)
         .then(res => {
           if(res.data.status){
             const profile_doc = res.data.profile      
@@ -115,7 +116,7 @@ function Approvals(props) {
           }
 
         try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/approvals/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/approvals/${Id}`, 
               JSON.stringify({
               requests: "Approved",
               commission: commission
@@ -132,7 +133,7 @@ function Approvals(props) {
 
 
             try {
-              await axios.post(`${process.env.REACT_APP_SERVER_URI}/api/send-email`, JSON.stringify({
+              await axios.post(properties.REACT_APP_SERVER_URI+'/api/send-email', JSON.stringify({
                 to: email,
                 subject: `Your Property: ${propertyId} is now live on our site`,
                 message: `

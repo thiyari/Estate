@@ -3,6 +3,7 @@ import '../App.css';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import AdminSidebar from './Sidebar/AdminSidebar';
+import {properties} from '../properties.js'
 
 function ViewProprietor(props) {
 
@@ -13,7 +14,7 @@ function ViewProprietor(props) {
     const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     const session = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -26,7 +27,7 @@ function ViewProprietor(props) {
     },[props, loggedIn])
 
     const property_id = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/${propertyid}`)
+      await axios.get(properties.REACT_APP_SERVER_URI+`/api/${propertyid}`)
       .then(res => {
           const doc = res.data.records[0]
           setProfile(doc)

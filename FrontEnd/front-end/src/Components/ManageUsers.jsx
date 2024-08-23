@@ -8,6 +8,7 @@ import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { IoIosMail } from "react-icons/io";
+import { properties } from '../properties.js'
 
 function ManageUsers(props){
 
@@ -17,7 +18,7 @@ function ManageUsers(props){
     const [search, setSearch] = useState('');
 
     const session = useCallback(async () =>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -32,7 +33,7 @@ function ManageUsers(props){
 
 
     const records = useCallback(async()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api')
             .then(res => {
                 let profiles_doc = res.data.records
                     let profiles_list = []
@@ -53,7 +54,7 @@ function ManageUsers(props){
     const handleDelete = async (fname, lname, Id) => {
       if(window.confirm(`Are you sure deleting this current ${fname} ${lname}!`)){
       try{
-        await axios.delete(`${process.env.REACT_APP_SERVER_URI}/api/profile/delete/${Id}`, 
+        await axios.delete(properties.REACT_APP_SERVER_URI+`/api/profile/delete/${Id}`, 
           { headers: { "Content-Type":"application/json" } })
           alert(`${fname} ${lname} Deleted Successfully`);
           window.location.reload();

@@ -4,7 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom'
 import '../App.css'
 import AdminSidebar from './Sidebar/AdminSidebar'
 import { FaEdit,FaCheck } from "react-icons/fa";
-
+import { properties } from '../properties.js'
 
 const EMAIL_REGEX = /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/;
 const PHONE_REGEX = /(^[6-9]\d{9}$)|(^[789]\d{9}$)|(^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$)/;
@@ -36,7 +36,7 @@ function EditContacts(props){
     const navigate = useNavigate()
 
     const session = useCallback(async () =>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setLoggedIn(res.data.isLoggedIn);
@@ -51,7 +51,7 @@ function EditContacts(props){
 
 
     const contact = useCallback(async ()=>{
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/contacts`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/contacts')
         .then(res => {
           const records = res.data.records
           const contact_doc = records.filter((doc) => (Id === doc._id))
@@ -98,7 +98,7 @@ function EditContacts(props){
           }
     
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/contacts/fname/${Id}`, 
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/contacts/fname/${Id}`, 
         JSON.stringify({
         firstname: fname,
         }),
@@ -140,7 +140,7 @@ function EditContacts(props){
           }
 
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/contacts/lname/${Id}`,
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/contacts/lname/${Id}`,
        JSON.stringify({
         lastname: lname,
         }),
@@ -194,7 +194,7 @@ function EditContacts(props){
           }
 
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/contacts/email/${Id}`,
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/contacts/email/${Id}`,
         JSON.stringify({
         email: email,
         }),
@@ -247,7 +247,7 @@ function EditContacts(props){
           }
 
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/contacts/phone/${Id}`, 
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/contacts/phone/${Id}`, 
         JSON.stringify({
         phone: phone,
         }),

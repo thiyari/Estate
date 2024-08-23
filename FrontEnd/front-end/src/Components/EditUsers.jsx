@@ -5,6 +5,7 @@ import AdminSidebar from "./Sidebar/AdminSidebar";
 import '../App.css'
 import ImageSlider from './ImageSlider/ImageSlider'
 import { FaEdit, FaCheck } from "react-icons/fa";
+import { properties } from "../properties.js";
 
 const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 
@@ -237,7 +238,7 @@ function EditUsers(props) {
 
     const navigate = useNavigate()
     const session = useCallback(async () =>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+        await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
         .then(res => {
           if(res.data.valid){
             setLoggedIn(res.data.isLoggedIn);
@@ -251,7 +252,7 @@ function EditUsers(props) {
       },[props, loggedIn, navigate])
 
       const profile = useCallback(async () => {
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/profile/${Id}`)
+        await axios.get(properties.REACT_APP_SERVER_URI+`/api/profile/${Id}`)
         .then(res => {
           if(res.data.status){
             const profile_doc = res.data.profile      
@@ -278,7 +279,7 @@ function EditUsers(props) {
       },[Id])
   
       const property_id = useCallback(async ()=>{
-        await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/${propertyId}`)
+        await axios.get(properties.REACT_APP_SERVER_URI+`/api/${propertyId}`)
         .then(res => {
             const id = res.data.records[0]._id
             setId(id)
@@ -319,7 +320,7 @@ function EditUsers(props) {
           }
         
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertylocation/${Id}`, 
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertylocation/${Id}`, 
         JSON.stringify({
         location: propertyLocation,
         }),
@@ -373,7 +374,7 @@ function EditUsers(props) {
           }
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyarea/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertyarea/${Id}`, 
               JSON.stringify({
               area: propertyArea,
               }),
@@ -417,7 +418,7 @@ function EditUsers(props) {
           } 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/areatype/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/areatype/${Id}`, 
               JSON.stringify({
               areatype: areaType,
               }),
@@ -462,7 +463,7 @@ function EditUsers(props) {
           }   
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertytype/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertytype/${Id}`, 
               JSON.stringify({
               property: propertyType,
               }),
@@ -504,7 +505,7 @@ function EditUsers(props) {
           } 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyphase/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertyphase/${Id}`, 
               JSON.stringify({
               phase: phase,
               }),
@@ -570,7 +571,7 @@ function EditUsers(props) {
 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/rooms/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/rooms/${Id}`, 
               JSON.stringify({
               rooms: selected_room,
               }),
@@ -612,7 +613,7 @@ function EditUsers(props) {
           }
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/floor/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/floor/${Id}`, 
               JSON.stringify({
               floor: floor,
               }),
@@ -652,7 +653,7 @@ function EditUsers(props) {
             return;
           }
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/currency/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/currency/${Id}`, 
               JSON.stringify({
               currency: currency,
               }),
@@ -697,7 +698,7 @@ function EditUsers(props) {
           } 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertymode/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertymode/${Id}`, 
               JSON.stringify({
               propertymode: propertyMode,
               }),
@@ -787,7 +788,7 @@ function EditUsers(props) {
           }
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/zip/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/zip/${Id}`, 
               JSON.stringify({
               zip: zip,
               }),
@@ -827,7 +828,7 @@ function EditUsers(props) {
             return;
           }
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyaddress/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertyaddress/${Id}`, 
               JSON.stringify({
               address: propertyAddress,
               }),

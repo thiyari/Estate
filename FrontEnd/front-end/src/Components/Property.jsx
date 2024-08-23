@@ -5,6 +5,7 @@ import UserSidebar from './Sidebar/UserSidebar'
 import '../App.css'
 import ImageSlider from './ImageSlider/ImageSlider'
 import { FaEdit, FaCheck } from "react-icons/fa";
+import { properties } from '../properties.js'
 
 const ZIP_REGEX = /(^[1-9][0-9]{5}$)|((^\d{5}$)|(^\d{5}-\d{4}$))/;
 
@@ -238,7 +239,7 @@ function Properties(props){
 
 
     const session = useCallback( async () => {
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/session`)
+      await axios.get(properties.REACT_APP_SERVER_URI+'/api/session')
       .then(res => {
         if(res.data.valid){
           setId(res.data.id);
@@ -254,7 +255,7 @@ function Properties(props){
 
 
     const profile = useCallback(async () => {
-      await axios.get(`${process.env.REACT_APP_SERVER_URI}/api/profile/${Id}`)
+      await axios.get(properties.REACT_APP_SERVER_URI+`/api/profile/${Id}`)
       .then(res => {
         if(res.data.status){
           const profile_doc = res.data.profile      
@@ -314,7 +315,7 @@ function Properties(props){
           }
         
     try{
-      await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertylocation/${Id}`, 
+      await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertylocation/${Id}}`, 
         JSON.stringify({
         location: propertyLocation,
         }),
@@ -368,7 +369,7 @@ function Properties(props){
           }
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyarea/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertyarea/${Id}`, 
               JSON.stringify({
               area: propertyArea,
               }),
@@ -413,7 +414,7 @@ function Properties(props){
           } 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/areatype/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/areatype/${Id}`, 
               JSON.stringify({
               areatype: areaType,
               }),
@@ -459,7 +460,7 @@ function Properties(props){
           }   
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertytype/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertytype/${Id}}`, 
               JSON.stringify({
               property: propertyType,
               }),
@@ -501,7 +502,7 @@ function Properties(props){
           } 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyphase/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertyphase/${Id}}`, 
               JSON.stringify({
               phase: phase,
               }),
@@ -567,7 +568,7 @@ function Properties(props){
 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/rooms/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/rooms/${Id}}`, 
               JSON.stringify({
               rooms: selected_room,
               }),
@@ -609,7 +610,7 @@ function Properties(props){
           }
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/floor/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/floor/${Id}}`, 
               JSON.stringify({
               floor: floor,
               }),
@@ -649,7 +650,7 @@ function Properties(props){
             return;
           }
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/currency/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/currency/${Id}}`, 
               JSON.stringify({
               currency: currency,
               }),
@@ -693,7 +694,7 @@ function Properties(props){
           } 
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertymode/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertymode/${Id}}`, 
               JSON.stringify({
               propertymode: propertyMode,
               }),
@@ -782,7 +783,7 @@ function Properties(props){
           }
 
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/zip/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/zip/${Id}`, 
               JSON.stringify({
               zip: zip,
               }),
@@ -822,7 +823,7 @@ function Properties(props){
             return;
           }
           try{
-            await axios.put(`${process.env.REACT_APP_SERVER_URI}/api/profile/propertyaddress/${Id}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/propertyaddress/${Id}`, 
               JSON.stringify({
               address: propertyAddress,
               }),
