@@ -11,6 +11,8 @@ const cors = require('cors');
 const multer = require("multer")
 const nodemailer = require("nodemailer");
 const MemoryStore = require('memorystore')(session)
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('cred.properties');
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
 
@@ -43,7 +45,7 @@ app.use(session({
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-const PORT = process.env.PORT||8080
+const PORT = properties.get("PORT")||8080
 
 app.listen(PORT, function check(err){
     if(err)
@@ -57,7 +59,7 @@ const connectDB = async()=>{
     try{
         // mongodb connection string
         // configure built-in role actions as "atlas admin" in cloud atlas mongoDB data access
-        const con = await mongoose.connect(process.env.MONGO_URI,{
+        const con = await mongoose.connect(properties.get("MONGO_URI"),{
         })
         console.log(`MongoDB connected:${con.connection.host}`)
     } catch(err){
@@ -67,11 +69,11 @@ const connectDB = async()=>{
 }
 
 const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_SERVICE_HOST,
-    port: process.env.EMAIL_SERVICE_PORT,
+    host: properties.get("EMAIL_SERVICE_HOST"),
+    port: properties.get("EMAIL_SERVICE_PORT"),
     auth: {
-        user: process.env.AUTH_SERVICE_USER,
-        pass: process.env.AUTH_SERVICE_PASSWORD,
+        user: properties.get("AUTH_SERVICE_USER"),
+        pass: properties.get("AUTH_SERVICE_PASSWORD"),
     }
 })
 
@@ -90,7 +92,7 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
             })
     
     const mailOptions = {
-        from: process.env.AUTH_SERVICE_USER,
+        from: properties.get("AUTH_SERVICE_USER"),
         bcc: to,
         subject: subject,
         html: message,
