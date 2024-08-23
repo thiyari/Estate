@@ -10,7 +10,7 @@ const initialState = {
   password_status: "",
 };
 
-function Login(props) {
+function Login() {
 
     const [user, setUser] = useState("");
     const [password, setPassword] = useState("");
