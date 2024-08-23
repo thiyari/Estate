@@ -11,12 +11,14 @@ import { BiSolidContact } from "react-icons/bi";
 import { MdHomeRepairService } from "react-icons/md";
 import { RiShieldUserFill } from "react-icons/ri";
 import { BiSolidUserRectangle } from "react-icons/bi";
-import { FaSignOutAlt } from "react-icons/fa";
 
 const AdminSidebar = () => {
   const [toggled, setToggled] = React.useState(false);
   const [broken, setBroken] = React.useState(false);
-  const [collapsed, setCollapsed] = React.useState(false); 
+  const [collapsed, setCollapsed] = React.useState(false);
+
+
+ 
 
   return (
     <div style={{ display: 'flex', height: '100%'}}>
@@ -43,7 +45,6 @@ const AdminSidebar = () => {
                 <MenuItem icon={<BiSolidContact />} component={<Link to="/ContactsRequests" />}>Contact Us</MenuItem>
               </SubMenu>
               <MenuItem icon={<RiContactsBookFill />} component={<Link to="/Contacts" />}>All Contacts</MenuItem>
-              <MenuItem icon={<FaSignOutAlt />} component={<Link to="/Logout" />}>Logout</MenuItem>
           </Menu>          
         </div>
       </div>

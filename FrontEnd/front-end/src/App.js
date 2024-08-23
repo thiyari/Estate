@@ -29,7 +29,6 @@ import ForgotPassword from './Components/ForgotPassword';
 import EmailForm from './Components/EmailForm';
 import EditContacts from './Components/EditContacts';
 import AboutUs from './Components/AboutUs';
-import Logout from './Logout';
 import { useState } from 'react';
 
 function App() {
@@ -48,7 +47,6 @@ const handleLogin = (status) => {
           <Route path="/Profile" element = {<Profile LoginStatus={handleLogin}/>} />
           <Route path="/Register" element = {<Register LoginStatus={handleLogin}/>} />
           <Route path="/Login" element = {<Login />} />
-          <Route path="/Logout" element = {<Logout />} />
           <Route path="/ForgotPassword" element = {<ForgotPassword />} />
           <Route path="/Plots" element = {<Plots LoginStatus={handleLogin}/>} />
           <Route path="/Houses" element = {<Houses LoginStatus={handleLogin}/>} />
