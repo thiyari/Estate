@@ -12,7 +12,7 @@ const multer = require("multer")
 const nodemailer = require("nodemailer");
 const MemoryStore = require('memorystore')(session)
 
-dotenv.config({path: path.resolve(__dirname, '.env')})
+dotenv.config({path: path.resolve(__dirname, 'config.env')})
 
 app.use(cors(
     {   origin: ['http://localhost:3000','http://estate-client-blond.vercel.app'],
