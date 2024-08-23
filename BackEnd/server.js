@@ -15,7 +15,7 @@ const MemoryStore = require('memorystore')(session)
 dotenv.config({path: path.resolve(__dirname, '.env')})
 
 app.use(cors(
-    {   origin: 'http://localhost:3000',
+    {   origin: ['http://localhost:3000','http://estate-client-blond.vercel.app'],
         methods: ['POST','GET','PUT','DELETE'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
