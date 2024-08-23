@@ -298,7 +298,8 @@ function AddNewAdmin(props) {
             <div className="form-container">
                 <div className="card-body"></div>       
                 <div className="row">
-                <div className="col-md-12">
+                <div className="col-md-1"></div>
+                <div className="col-md-10">
     <form onSubmit={submitHandler}>
       <div className="row">
       <div className="col-md-1"></div>
@@ -451,6 +452,7 @@ function AddNewAdmin(props) {
         </div>
         </form>
         </div>
+        <div className="col-md-1"></div>
         </div>
 
 
