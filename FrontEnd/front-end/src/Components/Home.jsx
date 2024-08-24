@@ -50,17 +50,17 @@ function Home(props) {
     return(
         <>
         <div className="banner">
-            <div>
-            <img className="img-fluid" src="https://t4.ftcdn.net/jpg/04/46/88/95/360_F_446889583_Aj2DaAoL5vPRWfdNASifycNadZhhhj6h.jpg" height={100} width={150} alt="logo"/>
-            </div>
-                    <div>
-                        <h2 className="banner-title">Welcome to Online Services</h2>
-                        <p className="banner-desc">Sign Up now and get connected with us to Sell/Rent your properties</p>
-                    </div>
+            <div style={{display: 'flex', justifyContent: 'right', alignItems: 'right'}}>
+            <img className="img-fluid" src="https://t4.ftcdn.net/jpg/04/46/88/95/360_F_446889583_Aj2DaAoL5vPRWfdNASifycNadZhhhj6h.jpg" height={100} width={200} alt="logo"/>
+                <div style={{padding: "10px 100px 10px 50px"}}>
+                    <h2 className="banner-title">Welcome to Live Services</h2>
+                    <p className="banner-desc">Sell, Rent & Lease your Properties on Live with us</p>
+                    <p align="center">Sign Up now and get connected with us</p> 
                     <form className="d-flex" action='/Register'>
-                    <button className="btn-signup" type="submit">Sign Up
-                    </button></form>
-
+                        <button className="btn-signup" type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
         </div>
         {dataExists && (<>
 
