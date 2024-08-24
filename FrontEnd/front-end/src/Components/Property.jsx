@@ -568,7 +568,7 @@ function Properties(props){
 
 
           try{
-            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/rooms/${Id}}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/rooms/${Id}`, 
               JSON.stringify({
               rooms: selected_room,
               }),
@@ -610,7 +610,7 @@ function Properties(props){
           }
 
           try{
-            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/floor/${Id}}`, 
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/floor/${Id}`, 
               JSON.stringify({
               floor: floor,
               }),
