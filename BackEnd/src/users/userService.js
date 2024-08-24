@@ -821,23 +821,6 @@ module.exports.contactsLnameUserDBService = async (id,data) => {
         })
 }
 
-module.exports.contactsLnameControllerFn = async (id,data) => {
-        return new Promise(async function myFn(resolve,reject){
-        await dataModel.contacts.findByIdAndUpdate(id,{lastname:data.lastname},{new:true})
-                .then((docs)=>{
-                        if(docs) {
-                           resolve({success:true,msg:"Last name changed"});
-                        } else {
-                           reject({success:false,msg:"changing last name failed"});
-                        }
-                    }).catch((err)=>{
-                       reject(err);
-                    });               
-        })
-}
-
-
-
 
 module.exports.contactsEmailUserDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
