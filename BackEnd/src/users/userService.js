@@ -811,9 +811,9 @@ module.exports.contactsLnameUserDBService = async (id,data) => {
         await dataModel.contacts.findByIdAndUpdate(id,{lastname:data.lastname},{new:true})
                 .then((docs)=>{
                         if(docs) {
-                           resolve({success:true,msg:"First name changed"});
+                           resolve({success:true,msg:"Last name changed"});
                         } else {
-                           reject({success:false,msg:"changing first name failed"});
+                           reject({success:false,msg:"changing last name failed"});
                         }
                     }).catch((err)=>{
                        reject(err);
