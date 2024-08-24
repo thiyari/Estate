@@ -126,7 +126,6 @@ function Approvals(props) {
                 "Content-Type":"application/json"
                 }
               });
-              alert("Profile is Approved");
             } catch (err) {
               alert(err);
             }      
@@ -153,7 +152,7 @@ function Approvals(props) {
               }).then((res) => {
                 console.log(res.data.output);
               });
-              alert("Approval Email was sent to the client");
+              alert("Profile is Approved");
               navigate('/UsersRequests');
             } catch(err) {
               alert(err);
