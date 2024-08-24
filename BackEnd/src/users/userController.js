@@ -505,6 +505,48 @@ var profileUploadImagesControllerFn = async(req,res)=>
     
         }
 
+        
+    var profilePropertyAreaControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profilePropertyAreaDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
+
+
+
+    var profilePriceControllerFn = async(req,res)=>
+        {
+            var result = null;
+            try
+            {
+                var result = await userService.profilePriceDBService(req.params.id,req.body)
+                if(result.status){
+                    return res.send({"status": true, "message": result.msg});
+                }
+                else {
+                    return res.send({"status": false, "message": result.msg});
+                }
+            }
+            catch(err){
+                console.log(err);
+                res.send({"status":false,"message":err.msg});
+            }
+    
+        }
 
     var profilePropertyAreaControllerFn = async(req,res)=>
         {
@@ -936,5 +978,6 @@ module.exports = {
     contactsFnameControllerFn,
     contactsLnameControllerFn,
     contactsEmailControllerFn,
-    contactsPhoneControllerFn
+    contactsPhoneControllerFn,
+    profilePriceControllerFn
 }

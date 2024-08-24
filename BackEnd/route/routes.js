@@ -35,6 +35,7 @@ router.route('/api/profile/phone/:id').put(userController.profilePhoneController
 router.route('/api/profile/propertylocation/:id').put(userController.profilePropertyLocationControllerFn)
 router.route('/api/profile/propertyarea/:id').put(userController.profilePropertyAreaControllerFn)
 router.route('/api/profile/areatype/:id').put(userController.profileAreaTypeControllerFn)
+router.route('/api/profile/price/:id').put(userController.profilePriceControllerFn)
 router.route('/api/profile/propertymode/:id').put(userController.profilePropertyModeControllerFn)
 router.route('/api/profile/propertytype/:id').put(userController.profilePropertyTypeControllerFn)
 router.route('/api/profile/propertyphase/:id').put(userController.profilePhaseControllerFn)

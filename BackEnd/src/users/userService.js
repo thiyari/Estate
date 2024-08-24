@@ -499,6 +499,20 @@ module.exports.profilePropertyAreaDBService = async (id,data) => {
         })
 }
 
+module.exports.profilePriceDBService = async (id,data) => {
+        return new Promise(async function myFn(resolve,reject){
+        await dataModel.users.findByIdAndUpdate(id,{price:data.price},{new:true})
+                .then((docs)=>{
+                        if(docs) {
+                           resolve({success:true,msg:"Price Value updated successfully"});
+                        } else {
+                           reject({success:false,msg:"Updating Price Value failed"});
+                        }
+                    }).catch((err)=>{
+                       reject(err);
+                    });               
+        })
+}
 
 module.exports.profilePropertyTypeDBService = async (id,data) => {
         return new Promise(async function myFn(resolve,reject){
