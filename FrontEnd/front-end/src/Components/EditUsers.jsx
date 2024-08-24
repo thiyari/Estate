@@ -752,7 +752,24 @@ function EditUsers(props) {
             })
             return;
           }
-      setPricetoggle(false)
+
+
+          try{
+            await axios.put(properties.REACT_APP_SERVER_URI+`/api/profile/price/${Id}`, 
+              JSON.stringify({
+              price: price,
+              }),
+              {
+                headers:{
+                "Content-Type":"application/json"
+                }
+              });
+              alert("Price Value Updated Successfully");
+              setPricetoggle(false)
+            } catch (err) {
+              alert(err);
+            }
+          setFormError(inputError); 
     }
 
     const handleZipInput = (event) => {
