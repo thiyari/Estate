@@ -74,7 +74,7 @@ function Home(props) {
                             {profiles.map((profile, index)=>{ 
                             return (
                             <div className="col-sm-6" key={index}>
-                                <div className="card mt-3">
+                                <div className="card mb-5">
                                 <div className="card-body">
                                     <div className='slider'>
                                         {profile.images.length === 0? <></>: 

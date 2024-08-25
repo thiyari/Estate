@@ -189,8 +189,8 @@ screen and (max-width: 430px)
 .article {
 	width: 100%;
 	position: relative;
-	top: 320px; 
-	background: white;
+	top: 290px; 
+	background: transparent;
 	height: 100%; 
 	padding: 30px 10%;
 }
