@@ -34,7 +34,7 @@ function Footer(){
                 </div>
                 <section className='d-flex justify-content-center'>
                     <div className='me-5 d-none d-lg-block'>
-                        <span>Get connect with us on our Social Media Networks</span>
+                        <span>Get connected with us on our Social Media Networks</span>
                     </div>
                     <div>
                         <a href='#facebook'><FaFacebook size={50}/></a>{" "}
