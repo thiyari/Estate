@@ -50,7 +50,7 @@ function Home(props) {
     return(
         <>
         <div className="banner border">
-            <div style={{display: 'flex', justifyContent: 'right', alignItems: 'right'}}>
+            <div className="logo-content">
             <img className="img-fluid" src={require("./Logo.png")} height={100} width={250} alt="logo"/>
                 <div style={{padding: "10px 100px 10px 50px"}}>
                     <h2 className="banner-title">Welcome to Live Services</h2>

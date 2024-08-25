@@ -116,10 +116,16 @@ input[type="text"], input[type="email"], h2, th, td {
 }
 
 @media screen and (max-width: 100%) {
-  .banner div {
+  .banner div{
       width: 100%;
       font-size: 20px;
   }
+}
+
+.logo-content {
+  display: flex;
+  justify-content: right;
+  align-items: right;
 }
 
 .banner-title {
