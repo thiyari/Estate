@@ -14,12 +14,14 @@ const MemoryStore = require('memorystore')(session)
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
 
-app.use(cors(
-    {   origin: [process.env.REACT_APP_CLIENT_LOCAL_URI, process.env.REACT_APP_CLIENT_URI],
-        methods: ['POST','GET','PUT','DELETE'],
-        credentials:true,            //access-control-allow-credentials:true
-        optionSuccessStatus:200,}
-));
+        // Do not block requests while in development
+        app.UseCors(options =>
+            {
+                options.AllowAnyOrigin();
+                options.AllowAnyMethod();
+                options.AllowAnyHeader();
+            });
+            
 app.use(express.json({limit:"10mb"}))
 
 app.use(cookieParser());
