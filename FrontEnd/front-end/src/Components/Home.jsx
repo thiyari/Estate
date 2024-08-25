@@ -51,7 +51,7 @@ function Home(props) {
         <>
         <div className="banner">
             <div style={{display: 'flex', justifyContent: 'right', alignItems: 'right'}}>
-            <img className="img-fluid" src="https://t4.ftcdn.net/jpg/04/46/88/95/360_F_446889583_Aj2DaAoL5vPRWfdNASifycNadZhhhj6h.jpg" height={100} width={200} alt="logo"/>
+            <img className="img-fluid" src={require("./Logo.png")} height={100} width={250} alt="logo"/>
                 <div style={{padding: "10px 100px 10px 50px"}}>
                     <h2 className="banner-title">Welcome to Live Services</h2>
                     <p className="banner-desc">Sell, Rent & Lease your Properties on Live with us</p>
