@@ -115,10 +115,38 @@ input[type="text"], input[type="email"], h2, th, td {
 	align-items: center;
 }
 
-@media screen and (max-width: 100%) {
-  .banner div{
-      width: 100%;
-      font-size: 20px;
+@media 
+screen and (max-width: 360px), 
+screen and (max-width: 375px), 
+screen and (max-width: 414px), 
+screen and (max-width: 390px),
+screen and (max-width: 430px) 
+{
+  img{
+    padding-left: 190px;
+    width: 65%;
+  }
+  .banner {
+    padding-left: 10px;
+  }
+  h2.banner-title{
+      font-size: 30px;
+      color: white;
+      font-weight: bold;
+      margin-bottom: 10px;
+      text-align: center;
+      text-shadow: 1px 4px 0px grey;
+  }
+  p.banner-desc{
+    font-size: 14px;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: bolder;
+    color: white;
+    text-align: center;
+    text-shadow: 1px 2px 0px grey;
+  }
+  p{
+    font-size: 11px;
   }
 }
 
