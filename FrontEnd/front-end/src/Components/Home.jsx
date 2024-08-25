@@ -49,7 +49,7 @@ function Home(props) {
 
     return(
         <>
-        <div className="banner">
+        <div className="banner border">
             <div style={{display: 'flex', justifyContent: 'right', alignItems: 'right'}}>
             <img className="img-fluid" src={require("./Logo.png")} height={100} width={250} alt="logo"/>
                 <div style={{padding: "10px 100px 10px 50px"}}>
