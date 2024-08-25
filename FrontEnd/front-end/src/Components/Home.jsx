@@ -108,8 +108,8 @@ function Home(props) {
                     </div>
                     </article>
                 </div>
-            <div className="col-md-1"></div>
             </div>
+            <div className="col-md-1"></div>
             </div>  
 </>
 )}
