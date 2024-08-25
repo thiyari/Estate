@@ -122,7 +122,7 @@ screen and (max-width: 414px),
 screen and (max-width: 390px),
 screen and (max-width: 430px) 
 {
-  img{
+  .logo-content img{
     padding-left: 190px;
     width: 65%;
   }
