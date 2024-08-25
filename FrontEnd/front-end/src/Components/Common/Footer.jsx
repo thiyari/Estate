@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaFacebook, FaTwitter, FaLinkedin, FaYoutube} from 'react-icons/fa';
+import {FaFacebook, FaTwitter, FaLinkedin, FaYoutube, FaWhatsapp} from 'react-icons/fa';
 
 function Footer(){
 
@@ -27,20 +27,21 @@ function Footer(){
                         <div className='col-sm-2'>
                             <h5>Address</h5>
                             <p>India</p>
-                            <p>Po box no-501505</p>
+                            <p>Po box no-525896</p>
                             <p>+91-9896547813</p>
                         </div>
                     </div>
                 </div>
                 <section className='d-flex justify-content-center'>
                     <div className='me-5 d-none d-lg-block'>
-                        <span>Get connected with us on social media Network</span>
+                        <span>Get connect with us on our Social Media Networks</span>
                     </div>
                     <div>
-                        <a href='#f'><FaFacebook size={25}/></a>{" "}
-                        <a href='#t'><FaTwitter size={25}/></a>{" "}
-                        <a href='#l'><FaLinkedin size={25}/></a>{" "}
-                        <a href='#y'><FaYoutube size={25}/></a>
+                        <a href='#facebook'><FaFacebook size={50}/></a>{" "}
+                        <a href='#twitter'><FaTwitter size={50}/></a>{" "}
+                        <a href='#linkedin'><FaLinkedin size={50}/></a>{" "}
+                        <a href='#youtube'><FaYoutube size={50}/></a>{" "}
+                        <a href='#whatsapp'><FaWhatsapp size={50}/></a>
                     </div>
                 </section>
             </footer>
