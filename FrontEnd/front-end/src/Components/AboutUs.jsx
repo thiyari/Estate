@@ -57,7 +57,7 @@ function AboutUs(props) {
               <br></br>
               <h5>OUR MISSION</h5>
               <br></br>
-              The Mission of this Organization is to provide excellent service and expertise in Home Loan and Real Estate in and around Telangana & Andhra Pradesh.
+              The Mission of this Organization is to provide excellent service and expertise in Home Loan and Real Estate in and around India & United States of America.
               <br></br>
               <br></br>
               <h5>OUR VISION</h5>
