@@ -361,6 +361,7 @@ return(
             <div className="row">
               <div className='col-md-1'></div>
               <div className='col-md-10'>
+              <div className="card-body">
               <form>
                 <div className='row container'>
                   <div className='col-md-3'>
@@ -406,7 +407,7 @@ return(
                 </div>
             <FilterContext.Provider value={{filters, handleFilterChange}}>
               <FilterControls />
-              <div className ="table-responsive-md" style={{ maxHeight: "410px", overflowY: "auto" }}>
+              <div className ="table-responsive-md" style={{ maxHeight: "510px", overflowY: "auto" }}>
                   <table className="table table-striped table-hover mt-4">
                     <thead align="center" style={{ position: "sticky", top: "0" }}>
                       <tr>
@@ -444,7 +445,8 @@ return(
                   </table>
               </div>
               </FilterContext.Provider>    
-              </form>         
+              </form> 
+              </div>        
                     </div>
                     <div className='col-md-1'></div>
                     </div>
