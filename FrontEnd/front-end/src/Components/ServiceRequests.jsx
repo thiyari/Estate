@@ -99,7 +99,7 @@ function ServiceRequests(props) {
                       <th scope="col">Message</th>
                       <th scope="col">Requested ID</th>
                       <th scope="col">Date</th>
-                      <th colSpan={3} style={{textAlign: "center"}}>Operations</th>
+                      <th colSpan={2} style={{textAlign: "center"}}>Operations</th>
                     </tr>
                     </thead>
                     <tbody className="table-group-divider">
@@ -113,8 +113,6 @@ function ServiceRequests(props) {
                                               <td><NavLink exact="true" to={`/ViewProprietor/${profile.requests}`} target={'_blank'}>{profile.requests}
                                               </NavLink></td>
                                               <td>{formatedDate(profile.createdAt)}</td>
-                                              <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
-                                              </NavLink></td>
                                               <td align='right'><NavLink exact="true" to={`/EmailForm/${profile.email}`} ><IoIosMail size={20}/>
                                               </NavLink></td>
                                               <td align='center'><button style={{width: 25}} onClick={(e)=>{
