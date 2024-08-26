@@ -110,7 +110,8 @@ function ServiceRequests(props) {
                                               <td>{profile.email}</td>
                                               <td>{profile.phone}</td>
                                               <td>{profile.comments}</td>
-                                              <td>{profile.requests}</td>
+                                              <td><NavLink exact="true" to={`/ViewProprietor/${profile.requests}`} target={'_blank'}>{profile.requests}
+                                              </NavLink></td>
                                               <td>{formatedDate(profile.createdAt)}</td>
                                               <td align='right'><NavLink exact="true" to={`/ViewProprietor/${profile.requests}`} target={'_blank'}><i className="fa-solid fa-eye"></i>
                                               </NavLink></td>
