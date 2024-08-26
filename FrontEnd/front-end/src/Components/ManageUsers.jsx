@@ -98,7 +98,7 @@ function ManageUsers(props){
               />
             </InputGroup>
           </Form>
-          <div className ="table-responsive-md" style={{ maxHeight: "410px", overflowY: "auto" }}>  
+          <div className ="table-responsive-md" style={{ maxHeight: "410px", overflowY: "scroll" }}>  
           <form>
           <table className="table table-striped table-hover">
             <thead style={{ position: "sticky", top: "0" }}>

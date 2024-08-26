@@ -407,7 +407,7 @@ return(
                 </div>
             <FilterContext.Provider value={{filters, handleFilterChange}}>
               <FilterControls />
-              <div className ="table-responsive-md" style={{ maxHeight: "510px", overflowY: "auto" }}>
+              <div className ="table-responsive-md" style={{ maxHeight: "510px", overflowY: "scroll" }}>
                   <table className="table table-striped table-hover mt-4">
                     <thead align="center" style={{ position: "sticky", top: "0" }}>
                       <tr>

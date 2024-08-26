@@ -187,7 +187,7 @@ function Contacts(props) {
 								<div className="card-body">
 								
 								<form onSubmit={handleSubmit}>
-								<div className ="table-responsive-md" style={{ maxHeight: "300px", overflowY: "auto" }}>  
+								<div className ="table-responsive-md" style={{ maxHeight: "300px", overflowY: "scroll" }}>  
 									<table className="table table-striped table-hover">
 										<thead style={{ position: "sticky", top: "0" }}>
 										<tr>

@@ -90,7 +90,7 @@ function ContactsRequests(props) {
                 <div className="card-body">
                 
                 <form>
-                <div className ="table-responsive-md" style={{ maxHeight: "410px", overflowY: "auto" }}>  
+                <div className ="table-responsive-md" style={{ maxHeight: "410px", overflowY: "scroll" }}>  
                   <table className="table table-striped table-hover">
                     <thead style={{ position: "sticky", top: "0" }}>
                     <tr>
