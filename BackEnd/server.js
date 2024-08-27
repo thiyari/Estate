@@ -43,6 +43,7 @@ const allowCors = fn => async (req, res) => {
     res.end(d.toString())
   }
 
+  module.exports = allowCors(handler)  
 app.use(express.json({limit:"10mb"}))
 
 app.use(cookieParser());
@@ -133,4 +134,3 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
 connectDB();
 
 app.use(routes);
-module.exports = allowCors(handler)
