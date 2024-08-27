@@ -114,9 +114,10 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
 connectDB();
 
 app.use(routes);
-const allowCors = fn => async (req, res) => {
+  
+  module.exports = (req, res) => {
     res.setHeader('Access-Control-Allow-Credentials', true)
-    res.setHeader('Access-Control-Allow-Origin', '*')
+    res.setHeader('Access-Control-Allow-Origin', 'https://estate-client-ruby.vercel.app')
     // another common pattern
     // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -125,15 +126,7 @@ const allowCors = fn => async (req, res) => {
       'Origin, X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
     )
     if (req.method === 'OPTIONS') {
-      res.status(200).end()
-      return
-    }
-    return await fn(req, res)
-  }
-  
-  const handler = (req, res) => {
-    const d = new Date()
-    res.end(d.toString())
-  }
-  
-  module.exports = allowCors(handler)
+        res.status(200).end()
+        return
+      }
+  } 
