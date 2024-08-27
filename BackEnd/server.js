@@ -13,14 +13,15 @@ const nodemailer = require("nodemailer");
 const MemoryStore = require('memorystore')(session)
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
-/*
+
 app.use(cors(
     {   origin: [process.env.REACT_APP_CLIENT_LOCAL_URI, process.env.REACT_APP_CLIENT_URI],
         methods: ['POST','GET','PUT','DELETE'],
+        allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
 ));
-*/
+
 app.use(express.json({limit:"10mb"}))
 
 app.use(cookieParser());
@@ -111,20 +112,3 @@ app.post("/send-bulk-emails",upload.array("files"),async(req,res)=>{
 connectDB();
 
 app.use(routes);
-module.exports = (req, res) => {
-    //set header first to allow request or origin domain (value can be different)
-    res.setHeader('Access-Control-Allow-Origin', 'https://estate-client-ruby.vercel.app');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    res.setHeader('Access-Control-Allow-Credentials', true);
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, OPTIONS, DELETE');
-
-//---- other code
-
- //Preflight CORS handler
-    if(req.method === 'OPTIONS') {
-        return res.status(200).json(({
-            body: "OK"
-        }))
-    }
-
-}
