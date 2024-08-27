@@ -13,37 +13,13 @@ const nodemailer = require("nodemailer");
 const MemoryStore = require('memorystore')(session)
 
 dotenv.config({path: path.resolve(__dirname, 'config.env')})
-/*
+
 app.use(cors(
     {   origin: [process.env.REACT_APP_CLIENT_LOCAL_URI, process.env.REACT_APP_CLIENT_URI],
         methods: ['POST','GET','PUT','DELETE'],
         credentials:true,            //access-control-allow-credentials:true
         optionSuccessStatus:200,}
 ));
-*/
-const allowCors = fn => async (req, res) => {
-    res.setHeader('Access-Control-Allow-Credentials', true)
-    res.setHeader('Access-Control-Allow-Origin', 'https://estate-client-ruby.vercel.app')
-    // another common pattern
-    // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-    res.setHeader(
-      'Access-Control-Allow-Headers',
-      'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-    )
-    if (req.method === 'OPTIONS') {
-      res.status(200).end()
-      return
-    }
-    return await fn(req, res)
-  }
-  
-  const handler = (req, res) => {
-    const d = new Date()
-    res.end(d.toString())
-  }
-
-  module.exports = allowCors(handler)  
 app.use(express.json({limit:"10mb"}))
 
 app.use(cookieParser());
