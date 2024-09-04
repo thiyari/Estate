@@ -2,6 +2,8 @@ package com.example.estate;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
+
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.webkit.WebResourceRequest;
@@ -21,6 +23,17 @@ public class MainActivity extends AppCompatActivity {
         webView.loadUrl("https://estate-client-ruby.vercel.app/");
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
+
+        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                if(webView.isFocused() && webView.canGoBack())
+                {
+                    webView.goBack();
+                }
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this,onBackPressedCallback);
     }
 
     private class MywebClient extends WebViewClient{
